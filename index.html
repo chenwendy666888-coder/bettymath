@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maths Study Hub · 数学学习中心</title>
+<style>
+:root{--bg:#F4F6FB;--surface:#fff;--ink:#1B1B2A;--muted:#6A6A82;--line:#E3E6F0;--indigo:#4A43C4;--indigo-deep:#2E2A6B;--indigo-soft:#EEF0FC;--amber:#C77A15;--amber-soft:#FCF2DF;--green:#1F8A5B;--green-soft:#E6F5EE;--grey-soft:#EEF0F4;--shadow:0 1px 2px rgba(30,30,60,.05),0 8px 24px rgba(30,30,60,.06);--font:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Segoe UI",Roboto,sans-serif;}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.65}
+.hero{background:linear-gradient(135deg,#2E2A6B,#4A43C4);color:#fff;padding:34px 22px}
+.hero-in{max-width:1080px;margin:0 auto}
+.hero .eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;opacity:.8;font-weight:700}
+.hero h1{margin:6px 0 4px;font-size:26px;font-weight:800}
+.hero p{margin:0;opacity:.9;font-size:15px}
+.herobtns{margin-top:18px;display:flex;gap:12px;flex-wrap:wrap}
+.hb{background:#fff;color:var(--indigo-deep);text-decoration:none;font-weight:800;padding:11px 18px;border-radius:12px;font-size:15px}
+.hb.ghost{background:rgba(255,255,255,.16);color:#fff;border:1px solid rgba(255,255,255,.4)}
+.prbar-wrap{margin-top:18px;background:rgba(255,255,255,.18);border-radius:99px;height:10px;overflow:hidden;max-width:420px}
+.prbar{height:100%;width:0;background:#fff;border-radius:99px;transition:width .4s}
+.prtxt{font-size:13px;opacity:.9;margin-top:6px}
+.wrap{max-width:1080px;margin:26px auto;padding:0 22px}
+.grp{margin-bottom:30px}
+.grp h2{font-size:19px;color:var(--indigo-deep);margin:0 0 2px}
+.grp .sub{color:var(--muted);font-size:13.5px;margin:0 0 14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:16px;display:flex;flex-direction:column;gap:8px;position:relative}
+.card.todo{opacity:.72}
+.cid{position:absolute;top:12px;right:14px;font-size:12px;font-weight:800;color:#C4C9E0}
+.cen{font-weight:800;color:var(--indigo-deep);font-size:15.5px;padding-right:30px}
+.czh{color:var(--muted);font-size:13.5px;font-weight:700}
+.badge{align-self:flex-start;font-size:11.5px;font-weight:800;border-radius:99px;padding:2px 9px;margin-top:2px}
+.badge.bi{background:var(--green-soft);color:var(--green)} .badge.cn{background:var(--amber-soft);color:var(--amber)} .badge.todo{background:var(--grey-soft);color:var(--muted)}
+.prs{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+.pl{font-size:12px;background:var(--indigo-soft);color:var(--indigo);text-decoration:none;padding:3px 9px;border-radius:8px;font-weight:700}
+.pl:hover{background:#e0e3fa}
+.cfoot{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:6px;border-top:1px solid var(--line)}
+.open{text-decoration:none;font-weight:800;color:var(--indigo);font-size:14px}
+.open.dis{color:#B4B9CE;font-weight:700}
+.chk{font-size:12.5px;color:var(--muted);display:flex;align-items:center;gap:5px;cursor:pointer;user-select:none}
+footer{max-width:1080px;margin:10px auto 40px;padding:0 22px;color:var(--muted);font-size:13px}
+a{color:var(--indigo)}
+</style></head>
+<body>
+<div class="hero"><div class="hero-in">
+  <div class="eyebrow">Maths Base · Guangjian & beyond</div>
+  <h1>数学学习中心 Study Hub</h1>
+  <p>从零打地基 → 光剑必考 → AMC 枝桠 → 衔接 A-Level。双语（先英文后中文）。</p>
+  <div class="herobtns">
+    <a class="hb" href="map.html">🗺 知识图谱 Knowledge Map</a>
+    <a class="hb ghost" href="syllabus/master-syllabus.md">📋 主考纲 Syllabus</a>
+    <a class="hb ghost" href="syllabus/checkpoints.md">✅ 考点自查</a>
+  </div>
+  <div class="prbar-wrap"><div class="prbar" id="prbar"></div></div>
+  <div class="prtxt" id="prtxt">已学 0 项</div>
+</div></div>
+<div class="wrap"><section class="grp"><h2>预备篇 · Foundations</h2><p class="sub">从零打底，先学这三份（已双语）</p><div class="grid"><div class="card bi"><div class="cid">01</div>
+      <div class="cbody"><div class="cen">Algebra Basics</div><div class="czh">代数基本功</div>
+      <span class="badge bi">双语 Bilingual</span><div class="prs"><a class="pl" href="practice/p01_algebra-basics_60min.html">60-min practice 针对性练习</a><a class="pl" href="practice/p01_algebra-basics_60min.md">· MD</a></div></div>
+      <div class="cfoot"><a class="open" href="lectures/01_algebra-basics.html">Open 打开 →</a><label class="chk"><input type="checkbox" data-id="01"> 已学 Learned</label></div></div><div class="card bi"><div class="cid">02</div>
+      <div class="cbody"><div class="cen">Graphs: number line · coordinates · reading</div><div class="czh">图像基础</div>
+      <span class="badge bi">双语 Bilingual</span></div>
+      <div class="cfoot"><a class="open" href="lectures/02_graphs.html">Open 打开 →</a><label class="chk"><input type="checkbox" data-id="02"> 已学 Learned</label></div></div><div class="card bi"><div class="cid">03</div>
+      <div class="cbody"><div class="cen">Inequalities</div><div class="czh">不等式</div>
+      <span class="badge bi">双语 Bilingual</span></div>
+      <div class="cfoot"><a class="open" href="lectures/03_inequalities.html">Open 打开 →</a><label class="chk"><input type="checkbox" data-id="03"> 已学 Learned</label></div></div></div></section><section class="grp"><h2>代数 · Algebra</h2><p class="sub">方程→函数→换元→数列，代数支柱</p><div class="grid"><div class="card cn"><div class="cid">A</div>
+      <div class="cbody"><div class="cen">Quadratics & Vieta</div><div class="czh">一元二次方程与韦达</div>
+      <span class="badge cn">中文 Chinese</span><div class="prs"><a class="pl" href="practice/pA_module-a-advanced.html">Advanced 进阶</a><a class="pl" href="practice/pA_50-hard.html">50 hard 变通50题</a><a class="pl" href="practice/pA_50-hard_writing.md">Writing MD</a><a class="pl" href="practice/pA_special-substitution.html">代入求参专项</a></div></div>
+      <div class="cfoot"><a class="open" href="lectures/A_quadratics-vieta.html">Open 打开 →</a><label class="chk"><input type="checkbox" data-id="A"> 已学 Learned</label></div></div><div class="card cn"><div class="cid">B</div>
+      <div class="cbody"><div class="cen">Functions & Composite</div><div class="czh">函数与复合函数</div>
+      <span class="badge cn">中文 Chinese</span><div class="prs"><a class="pl" href="practice/pB_module-b.html">Practice 练习</a><a class="pl" href="practice/pB_module-b_writing.md">Writing MD</a></div></div>
+      <div class="cfoot"><a class="open" href="lectures/B_functions.html">Open 打开 →</a><label class="chk"><input type="checkbox" data-id="B"> 已学 Learned</label></div></div><div class="card bi"><div class="cid">D</div>
+      <div class="cbody"><div class="cen">Substitution & Manipulation</div><div class="czh">换元与代数变形</div>
+      <span class="badge bi">双语 Bilingual</span></div>
+      <div class="cfoot"><a class="open" href="lectures/D_substitution.html">Open 打开 →</a><label class="chk"><input type="checkbox" data-id="D"> 已学 Learned</label></div></div><div class="card bi"><div class="cid">E</div>
+      <div class="cbody"><div class="cen">Surds · Sequences · Induction</div><div class="czh">根式·数列·归纳</div>
+      <span class="badge bi">双语 Bilingual</span></div>
+      <div class="cfoot"><a class="open" href="lectures/E_sequences.html">Open 打开 →</a><label class="chk"><input type="checkbox" data-id="E"> 已学 Learned</label></div></div></div></section><section class="grp"><h2>几何 · Geometry</h2><p class="sub">六块，重头戏（陆续建）</p><div class="grid"><div class="card bi"><div class="cid">G1</div>
+      <div class="cbody"><div class="cen">Triangles</div><div class="czh">三角形</div>
+      <span class="badge bi">双语 Bilingual</span></div>
+      <div class="cfoot"><a class="open" href="lectures/G1_triangles.html">Open 打开 →</a><label class="chk"><input type="checkbox" data-id="G1"> 已学 Learned</label></div></div><div class="card todo"><div class="cid">G2</div>
+      <div class="cbody"><div class="cen">Quadrilaterals</div><div class="czh">四边形</div>
+      <span class="badge todo">待建 Coming</span></div>
+      <div class="cfoot"><span class="open dis">施工中</span></div></div><div class="card todo"><div class="cid">G3</div>
+      <div class="cbody"><div class="cen">Circles</div><div class="czh">圆</div>
+      <span class="badge todo">待建 Coming</span></div>
+      <div class="cfoot"><span class="open dis">施工中</span></div></div><div class="card todo"><div class="cid">G4</div>
+      <div class="cbody"><div class="cen">Fold / Rotate</div><div class="czh">翻折·旋转</div>
+      <span class="badge todo">待建 Coming</span></div>
+      <div class="cfoot"><span class="open dis">施工中</span></div></div><div class="card todo"><div class="cid">G5</div>
+      <div class="cbody"><div class="cen">Trigonometry</div><div class="czh">锐角三角比</div>
+      <span class="badge todo">待建 Coming</span></div>
+      <div class="cfoot"><span class="open dis">施工中</span></div></div><div class="card todo"><div class="cid">G6</div>
+      <div class="cbody"><div class="cen">Coordinate Geometry</div><div class="czh">坐标几何</div>
+      <span class="badge todo">待建 Coming</span></div>
+      <div class="cfoot"><span class="open dis">施工中</span></div></div></div></section><section class="grp"><h2>计数·概率·数论 & 应用 & AMC</h2><p class="sub">（陆续建）</p><div class="grid"><div class="card todo"><div class="cid">F1</div>
+      <div class="cbody"><div class="cen">Perm. & Comb.</div><div class="czh">排列组合</div>
+      <span class="badge todo">待建 Coming</span></div>
+      <div class="cfoot"><span class="open dis">施工中</span></div></div><div class="card todo"><div class="cid">F2</div>
+      <div class="cbody"><div class="cen">Probability</div><div class="czh">概率</div>
+      <span class="badge todo">待建 Coming</span></div>
+      <div class="cfoot"><span class="open dis">施工中</span></div></div><div class="card todo"><div class="cid">F3</div>
+      <div class="cbody"><div class="cen">Number Theory</div><div class="czh">数论</div>
+      <span class="badge todo">待建 Coming</span></div>
+      <div class="cfoot"><span class="open dis">施工中</span></div></div><div class="card todo"><div class="cid">APP</div>
+      <div class="cbody"><div class="cen">Modelling & Applications</div><div class="czh">应用与建模</div>
+      <span class="badge todo">待建 Coming</span></div>
+      <div class="cfoot"><span class="open dis">施工中</span></div></div><div class="card todo"><div class="cid">AMC</div>
+      <div class="cbody"><div class="cen">AMC branches (number & surd)</div><div class="czh">AMC 枝桠（数论·根号）</div>
+      <span class="badge todo">待建 Coming</span></div>
+      <div class="cfoot"><span class="open dis">施工中</span></div></div></div></section></div>
+<footer>
+  <p><b>怎么用：</b>按顺序学预备篇 → 代数 → 几何 …；每份点“Open 打开”；练习在卡片里；勾“已学”会记录进度（存在浏览器本地）。知识图谱可看知识点之间的前置/联立关系。</p>
+  <p><b>放到 GitHub：</b>把整个文件夹推到仓库，Settings → Pages → 选 main 分支 /(root)，即可用网址访问。所有链接是相对路径，本地双击 index.html 也能用。</p>
+</footer>
+<script>
+const KEY='gj_learned';
+function load(){try{return new Set(JSON.parse(localStorage.getItem(KEY)||'[]'));}catch(e){return new Set();}}
+function save(s){try{localStorage.setItem(KEY,JSON.stringify([...s]));}catch(e){}}
+let learned=load();
+const boxes=[...document.querySelectorAll('input[type=checkbox][data-id]')];
+const total=boxes.length;
+function upd(){
+  const n=[...learned].filter(id=>boxes.some(b=>b.dataset.id===id)).length;
+  document.getElementById('prbar').style.width=(total?n/total*100:0)+'%';
+  document.getElementById('prtxt').textContent='已学 '+n+' / '+total+' 项（可学）';
+}
+boxes.forEach(b=>{ b.checked=learned.has(b.dataset.id);
+  b.onchange=()=>{ if(b.checked)learned.add(b.dataset.id); else learned.delete(b.dataset.id); save(learned); upd(); };
+});
+upd();
+</script>
+</body></html>

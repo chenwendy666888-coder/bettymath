@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maths Knowledge Map 数学知识图谱</title>
+<style>
+:root{--bg:#F4F6FB;--surface:#fff;--ink:#1B1B2A;--muted:#6A6A82;--line:#E3E6F0;--indigo:#4A43C4;--indigo-deep:#2E2A6B;--indigo-soft:#EEF0FC;--amber:#C77A15;--green:#1F8A5B;--green-soft:#E6F5EE;--rose:#C0453B;--shadow:0 1px 2px rgba(30,30,60,.05),0 8px 24px rgba(30,30,60,.06);--font:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Segoe UI",Roboto,sans-serif;}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.6}
+header.top{position:sticky;top:0;z-index:20;background:rgba(244,246,251,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 20px}
+.top-row{display:flex;align-items:center;gap:14px;max-width:1400px;margin:0 auto;flex-wrap:wrap}
+.eyebrow{font-size:12px;letter-spacing:.14em;color:var(--indigo);font-weight:700;text-transform:uppercase}
+h1.t{margin:2px 0 0;font-size:17px;font-weight:800;color:var(--indigo-deep)}
+.prog{margin-left:auto;display:flex;gap:16px;flex-wrap:wrap}
+.pchip{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:6px 12px;font-size:13px;font-weight:700;color:var(--indigo-deep)}
+.pchip b{color:var(--green)}
+.pbar{height:7px;width:120px;background:#DDE1EE;border-radius:99px;overflow:hidden;margin-top:4px}
+.pfill{height:100%;background:linear-gradient(90deg,var(--green),#4Fc48c);border-radius:99px;transition:width .5s}
+.wrap{max-width:1400px;margin:16px auto;padding:0 18px;display:grid;grid-template-columns:1fr 320px;gap:18px;align-items:start}
+.graphbox{background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:10px;overflow-x:auto}
+svg{display:block;width:100%;min-width:760px}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12.5px;color:var(--muted);padding:6px 8px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.lz{width:22px;height:0;border-top:3px solid var(--indigo)}
+.lc{width:22px;height:0;border-top:3px dashed #9AA0C8}
+.panel{position:sticky;top:78px;background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:18px}
+.panel h2{margin:0;font-size:19px;color:var(--indigo-deep)}
+.panel .zh{color:var(--muted);font-weight:700;font-size:14px;margin-top:2px}
+.tagrow{margin:10px 0}
+.tag{display:inline-block;font-size:12px;font-weight:800;border-radius:99px;padding:2px 9px;margin-right:6px}
+.tag.star{background:#FCF2DF;color:var(--amber)} .tag.amc{background:#FBEDEC;color:var(--rose)} .tag.al{background:var(--indigo-soft);color:var(--indigo)}
+.grp{margin:12px 0}.grp h4{margin:0 0 5px;font-size:12.5px;letter-spacing:.05em;color:var(--indigo);text-transform:uppercase}
+.grp .item{font-size:14px;padding:3px 0;cursor:pointer;color:var(--ink);border-bottom:1px dashed var(--line)}
+.grp .item:hover{color:var(--indigo)}
+.grp .none{font-size:13px;color:var(--muted)}
+.mbtn{margin-top:14px;width:100%;border:none;border-radius:10px;padding:11px;font-size:14px;font-weight:800;cursor:pointer;font-family:inherit;background:var(--indigo);color:#fff}
+.mbtn.done{background:var(--green)}
+.hint{font-size:12.5px;color:var(--muted);margin-top:10px}
+.placeholder{color:var(--muted);font-size:14px}
+@media(max-width:900px){.wrap{grid-template-columns:1fr}.panel{position:static}}
+:focus-visible{outline:3px solid #A9A4F0;outline-offset:2px}
+</style></head>
+<body>
+<header class="top"><div class="top-row">
+  <div><div class="eyebrow">Maths Base · Knowledge Map</div><h1 class="t">数学知识图谱 · 竖版（从上往下：地基 → 枝桠）</h1></div>
+  <div class="prog">
+    <div class="pchip">All 全部 <b id="pAll">0</b>/<span id="tAll">0</span><div class="pbar"><div class="pfill" id="fAll"></div></div></div>
+    <div class="pchip">⭐ 光剑必考 <b id="pStar">0</b>/<span id="tStar">0</span><div class="pbar"><div class="pfill" id="fStar"></div></div></div>
+  </div>
+</div></header>
+<div class="wrap">
+  <div>
+    <div class="graphbox"><svg id="svg" viewBox="0 0 1160 1480" xmlns="http://www.w3.org/2000/svg"></svg></div>
+    <div class="legend">
+      <span><span class="lz"></span> 依赖 prerequisite（先学上面的）</span>
+      <span><span class="lc"></span> 联立 linked（同一件事的不同面）</span>
+      <span>🟢 已掌握　⚪ 待学　⭐ 光剑　🏆 AMC　🎓 A-Level</span>
+    </div>
+  </div>
+  <div class="panel" id="panel"><div class="placeholder">点一个节点 Tap a node<br>看它的<b>前置</b>、<b>解锁</b>、<b>关联</b>，并可标"已掌握"。</div></div>
+</div>
+<script>
+const DATA = {"nodes": [{"id": "num", "col": 0, "en": "Number & operations", "zh": "数感与运算", "tags": "⭐🎓", "status": "todo", "x": 648, "y": 90}, {"id": "numline", "col": 1, "en": "Number line", "zh": "数轴", "tags": "⭐🎓", "status": "done", "x": 175, "y": 300}, {"id": "coord", "col": 1, "en": "Coordinate plane", "zh": "坐标系", "tags": "⭐🎓", "status": "done", "x": 490, "y": 300}, {"id": "readg", "col": 1, "en": "Reading graphs", "zh": "看图读信息", "tags": "⭐🎓", "status": "done", "x": 805, "y": 300}, {"id": "shade", "col": 1, "en": "Lines & shading", "zh": "画线与阴影", "tags": "⭐🎓", "status": "done", "x": 1120, "y": 300}, {"id": "alg", "col": 2, "en": "Algebra basics", "zh": "代数基本功", "tags": "⭐🏆🎓", "status": "done", "x": 175, "y": 520}, {"id": "eq", "col": 2, "en": "Equations", "zh": "方程", "tags": "⭐🏆", "status": "done", "x": 332, "y": 520}, {"id": "vieta", "col": 2, "en": "Vieta / roots", "zh": "韦达定理", "tags": "⭐🏆", "status": "done", "x": 490, "y": 520}, {"id": "ineq", "col": 2, "en": "Inequalities", "zh": "不等式", "tags": "⭐🎓", "status": "done", "x": 648, "y": 520}, {"id": "func", "col": 2, "en": "Functions", "zh": "函数", "tags": "⭐🏆🎓", "status": "todo", "x": 805, "y": 520}, {"id": "seq", "col": 2, "en": "Sequences & induction", "zh": "数列·归纳", "tags": "⭐🏆🎓", "status": "todo", "x": 962, "y": 520}, {"id": "subst", "col": 2, "en": "Substitution", "zh": "换元变形", "tags": "⭐🏆", "status": "todo", "x": 1120, "y": 520}, {"id": "tri", "col": 3, "en": "Triangles", "zh": "三角形", "tags": "⭐🏆", "status": "todo", "x": 175, "y": 745}, {"id": "quad", "col": 3, "en": "Quadrilaterals", "zh": "四边形", "tags": "⭐", "status": "todo", "x": 364, "y": 745}, {"id": "circ", "col": 3, "en": "Circles", "zh": "圆", "tags": "⭐", "status": "todo", "x": 553, "y": 745}, {"id": "trans", "col": 3, "en": "Fold / rotate", "zh": "翻折·旋转", "tags": "⭐", "status": "todo", "x": 742, "y": 745}, {"id": "trig", "col": 3, "en": "Trigonometry", "zh": "锐角三角比", "tags": "⭐🎓", "status": "todo", "x": 931, "y": 745}, {"id": "cgeo", "col": 3, "en": "Coordinate geometry", "zh": "坐标几何", "tags": "⭐🎓", "status": "todo", "x": 1120, "y": 745}, {"id": "perm", "col": 4, "en": "Perm. & comb.", "zh": "排列组合", "tags": "⭐🏆", "status": "todo", "x": 175, "y": 965}, {"id": "prob", "col": 4, "en": "Probability", "zh": "概率", "tags": "⭐", "status": "todo", "x": 490, "y": 965}, {"id": "nt", "col": 4, "en": "Number theory", "zh": "数论", "tags": "⭐🏆", "status": "todo", "x": 805, "y": 965}, {"id": "stat", "col": 4, "en": "Statistics", "zh": "统计", "tags": "⭐", "status": "todo", "x": 1120, "y": 965}, {"id": "app", "col": 5, "en": "Modelling / optimise", "zh": "建模·最优化", "tags": "⭐", "status": "todo", "x": 175, "y": 1175}, {"id": "nav", "col": 5, "en": "Bearings / navigation", "zh": "方位角航行", "tags": "⭐", "status": "todo", "x": 1120, "y": 1175}, {"id": "ntx", "col": 6, "en": "Number tricks", "zh": "数论 tricky", "tags": "🏆", "status": "todo", "x": 175, "y": 1380}, {"id": "surdx", "col": 6, "en": "Surd tricks", "zh": "根号 tricky", "tags": "🏆", "status": "todo", "x": 490, "y": 1380}, {"id": "newdef", "col": 6, "en": "New-def / abs", "zh": "新定义·绝对值", "tags": "🏆", "status": "todo", "x": 805, "y": 1380}, {"id": "logic", "col": 6, "en": "Logic / Kangaroo", "zh": "逻辑·袋鼠", "tags": "🏆", "status": "todo", "x": 1120, "y": 1380}], "edges": [{"a": "num", "b": "numline", "t": "pre"}, {"a": "num", "b": "alg", "t": "pre"}, {"a": "numline", "b": "ineq", "t": "pre"}, {"a": "numline", "b": "coord", "t": "pre"}, {"a": "coord", "b": "readg", "t": "pre"}, {"a": "readg", "b": "shade", "t": "pre"}, {"a": "readg", "b": "func", "t": "pre"}, {"a": "shade", "b": "ineq", "t": "cross"}, {"a": "coord", "b": "cgeo", "t": "pre"}, {"a": "coord", "b": "trig", "t": "cross"}, {"a": "alg", "b": "eq", "t": "pre"}, {"a": "alg", "b": "func", "t": "pre"}, {"a": "alg", "b": "ineq", "t": "pre"}, {"a": "alg", "b": "seq", "t": "pre"}, {"a": "alg", "b": "subst", "t": "pre"}, {"a": "eq", "b": "vieta", "t": "pre"}, {"a": "eq", "b": "func", "t": "cross"}, {"a": "ineq", "b": "func", "t": "cross"}, {"a": "vieta", "b": "subst", "t": "cross"}, {"a": "eq", "b": "ineq", "t": "cross"}, {"a": "func", "b": "cgeo", "t": "pre"}, {"a": "func", "b": "app", "t": "pre"}, {"a": "alg", "b": "perm", "t": "pre"}, {"a": "perm", "b": "prob", "t": "pre"}, {"a": "prob", "b": "stat", "t": "pre"}, {"a": "alg", "b": "nt", "t": "pre"}, {"a": "seq", "b": "nt", "t": "cross"}, {"a": "tri", "b": "cgeo", "t": "cross"}, {"a": "tri", "b": "trans", "t": "cross"}, {"a": "tri", "b": "quad", "t": "cross"}, {"a": "tri", "b": "circ", "t": "cross"}, {"a": "trig", "b": "nav", "t": "pre"}, {"a": "trig", "b": "app", "t": "cross"}, {"a": "circ", "b": "cgeo", "t": "cross"}, {"a": "nt", "b": "ntx", "t": "pre"}, {"a": "alg", "b": "surdx", "t": "pre"}, {"a": "seq", "b": "surdx", "t": "cross"}, {"a": "func", "b": "newdef", "t": "cross"}, {"a": "eq", "b": "newdef", "t": "cross"}, {"a": "nt", "b": "ntx", "t": "cross"}, {"a": "ntx", "b": "logic", "t": "cross"}, {"a": "perm", "b": "logic", "t": "cross"}], "cols": {"0": "数感 Base", "1": "图像 Graphs", "2": "代数 Algebra", "3": "几何 Geometry", "4": "数论·概率 Count/NT", "5": "应用 Apps", "6": "AMC 枝桠"}, "bandy": {"0": 90, "1": 300, "2": 520, "3": 745, "4": 965, "5": 1175, "6": 1380}};
+const NODES=DATA.nodes, EDGES=DATA.edges, BANDY=DATA.bandy;
+const byId={}; NODES.forEach(n=>byId[n.id]=n);
+const COLC={0:"#8983E0",1:"#4A43C4",2:"#2E2A6B",3:"#1F8A5B",4:"#C77A15",5:"#C0453B",6:"#8c2f28"};
+const svg=document.getElementById('svg');
+let sel=null;
+function adj(id){
+  const preIn=EDGES.filter(e=>e.b===id&&e.t==='pre').map(e=>e.a);
+  const unlock=EDGES.filter(e=>e.a===id&&e.t==='pre').map(e=>e.b);
+  const cross=EDGES.filter(e=>e.t==='cross'&&(e.a===id||e.b===id)).map(e=>e.a===id?e.b:e.a);
+  return {preIn,unlock,cross};
+}
+function connected(id){const a=adj(id);return new Set([id,...a.preIn,...a.unlock,...a.cross]);}
+function render(){
+  let s='';
+  s+='<defs><marker id="arr" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#4A43C4"/></marker></defs>';
+  // 横带背景 + 左侧带标签
+  Object.keys(BANDY).forEach(c=>{
+    const y=BANDY[c];
+    s+=`<line x1="20" y1="${y-95}" x2="1150" y2="${y-95}" stroke="#EEF0F6"/>`;
+    s+=`<text x="24" y="${y-78}" font-size="12.5" font-weight="800" fill="#B4B9CE">${DATA.cols[c]}</text>`;
+  });
+  const hi = sel? connected(sel): null;
+  EDGES.forEach(e=>{
+    const A=byId[e.a],B=byId[e.b];
+    const on = !sel || (hi.has(e.a)&&hi.has(e.b)&&(e.a===sel||e.b===sel));
+    const op = sel? (on?1:0.07) : (e.t==='pre'?0.5:0.3);
+    const dx=B.x-A.x, dy=B.y-A.y, L=Math.hypot(dx,dy)||1, ux=dx/L, uy=dy/L;
+    const ax=A.x+ux*66, ay=A.y+uy*25, bx=B.x-ux*68, by=B.y-uy*27;
+    if(e.t==='pre') s+=`<line x1="${ax}" y1="${ay}" x2="${bx}" y2="${by}" stroke="#4A43C4" stroke-width="${on&&sel?2.4:1.5}" opacity="${op}" marker-end="url(#arr)"/>`;
+    else s+=`<line x1="${ax}" y1="${ay}" x2="${bx}" y2="${by}" stroke="#9AA0C8" stroke-width="${on&&sel?2.4:1.5}" stroke-dasharray="6 5" opacity="${op}"/>`;
+  });
+  NODES.forEach(n=>{
+    const w=132,h=48,x=n.x-w/2,y=n.y-h/2;
+    const dim = sel && !hi.has(n.id);
+    const isSel = n.id===sel;
+    const fill = n.status==='done'? '#E6F5EE':'#FFFFFF';
+    const bord = isSel? '#4A43C4' : (n.status==='done'? '#1F8A5B':'#D7DBEA');
+    const bw = isSel? 3:1.4;
+    s+=`<g class="node" data-id="${n.id}" style="cursor:pointer;opacity:${dim?0.28:1}">`;
+    s+=`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="11" fill="${fill}" stroke="${bord}" stroke-width="${bw}"/>`;
+    s+=`<rect x="${x}" y="${y}" width="5" height="${h}" rx="2" fill="${COLC[n.col]}"/>`;
+    s+=`<text x="${n.x+3}" y="${n.y-5}" text-anchor="middle" font-size="10.5" fill="#6A6A82">${n.en}</text>`;
+    s+=`<text x="${n.x+3}" y="${n.y+12}" text-anchor="middle" font-size="12.5" font-weight="800" fill="#1B1B2A">${n.zh}</text>`;
+    s+=`<text x="${n.x+3}" y="${n.y+23}" text-anchor="middle" font-size="9.5">${(n.status==='done'?'🟢 ':'')+n.tags}</text>`;
+    s+=`</g>`;
+  });
+  svg.innerHTML=s;
+  svg.querySelectorAll('.node').forEach(g=>g.onclick=()=>pick(g.dataset.id));
+  updateProg();
+}
+function pick(id){ sel=id; render(); showPanel(id); }
+function showPanel(id){
+  const n=byId[id], a=adj(id);
+  const tag=(t)=> (t.includes('⭐')?'<span class="tag star">⭐ 光剑</span>':'')+(t.includes('🏆')?'<span class="tag amc">🏆 AMC</span>':'')+(t.includes('🎓')?'<span class="tag al">🎓 A-Level</span>':'');
+  const list=(ids)=> ids.length? ids.map(x=>`<div class="item" data-go="${x}">${byId[x].zh} · ${byId[x].en}</div>`).join('') : '<div class="none">—</div>';
+  const p=document.getElementById('panel');
+  p.innerHTML=`<h2>${n.en}</h2><div class="zh">${n.zh}</div>
+    <div class="tagrow">${tag(n.tags)} ${n.status==='done'?'<span class="tag" style="background:var(--green-soft);color:var(--green)">🟢 已掌握</span>':''}</div>
+    <div class="grp"><h4>↑ 前置 Prerequisites（先学这些）</h4>${list(a.preIn)}</div>
+    <div class="grp"><h4>↓ 解锁 Unlocks（学完能学）</h4>${list(a.unlock)}</div>
+    <div class="grp"><h4>↔ 关联/联立 Linked（同一件事的不同面）</h4>${list(a.cross)}</div>
+    <button class="mbtn ${n.status==='done'?'done':''}" id="mbtn">${n.status==='done'?'✓ 已掌握（点击取消）':'标记为已掌握 Mark mastered'}</button>
+    <div class="hint">前置都掌握后，这一节可以学得更快。</div>`;
+  p.querySelectorAll('[data-go]').forEach(el=>el.onclick=()=>pick(el.dataset.go));
+  document.getElementById('mbtn').onclick=()=>{ n.status = n.status==='done'?'todo':'done'; render(); showPanel(id); };
+}
+function updateProg(){
+  const all=NODES.length, adone=NODES.filter(n=>n.status==='done').length;
+  const stars=NODES.filter(n=>n.tags.includes('⭐')), sdone=stars.filter(n=>n.status==='done').length;
+  document.getElementById('pAll').textContent=adone; document.getElementById('tAll').textContent=all;
+  document.getElementById('pStar').textContent=sdone; document.getElementById('tStar').textContent=stars.length;
+  document.getElementById('fAll').style.width=(adone/all*100)+'%';
+  document.getElementById('fStar').style.width=(sdone/stars.length*100)+'%';
+}
+render();
+</script>
+</body></html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>讲义 02 进阶练习 · 模块 A 加强版</title>
+<style>
+  :root{
+    --bg:#F4F6FB;--surface:#FFFFFF;--ink:#1B1B2A;--muted:#6A6A82;--line:#E3E6F0;
+    --indigo:#4A43C4;--indigo-deep:#2E2A6B;--indigo-soft:#EEF0FC;
+    --amber:#C77A15;--amber-soft:#FCF2DF;--green:#1F8A5B;--green-soft:#E6F5EE;
+    --rose:#C0453B;--rose-soft:#FBEDEC;
+    --shadow:0 1px 2px rgba(30,30,60,.05), 0 8px 24px rgba(30,30,60,.06);
+    --font:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Segoe UI",Roboto,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased;}
+  header.top{position:sticky;top:0;z-index:20;background:rgba(244,246,251,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:14px 20px;}
+  .top-row{display:flex;align-items:center;gap:14px;max-width:840px;margin:0 auto;flex-wrap:wrap;}
+  .brand .eyebrow{font-size:12px;letter-spacing:.14em;color:var(--indigo);font-weight:700;text-transform:uppercase;}
+  .brand h1{margin:2px 0 0;font-size:17px;font-weight:800;color:var(--indigo-deep);}
+  .timer{margin-left:auto;display:flex;align-items:center;gap:8px;}
+  .timer .clock{font-variant-numeric:tabular-nums;font-weight:800;font-size:22px;color:var(--indigo-deep);min-width:74px;text-align:center;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:4px 10px;}
+  .timer button{border:1px solid var(--line);background:var(--surface);border-radius:9px;padding:7px 12px;font-size:13.5px;font-weight:700;cursor:pointer;font-family:inherit;color:var(--indigo-deep);}
+  .timer button:hover{background:var(--indigo-soft);}
+  .wrap{max-width:840px;margin:24px auto;padding:0 20px;}
+  .intro{background:var(--indigo-soft);border:1px solid #D9DCF6;border-radius:14px;padding:16px 18px;margin-bottom:18px;}
+  .intro b{color:var(--indigo-deep);}
+  .cheat{background:#FFFDF8;border:1px solid #EEDFC0;border-radius:14px;padding:14px 18px;margin-bottom:22px;}
+  .cheat h4{margin:0 0 8px;color:var(--amber);font-size:14px;display:flex;align-items:center;gap:6px;}
+  .cheat ul{margin:0;padding-left:20px;}
+  .cheat li{margin:5px 0;font-size:14.5px;}
+  .part{background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:24px 26px;margin-bottom:22px;}
+  .part-head{display:flex;align-items:center;gap:12px;margin-bottom:4px;flex-wrap:wrap;}
+  .part-num{font-size:15px;font-weight:800;color:#fff;background:var(--indigo);border-radius:8px;padding:2px 11px;}
+  .part-head h2{margin:0;font-size:20px;font-weight:800;color:var(--indigo-deep);}
+  .diff{font-size:12px;font-weight:800;border-radius:99px;padding:3px 11px;}
+  .diff.adv{background:var(--indigo-soft);color:var(--indigo);}
+  .diff.gk{background:var(--amber-soft);color:var(--amber);}
+  .diff.hard{background:var(--rose-soft);color:var(--rose);}
+  .part-time{font-size:13px;color:var(--muted);margin-left:auto;}
+  .part-note{color:var(--muted);font-size:14px;margin:6px 0 14px;}
+  .sub{font-weight:800;color:var(--indigo);font-size:14px;margin:16px 0 6px;display:flex;align-items:center;gap:7px;}
+  .sub::before{content:"";width:5px;height:14px;border-radius:3px;background:var(--indigo);}
+  ol.q{margin:6px 0;padding-left:6px;list-style:none;counter-reset:qq;}
+  ol.q li{counter-increment:qq;position:relative;padding:10px 0 10px 40px;border-bottom:1px dashed #EDEFF7;font-size:16.5px;}
+  ol.q li:last-child{border-bottom:none;}
+  ol.q li::before{content:counter(qq);position:absolute;left:0;top:9px;width:26px;height:26px;background:var(--indigo-soft);color:var(--indigo);border-radius:8px;display:grid;place-items:center;font-size:13px;font-weight:800;font-variant-numeric:tabular-nums;}
+  .hint{color:var(--muted);font-size:13px;}
+  .reveal{margin-top:16px;background:var(--indigo);color:#fff;border:none;border-radius:10px;padding:11px 18px;font-size:14.5px;font-weight:700;cursor:pointer;font-family:inherit;}
+  .reveal:hover{background:#3a34a8;}
+  .answer{max-height:0;overflow:hidden;transition:max-height .4s ease;}
+  .answer.open{max-height:2400px;margin-top:14px;}
+  .answer-inner{background:var(--green-soft);border:1px solid #CFEBDD;border-radius:12px;padding:14px 18px;}
+  .answer-inner h4{margin:0 0 8px;color:#14653f;font-size:14px;}
+  .answer-inner ol{margin:0;padding-left:22px;}
+  .answer-inner li{margin:6px 0;font-size:14.5px;}
+  .answer-inner b{color:#14653f;}
+  .answer-inner .work{color:#3b6b53;font-size:13.5px;}
+  .foot{background:var(--amber-soft);border-radius:14px;padding:16px 18px;color:#7a5210;font-size:14.5px;}
+  .foot strong{color:#7a5210;}
+  @media print{header.top{position:static;} .timer,.reveal{display:none;} .answer{max-height:none!important;} .part{box-shadow:none;break-inside:avoid;}}
+  :focus-visible{outline:3px solid #A9A4F0;outline-offset:2px;border-radius:6px;}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-row">
+    <div class="brand">
+      <div class="eyebrow">讲义 02 · 进阶练习</div>
+      <h1>模块 A：一元二次方程与韦达定理（加强版）</h1>
+    </div>
+    <div class="timer">
+      <span class="clock" id="clock">00:00</span>
+      <button id="swBtn" onclick="swToggle()">开始</button>
+      <button onclick="swReset()">清零</button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="intro">
+    <p><b>这是加强版。</b>难度重点压在<b>韦达定理及其之后</b>（对称式、代入求参、降次、含参讨论、两根关系）；十字相乘也换成了<b>系数不是 1</b> 的进阶题。共 30 题，建议 <b>75–90 分钟</b>，也可以分两次做（第一、二部分一次，第三、四部分一次）。</p>
+    <p>做法照旧：<b>先做完一整部分再点开答案</b>，错题打 ✗。</p>
+  </div>
+
+  <div class="cheat">
+    <h4>🔑 常用变形速查（做第二、三部分前先看一眼）</h4>
+    <ul>
+      <li>α² + β² = (α + β)² − 2αβ</li>
+      <li>(α − β)² = (α + β)² − 4αβ</li>
+      <li>α³ + β³ = (α + β)³ − 3αβ(α + β)</li>
+      <li>1/α + 1/β = (α + β) ⁄ (αβ)　；　α/β + β/α = (α² + β²) ⁄ (αβ)</li>
+      <li>m³ + 1/m³ = (m + 1/m)³ − 3(m + 1/m)</li>
+    </ul>
+  </div>
+
+  <!-- Part 1 -->
+  <div class="part">
+    <div class="part-head">
+      <span class="part-num">第一部分</span>
+      <h2>十字相乘（系数不是 1）</h2>
+      <span class="diff adv">进阶</span>
+      <span class="part-time">约 15 分钟</span>
+    </div>
+    <p class="part-note">写成两括号相乘；做完<b>回乘验算</b>。第 6、7 题是双字母。</p>
+    <ol class="q">
+      <li>3x² + 8x + 4</li>
+      <li>4x² − 4x − 3</li>
+      <li>6x² − 7x + 2</li>
+      <li>6x² + 11x − 10</li>
+      <li>8x² + 2x − 3</li>
+      <li>6x² + 7xy + 2y²</li>
+      <li>3x² − 11xy + 6y²</li>
+      <li>10x² − 9x − 9</li>
+    </ol>
+    <button class="reveal" onclick="ans(this)">显示第一部分答案</button>
+    <div class="answer"><div class="answer-inner">
+      <h4>第一部分答案</h4>
+      <ol>
+        <li>(3x + 2)(x + 2)</li>
+        <li>(2x − 3)(2x + 1)</li>
+        <li>(2x − 1)(3x − 2)</li>
+        <li>(2x + 5)(3x − 2)</li>
+        <li>(2x − 1)(4x + 3)</li>
+        <li>(2x + y)(3x + 2y)</li>
+        <li>(x − 3y)(3x − 2y)</li>
+        <li>(2x − 3)(5x + 3)</li>
+      </ol>
+    </div></div>
+  </div>
+
+  <!-- Part 2 -->
+  <div class="part">
+    <div class="part-head">
+      <span class="part-num">第二部分</span>
+      <h2>韦达定理 · 对称式求值</h2>
+      <span class="diff gk">进阶 → 光剑</span>
+      <span class="part-time">约 22 分钟</span>
+    </div>
+    <p class="part-note">全部用 α+β、αβ 表示后再代入，不要去解根。先写韦达，再套速查表里的变形。</p>
+    <ol class="q">
+      <li>α、β 是 x² − 4x + 2 = 0 的两根，求 α² + β²</li>
+      <li>α、β 是 x² − 5x + 3 = 0 的两根，求 1/α + 1/β</li>
+      <li>α、β 是 x² − 5x + 3 = 0 的两根，求 1/α² + 1/β²</li>
+      <li>α、β 是 x² − 6x + 4 = 0 的两根，求 α/β + β/α</li>
+      <li>α、β 是 x² − 3x − 5 = 0 的两根，求 (α − β)²</li>
+      <li>α、β 是 x² + 4x + 1 = 0 的两根，求 α³ + β³</li>
+      <li>α、β 是 x² − 2x − 1 = 0 的两根，求 α²β + αβ²</li>
+      <li>α、β 是 x² − 7x + 9 = 0 的两根，求 (α + 1)(β + 1)</li>
+    </ol>
+    <button class="reveal" onclick="ans(this)">显示第二部分答案</button>
+    <div class="answer"><div class="answer-inner">
+      <h4>第二部分答案</h4>
+      <ol>
+        <li>(α+β)² − 2αβ = 16 − 4 = <b>12</b></li>
+        <li>(α+β)/(αβ) = <b>5/3</b></li>
+        <li><span class="work">= (1/α+1/β)² − 2/(αβ) = (5/3)² − 2/3 = 25/9 − 6/9 =</span> <b>19/9</b></li>
+        <li><span class="work">= (α²+β²)/(αβ) = (36−8)/4 =</span> <b>7</b></li>
+        <li>(α+β)² − 4αβ = 9 − 4·(−5) = <b>29</b></li>
+        <li><span class="work">(α+β)³ − 3αβ(α+β) = (−4)³ − 3·1·(−4) = −64 + 12 =</span> <b>−52</b></li>
+        <li><span class="work">αβ(α+β) = (−1)·2 =</span> <b>−2</b></li>
+        <li><span class="work">αβ + (α+β) + 1 = 9 + 7 + 1 =</span> <b>17</b></li>
+      </ol>
+    </div></div>
+  </div>
+
+  <!-- Part 3 -->
+  <div class="part">
+    <div class="part-head">
+      <span class="part-num">第三部分</span>
+      <h2>代入求参 · 降次</h2>
+      <span class="diff gk">光剑常考</span>
+      <span class="part-time">约 22 分钟</span>
+    </div>
+    <p class="part-note">代入求参：根代进方程一定成立。降次：用方程本身（如 α² = 3α − 1）把高次一路换成低次。</p>
+    <ol class="q">
+      <li>方程 x² + mx − 6 = 0 有一个根是 x = 3，求 m 及另一个根</li>
+      <li>方程 √3·m·x² − m²·x − 2 = 0 有一个根是 x = 2，求 m² + m⁻²</li>
+      <li>已知 m + 1/m = 5，求 m² + 1/m² 及 m³ + 1/m³</li>
+      <li>α 是 x² − 3x + 1 = 0 的一个根，求 α² + 1/α² 及 α³ + 1/α³</li>
+      <li>α、β 是 x² − 3x + 1 = 0 的两根，求 α³ + β³ − 2(α² + β²)</li>
+      <li>α、β 是 x² − 5x + 2 = 0 的两根，求 (α − β)² 及 α³ + β³</li>
+    </ol>
+    <button class="reveal" onclick="ans(this)">显示第三部分答案</button>
+    <div class="answer"><div class="answer-inner">
+      <h4>第三部分答案</h4>
+      <ol>
+        <li><span class="work">代 x=3：9+3m−6=0 → </span>m = <b>−1</b>；由 αβ = −6、一根为 3 → 另一根 = <b>−2</b></li>
+        <li><span class="work">代 x=2 整理得 m² − 2√3 m + 1 = 0 → m + 1/m = 2√3 → (2√3)² − 2 =</span> <b>10</b></li>
+        <li>m² + 1/m² = 25 − 2 = <b>23</b>；<span class="work">m³+1/m³ = 5³ − 3·5 =</span> <b>110</b></li>
+        <li><span class="work">由 α²−3α+1=0 除以 α 得 α + 1/α = 3；</span> α²+1/α² = 9−2 = <b>7</b>；α³+1/α³ = 27−9 = <b>18</b></li>
+        <li><span class="work">α³+β³ = 27−9 = 18；α²+β² = 9−2 = 7；18 − 2·7 =</span> <b>4</b></li>
+        <li>(α−β)² = 25 − 8 = <b>17</b>；<span class="work">α³+β³ = 125 − 3·2·5 =</span> <b>95</b></li>
+      </ol>
+    </div></div>
+  </div>
+
+  <!-- Part 4 -->
+  <div class="part">
+    <div class="part-head">
+      <span class="part-num">第四部分</span>
+      <h2>含参讨论 · 两根关系</h2>
+      <span class="diff hard">光剑难度</span>
+      <span class="part-time">约 28 分钟</span>
+    </div>
+    <p class="part-note">当心退化（二次项系数含参数时先讨论它 = 0）；两根关系要把条件翻译成 α+β、αβ 的式子，再和韦达联立；别忘了检查判别式（根要真实存在）。</p>
+    <ol class="q">
+      <li>关于 x 的方程 (k − 1)x² − 2x + 1 = 0 只有一个实数解，求所有 k</li>
+      <li>关于 x 的方程 mx² + (m + 2)x + m = 0 有两个不相等的实数根，求 m 的取值范围</li>
+      <li>一元二次方程 x² − 6x + k = 0 的两根都是正数，求 k 的取值范围</li>
+      <li>方程 x² − (m + 1)x + 2m − 1 = 0 的两根互为相反数（α = −β），求 m</li>
+      <li>方程 x² − m·x + (m − 3) = 0 的两根互为倒数（αβ = 1），求 m</li>
+      <li>已知 x² − 3x + 1 = 0 的两根为 α、β，求以 α²、β² 为根的一元二次方程</li>
+      <li>一个一元二次方程（首项系数为 1）的两根是 3 + √2 和 3 − √2，求这个方程</li>
+      <li>关于 x 的方程 x² − 2(m − 1)x + m² = 0 有两个实数根 α、β，且 α² + β² = 4，求 m</li>
+    </ol>
+    <button class="reveal" onclick="ans(this)">显示第四部分答案</button>
+    <div class="answer"><div class="answer-inner">
+      <h4>第四部分答案</h4>
+      <ol>
+        <li><span class="work">k=1 时是一次方程 −2x+1=0，一个解 ✓；k≠1 时 Δ=4−4(k−1)=0→k=2。</span> <b>k = 1 或 2</b></li>
+        <li><span class="work">m≠0 且 Δ=(m+2)²−4m²=−3m²+4m+4&gt;0 → 3m²−4m−4&lt;0 → (3m+2)(m−2)&lt;0。</span> <b>−2/3 &lt; m &lt; 2 且 m ≠ 0</b></li>
+        <li><span class="work">Δ=36−4k≥0→k≤9；两根之积 = k &gt; 0；和 = 6 &gt; 0 自动满足。</span> <b>0 &lt; k ≤ 9</b></li>
+        <li><span class="work">α+β=0 → m+1=0。（此时 αβ=2m−1=−3&lt;0，两根确实存在）</span> <b>m = −1</b></li>
+        <li><span class="work">αβ=1 → m−3=1 → m=4。（Δ=16−4=12&gt;0 ✓）</span> <b>m = 4</b></li>
+        <li><span class="work">α²+β²=9−2=7，α²β²=(αβ)²=1 → x² −(α²+β²)x + α²β² = 0。</span> <b>x² − 7x + 1 = 0</b></li>
+        <li><span class="work">两根之和=6，之积=(3)²−(√2)²=7。</span> <b>x² − 6x + 7 = 0</b></li>
+        <li><span class="work">α+β=2(m−1)，αβ=m²；α²+β²=(α+β)²−2αβ=2m²−8m+4=4 → 2m²−8m=0 → m=0 或 4。但需 Δ=4(1−2m)≥0 即 m≤1/2 → m=4 舍去。</span> <b>m = 0</b></li>
+      </ol>
+    </div></div>
+  </div>
+
+  <div class="foot">
+    <p><strong>给家长：</strong>这套是模块 A 的拔高，几处最容易失分——</p>
+    <p>· <b>第二部分 3、6 题</b>（1/α²+1/β²、α³+β³）：考的是"套对变形公式"，错了就回速查表对一遍；<br>
+    · <b>第三部分</b>的降次与"凑 m+1/m"是光剑核心技巧，慢没关系，关键是每步不跳；<br>
+    · <b>第四部分</b>三个坑：① 系数含参要讨论退化（第 1 题）；② 求范围别忘判别式（第 2、3 题）；③ 两根关系解完要<b>回代检查根是否真实存在</b>（第 5、8 题就是靠这个筛掉多余答案）。</p>
+    <p>做完把错题号发我，我针对错得最多的那类再补一组同型题。</p>
+  </div>
+</div>
+
+<script>
+function ans(btn){const box=btn.nextElementSibling;const open=box.classList.toggle('open');btn.textContent=open?btn.textContent.replace('显示','隐藏'):btn.textContent.replace('隐藏','显示');}
+let sw={t:0,run:false,id:null};
+function fmt(s){const m=String(Math.floor(s/60)).padStart(2,'0');const ss=String(s%60).padStart(2,'0');return m+':'+ss;}
+function swToggle(){const btn=document.getElementById('swBtn');
+  if(sw.run){clearInterval(sw.id);sw.run=false;btn.textContent='继续';}
+  else{sw.run=true;btn.textContent='暂停';sw.id=setInterval(()=>{sw.t++;document.getElementById('clock').textContent=fmt(sw.t);},1000);}}
+function swReset(){clearInterval(sw.id);sw={t:0,run:false,id:null};document.getElementById('clock').textContent='00:00';document.getElementById('swBtn').textContent='开始';}
+</script>
+</body>
+</html>

@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guangjian Maths · Note 01 · Algebra Basics 代数基本功</title>
+<style>
+  :root{
+    --bg:#F4F6FB;--surface:#FFFFFF;--ink:#1B1B2A;--muted:#6A6A82;--line:#E3E6F0;
+    --indigo:#4A43C4;--indigo-deep:#2E2A6B;--indigo-soft:#EEF0FC;
+    --amber:#C77A15;--amber-soft:#FCF2DF;--green:#1F8A5B;--green-soft:#E6F5EE;
+    --rose:#C0453B;--rose-soft:#FBEDEC;--radius:14px;
+    --shadow:0 1px 2px rgba(30,30,60,.05), 0 8px 24px rgba(30,30,60,.06);
+    --font:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Segoe UI",Roboto,"Helvetica Neue",sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.75;font-size:16px;-webkit-font-smoothing:antialiased;}
+  header.top{position:sticky;top:0;z-index:30;background:rgba(244,246,251,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:14px 22px;}
+  .top-row{display:flex;align-items:center;gap:14px;max-width:1180px;margin:0 auto;}
+  .brand{display:flex;flex-direction:column;gap:2px;min-width:0;}
+  .brand .eyebrow{font-size:12px;letter-spacing:.14em;color:var(--indigo);font-weight:700;text-transform:uppercase;}
+  .brand h1{margin:0;font-size:16px;font-weight:800;color:var(--indigo-deep);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .prog-wrap{margin-left:auto;display:flex;align-items:center;gap:10px;min-width:170px;}
+  .prog-label{font-size:12.5px;color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums;}
+  .prog-track{flex:1;height:8px;background:#DDE1EE;border-radius:99px;overflow:hidden;min-width:80px;}
+  .prog-fill{height:100%;width:0;background:linear-gradient(90deg,var(--indigo),#7A73E6);border-radius:99px;transition:width .5s cubic-bezier(.2,.8,.2,1);}
+  .menu-btn{display:none;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:8px 10px;font-size:15px;cursor:pointer;color:var(--indigo-deep);}
+  .layout{display:grid;grid-template-columns:262px 1fr;gap:30px;max-width:1180px;margin:26px auto;padding:0 22px;align-items:start;}
+  nav.toc{position:sticky;top:88px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:12px;box-shadow:var(--shadow);}
+  .toc h2{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:6px 8px 10px;font-weight:700;}
+  .toc a{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:10px;text-decoration:none;color:var(--ink);font-size:14px;cursor:pointer;border:1px solid transparent;transition:background .15s,border-color .15s;}
+  .toc a:hover{background:var(--indigo-soft);}
+  .toc a.active{background:var(--indigo-soft);border-color:#D5D8F5;font-weight:700;color:var(--indigo-deep);}
+  .toc .n{font-variant-numeric:tabular-nums;font-weight:700;color:var(--indigo);font-size:13px;width:22px;flex:none;}
+  .toc a.active .n{color:var(--indigo-deep);}
+  .toc .lbl{flex:1;min-width:0;}
+  .toc .tick{width:16px;height:16px;flex:none;border-radius:50%;border:2px solid #CBD0E4;display:grid;place-items:center;font-size:10px;color:#fff;}
+  .toc a.done .tick{background:var(--green);border-color:var(--green);}
+  .toc a.done .tick::after{content:"✓";}
+  main{min-width:0;}
+  section.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:32px 34px 30px;animation:rise .4s ease both;}
+  @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .sec-head{display:flex;align-items:flex-start;gap:16px;margin-bottom:6px;}
+  .sec-num{font-size:34px;font-weight:800;color:var(--indigo);line-height:1;font-variant-numeric:tabular-nums;flex:none;padding-top:2px;}
+  .sec-titles{flex:1;min-width:0;}
+  .sec-titles h2{margin:0;font-size:22px;font-weight:800;color:var(--indigo-deep);}
+  .sec-titles .zh-title{font-size:15px;color:var(--muted);font-weight:700;margin-top:2px;}
+  .badge{display:inline-flex;align-items:center;gap:5px;margin-top:8px;font-size:12.5px;font-weight:700;padding:3px 10px;border-radius:99px;}
+  .badge.gk{background:var(--amber-soft);color:var(--amber);}
+  .badge.core{background:var(--indigo-soft);color:var(--indigo);}
+  .divider{height:1px;background:var(--line);margin:20px 0;}
+  h3.blk{font-size:15px;font-weight:800;color:var(--indigo);margin:22px 0 10px;display:flex;align-items:center;gap:8px;}
+  h3.blk::before{content:"";width:5px;height:16px;border-radius:3px;background:var(--indigo);display:inline-block;}
+  p{margin:9px 0;}
+  .content b{color:var(--indigo-deep);}
+  .content ul,.content ol{margin:10px 0;padding-left:22px;}
+  .content li{margin:6px 0;}
+  .zh{color:#4a4a5e;font-size:14.5px;}
+  .zh::before{content:"中  ";color:var(--green);font-weight:800;font-size:11px;letter-spacing:.05em;}
+  .enh::before{content:"EN  ";color:var(--indigo);font-weight:800;font-size:11px;letter-spacing:.05em;}
+  .terms{background:#F1F7F4;border:1px solid #CFE6DA;border-radius:10px;padding:11px 15px;margin:12px 0;font-size:14px;color:#14653f;line-height:1.9;}
+  .terms b{color:#14653f;}
+  .terms .t{white-space:nowrap;}
+  .kbd-formula{display:block;background:var(--indigo-soft);border:1px solid #D9DCF6;border-radius:10px;padding:14px 18px;margin:14px 0;font-size:18px;text-align:center;color:var(--indigo-deep);font-weight:700;}
+  .example{background:#FBFBFE;border:1px solid var(--line);border-left:4px solid var(--indigo);border-radius:12px;padding:16px 18px;margin:16px 0;}
+  .ex-title{font-weight:800;color:var(--indigo-deep);font-size:15px;margin-bottom:6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .ex-tag{font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:99px;background:var(--amber-soft);color:var(--amber);}
+  .steps{margin:8px 0;}
+  .step{position:relative;padding:5px 0 5px 20px;}
+  .step::before{content:"";position:absolute;left:5px;top:14px;width:6px;height:6px;border-radius:50%;background:var(--indigo);}
+  .ex-ans{margin-top:10px;background:var(--green-soft);border-radius:8px;padding:8px 12px;font-weight:800;color:var(--green);}
+  .note{background:var(--amber-soft);border-radius:10px;padding:12px 16px;margin:14px 0;font-size:14.5px;color:#7a5210;}
+  .note.warn{background:var(--rose-soft);color:#8c2f28;}
+  .note strong{color:inherit;}
+  .practice{background:#FFFFFF;border:1.5px dashed #C9CEE6;border-radius:12px;padding:16px 18px;margin:18px 0;}
+  .practice-head{font-weight:800;color:var(--indigo-deep);margin-bottom:6px;display:flex;align-items:center;gap:8px;}
+  .practice-head::before{content:"✎";color:var(--indigo);}
+  .reveal{margin-top:10px;background:var(--indigo);color:#fff;border:none;border-radius:9px;padding:9px 16px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;}
+  .reveal:hover{background:#3a34a8;}
+  .answer{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+  .answer.open{max-height:1400px;margin-top:12px;}
+  .answer-inner{background:var(--green-soft);border-radius:10px;padding:12px 16px;font-size:14.5px;}
+  .answer-inner b{color:var(--green);}
+  .pascal{display:flex;flex-direction:column;align-items:center;gap:9px;margin:18px 0 10px;}
+  .prow{display:flex;gap:9px;cursor:pointer;padding:5px 9px;border-radius:12px;border:1.5px solid transparent;transition:background .15s,border-color .15s;}
+  .prow:hover{background:var(--indigo-soft);}
+  .prow.sel{background:var(--amber-soft);border-color:#EEDBB0;}
+  .pcell{display:grid;place-items:center;min-width:40px;height:40px;padding:0 7px;background:var(--surface);border:1.5px solid var(--line);border-radius:10px;font-weight:800;color:var(--indigo-deep);font-variant-numeric:tabular-nums;}
+  .prow.sel .pcell{border-color:var(--amber);color:var(--amber);}
+  .pascal-out{text-align:center;background:var(--indigo-soft);border:1px solid #D9DCF6;border-radius:10px;padding:12px 16px;font-size:15px;color:var(--indigo-deep);margin:6px 0;min-height:22px;}
+  .lore{background:#F2F3FC;border:1px solid #E0E3F5;border-left:4px solid #8983E0;border-radius:12px;padding:14px 18px;margin:16px 0;font-size:14.5px;color:#3b3b54;}
+  .lore h5{margin:0 0 8px;color:var(--indigo-deep);font-size:14.5px;font-weight:800;}
+  .check-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line);cursor:pointer;}
+  .check-item:last-child{border-bottom:none;}
+  .check-box{width:20px;height:20px;border:2px solid #C4C9E0;border-radius:6px;flex:none;margin-top:3px;display:grid;place-items:center;color:#fff;font-size:13px;}
+  .check-item.on .check-box{background:var(--green);border-color:var(--green);}
+  .check-item.on .check-box::after{content:"✓";}
+  .check-item.on .check-txt{color:var(--muted);text-decoration:line-through;}
+  .parent{background:var(--indigo-soft);border-radius:12px;padding:16px 18px;margin-top:22px;}
+  .parent h4{margin:0 0 6px;color:var(--indigo-deep);}
+  .pager{display:flex;align-items:center;gap:12px;margin-top:26px;}
+  .pager button{flex:1;border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:13px 16px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;color:var(--indigo-deep);}
+  .pager button:hover:not(:disabled){background:var(--indigo-soft);}
+  .pager button:disabled{opacity:.4;cursor:not-allowed;}
+  .pager .done-btn{flex:1.3;background:var(--indigo);color:#fff;border-color:var(--indigo);}
+  .pager .done-btn.is-done{background:var(--green);border-color:var(--green);}
+  .scrim{display:none;}
+  @media (max-width:860px){
+    .layout{grid-template-columns:1fr;padding:0 16px;margin-top:16px;}
+    .menu-btn{display:block;}
+    nav.toc{position:fixed;top:0;left:0;bottom:0;width:280px;z-index:50;border-radius:0 16px 16px 0;transform:translateX(-102%);transition:transform .28s ease;overflow-y:auto;padding-top:18px;}
+    nav.toc.open{transform:none;}
+    .scrim.show{display:block;position:fixed;inset:0;background:rgba(20,20,40,.4);z-index:40;}
+    .brand h1{font-size:14px;white-space:normal;}.prog-wrap{min-width:110px;}
+    section.card{padding:24px 20px;}.sec-num{font-size:28px;}.sec-titles h2{font-size:19px;}
+    .pager{flex-wrap:wrap;}.pager .done-btn{order:-1;flex-basis:100%;}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important;}}
+  :focus-visible{outline:3px solid #A9A4F0;outline-offset:2px;border-radius:6px;}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-row">
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+    <div class="brand"><span class="eyebrow">Guangjian Maths · Note 01</span><h1>Algebra Basics · 代数基本功</h1></div>
+    <div class="prog-wrap" aria-label="Progress"><span class="prog-label" id="progLabel">0 / 5</span><div class="prog-track"><div class="prog-fill" id="progFill"></div></div></div>
+  </div>
+</header>
+<div class="scrim" id="scrim"></div>
+<div class="layout">
+  <nav class="toc" id="toc" aria-label="Contents"><h2>Contents 目录</h2><div id="tocList"></div></nav>
+  <main>
+    <section class="card content" id="content" tabindex="-1"></section>
+    <div class="pager">
+      <button id="prevBtn">← Prev 上一节</button>
+      <button class="done-btn" id="doneBtn">Done 学完了 ✓</button>
+      <button id="nextBtn">Next 下一节 →</button>
+    </div>
+  </main>
+</div>
+<script>
+const S = [
+  {
+    key:"intro", nav:"Intro 导读", num:"", track:false,
+    title:"How to use this note",
+    zh:"怎么用这份讲义",
+    body:`
+      <p class="enh">Your exam is the <b>English maths paper</b>, so every note is written <b>English first, then Chinese</b>. Read the English to get used to exam wording; use the Chinese to make sure you understand.</p>
+      <p class="zh">你考的是<b>英文数学卷</b>，所以每份讲义都<b>先英文、后中文</b>。先读英文熟悉考试说法，再用中文确认自己真的懂了。</p>
+      <p class="enh">These five topics — powers, multiplication formulas, factorising, surds, fractions — are the <b>foundation</b> of every hard problem later. Go slowly and get them solid.</p>
+      <p class="zh">幂运算、乘法公式、因式分解、根式、分式这五样，是后面所有难题的<b>地基</b>。慢一点、扎实一点。</p>
+      <div class="note">Each section: <b>Key terms → Explanation → Examples → Practice</b> (try first, then reveal). 每节：术语 → 讲解 → 例题 → 练习（先自己做再看答案）。Tap "Done 学完了" to fill the progress bar.</div>
+    `
+  },
+  {
+    key:"s1", nav:"Powers 幂运算", num:"01", track:true,
+    title:"Powers & Indices",
+    zh:"幂的运算",
+    body:`
+      <div class="terms"><b>Key terms 关键词</b>：<span class="t">power / index (pl. indices) 幂 / 指数</span> · <span class="t">base 底数</span> · <span class="t">squared 平方</span> · <span class="t">cubed 立方</span> · <span class="t">reciprocal 倒数</span></div>
+      <h3 class="blk">Explanation 讲解</h3>
+      <p class="enh">A <b>power</b> means multiplying the same number several times. In 2³, the <b>base</b> is 2 and the <b>index</b> is 3.</p>
+      <p class="zh"><b>幂</b>就是把同一个数乘几次。2³ 里，2 是<b>底数</b>，3 是<b>指数</b>。</p>
+      <p class="enh">Three core rules (same base):</p>
+      <p class="zh">三条核心规则（底数相同时）：</p>
+      <ol>
+        <li><b>Multiply → add indices</b> 相乘指数相加：aᵐ × aⁿ = aᵐ⁺ⁿ</li>
+        <li><b>Divide → subtract indices</b> 相除指数相减：aᵐ ÷ aⁿ = aᵐ⁻ⁿ</li>
+        <li><b>Power of a power → multiply</b> 幂的幂指数相乘：(aᵐ)ⁿ = aᵐⁿ</li>
+      </ol>
+      <p class="enh">Two special cases 两个特殊约定：<b>a⁰ = 1</b>；<b>a⁻ⁿ = 1/aⁿ</b> (negative index → reciprocal 负指数取倒数).</p>
+      <div class="example">
+        <div class="ex-title">Example 1 例1</div>
+        <p>Simplify 化简　x³ · x⁴ ÷ x²</p>
+        <div class="steps"><div class="step">x³·x⁴ = x⁷ → x⁷ ÷ x² = x⁵</div></div>
+        <div class="ex-ans">x⁵</div>
+      </div>
+      <div class="example">
+        <div class="ex-title">Example 2 例2</div>
+        <p>Evaluate 求值　2⁻²</p>
+        <div class="steps"><div class="step">2⁻² = 1/2²</div></div>
+        <div class="ex-ans">1/4</div>
+      </div>
+      <div class="practice">
+        <div class="practice-head">Practice 1 练习1</div>
+        <p class="zh" style="margin:2px 0 8px">（"Simplify" = 化简，"Evaluate" = 求值）</p>
+        <ol>
+          <li>Simplify　a⁵ · a³</li>
+          <li>Simplify　x⁸ ÷ x³</li>
+          <li>Simplify　(y³)⁴</li>
+          <li>Evaluate　3⁻²</li>
+          <li>Simplify　(2x³)²</li>
+        </ol>
+        <button class="reveal" onclick="ans(this)">Show answers 显示答案</button>
+        <div class="answer"><div class="answer-inner">1. a⁸　2. x⁵　3. y¹²　4. 1/9　5. 4x⁶</div></div>
+      </div>
+    `
+  },
+  {
+    key:"s2", nav:"Formulas 乘法公式", num:"02", track:true, badge:"core",
+    title:"Multiplication Formulas (incl. Pascal's Triangle)",
+    zh:"乘法公式（含杨辉三角）",
+    body:`
+      <div class="terms"><b>Key terms 关键词</b>：<span class="t">expand 展开</span> · <span class="t">difference of two squares 平方差</span> · <span class="t">perfect square 完全平方</span> · <span class="t">binomial 二项式</span> · <span class="t">coefficient 系数</span> · <span class="t">Pascal's / Yang Hui's triangle 杨辉三角</span></div>
+      <h3 class="blk">Explanation 讲解</h3>
+      <p class="enh">Learn these by heart — you use them to <b>expand</b> and to <b>factorise</b>:</p>
+      <p class="zh">这几个必须背熟——展开和因式分解两头都用：</p>
+      <span class="kbd-formula">
+        (a + b)² = a² + 2ab + b²<br>
+        (a − b)² = a² − 2ab + b²<br>
+        (a + b)(a − b) = a² − b²<br>
+        a³ + b³ = (a + b)(a² − ab + b²)<br>
+        a³ − b³ = (a − b)(a² + ab + b²)
+      </span>
+      <div class="note"><strong>Watch out 注意：</strong>the middle term <b>2ab</b> is the one people forget. (a+b)² ≠ a²+b² ! 完全平方里的 2ab 最容易漏。</div>
+      <div class="example">
+        <div class="ex-title">Example 1 例1</div>
+        <p>Expand 展开　(2x − 3)²</p>
+        <div class="steps"><div class="step">(2x)² − 2·(2x)·3 + 3²</div></div>
+        <div class="ex-ans">4x² − 12x + 9</div>
+      </div>
+      <div class="example">
+        <div class="ex-title">Example 2 例2</div>
+        <p>Given 已知 a + b = 5, ab = 6, find 求 a² + b².</p>
+        <div class="steps"><div class="step">a²+b² = (a+b)² − 2ab = 25 − 12</div></div>
+        <div class="ex-ans">13</div>
+      </div>
+
+      <h3 class="blk">Cubes 立方公式：(a + b)³ & (a − b)³</h3>
+      <p class="enh">Push one power higher 再往上推一层：</p>
+      <span class="kbd-formula">(a + b)³ = a³ + 3a²b + 3ab² + b³<br>(a − b)³ = a³ − 3a²b + 3ab² − b³</span>
+      <p class="enh">You don't memorise (a−b)³ separately — just replace b with −b, and the signs alternate + − + −.</p>
+      <p class="zh">(a−b)³ 不用另背：把 b 换成 −b，符号变成 + − + − 交替即可。</p>
+
+      <h3 class="blk">Pascal's Triangle 杨辉三角</h3>
+      <div class="lore">
+        <h5>📜 A little history 一点历史</h5>
+        <p class="enh">In China it is <b>Yang Hui's triangle</b> (recorded 1261; earlier by Jia Xian ~1050). In the West it is <b>Pascal's triangle</b> (1654) — about 400 years later. Persian and Indian scholars found it independently too.</p>
+        <p class="zh">中国叫<b>杨辉三角</b>（1261 年杨辉记录，更早贾宪约 1050 年用过）；西方叫<b>帕斯卡三角</b>（1654 年），晚约 400 年；波斯、印度学者也各自独立发现过。</p>
+      </div>
+      <p class="enh"><b>How to build it 怎么搭：</b>edges are all 1; each inside number = sum of the two above it. Each row gives the <b>coefficients</b> of (a+b)ⁿ. Tap a row 点某一行：</p>
+      <div class="pascal" id="pascalTri">
+        <div class="prow" data-r="0" onclick="pascalPick(0)"><span class="pcell">1</span></div>
+        <div class="prow" data-r="1" onclick="pascalPick(1)"><span class="pcell">1</span><span class="pcell">1</span></div>
+        <div class="prow" data-r="2" onclick="pascalPick(2)"><span class="pcell">1</span><span class="pcell">2</span><span class="pcell">1</span></div>
+        <div class="prow" data-r="3" onclick="pascalPick(3)"><span class="pcell">1</span><span class="pcell">3</span><span class="pcell">3</span><span class="pcell">1</span></div>
+        <div class="prow" data-r="4" onclick="pascalPick(4)"><span class="pcell">1</span><span class="pcell">4</span><span class="pcell">6</span><span class="pcell">4</span><span class="pcell">1</span></div>
+        <div class="prow" data-r="5" onclick="pascalPick(5)"><span class="pcell">1</span><span class="pcell">5</span><span class="pcell">10</span><span class="pcell">10</span><span class="pcell">5</span><span class="pcell">1</span></div>
+        <div class="prow" data-r="6" onclick="pascalPick(6)"><span class="pcell">1</span><span class="pcell">6</span><span class="pcell">15</span><span class="pcell">20</span><span class="pcell">15</span><span class="pcell">6</span><span class="pcell">1</span></div>
+      </div>
+      <div class="pascal-out" id="pascalOut">Tap a row 点一行 → (a+b)ⁿ</div>
+      <div class="example">
+        <div class="ex-title">Example 3 例3</div>
+        <p>Expand 展开　(x + 2)³</p>
+        <div class="steps"><div class="step">Row 3 coefficients 第3行系数：1, 3, 3, 1</div><div class="step">x³ + 3·x²·2 + 3·x·2² + 2³</div></div>
+        <div class="ex-ans">x³ + 6x² + 12x + 8</div>
+      </div>
+      <p class="enh"><b>Later use 以后用途：</b>row n, position k gives the <b>combination</b> C(n, k) — you'll meet this in probability (光剑 module F). Row sums = 2ⁿ.</p>
+      <div class="practice">
+        <div class="practice-head">Practice 2 练习2</div>
+        <ol>
+          <li>Expand　(x + 4)²</li>
+          <li>Expand　(3a − 1)²</li>
+          <li>Given a + b = 4, ab = 3, find a² + b²</li>
+          <li>Factorise 因式分解　x³ + 8</li>
+          <li>Expand　(x − 2)³</li>
+        </ol>
+        <button class="reveal" onclick="ans(this)">Show answers 显示答案</button>
+        <div class="answer"><div class="answer-inner">1. x² + 8x + 16<br>2. 9a² − 6a + 1<br>3. 16 − 6 = <b>10</b><br>4. (x + 2)(x² − 2x + 4)<br>5. x³ − 6x² + 12x − 8</div></div>
+      </div>
+    `
+  },
+  {
+    key:"s3", nav:"Factorising 因式分解", num:"03", track:true, badge:"core",
+    title:"Factorising",
+    zh:"因式分解",
+    body:`
+      <div class="terms"><b>Key terms 关键词</b>：<span class="t">factorise 因式分解</span> · <span class="t">common factor 公因式</span> · <span class="t">cross method 十字相乘</span> · <span class="t">grouping 分组</span></div>
+      <h3 class="blk">Explanation 讲解</h3>
+      <p class="enh">To <b>factorise</b> is to write an expression as a <b>product of brackets</b> — the reverse of expanding. Try these four methods in order:</p>
+      <p class="zh"><b>因式分解</b>就是把式子写成"几个括号相乘"，是展开的逆运算。按顺序试四种方法：</p>
+      <ol>
+        <li><b>Common factor 提公因式</b>：2a² − 8a = 2a(a − 4)</li>
+        <li><b>Formulas 套公式</b>：x² − 9 = (x + 3)(x − 3)</li>
+        <li><b>Cross method 十字相乘</b>：for x² + bx + c, find two numbers with sum b, product c 找两数：和为 b、积为 c</li>
+        <li><b>Grouping 分组</b>：x³ + x² − 6x = x(x + 3)(x − 2)</li>
+      </ol>
+      <div class="example">
+        <div class="ex-title">Example 1 例1</div>
+        <p>Factorise 因式分解　x² − 5x + 6</p>
+        <div class="steps"><div class="step">Two numbers: sum −5, product 6 → −2, −3 　两数和 −5 积 6</div></div>
+        <div class="ex-ans">(x − 2)(x − 3)</div>
+      </div>
+      <div class="example">
+        <div class="ex-title">Example 2 例2</div>
+        <p>Factorise 因式分解　6x² − x − 2</p>
+        <div class="steps"><div class="step">Cross method 十字相乘（回乘验算 check by expanding）</div></div>
+        <div class="ex-ans">(2x + 1)(3x − 2)</div>
+      </div>
+      <div class="practice">
+        <div class="practice-head">Practice 3 练习3</div>
+        <ol>
+          <li>Factorise　5x² + 10x</li>
+          <li>Factorise　x² − 25</li>
+          <li>Factorise　x² + 7x + 12</li>
+          <li>Factorise　2x² + 5x + 2</li>
+          <li>Factorise　x³ − x² − 6x</li>
+        </ol>
+        <button class="reveal" onclick="ans(this)">Show answers 显示答案</button>
+        <div class="answer"><div class="answer-inner">1. 5x(x + 2)<br>2. (x + 5)(x − 5)<br>3. (x + 3)(x + 4)<br>4. (2x + 1)(x + 2)<br>5. x(x − 3)(x + 2)</div></div>
+      </div>
+    `
+  },
+  {
+    key:"s4", nav:"Surds 根式", num:"04", track:true,
+    title:"Surds",
+    zh:"根式",
+    body:`
+      <div class="terms"><b>Key terms 关键词</b>：<span class="t">surd / square root 根式 / 平方根</span> · <span class="t">simplify 化简</span> · <span class="t">rationalise the denominator 分母有理化</span> · <span class="t">conjugate 共轭</span></div>
+      <h3 class="blk">Explanation 讲解</h3>
+      <p class="enh">A <b>surd</b> is a root that isn't a whole number, like √2. Four rules 四条规则：</p>
+      <ol>
+        <li><b>Combine ×/÷</b> 乘除可合并：√a × √b = √(ab)</li>
+        <li><b>Simplify</b> 化简：take out square factors 把平方因子拿出来 → √12 = 2√3</li>
+        <li><b>Add/subtract like surds only</b> 同类根式才能加减：2√3 + 5√3 = 7√3</li>
+        <li><b>Rationalise</b> 分母有理化：multiply by the <b>conjugate</b> 乘共轭</li>
+      </ol>
+      <div class="example">
+        <div class="ex-title">Example 1 例1</div>
+        <p>Simplify 化简　√50</p>
+        <div class="steps"><div class="step">√50 = √(25 × 2) = 5√2</div></div>
+        <div class="ex-ans">5√2</div>
+      </div>
+      <div class="example">
+        <div class="ex-title">Example 2 例2</div>
+        <p>Rationalise 有理化　3 ⁄ (√5 − √2)</p>
+        <div class="steps">
+          <div class="step">Multiply top & bottom by conjugate (√5 + √2) 分子分母同乘共轭</div>
+          <div class="step">Denominator 分母：(√5)² − (√2)² = 3</div>
+        </div>
+        <div class="ex-ans">√5 + √2</div>
+      </div>
+      <div class="practice">
+        <div class="practice-head">Practice 4 练习4</div>
+        <ol>
+          <li>Simplify　√72</li>
+          <li>Evaluate　√2 × √18</li>
+          <li>Simplify　3√5 + 2√5</li>
+          <li>Rationalise　1 ⁄ √3</li>
+          <li>Evaluate　(√3 + 1)(√3 − 1)</li>
+        </ol>
+        <button class="reveal" onclick="ans(this)">Show answers 显示答案</button>
+        <div class="answer"><div class="answer-inner">1. 6√2　2. √36 = 6　3. 5√5　4. √3/3　5. 3 − 1 = 2</div></div>
+      </div>
+    `
+  },
+  {
+    key:"s5", nav:"Fractions 分式", num:"05", track:true,
+    title:"Algebraic Fractions",
+    zh:"分式",
+    body:`
+      <div class="terms"><b>Key terms 关键词</b>：<span class="t">algebraic fraction 分式</span> · <span class="t">numerator 分子</span> · <span class="t">denominator 分母</span> · <span class="t">cancel 约分</span> · <span class="t">common denominator 通分</span></div>
+      <h3 class="blk">Explanation 讲解</h3>
+      <p class="enh">An <b>algebraic fraction</b> has letters on top (<b>numerator</b>) and/or bottom (<b>denominator</b>). Same rules as normal fractions:</p>
+      <p class="zh"><b>分式</b>就是分子、分母带字母的分数，规则和普通分数一样：</p>
+      <ol>
+        <li><b>Cancel 约分</b>：factorise first, then cancel 先因式分解再约　(x²−4)/(x+2) = x − 2</li>
+        <li><b>Common denominator 通分</b> before adding 加减前先通分</li>
+        <li><b>Divide = multiply by the reciprocal</b> 除以一个分式 = 乘它的倒数</li>
+      </ol>
+      <div class="note warn"><strong>Watch out 易错：</strong>you can only cancel <b>factors</b> (things multiplied), not terms (things added). (x + 2)/x ≠ x ! 只能约"乘起来的因式"。</div>
+      <div class="example">
+        <div class="ex-title">Example 1 例1</div>
+        <p>Simplify 化简　(x² − 9) ⁄ (x − 3)</p>
+        <div class="steps"><div class="step">= (x + 3)(x − 3) / (x − 3) → cancel 约掉 (x − 3)</div></div>
+        <div class="ex-ans">x + 3</div>
+      </div>
+      <div class="example">
+        <div class="ex-title">Example 2 例2</div>
+        <p>Simplify 化简　1/(x − 1) − 1/(x + 1)</p>
+        <div class="steps"><div class="step">Common denominator (x−1)(x+1)；top 分子：(x+1) − (x−1) = 2</div></div>
+        <div class="ex-ans">2 ⁄ (x² − 1)</div>
+      </div>
+      <div class="practice">
+        <div class="practice-head">Practice 5 练习5</div>
+        <ol>
+          <li>Simplify　(x² − 1) ⁄ (x − 1)</li>
+          <li>Simplify　(2x + 4) ⁄ (x + 2)</li>
+          <li>Simplify　1/x + 1/(2x)</li>
+          <li>Simplify　(x/3) ÷ (x²/6)</li>
+        </ol>
+        <button class="reveal" onclick="ans(this)">Show answers 显示答案</button>
+        <div class="answer"><div class="answer-inner">1. x + 1　2. 2　3. 3/(2x)　4. 2/x</div></div>
+      </div>
+    `
+  },
+  {
+    key:"end", nav:"Summary 小结", num:"", track:false,
+    title:"Summary & self-check",
+    zh:"小结与自查",
+    body:`
+      <h3 class="blk">Self-check 自查（tap to tick 点一下打勾）</h3>
+      <div>
+        <div class="check-item" onclick="tick(this)"><div class="check-box"></div><div class="check-txt">Index rules + zero/negative index　幂的三条规则 + 零/负指数</div></div>
+        <div class="check-item" onclick="tick(this)"><div class="check-box"></div><div class="check-txt">The 5 multiplication formulas by heart　五个乘法公式背熟</div></div>
+        <div class="check-item" onclick="tick(this)"><div class="check-box"></div><div class="check-txt">a² + b² = (a+b)² − 2ab</div></div>
+        <div class="check-item" onclick="tick(this)"><div class="check-box"></div><div class="check-txt">Factorise fluently, esp. cross method　因式分解，尤其十字相乘</div></div>
+        <div class="check-item" onclick="tick(this)"><div class="check-box"></div><div class="check-txt">Simplify surds & rationalise (conjugate)　化简根式、分母有理化</div></div>
+        <div class="check-item" onclick="tick(this)"><div class="check-box"></div><div class="check-txt">Fractions: factorise then cancel; common denominator　分式先分解再约、通分</div></div>
+      </div>
+      <div class="note" style="margin-top:18px"><strong>Pass mark 过关标准：</strong>get ~80% of the practice right, then move on to Note 02. 练习做对约 80% 就可进讲义 02。</div>
+      <div class="parent">
+        <h4>For parents 给家长的话</h4>
+        <p class="zh">这份是英文卷备考的真正起点。她基础弱不要紧，关键是这五样地基一块块补上——光剑那些难题拆到最后都是它们的组合。英文术语（power / factorise / surd / denominator…）让她跟着 Key terms 一节节记，考试读题就不慌。</p>
+      </div>
+    `
+  }
+];
+
+const tocList=document.getElementById('tocList'),content=document.getElementById('content'),progFill=document.getElementById('progFill'),progLabel=document.getElementById('progLabel'),prevBtn=document.getElementById('prevBtn'),nextBtn=document.getElementById('nextBtn'),doneBtn=document.getElementById('doneBtn');
+let cur=0;const done=new Set();const trackedTotal=S.filter(s=>s.track).length;
+S.forEach((s,i)=>{const a=document.createElement('a');a.dataset.i=i;a.innerHTML=`<span class="n">${s.num||'·'}</span><span class="lbl">${s.nav}</span><span class="tick"></span>`;a.onclick=()=>go(i);tocList.appendChild(a);});
+const tocLinks=[...tocList.children];
+function render(){
+  const s=S[cur];
+  const badgeHtml = s.badge==='core'?'<span class="badge core">★ Must-know 必背</span>':s.badge==='gk'?'<span class="badge gk">★ Often tested 常考</span>':'';
+  const zt = s.zh?`<div class="zh-title">${s.zh}</div>`:'';
+  content.innerHTML=`<div class="sec-head">${s.num?`<div class="sec-num">${s.num}</div>`:''}<div class="sec-titles"><h2>${s.title}</h2>${zt}${badgeHtml}</div></div><div class="divider"></div>${s.body}`;
+  tocLinks.forEach((a,i)=>a.classList.toggle('active',i===cur));
+  prevBtn.disabled=cur===0;nextBtn.disabled=cur===S.length-1;
+  if(s.track){doneBtn.style.display='';const d=done.has(cur);doneBtn.textContent=d?'Done 已学完 ✓':'Done 学完了 ✓';doneBtn.classList.toggle('is-done',d);}else{doneBtn.style.display='none';}
+  content.focus({preventScroll:true});window.scrollTo({top:0,behavior:'smooth'});
+}
+function go(i){cur=Math.max(0,Math.min(S.length-1,i));render();closeMenu();}
+prevBtn.onclick=()=>go(cur-1);nextBtn.onclick=()=>go(cur+1);
+doneBtn.onclick=()=>{if(!S[cur].track)return;if(done.has(cur))done.delete(cur);else done.add(cur);updateProgress();render();if(done.has(cur)&&cur<S.length-1)setTimeout(()=>go(cur+1),260);};
+function updateProgress(){const n=[...done].filter(i=>S[i].track).length;progFill.style.width=(n/trackedTotal*100)+'%';progLabel.textContent=`${n} / ${trackedTotal}`;tocLinks.forEach((a,i)=>a.classList.toggle('done',done.has(i)&&S[i].track));}
+function ans(btn){const box=btn.nextElementSibling;const open=box.classList.toggle('open');btn.textContent=open?btn.textContent.replace('Show','Hide').replace('显示','隐藏'):btn.textContent.replace('Hide','Show').replace('隐藏','显示');}
+function tick(el){el.classList.toggle('on');}
+const PASCAL_EXP={0:'(a+b)⁰ = 1',1:'(a+b)¹ = a + b',2:'(a+b)² = a² + 2ab + b²',3:'(a+b)³ = a³ + 3a²b + 3ab² + b³',4:'(a+b)⁴ = a⁴ + 4a³b + 6a²b² + 4ab³ + b⁴',5:'(a+b)⁵ = a⁵ + 5a⁴b + 10a³b² + 10a²b³ + 5ab⁴ + b⁵',6:'(a+b)⁶ = a⁶ + 6a⁵b + 15a⁴b² + 20a³b³ + 15a²b⁴ + 6ab⁵ + b⁶'};
+function pascalPick(r){document.querySelectorAll('#pascalTri .prow').forEach(el=>el.classList.toggle('sel',+el.dataset.r===r));const out=document.getElementById('pascalOut');if(out)out.innerHTML='Row 第 '+r+' 行 → <b>'+PASCAL_EXP[r]+'</b>';}
+const toc=document.getElementById('toc'),scrim=document.getElementById('scrim');
+document.getElementById('menuBtn').onclick=()=>{toc.classList.add('open');scrim.classList.add('show');};
+function closeMenu(){toc.classList.remove('open');scrim.classList.remove('show');}
+scrim.onclick=closeMenu;
+document.addEventListener('keydown',e=>{if(e.target.tagName==='BUTTON')return;if(e.key==='ArrowRight'&&cur<S.length-1)go(cur+1);if(e.key==='ArrowLeft'&&cur>0)go(cur-1);});
+render();updateProgress();
+</script>
+</body>
+</html>

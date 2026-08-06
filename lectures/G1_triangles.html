@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guangjian Maths · G1 Triangles · 三角形</title>
+<style>
+  :root{
+    --bg:#F4F6FB;--surface:#FFFFFF;--ink:#1B1B2A;--muted:#6A6A82;--line:#E3E6F0;
+    --indigo:#4A43C4;--indigo-deep:#2E2A6B;--indigo-soft:#EEF0FC;
+    --amber:#C77A15;--amber-soft:#FCF2DF;--green:#1F8A5B;--green-soft:#E6F5EE;
+    --rose:#C0453B;--rose-soft:#FBEDEC;--radius:14px;
+    --shadow:0 1px 2px rgba(30,30,60,.05), 0 8px 24px rgba(30,30,60,.06);
+    --font:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Segoe UI",Roboto,"Helvetica Neue",sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.75;font-size:16px;-webkit-font-smoothing:antialiased;}
+  header.top{position:sticky;top:0;z-index:30;background:rgba(244,246,251,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:14px 22px;}
+  .top-row{display:flex;align-items:center;gap:14px;max-width:1180px;margin:0 auto;}
+  .brand{display:flex;flex-direction:column;gap:2px;min-width:0;}
+  .brand .eyebrow{font-size:12px;letter-spacing:.14em;color:var(--indigo);font-weight:700;text-transform:uppercase;}
+  .brand h1{margin:0;font-size:16px;font-weight:800;color:var(--indigo-deep);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .prog-wrap{margin-left:auto;display:flex;align-items:center;gap:10px;min-width:170px;}
+  .prog-label{font-size:12.5px;color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums;}
+  .prog-track{flex:1;height:8px;background:#DDE1EE;border-radius:99px;overflow:hidden;min-width:80px;}
+  .prog-fill{height:100%;width:0;background:linear-gradient(90deg,var(--indigo),#7A73E6);border-radius:99px;transition:width .5s cubic-bezier(.2,.8,.2,1);}
+  .menu-btn{display:none;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:8px 10px;font-size:15px;cursor:pointer;color:var(--indigo-deep);}
+  .layout{display:grid;grid-template-columns:262px 1fr;gap:30px;max-width:1180px;margin:26px auto;padding:0 22px;align-items:start;}
+  nav.toc{position:sticky;top:88px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:12px;box-shadow:var(--shadow);}
+  .toc h2{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:6px 8px 10px;font-weight:700;}
+  .toc a{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:10px;text-decoration:none;color:var(--ink);font-size:14px;cursor:pointer;border:1px solid transparent;transition:background .15s,border-color .15s;}
+  .toc a:hover{background:var(--indigo-soft);}
+  .toc a.active{background:var(--indigo-soft);border-color:#D5D8F5;font-weight:700;color:var(--indigo-deep);}
+  .toc .n{font-variant-numeric:tabular-nums;font-weight:700;color:var(--indigo);font-size:13px;width:22px;flex:none;}
+  .toc a.active .n{color:var(--indigo-deep);}
+  .toc .lbl{flex:1;min-width:0;}
+  .toc .tick{width:16px;height:16px;flex:none;border-radius:50%;border:2px solid #CBD0E4;display:grid;place-items:center;font-size:10px;color:#fff;}
+  .toc a.done .tick{background:var(--green);border-color:var(--green);}
+  .toc a.done .tick::after{content:"✓";}
+  main{min-width:0;}
+  section.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:32px 34px 30px;animation:rise .4s ease both;}
+  @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .sec-head{display:flex;align-items:flex-start;gap:16px;margin-bottom:6px;}
+  .sec-num{font-size:34px;font-weight:800;color:var(--indigo);line-height:1;font-variant-numeric:tabular-nums;flex:none;padding-top:2px;}
+  .sec-titles{flex:1;min-width:0;}
+  .sec-titles h2{margin:0;font-size:22px;font-weight:800;color:var(--indigo-deep);}
+  .sec-titles .zh-title{font-size:15px;color:var(--muted);font-weight:700;margin-top:2px;}
+  .badge{display:inline-flex;align-items:center;gap:5px;margin-top:8px;font-size:12.5px;font-weight:700;padding:3px 10px;border-radius:99px;}
+  .badge.gk{background:var(--amber-soft);color:var(--amber);}
+  .badge.core{background:var(--indigo-soft);color:var(--indigo);}
+  .badge.warn,.badge.hard{background:var(--rose-soft);color:var(--rose);}
+  .divider{height:1px;background:var(--line);margin:20px 0;}
+  h3.blk{font-size:15px;font-weight:800;color:var(--indigo);margin:22px 0 10px;display:flex;align-items:center;gap:8px;}
+  h3.blk::before{content:"";width:5px;height:16px;border-radius:3px;background:var(--indigo);display:inline-block;}
+  p{margin:9px 0;}
+  .content b{color:var(--indigo-deep);}
+  .content ul,.content ol{margin:10px 0;padding-left:22px;}
+  .content li{margin:6px 0;}
+  .zh{color:#4a4a5e;font-size:14.5px;}
+  .zh::before{content:"中  ";color:var(--green);font-weight:800;font-size:11px;letter-spacing:.05em;}
+  .enh::before{content:"EN  ";color:var(--indigo);font-weight:800;font-size:11px;letter-spacing:.05em;}
+  .terms{background:#F1F7F4;border:1px solid #CFE6DA;border-radius:10px;padding:11px 15px;margin:12px 0;font-size:14px;color:#14653f;line-height:1.9;}
+  .terms b{color:#14653f;}
+  .terms .t{white-space:nowrap;}
+  .kbd-formula{display:block;background:var(--indigo-soft);border:1px solid #D9DCF6;border-radius:10px;padding:14px 18px;margin:14px 0;font-size:18px;text-align:center;color:var(--indigo-deep);font-weight:700;}
+  .example{background:#FBFBFE;border:1px solid var(--line);border-left:4px solid var(--indigo);border-radius:12px;padding:16px 18px;margin:16px 0;}
+  .ex-title{font-weight:800;color:var(--indigo-deep);font-size:15px;margin-bottom:6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .ex-tag{font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:99px;background:var(--amber-soft);color:var(--amber);}
+  .steps{margin:8px 0;}
+  .step{position:relative;padding:5px 0 5px 20px;}
+  .step::before{content:"";position:absolute;left:5px;top:14px;width:6px;height:6px;border-radius:50%;background:var(--indigo);}
+  .ex-ans{margin-top:10px;background:var(--green-soft);border-radius:8px;padding:8px 12px;font-weight:800;color:var(--green);}
+  .note{background:var(--amber-soft);border-radius:10px;padding:12px 16px;margin:14px 0;font-size:14.5px;color:#7a5210;}
+  .note.warn{background:var(--rose-soft);color:#8c2f28;}
+  .note strong{color:inherit;}
+  .practice{background:#FFFFFF;border:1.5px dashed #C9CEE6;border-radius:12px;padding:16px 18px;margin:18px 0;}
+  .practice-head{font-weight:800;color:var(--indigo-deep);margin-bottom:6px;display:flex;align-items:center;gap:8px;}
+  .practice-head::before{content:"✎";color:var(--indigo);}
+  .reveal{margin-top:10px;background:var(--indigo);color:#fff;border:none;border-radius:9px;padding:9px 16px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;}
+  .reveal:hover{background:#3a34a8;}
+  .answer{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+  .answer.open{max-height:1400px;margin-top:12px;}
+  .answer-inner{background:var(--green-soft);border-radius:10px;padding:12px 16px;font-size:14.5px;}
+  .answer-inner b{color:var(--green);}
+  .pascal{display:flex;flex-direction:column;align-items:center;gap:9px;margin:18px 0 10px;}
+  .prow{display:flex;gap:9px;cursor:pointer;padding:5px 9px;border-radius:12px;border:1.5px solid transparent;transition:background .15s,border-color .15s;}
+  .prow:hover{background:var(--indigo-soft);}
+  .prow.sel{background:var(--amber-soft);border-color:#EEDBB0;}
+  .pcell{display:grid;place-items:center;min-width:40px;height:40px;padding:0 7px;background:var(--surface);border:1.5px solid var(--line);border-radius:10px;font-weight:800;color:var(--indigo-deep);font-variant-numeric:tabular-nums;}
+  .prow.sel .pcell{border-color:var(--amber);color:var(--amber);}
+  .pascal-out{text-align:center;background:var(--indigo-soft);border:1px solid #D9DCF6;border-radius:10px;padding:12px 16px;font-size:15px;color:var(--indigo-deep);margin:6px 0;min-height:22px;}
+  .lore{background:#F2F3FC;border:1px solid #E0E3F5;border-left:4px solid #8983E0;border-radius:12px;padding:14px 18px;margin:16px 0;font-size:14.5px;color:#3b3b54;}
+  .lore h5{margin:0 0 8px;color:var(--indigo-deep);font-size:14.5px;font-weight:800;}
+  .check-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line);cursor:pointer;}
+  .check-item:last-child{border-bottom:none;}
+  .check-box{width:20px;height:20px;border:2px solid #C4C9E0;border-radius:6px;flex:none;margin-top:3px;display:grid;place-items:center;color:#fff;font-size:13px;}
+  .check-item.on .check-box{background:var(--green);border-color:var(--green);}
+  .check-item.on .check-box::after{content:"✓";}
+  .check-item.on .check-txt{color:var(--muted);text-decoration:line-through;}
+  .parent{background:var(--indigo-soft);border-radius:12px;padding:16px 18px;margin-top:22px;}
+  .parent h4{margin:0 0 6px;color:var(--indigo-deep);}
+  .pager{display:flex;align-items:center;gap:12px;margin-top:26px;}
+  .pager button{flex:1;border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:13px 16px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;color:var(--indigo-deep);}
+  .pager button:hover:not(:disabled){background:var(--indigo-soft);}
+  .pager button:disabled{opacity:.4;cursor:not-allowed;}
+  .pager .done-btn{flex:1.3;background:var(--indigo);color:#fff;border-color:var(--indigo);}
+  .pager .done-btn.is-done{background:var(--green);border-color:var(--green);}
+  .scrim{display:none;}
+  @media (max-width:860px){
+    .layout{grid-template-columns:1fr;padding:0 16px;margin-top:16px;}
+    .menu-btn{display:block;}
+    nav.toc{position:fixed;top:0;left:0;bottom:0;width:280px;z-index:50;border-radius:0 16px 16px 0;transform:translateX(-102%);transition:transform .28s ease;overflow-y:auto;padding-top:18px;}
+    nav.toc.open{transform:none;}
+    .scrim.show{display:block;position:fixed;inset:0;background:rgba(20,20,40,.4);z-index:40;}
+    .brand h1{font-size:14px;white-space:normal;}.prog-wrap{min-width:110px;}
+    section.card{padding:24px 20px;}.sec-num{font-size:28px;}.sec-titles h2{font-size:19px;}
+    .pager{flex-wrap:wrap;}.pager .done-btn{order:-1;flex-basis:100%;}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important;}}
+  :focus-visible{outline:3px solid #A9A4F0;outline-offset:2px;border-radius:6px;}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-row">
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+    <div class="brand"><span class="eyebrow">Guangjian Maths · Geometry G1</span><h1>Triangles · 三角形</h1></div>
+    <div class="prog-wrap" aria-label="Progress"><span class="prog-label" id="progLabel">0 / 5</span><div class="prog-track"><div class="prog-fill" id="progFill"></div></div></div>
+  </div>
+</header>
+<div class="scrim" id="scrim"></div>
+<div class="layout">
+  <nav class="toc" id="toc" aria-label="Contents"><h2>Contents 目录</h2><div id="tocList"></div></nav>
+  <main>
+    <section class="card content" id="content" tabindex="-1"></section>
+    <div class="pager">
+      <button id="prevBtn">← Prev 上一节</button>
+      <button class="done-btn" id="doneBtn">Done 学完了 ✓</button>
+      <button id="nextBtn">Next 下一节 →</button>
+    </div>
+  </main>
+</div>
+<script>
+const S = [{"key": "intro", "nav": "Intro 导读", "num": "", "track": false, "title": "Triangles", "zh": "三角形", "body": "<p class=\"enh\">Triangles are the heart of the geometry paper. We build up: <b>angles</b> → <b>congruence</b> → <b>similarity</b> → <b>centroid</b> → <b>area methods</b>.</p><p class=\"zh\">三角形是几何卷的核心。我们一步步来：<b>角</b> → <b>全等</b> → <b>相似</b> → <b>重心</b> → <b>面积法</b>。</p><div class=\"note\">Section 3 (similarity) is <span class=\"badge gk\">★ Often tested 常考</span>; section 5 (area) is <span class=\"badge hard\">★ Harder 难题</span>.</div>"}, {"key": "s1", "nav": "Angles 内角与特殊三角形", "num": "01", "track": true, "title": "Angles & special triangles", "zh": "内角和与特殊三角形", "body": "<div class=\"terms\"><b>Key terms 关键词</b>：<span class=\"t\">interior angles 内角</span> · <span class=\"t\">equilateral 等边</span> · <span class=\"t\">isosceles 等腰</span> · <span class=\"t\">triangle inequality 三边关系</span></div><h3 class=\"blk\">Explanation 讲解</h3><p class=\"enh\">The three <b>interior angles</b> always add to <b>180°</b>. Special ones:</p><p class=\"zh\">三个<b>内角</b>和永远 = <b>180°</b>。两种特殊：</p><div style=\"display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin:14px 0\"><svg viewBox=\"0 0 250 195\" xmlns=\"http://www.w3.org/2000/svg\" style=\"width:100%;max-width:250px;height:auto;background:#FBFBFE;border:1px solid #E3E6F0;border-radius:10px\"><polygon points=\"125,28 55,162 195,162\" fill=\"rgba(74,67,196,0.05)\" stroke=\"#4A43C4\" stroke-width=\"2.6\"/><text x=\"125\" y=\"20\" font-size=\"12\" font-weight=\"700\" fill=\"#1B1B2A\" text-anchor=\"middle\">A</text><text x=\"46\" y=\"172\" font-size=\"12\" font-weight=\"700\" fill=\"#1B1B2A\" text-anchor=\"middle\">B</text><text x=\"204\" y=\"172\" font-size=\"12\" font-weight=\"700\" fill=\"#1B1B2A\" text-anchor=\"middle\">C</text><text x=\"125\" y=\"150\" font-size=\"11\" font-weight=\"700\" fill=\"#4A43C4\" text-anchor=\"middle\">60°</text><text x=\"78\" y=\"140\" font-size=\"11\" font-weight=\"700\" fill=\"#4A43C4\" text-anchor=\"middle\">60°</text><text x=\"172\" y=\"140\" font-size=\"11\" font-weight=\"700\" fill=\"#4A43C4\" text-anchor=\"middle\">60°</text><text x=\"125\" y=\"188\" font-size=\"11\" font-weight=\"700\" fill=\"#6A6A82\" text-anchor=\"middle\">Equilateral 等边</text></svg><svg viewBox=\"0 0 250 195\" xmlns=\"http://www.w3.org/2000/svg\" style=\"width:100%;max-width:250px;height:auto;background:#FBFBFE;border:1px solid #E3E6F0;border-radius:10px\"><polygon points=\"125,26 68,165 182,165\" fill=\"rgba(74,67,196,0.05)\" stroke=\"#4A43C4\" stroke-width=\"2.6\"/><text x=\"125\" y=\"18\" font-size=\"12\" font-weight=\"700\" fill=\"#1B1B2A\" text-anchor=\"middle\">A</text><text x=\"58\" y=\"175\" font-size=\"12\" font-weight=\"700\" fill=\"#1B1B2A\" text-anchor=\"middle\">B</text><text x=\"192\" y=\"175\" font-size=\"12\" font-weight=\"700\" fill=\"#1B1B2A\" text-anchor=\"middle\">C</text><line x1=\"92\" y1=\"96\" x2=\"100\" y2=\"96\" stroke=\"#C0453B\" stroke-width=\"2\" transform=\"rotate(58 96 96)\"/><line x1=\"150\" y1=\"96\" x2=\"158\" y2=\"96\" stroke=\"#C0453B\" stroke-width=\"2\" transform=\"rotate(-58 154 96)\"/><text x=\"88\" y=\"150\" font-size=\"12\" font-weight=\"700\" fill=\"#C0453B\" text-anchor=\"middle\">=</text><text x=\"162\" y=\"150\" font-size=\"12\" font-weight=\"700\" fill=\"#C0453B\" text-anchor=\"middle\">=</text><text x=\"125\" y=\"188\" font-size=\"11\" font-weight=\"700\" fill=\"#6A6A82\" text-anchor=\"middle\">Isosceles 等腰 (AB=AC)</text></svg></div><ul><li><b>Equilateral 等边</b>: all sides equal, all angles 60°.</li><li><b>Isosceles 等腰</b>: two equal sides → the two <b>base angles are equal</b> 底角相等.</li></ul><p class=\"enh\"><b>Triangle inequality 三边关系：</b>any two sides add to more than the third 任意两边之和 &gt; 第三边.</p><div class=\"example\"><div class=\"ex-title\">Example 例</div><p>A triangle has angles 40° and 75°. Find the third 求第三个角.</p><div class=\"steps\"><div class=\"step\">180 − 40 − 75</div></div><div class=\"ex-ans\">65°</div></div><div class=\"practice\"><div class=\"practice-head\">Practice 1 练习1</div><ol><li>Angles 50°, 60°. Find the third.</li><li>Isosceles triangle, apex angle 40°. Find each base angle 每个底角.</li><li>Can sides 2, 3, 6 form a triangle 能构成三角形吗?</li><li>Equilateral triangle — each angle 每个角?</li></ol><button class=\"reveal\" onclick=\"ans(this)\">Show answers 显示答案</button><div class=\"answer\"><div class=\"answer-inner\">1. 70°　2. (180−40)/2 = 70° each　3. No 不能 (2+3 &lt; 6)　4. 60°</div></div></div>"}, {"key": "s2", "nav": "Congruence 全等", "num": "02", "track": true, "title": "Congruence", "zh": "全等三角形", "body": "<div class=\"terms\"><b>Key terms 关键词</b>：<span class=\"t\">congruent 全等</span> · <span class=\"t\">SSS / SAS / ASA / AAS</span> · <span class=\"t\">corresponding 对应</span></div><h3 class=\"blk\">Explanation 讲解</h3><p class=\"enh\"><b>Congruent 全等</b> = same shape AND same size (one fits exactly on the other). Prove it with any one of:</p><p class=\"zh\"><b>全等</b> = 形状和大小都相同(能完全重合)。用下面任一条判定：</p><div style=\"display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin:14px 0\"><svg viewBox=\"0 0 250 195\" xmlns=\"http://www.w3.org/2000/svg\" style=\"width:100%;max-width:250px;height:auto;background:#FBFBFE;border:1px solid #E3E6F0;border-radius:10px\"><polygon points=\"40,30 20,140 110,120\" fill=\"rgba(31,138,91,0.06)\" stroke=\"#1F8A5B\" stroke-width=\"2.6\"/><polygon points=\"150,140 170,30 240,55\" fill=\"rgba(31,138,91,0.06)\" stroke=\"#1F8A5B\" stroke-width=\"2.6\"/><text x=\"65\" y=\"180\" font-size=\"11\" font-weight=\"700\" fill=\"#6A6A82\" text-anchor=\"middle\">△ABC ≅ △DEF  全等</text></svg></div><ul><li><b>SSS</b> 三边　<li><b>SAS</b> 两边夹角　<li><b>ASA</b> 两角夹边　<li><b>AAS</b> 两角一对边</li></ul><p class=\"enh\">Once congruent, <b>all corresponding sides and angles are equal</b> 对应边、对应角都相等.</p><div class=\"practice\"><div class=\"practice-head\">Practice 2 练习2</div><ol><li>Two triangles with three equal sides — which rule 哪条判定?</li><li>Congruent triangles: are corresponding angles equal 对应角相等吗?</li><li>Is \"AAA\" (three equal angles) enough for congruence 够判全等吗?</li></ol><button class=\"reveal\" onclick=\"ans(this)\">Show answers 显示答案</button><div class=\"answer\"><div class=\"answer-inner\">1. SSS　2. Yes 相等　3. No 不够 (only similar 只能相似，大小可不同)</div></div></div>"}, {"key": "s3", "nav": "Similarity 相似", "num": "03", "track": true, "badge": "gk", "title": "Similarity", "zh": "相似三角形", "body": "<div class=\"terms\"><b>Key terms 关键词</b>：<span class=\"t\">similar 相似</span> · <span class=\"t\">scale factor k 相似比</span> · <span class=\"t\">ratio of areas 面积比</span></div><h3 class=\"blk\">Explanation 讲解</h3><p class=\"enh\"><b>Similar 相似</b> = same shape, different size. Prove with <b>AA</b> (two equal angles). Then all sides are in the same ratio <b>k</b> (the scale factor).</p><p class=\"zh\"><b>相似</b> = 形状同、大小不同。用 <b>AA</b>(两角相等)判定。各对应边成同一比 <b>k</b>(相似比)。</p><div style=\"display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin:14px 0\"><svg viewBox=\"0 0 250 200\" xmlns=\"http://www.w3.org/2000/svg\" style=\"width:100%;max-width:250px;height:auto;background:#FBFBFE;border:1px solid #E3E6F0;border-radius:10px\"><polygon points=\"30,150 30,90 80,150\" fill=\"rgba(74,67,196,0.05)\" stroke=\"#4A43C4\" stroke-width=\"2.6\"/><text x=\"20\" y=\"90\" font-size=\"12\" font-weight=\"700\" fill=\"#1B1B2A\" text-anchor=\"middle\">A</text><text x=\"20\" y=\"162\" font-size=\"12\" font-weight=\"700\" fill=\"#1B1B2A\" text-anchor=\"middle\">B</text><text x=\"85\" y=\"162\" font-size=\"12\" font-weight=\"700\" fill=\"#1B1B2A\" text-anchor=\"middle\">C</text><polygon points=\"120,150 120,40 220,150\" fill=\"rgba(74,67,196,0.05)\" stroke=\"#4A43C4\" stroke-width=\"2.6\"/><text x=\"112\" y=\"38\" font-size=\"12\" font-weight=\"700\" fill=\"#1B1B2A\" text-anchor=\"middle\">D</text><text x=\"112\" y=\"162\" font-size=\"12\" font-weight=\"700\" fill=\"#1B1B2A\" text-anchor=\"middle\">E</text><text x=\"226\" y=\"162\" font-size=\"12\" font-weight=\"700\" fill=\"#1B1B2A\" text-anchor=\"middle\">F</text><text x=\"125\" y=\"185\" font-size=\"11\" font-weight=\"700\" fill=\"#6A6A82\" text-anchor=\"middle\">Similar 相似 (k = 2)</text></svg></div><div class=\"note\"><strong>Key 关键：</strong>ratio of sides = k, but <b>ratio of areas = k²</b>. 边比 = k，<b>面积比 = k²</b>。</div><div class=\"example\"><div class=\"ex-title\">Example 例</div><p>Two similar triangles have scale factor k = 3. The small one has area 5. Find the big area 求大三角形面积.</p><div class=\"steps\"><div class=\"step\">area ratio = k² = 9 → 5 × 9</div></div><div class=\"ex-ans\">45</div></div><div class=\"practice\"><div class=\"practice-head\">Practice 3 练习3</div><ol><li>Similar, k = 2. Ratio of areas 面积比?</li><li>Similar, k = 4, small area = 3. Big area?</li><li>Two similar triangles areas 9 and 36. Find k 求相似比.</li></ol><button class=\"reveal\" onclick=\"ans(this)\">Show answers 显示答案</button><div class=\"answer\"><div class=\"answer-inner\">1. 4 (=2²)　2. 3 × 16 = 48　3. k² = 36/9 = 4 → k = 2</div></div></div>"}, {"key": "s4", "nav": "Centroid 重心与中线", "num": "04", "track": true, "title": "Medians & the centroid", "zh": "中线与重心", "body": "<div class=\"terms\"><b>Key terms 关键词</b>：<span class=\"t\">median 中线</span> · <span class=\"t\">midpoint 中点</span> · <span class=\"t\">centroid 重心</span> · <span class=\"t\">2 : 1 ratio</span></div><h3 class=\"blk\">Explanation 讲解</h3><p class=\"enh\">A <b>median</b> joins a vertex to the <b>midpoint</b> of the opposite side. The three medians meet at the <b>centroid G</b>, which splits each median in ratio <b>2 : 1</b> (from the vertex).</p><p class=\"zh\"><b>中线</b>连接顶点与对边<b>中点</b>。三条中线交于<b>重心 G</b>，G 把每条中线分成 <b>2:1</b>(靠顶点那段长)。</p><div style=\"display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin:14px 0\"><svg viewBox=\"0 0 250 195\" xmlns=\"http://www.w3.org/2000/svg\" style=\"width:100%;max-width:250px;height:auto;background:#FBFBFE;border:1px solid #E3E6F0;border-radius:10px\"><polygon points=\"125,25 35,165 215,165\" fill=\"rgba(74,67,196,0.05)\" stroke=\"#4A43C4\" stroke-width=\"2.6\"/><line x1=\"125\" y1=\"25\" x2=\"125\" y2=\"165\" stroke=\"#6A6A82\" stroke-width=\"1.5\" /><line x1=\"35\" y1=\"165\" x2=\"170\" y2=\"95\" stroke=\"#6A6A82\" stroke-width=\"1.5\" /><line x1=\"215\" y1=\"165\" x2=\"80\" y2=\"95\" stroke=\"#6A6A82\" stroke-width=\"1.5\" /><circle cx=\"125\" cy=\"118\" r=\"4.5\" fill=\"#C0453B\"/><text x=\"138\" y=\"116\" font-size=\"12\" font-weight=\"700\" fill=\"#C0453B\" text-anchor=\"middle\">G</text><text x=\"125\" y=\"17\" font-size=\"12\" font-weight=\"700\" fill=\"#1B1B2A\" text-anchor=\"middle\">A</text><text x=\"27\" y=\"175\" font-size=\"12\" font-weight=\"700\" fill=\"#1B1B2A\" text-anchor=\"middle\">B</text><text x=\"223\" y=\"175\" font-size=\"12\" font-weight=\"700\" fill=\"#1B1B2A\" text-anchor=\"middle\">C</text><text x=\"125\" y=\"190\" font-size=\"11\" font-weight=\"700\" fill=\"#6A6A82\" text-anchor=\"middle\">Medians meet at centroid G 重心</text></svg></div><p class=\"enh\">The three medians also cut the triangle into <b>6 equal-area</b> pieces; the three medians to G give <b>3 equal areas</b>. 三中线把三角形分成 6 块等面积；到 G 的三块各等面积.</p><div class=\"example\"><div class=\"ex-title\">Example 例</div><p>Triangle area = 12. A median splits it into two parts — find each area 每部分面积.</p><div class=\"steps\"><div class=\"step\">a median halves the area 中线平分面积 → 12 ÷ 2</div></div><div class=\"ex-ans\">6 and 6</div></div><div class=\"practice\"><div class=\"practice-head\">Practice 4 练习4</div><ol><li>Centroid divides a median in what ratio 什么比?</li><li>Triangle area 30, split by the 3 medians into pieces to G — area of each of the 3 parts?</li><li>A median of length 9 — how long is the vertex-to-G part 顶点到G那段?</li></ol><button class=\"reveal\" onclick=\"ans(this)\">Show answers 显示答案</button><div class=\"answer\"><div class=\"answer-inner\">1. 2 : 1　2. 30 ÷ 3 = 10 each　3. 2/3 × 9 = 6</div></div></div>"}, {"key": "s5", "nav": "Area methods 面积法", "num": "05", "track": true, "badge": "hard", "title": "Area methods & Heron", "zh": "面积法与海伦公式", "body": "<div class=\"terms\"><b>Key terms 关键词</b>：<span class=\"t\">same base & height 同底等高</span> · <span class=\"t\">Heron's formula 海伦公式</span> · <span class=\"t\">semi-perimeter 半周长</span></div><h3 class=\"blk\">Explanation 讲解</h3><p class=\"enh\"><b>Same base, same height ⇒ same area.</b> This lets you compare areas without knowing exact lengths.</p><p class=\"zh\"><b>同底等高 ⇒ 面积相等。</b>不用知道具体长度就能比面积。</p><div style=\"display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin:14px 0\"><svg viewBox=\"0 0 250 200\" xmlns=\"http://www.w3.org/2000/svg\" style=\"width:100%;max-width:250px;height:auto;background:#FBFBFE;border:1px solid #E3E6F0;border-radius:10px\"><line x1=\"30\" y1=\"150\" x2=\"220\" y2=\"150\" stroke=\"#6A6A82\" stroke-width=\"1.8\" /><polygon points=\"30,150 220,150 70,50\" fill=\"rgba(74,67,196,0.05)\" stroke=\"#4A43C4\" stroke-width=\"2.4\"/><polygon points=\"30,150 220,150 180,50\" fill=\"none\" stroke=\"#1F8A5B\" stroke-width=\"2.4\"/><line x1=\"70\" y1=\"50\" x2=\"70\" y2=\"150\" stroke=\"#6A6A82\" stroke-width=\"1\" stroke-dasharray=\"4 3\"/><text x=\"125\" y=\"168\" font-size=\"10\" font-weight=\"700\" fill=\"#6A6A82\" text-anchor=\"middle\">same base 同底</text><text x=\"125\" y=\"188\" font-size=\"10.5\" font-weight=\"700\" fill=\"#6A6A82\" text-anchor=\"middle\">same height 等高 → equal area 面积相等</text></svg></div><p class=\"enh\"><b>Heron's formula 海伦公式</b> — area from the three sides a, b, c:</p><span class=\"kbd-formula\">s = (a+b+c)/2　(semi-perimeter 半周长)<br>Area = √( s(s−a)(s−b)(s−c) )</span><div class=\"example\"><div class=\"ex-title\">Example 例</div><p>Find the area of a triangle with sides 3, 4, 5 求面积.</p><div class=\"steps\"><div class=\"step\">s = (3+4+5)/2 = 6</div><div class=\"step\">√(6·3·2·1) = √36</div></div><div class=\"ex-ans\">6</div></div><div class=\"practice\"><div class=\"practice-head\">Practice 5 练习5</div><ol><li>Two triangles on the same base, same height — equal area 面积相等吗?</li><li>Heron: sides 5, 5, 6 — find s, then the area</li><li>Sides 6, 8, 10 — find the area (Heron)</li></ol><button class=\"reveal\" onclick=\"ans(this)\">Show answers 显示答案</button><div class=\"answer\"><div class=\"answer-inner\">1. Yes 相等<br>2. s = 8, √(8·3·3·2) = √144 = 12<br>3. s = 12, √(12·6·4·2) = √576 = 24</div></div></div>"}, {"key": "end", "nav": "Summary 小结", "num": "", "track": false, "title": "Summary", "zh": "小结", "body": "<h3 class=\"blk\">Self-check 自查</h3><div><div class=\"check-item\" onclick=\"tick(this)\"><div class=\"check-box\"></div><div class=\"check-txt\">Angles sum to 180°; equilateral 60°, isosceles base angles equal</div></div><div class=\"check-item\" onclick=\"tick(this)\"><div class=\"check-box\"></div><div class=\"check-txt\">Congruence: SSS/SAS/ASA/AAS　全等四判定</div></div><div class=\"check-item\" onclick=\"tick(this)\"><div class=\"check-box\"></div><div class=\"check-txt\">Similar (AA); sides ratio k, area ratio k²　相似</div></div><div class=\"check-item\" onclick=\"tick(this)\"><div class=\"check-box\"></div><div class=\"check-txt\">Centroid divides median 2:1; medians make equal areas　重心</div></div><div class=\"check-item\" onclick=\"tick(this)\"><div class=\"check-box\"></div><div class=\"check-txt\">Same base & height = same area; Heron's formula　面积法</div></div></div><div class=\"parent\"><h4>For parents 给家长的话</h4><p class=\"zh\">几何是光剑的重头。三角形这块务必扎实——尤其\"相似的面积比 = 边比²\"和\"重心 2:1\"，几何压轴几乎必用。海伦公式记住那个 √(s(s−a)(s−b)(s−c)) 即可。</p></div>"}];
+const tocList=document.getElementById('tocList'),content=document.getElementById('content'),progFill=document.getElementById('progFill'),progLabel=document.getElementById('progLabel'),prevBtn=document.getElementById('prevBtn'),nextBtn=document.getElementById('nextBtn'),doneBtn=document.getElementById('doneBtn');
+let cur=0;const done=new Set();const trackedTotal=S.filter(s=>s.track).length;
+S.forEach((s,i)=>{const a=document.createElement('a');a.dataset.i=i;a.innerHTML=`<span class="n">${s.num||'·'}</span><span class="lbl">${s.nav}</span><span class="tick"></span>`;a.onclick=()=>go(i);tocList.appendChild(a);});
+const tocLinks=[...tocList.children];
+function render(){
+  const s=S[cur];
+  const badgeHtml = s.badge==='core'?'<span class="badge core">★ Must-know 必背</span>':s.badge==='gk'?'<span class="badge gk">★ Often tested 常考</span>':s.badge==='hard'?'<span class="badge hard">★ Harder 难题</span>':'';
+  const zt = s.zh?`<div class="zh-title">${s.zh}</div>`:'';
+  content.innerHTML=`<div class="sec-head">${s.num?`<div class="sec-num">${s.num}</div>`:''}<div class="sec-titles"><h2>${s.title}</h2>${zt}${badgeHtml}</div></div><div class="divider"></div>${s.body}`;
+  tocLinks.forEach((a,i)=>a.classList.toggle('active',i===cur));
+  prevBtn.disabled=cur===0;nextBtn.disabled=cur===S.length-1;
+  if(s.track){doneBtn.style.display='';const d=done.has(cur);doneBtn.textContent=d?'Done 已学完 ✓':'Done 学完了 ✓';doneBtn.classList.toggle('is-done',d);}else{doneBtn.style.display='none';}
+  content.focus({preventScroll:true});window.scrollTo({top:0,behavior:'smooth'});
+}
+function go(i){cur=Math.max(0,Math.min(S.length-1,i));render();closeMenu();}
+prevBtn.onclick=()=>go(cur-1);nextBtn.onclick=()=>go(cur+1);
+doneBtn.onclick=()=>{if(!S[cur].track)return;if(done.has(cur))done.delete(cur);else done.add(cur);updateProgress();render();if(done.has(cur)&&cur<S.length-1)setTimeout(()=>go(cur+1),260);};
+function updateProgress(){const n=[...done].filter(i=>S[i].track).length;progFill.style.width=(n/trackedTotal*100)+'%';progLabel.textContent=`${n} / ${trackedTotal}`;tocLinks.forEach((a,i)=>a.classList.toggle('done',done.has(i)&&S[i].track));}
+function ans(btn){const box=btn.nextElementSibling;const open=box.classList.toggle('open');btn.textContent=open?btn.textContent.replace('Show','Hide').replace('显示','隐藏'):btn.textContent.replace('Hide','Show').replace('隐藏','显示');}
+function tick(el){el.classList.toggle('on');}
+const PASCAL_EXP={0:'(a+b)⁰ = 1',1:'(a+b)¹ = a + b',2:'(a+b)² = a² + 2ab + b²',3:'(a+b)³ = a³ + 3a²b + 3ab² + b³',4:'(a+b)⁴ = a⁴ + 4a³b + 6a²b² + 4ab³ + b⁴',5:'(a+b)⁵ = a⁵ + 5a⁴b + 10a³b² + 10a²b³ + 5ab⁴ + b⁵',6:'(a+b)⁶ = a⁶ + 6a⁵b + 15a⁴b² + 20a³b³ + 15a²b⁴ + 6ab⁵ + b⁶'};
+function pascalPick(r){document.querySelectorAll('#pascalTri .prow').forEach(el=>el.classList.toggle('sel',+el.dataset.r===r));const out=document.getElementById('pascalOut');if(out)out.innerHTML='Row 第 '+r+' 行 → <b>'+PASCAL_EXP[r]+'</b>';}
+const toc=document.getElementById('toc'),scrim=document.getElementById('scrim');
+document.getElementById('menuBtn').onclick=()=>{toc.classList.add('open');scrim.classList.add('show');};
+function closeMenu(){toc.classList.remove('open');scrim.classList.remove('show');}
+scrim.onclick=closeMenu;
+document.addEventListener('keydown',e=>{if(e.target.tagName==='BUTTON')return;if(e.key==='ArrowRight'&&cur<S.length-1)go(cur+1);if(e.key==='ArrowLeft'&&cur>0)go(cur-1);});
+render();updateProgress();
+</script>
+</body>
+</html>

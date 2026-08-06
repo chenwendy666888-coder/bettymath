@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guangjian Maths · Prep · Inequalities 不等式</title>
+<style>
+  :root{
+    --bg:#F4F6FB;--surface:#FFFFFF;--ink:#1B1B2A;--muted:#6A6A82;--line:#E3E6F0;
+    --indigo:#4A43C4;--indigo-deep:#2E2A6B;--indigo-soft:#EEF0FC;
+    --amber:#C77A15;--amber-soft:#FCF2DF;--green:#1F8A5B;--green-soft:#E6F5EE;
+    --rose:#C0453B;--rose-soft:#FBEDEC;--radius:14px;
+    --shadow:0 1px 2px rgba(30,30,60,.05), 0 8px 24px rgba(30,30,60,.06);
+    --font:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Segoe UI",Roboto,"Helvetica Neue",sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.75;font-size:16px;-webkit-font-smoothing:antialiased;}
+  header.top{position:sticky;top:0;z-index:30;background:rgba(244,246,251,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:14px 22px;}
+  .top-row{display:flex;align-items:center;gap:14px;max-width:1180px;margin:0 auto;}
+  .brand{display:flex;flex-direction:column;gap:2px;min-width:0;}
+  .brand .eyebrow{font-size:12px;letter-spacing:.14em;color:var(--indigo);font-weight:700;text-transform:uppercase;}
+  .brand h1{margin:0;font-size:16px;font-weight:800;color:var(--indigo-deep);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .prog-wrap{margin-left:auto;display:flex;align-items:center;gap:10px;min-width:170px;}
+  .prog-label{font-size:12.5px;color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums;}
+  .prog-track{flex:1;height:8px;background:#DDE1EE;border-radius:99px;overflow:hidden;min-width:80px;}
+  .prog-fill{height:100%;width:0;background:linear-gradient(90deg,var(--indigo),#7A73E6);border-radius:99px;transition:width .5s cubic-bezier(.2,.8,.2,1);}
+  .menu-btn{display:none;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:8px 10px;font-size:15px;cursor:pointer;color:var(--indigo-deep);}
+  .layout{display:grid;grid-template-columns:262px 1fr;gap:30px;max-width:1180px;margin:26px auto;padding:0 22px;align-items:start;}
+  nav.toc{position:sticky;top:88px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:12px;box-shadow:var(--shadow);}
+  .toc h2{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:6px 8px 10px;font-weight:700;}
+  .toc a{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:10px;text-decoration:none;color:var(--ink);font-size:14px;cursor:pointer;border:1px solid transparent;transition:background .15s,border-color .15s;}
+  .toc a:hover{background:var(--indigo-soft);}
+  .toc a.active{background:var(--indigo-soft);border-color:#D5D8F5;font-weight:700;color:var(--indigo-deep);}
+  .toc .n{font-variant-numeric:tabular-nums;font-weight:700;color:var(--indigo);font-size:13px;width:22px;flex:none;}
+  .toc a.active .n{color:var(--indigo-deep);}
+  .toc .lbl{flex:1;min-width:0;}
+  .toc .tick{width:16px;height:16px;flex:none;border-radius:50%;border:2px solid #CBD0E4;display:grid;place-items:center;font-size:10px;color:#fff;}
+  .toc a.done .tick{background:var(--green);border-color:var(--green);}
+  .toc a.done .tick::after{content:"✓";}
+  main{min-width:0;}
+  section.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:32px 34px 30px;animation:rise .4s ease both;}
+  @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .sec-head{display:flex;align-items:flex-start;gap:16px;margin-bottom:6px;}
+  .sec-num{font-size:34px;font-weight:800;color:var(--indigo);line-height:1;font-variant-numeric:tabular-nums;flex:none;padding-top:2px;}
+  .sec-titles{flex:1;min-width:0;}
+  .sec-titles h2{margin:0;font-size:22px;font-weight:800;color:var(--indigo-deep);}
+  .sec-titles .zh-title{font-size:15px;color:var(--muted);font-weight:700;margin-top:2px;}
+  .badge{display:inline-flex;align-items:center;gap:5px;margin-top:8px;font-size:12.5px;font-weight:700;padding:3px 10px;border-radius:99px;}
+  .badge.gk{background:var(--amber-soft);color:var(--amber);}
+  .badge.core{background:var(--indigo-soft);color:var(--indigo);}
+  .badge.warn,.badge.hard{background:var(--rose-soft);color:var(--rose);}
+  .stag{display:inline-block;font-size:12px;font-weight:800;padding:2px 9px;border-radius:99px;color:#fff;margin-right:8px;}
+  .stag.pinghe{background:#1F8A5B;} .stag.shiwai{background:#C77A15;} .stag.lingke{background:#C0453B;}
+  .xpref{font-size:12.5px;color:var(--muted);margin:2px 0 6px;}
+  .xschool{background:#F7F5FF;border:1px solid #E3DEF7;border-left:4px solid #7A73E6;border-radius:12px;padding:14px 16px;margin:16px 0;}
+  .ex-tag{font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:99px;background:var(--amber-soft);color:var(--amber);}
+  .divider{height:1px;background:var(--line);margin:20px 0;}
+  h3.blk{font-size:15px;font-weight:800;color:var(--indigo);margin:22px 0 10px;display:flex;align-items:center;gap:8px;}
+  h3.blk::before{content:"";width:5px;height:16px;border-radius:3px;background:var(--indigo);display:inline-block;}
+  p{margin:9px 0;}
+  .content b{color:var(--indigo-deep);}
+  .content ul,.content ol{margin:10px 0;padding-left:22px;}
+  .content li{margin:6px 0;}
+  .zh{color:#4a4a5e;font-size:14.5px;}
+  .zh::before{content:"中  ";color:var(--green);font-weight:800;font-size:11px;letter-spacing:.05em;}
+  .enh::before{content:"EN  ";color:var(--indigo);font-weight:800;font-size:11px;letter-spacing:.05em;}
+  .terms{background:#F1F7F4;border:1px solid #CFE6DA;border-radius:10px;padding:11px 15px;margin:12px 0;font-size:14px;color:#14653f;line-height:1.9;}
+  .terms b{color:#14653f;}
+  .terms .t{white-space:nowrap;}
+  .kbd-formula{display:block;background:var(--indigo-soft);border:1px solid #D9DCF6;border-radius:10px;padding:14px 18px;margin:14px 0;font-size:18px;text-align:center;color:var(--indigo-deep);font-weight:700;}
+  .example{background:#FBFBFE;border:1px solid var(--line);border-left:4px solid var(--indigo);border-radius:12px;padding:16px 18px;margin:16px 0;}
+  .ex-title{font-weight:800;color:var(--indigo-deep);font-size:15px;margin-bottom:6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .ex-tag{font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:99px;background:var(--amber-soft);color:var(--amber);}
+  .steps{margin:8px 0;}
+  .step{position:relative;padding:5px 0 5px 20px;}
+  .step::before{content:"";position:absolute;left:5px;top:14px;width:6px;height:6px;border-radius:50%;background:var(--indigo);}
+  .ex-ans{margin-top:10px;background:var(--green-soft);border-radius:8px;padding:8px 12px;font-weight:800;color:var(--green);}
+  .note{background:var(--amber-soft);border-radius:10px;padding:12px 16px;margin:14px 0;font-size:14.5px;color:#7a5210;}
+  .note.warn{background:var(--rose-soft);color:#8c2f28;}
+  .note strong{color:inherit;}
+  .practice{background:#FFFFFF;border:1.5px dashed #C9CEE6;border-radius:12px;padding:16px 18px;margin:18px 0;}
+  .practice-head{font-weight:800;color:var(--indigo-deep);margin-bottom:6px;display:flex;align-items:center;gap:8px;}
+  .practice-head::before{content:"✎";color:var(--indigo);}
+  .reveal{margin-top:10px;background:var(--indigo);color:#fff;border:none;border-radius:9px;padding:9px 16px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;}
+  .reveal:hover{background:#3a34a8;}
+  .answer{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+  .answer.open{max-height:1400px;margin-top:12px;}
+  .answer-inner{background:var(--green-soft);border-radius:10px;padding:12px 16px;font-size:14.5px;}
+  .answer-inner b{color:var(--green);}
+  .pascal{display:flex;flex-direction:column;align-items:center;gap:9px;margin:18px 0 10px;}
+  .prow{display:flex;gap:9px;cursor:pointer;padding:5px 9px;border-radius:12px;border:1.5px solid transparent;transition:background .15s,border-color .15s;}
+  .prow:hover{background:var(--indigo-soft);}
+  .prow.sel{background:var(--amber-soft);border-color:#EEDBB0;}
+  .pcell{display:grid;place-items:center;min-width:40px;height:40px;padding:0 7px;background:var(--surface);border:1.5px solid var(--line);border-radius:10px;font-weight:800;color:var(--indigo-deep);font-variant-numeric:tabular-nums;}
+  .prow.sel .pcell{border-color:var(--amber);color:var(--amber);}
+  .pascal-out{text-align:center;background:var(--indigo-soft);border:1px solid #D9DCF6;border-radius:10px;padding:12px 16px;font-size:15px;color:var(--indigo-deep);margin:6px 0;min-height:22px;}
+  .lore{background:#F2F3FC;border:1px solid #E0E3F5;border-left:4px solid #8983E0;border-radius:12px;padding:14px 18px;margin:16px 0;font-size:14.5px;color:#3b3b54;}
+  .lore h5{margin:0 0 8px;color:var(--indigo-deep);font-size:14.5px;font-weight:800;}
+  .check-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line);cursor:pointer;}
+  .check-item:last-child{border-bottom:none;}
+  .check-box{width:20px;height:20px;border:2px solid #C4C9E0;border-radius:6px;flex:none;margin-top:3px;display:grid;place-items:center;color:#fff;font-size:13px;}
+  .check-item.on .check-box{background:var(--green);border-color:var(--green);}
+  .check-item.on .check-box::after{content:"✓";}
+  .check-item.on .check-txt{color:var(--muted);text-decoration:line-through;}
+  .parent{background:var(--indigo-soft);border-radius:12px;padding:16px 18px;margin-top:22px;}
+  .parent h4{margin:0 0 6px;color:var(--indigo-deep);}
+  .pager{display:flex;align-items:center;gap:12px;margin-top:26px;}
+  .pager button{flex:1;border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:13px 16px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;color:var(--indigo-deep);}
+  .pager button:hover:not(:disabled){background:var(--indigo-soft);}
+  .pager button:disabled{opacity:.4;cursor:not-allowed;}
+  .pager .done-btn{flex:1.3;background:var(--indigo);color:#fff;border-color:var(--indigo);}
+  .pager .done-btn.is-done{background:var(--green);border-color:var(--green);}
+  .scrim{display:none;}
+  @media (max-width:860px){
+    .layout{grid-template-columns:1fr;padding:0 16px;margin-top:16px;}
+    .menu-btn{display:block;}
+    nav.toc{position:fixed;top:0;left:0;bottom:0;width:280px;z-index:50;border-radius:0 16px 16px 0;transform:translateX(-102%);transition:transform .28s ease;overflow-y:auto;padding-top:18px;}
+    nav.toc.open{transform:none;}
+    .scrim.show{display:block;position:fixed;inset:0;background:rgba(20,20,40,.4);z-index:40;}
+    .brand h1{font-size:14px;white-space:normal;}.prog-wrap{min-width:110px;}
+    section.card{padding:24px 20px;}.sec-num{font-size:28px;}.sec-titles h2{font-size:19px;}
+    .pager{flex-wrap:wrap;}.pager .done-btn{order:-1;flex-basis:100%;}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important;}}
+  :focus-visible{outline:3px solid #A9A4F0;outline-offset:2px;border-radius:6px;}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-row">
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+    <div class="brand"><span class="eyebrow">Guangjian Maths · Prep 预备篇</span><h1>Inequalities · 不等式</h1></div>
+    <div class="prog-wrap" aria-label="Progress"><span class="prog-label" id="progLabel">0 / 5</span><div class="prog-track"><div class="prog-fill" id="progFill"></div></div></div>
+  </div>
+</header>
+<div class="scrim" id="scrim"></div>
+<div class="layout">
+  <nav class="toc" id="toc" aria-label="Contents"><h2>Contents 目录</h2><div id="tocList"></div></nav>
+  <main>
+    <section class="card content" id="content" tabindex="-1"></section>
+    <div class="pager">
+      <button id="prevBtn">← Prev 上一节</button>
+      <button class="done-btn" id="doneBtn">Done 学完了 ✓</button>
+      <button id="nextBtn">Next 下一节 →</button>
+    </div>
+  </main>
+</div>
+<script>
+const S = [{"key": "intro", "nav": "Intro 导读", "num": "", "track": false, "title": "What inequalities test", "zh": "不等式在考什么", "body": "<p class=\"enh\">An equation says two sides are <b>equal</b>; an <b>inequality</b> compares sizes with &gt; &lt; ≥ ≤. Guangjian and other top schools (Ulink, WLSA-style, Pinghe, SWS) all test inequalities: solving them, finding a parameter <b>range</b>, and finding a maximum/minimum.</p><p class=\"zh\">方程是\"两边相等\"，<b>不等式</b>是比大小（&gt; &lt; ≥ ≤）。光剑和领科、平和、世外等名校都爱考：解不等式、求参数范围、求最值。</p><p class=\"enh\">The first five sections are the <b>foundation</b> (linear → quadratic → absolute value → fractional). The last two are marked <span class=\"badge hard\">★ Harder 难题</span>: AM–GM and completing the square.</p><p class=\"zh\">前五节是地基（一次→二次→绝对值→分式），后两节标\"难题\"：均值不等式、配方与恒成立。最后有 🏫 他校拓展（标来源学校）。</p><div class=\"note\">Do the <b>Graphs</b> note first — inequality answers live on a number line and ranges come from parabolas. 建议先学\"图像基础\"。</div>"}, {"key": "s1", "nav": "Linear 一次不等式", "num": "01", "track": true, "title": "Linear inequalities", "zh": "一元一次不等式", "body": "<div class=\"terms\"><b>Key terms 关键词</b>：<span class=\"t\">inequality 不等式</span> · <span class=\"t\">solve 解</span> · <span class=\"t\">the sign flips 不等号变向</span></div><h3 class=\"blk\">Explanation 讲解</h3><p class=\"enh\">Solve almost like an equation (move terms, tidy up). <b>One rule is different:</b></p><div class=\"note warn\"><strong>Multiplying or dividing both sides by a NEGATIVE number reverses the inequality sign!</strong> 两边乘/除以负数，不等号要变向！ e.g. −2x &lt; 6 → x &gt; −3.</div><div class=\"example\"><div class=\"ex-title\">Example 1 例1</div><p>Solve 解　2x − 3 &lt; 7</p><div class=\"steps\"><div class=\"step\">2x &lt; 10 → x &lt; 5 (÷2, positive 正数不变号)</div></div><div class=\"ex-ans\">x &lt; 5</div></div><div class=\"example\"><div class=\"ex-title\">Example 2 例2</div><p>Solve 解　−3x + 1 ≥ 7</p><div class=\"steps\"><div class=\"step\">−3x ≥ 6</div><div class=\"step\">÷(−3), <b>flip</b> 变号：x ≤ −2</div></div><div class=\"ex-ans\">x ≤ −2</div></div><div class=\"practice\"><div class=\"practice-head\">Practice 1 练习1</div><ol><li>Solve　3x + 2 &gt; 11</li><li>Solve　5 − 2x ≤ 1</li><li>Solve　4x − 1 &lt; 2x + 7</li><li>Solve　−x/2 &gt; 3</li><li>Solve　2(x + 1) ≥ 3x − 4</li></ol><button class=\"reveal\" onclick=\"ans(this)\">Show answers 显示答案</button><div class=\"answer\"><div class=\"answer-inner\">1. x &gt; 3　2. x ≥ 2　3. x &lt; 4　4. x &lt; −6　5. x ≤ 6</div></div></div>"}, {"key": "s2", "nav": "Systems 不等式组", "num": "02", "track": true, "title": "Systems of inequalities", "zh": "一元一次不等式组", "body": "<div class=\"terms\"><b>Key terms 关键词</b>：<span class=\"t\">system of inequalities 不等式组</span> · <span class=\"t\">intersection 交集</span> · <span class=\"t\">no solution 无解</span></div><h3 class=\"blk\">Explanation 讲解</h3><p class=\"enh\">Several inequalities must all hold at once. <b>Solve each, then take the overlap (intersection).</b> A number line makes the overlap obvious.</p><p class=\"zh\">几个不等式要<b>同时满足</b>：各自解，再取<b>公共部分（交集）</b>；画数轴找重叠最直观。</p><div class=\"example\"><div class=\"ex-title\">Example 1 例1</div><p>Solve 解　x + 1 &gt; 0 and 2x − 3 &lt; 5</p><div class=\"steps\"><div class=\"step\">x &gt; −1 and x &lt; 4 → overlap 交集</div></div><div class=\"ex-ans\">−1 &lt; x &lt; 4</div></div><div class=\"example\"><div class=\"ex-title\">Example 2 例2</div><p>Solve 解　x &gt; 3 and x &lt; 1</p><div class=\"steps\"><div class=\"step\">no number is both　没有数同时满足</div></div><div class=\"ex-ans\">no solution 无解</div></div><div class=\"practice\"><div class=\"practice-head\">Practice 2 练习2</div><ol><li>x − 2 &gt; 0 and x + 1 &lt; 5</li><li>2x + 1 ≥ 3 and x − 4 ≤ 0</li><li>x + 3 &gt; 0 and 2x &lt; 6</li><li>x &gt; 5 and x &lt; 2</li></ol><button class=\"reveal\" onclick=\"ans(this)\">Show answers 显示答案</button><div class=\"answer\"><div class=\"answer-inner\">1. 2 &lt; x &lt; 4　2. 1 ≤ x ≤ 4　3. −3 &lt; x &lt; 3　4. no solution 无解</div></div></div>"}, {"key": "s3", "nav": "Quadratic 二次不等式", "num": "03", "track": true, "badge": "gk", "title": "Quadratic inequalities", "zh": "一元二次不等式", "body": "<div class=\"terms\"><b>Key terms 关键词</b>：<span class=\"t\">quadratic inequality 二次不等式</span> · <span class=\"t\">root 根</span> · <span class=\"t\">outside / between the roots 取两边 / 取中间</span></div><h3 class=\"blk\">Explanation 讲解</h3><p class=\"enh\">Write ax² + bx + c &gt; 0 (or &lt; 0). <b>Factorise to find the two roots, then use the parabola.</b> When a &gt; 0 (opens up):</p><span class=\"kbd-formula\">&gt; 0 → outside the roots 取两边 (x &lt; small or x &gt; large)<br>&lt; 0 → between the roots 取中间 (small &lt; x &lt; large)</span><div class=\"example\"><div class=\"ex-title\">Example 1 例1</div><p>Solve 解　x² − 5x + 6 &gt; 0</p><div class=\"steps\"><div class=\"step\">(x − 2)(x − 3) &gt; 0, roots 2, 3; &gt; 0 outside 取两边</div></div><div class=\"ex-ans\">x &lt; 2 or x &gt; 3</div></div><div class=\"example\"><div class=\"ex-title\">Example 2 例2</div><p>Solve 解　x² − 4 ≤ 0</p><div class=\"steps\"><div class=\"step\">(x−2)(x+2) ≤ 0, roots ±2; ≤ 0 between 取中间（含端点）</div></div><div class=\"ex-ans\">−2 ≤ x ≤ 2</div></div><div class=\"practice\"><div class=\"practice-head\">Practice 3 练习3</div><ol><li>Solve　x² − 7x + 10 &gt; 0</li><li>Solve　x² − x − 6 &lt; 0</li><li>Solve　x² − 9 ≥ 0</li><li>Solve　x² + 4x &lt; 0</li><li>Solve　x² − 2x + 1 &gt; 0</li></ol><button class=\"reveal\" onclick=\"ans(this)\">Show answers 显示答案</button><div class=\"answer\"><div class=\"answer-inner\">1. x &lt; 2 or x &gt; 5<br>2. −2 &lt; x &lt; 3<br>3. x ≤ −3 or x ≥ 3<br>4. −4 &lt; x &lt; 0<br>5. (x−1)²&gt;0 → x ≠ 1 (all x except 1)</div></div></div>"}, {"key": "s4", "nav": "Absolute value 绝对值", "num": "04", "track": true, "badge": "gk", "title": "Absolute value inequalities", "zh": "绝对值不等式", "body": "<div class=\"terms\"><b>Key terms 关键词</b>：<span class=\"t\">absolute value 绝对值</span> · <span class=\"t\">|x| &lt; a 夹中间</span> · <span class=\"t\">|x| &gt; a 取两边</span></div><h3 class=\"blk\">Explanation 讲解</h3><p class=\"enh\">|x| is the distance from 0. So (for a &gt; 0):</p><span class=\"kbd-formula\">|x| &lt; a　→　−a &lt; x &lt; a (between 夹中间)<br>|x| &gt; a　→　x &lt; −a or x &gt; a (outside 取两边)</span><p class=\"enh\">For |expression|, treat the whole expression like the x above.</p><p class=\"zh\">遇到 |式子|，把整个式子当上面的 x 处理。</p><div class=\"example\"><div class=\"ex-title\">Example 1 例1</div><p>Solve 解　|x − 1| &lt; 4</p><div class=\"steps\"><div class=\"step\">−4 &lt; x − 1 &lt; 4 → +1 throughout 三边加1</div></div><div class=\"ex-ans\">−3 &lt; x &lt; 5</div></div><div class=\"example\"><div class=\"ex-title\">Example 2 例2</div><p>Solve 解　|2x + 1| ≥ 3</p><div class=\"steps\"><div class=\"step\">2x+1 ≥ 3 or 2x+1 ≤ −3</div></div><div class=\"ex-ans\">x ≤ −2 or x ≥ 1</div></div><div class=\"practice\"><div class=\"practice-head\">Practice 4 练习4</div><ol><li>|x| ≤ 5</li><li>|x| &gt; 1</li><li>|x + 2| &lt; 3</li><li>|x − 3| ≥ 2</li><li>|3x| &lt; 6</li></ol><button class=\"reveal\" onclick=\"ans(this)\">Show answers 显示答案</button><div class=\"answer\"><div class=\"answer-inner\">1. −5 ≤ x ≤ 5　2. x &lt; −1 or x &gt; 1　3. −5 &lt; x &lt; 1　4. x ≤ 1 or x ≥ 5　5. −2 &lt; x &lt; 2</div></div></div>"}, {"key": "s5", "nav": "Fractional 分式", "num": "05", "track": true, "title": "Fractional inequalities", "zh": "分式不等式", "body": "<div class=\"terms\"><b>Key terms 关键词</b>：<span class=\"t\">fractional inequality 分式不等式</span> · <span class=\"t\">same sign 同号</span> · <span class=\"t\">denominator ≠ 0 分母不为零</span></div><h3 class=\"blk\">Explanation 讲解</h3><p class=\"enh\"><b>A quotient has the same sign as the product</b>, so change ÷ into × and treat it as a quadratic — but remember the <b>denominator ≠ 0</b>.</p><p class=\"zh\">两数相除的符号 = 相乘的符号，所以把除号<b>改成乘号</b>当二次不等式做——但<b>分母不能为 0</b>。</p><span class=\"kbd-formula\">(x − a)/(x − b) &gt; 0　⇔　(x − a)(x − b) &gt; 0　(and x ≠ b)</span><div class=\"example\"><div class=\"ex-title\">Example 1 例1</div><p>Solve 解　(x − 1)/(x + 2) &gt; 0</p><div class=\"steps\"><div class=\"step\">(x−1)(x+2) &gt; 0, roots 1, −2; outside 取两边</div></div><div class=\"ex-ans\">x &lt; −2 or x &gt; 1</div></div><div class=\"example\"><div class=\"ex-title\">Example 2 例2</div><p>Solve 解　(x − 3)/(x − 1) ≤ 0</p><div class=\"steps\"><div class=\"step\">(x−3)(x−1) ≤ 0 → 1 ≤ x ≤ 3, but x ≠ 1</div></div><div class=\"ex-ans\">1 &lt; x ≤ 3</div></div><div class=\"practice\"><div class=\"practice-head\">Practice 5 练习5</div><ol><li>(x − 2)/(x + 1) &gt; 0</li><li>(x + 3)/(x − 2) &lt; 0</li><li>(x − 1)/(x − 4) ≥ 0</li><li>1/(x + 2) &lt; 0</li></ol><button class=\"reveal\" onclick=\"ans(this)\">Show answers 显示答案</button><div class=\"answer\"><div class=\"answer-inner\">1. x &lt; −1 or x &gt; 2<br>2. −3 &lt; x &lt; 2<br>3. x ≤ 1 or x &gt; 4<br>4. x &lt; −2</div></div></div>"}, {"key": "s6", "nav": "AM–GM 均值不等式", "num": "06", "track": true, "badge": "hard", "title": "Harder 1: the AM–GM inequality", "zh": "难题一：基本（均值）不等式", "body": "<div class=\"terms\"><b>Key terms 关键词</b>：<span class=\"t\">arithmetic mean 算术平均</span> · <span class=\"t\">geometric mean 几何平均</span> · <span class=\"t\">AM–GM 均值不等式</span> · <span class=\"t\">minimum / maximum 最小/最大值</span> · <span class=\"t\">equality holds 取等号</span></div><h3 class=\"blk\">Explanation 讲解</h3><p class=\"enh\">A powerful tool for max/min. For two <b>positive</b> numbers a, b:</p><span class=\"kbd-formula\">a + b ≥ 2√(ab)　(a, b &gt; 0)<br>equality holds when a = b 当 a = b 时取等（此时最小）</span><p class=\"enh\">Most-used forms 常用形式：<b>x + 1/x ≥ 2</b> (x &gt; 0)；<b>x + k/x ≥ 2√k</b>.</p><div class=\"note warn\"><strong>Two conditions 两个前提：</strong>① the numbers must be positive 必须正数；② the value is reached only when the two terms are equal 只有两项相等时才取到最值。</div><div class=\"example\"><div class=\"ex-title\">Example 1 例1</div><p>x &gt; 0. Find the minimum of 求最小值　x + 9/x</p><div class=\"steps\"><div class=\"step\">x + 9/x ≥ 2√(x·9/x) = 2√9 = 6, when x = 3</div></div><div class=\"ex-ans\">minimum 6 (x = 3)</div></div><div class=\"example\"><div class=\"ex-title\">Example 2 例2</div><p>a, b &gt; 0, a + b = 8. Find the maximum of 求最大值　ab</p><div class=\"steps\"><div class=\"step\">ab ≤ ((a+b)/2)² = 16, when a = b = 4</div></div><div class=\"ex-ans\">maximum 16</div></div><div class=\"practice\"><div class=\"practice-head\">Practice 6 练习6</div><ol><li>x &gt; 0. Minimum of　x + 16/x</li><li>x &gt; 0. Minimum of　(x² + 9)/x</li><li>a, b &gt; 0, a + b = 10. Maximum of　ab</li><li>a, b &gt; 0, a + b = 1. Minimum of　1/a + 1/b</li></ol><button class=\"reveal\" onclick=\"ans(this)\">Show answers 显示答案</button><div class=\"answer\"><div class=\"answer-inner\">1. 8 (x = 4)<br>2. (x²+9)/x = x + 9/x ≥ 6 (x = 3)<br>3. 25 (a = b = 5)<br>4. 1/a+1/b = (a+b)/(ab) = 1/(ab), ab ≤ ¼ → min 4 (a = b = ½)</div></div></div>"}, {"key": "s7", "nav": "Complete the square 配方", "num": "07", "track": true, "badge": "hard", "title": "Harder 2: completing the square & \"holds for all x\"", "zh": "难题二：配方法与恒成立", "body": "<div class=\"terms\"><b>Key terms 关键词</b>：<span class=\"t\">complete the square 配方</span> · <span class=\"t\">sum of squares 平方和</span> · <span class=\"t\">discriminant Δ 判别式</span> · <span class=\"t\">holds for all x 恒成立</span></div><h3 class=\"blk\">Explanation 讲解</h3><p class=\"enh\"><b>Completing the square:</b> any square is ≥ 0. Make an expression into a <b>sum of squares</b> to prove inequalities, or (if the sum is ≤ 0) to force each variable's value.</p><p class=\"enh\"><b>\"Holds for all x\":</b> \"ax² + bx + c &gt; 0 for every x\" means the parabola opens up and never touches the x-axis → <b>a &gt; 0 and Δ &lt; 0</b>.</p><p class=\"zh\">配方：平方 ≥ 0，凑成平方和可证不等式；若\"平方和 ≤ 0\"则每项 = 0。恒成立：a &gt; 0 且 Δ &lt; 0。</p><div class=\"example\"><div class=\"ex-title\">Example 1 例1 (holds for all x 恒成立)</div><p>x² − 6x + m &gt; 0 for all real x. Find the range of m 求 m 范围。</p><div class=\"steps\"><div class=\"step\">opens up, must not touch x-axis: Δ &lt; 0</div><div class=\"step\">36 − 4m &lt; 0 → m &gt; 9</div></div><div class=\"ex-ans\">m &gt; 9</div></div><div class=\"example\"><div class=\"ex-title\">Example 2 例2 (Pinghe-type 平和真题型) <span class=\"ex-tag\">Pinghe 平和</span></div><p>Real a, b, c satisfy a² + b² + c² + 4 ≤ ab + 3b + 2c. Find 求　200a + 9b + c.</p><div class=\"steps\"><div class=\"step\">move over 移项：a²+b²+c²+4 − ab − 3b − 2c ≤ 0</div><div class=\"step\">as a sum of squares 配平方和：(a − b/2)² + ¾(b − 2)² + (c − 1)² ≤ 0</div><div class=\"step\">each square = 0 → b = 2, c = 1, a = 1</div></div><div class=\"ex-ans\">200·1 + 9·2 + 1 = 219</div></div><div class=\"practice\"><div class=\"practice-head\">Practice 7 练习7</div><ol><li>Does x² + 2x + 5 &gt; 0 hold for all real x 是否恒成立?</li><li>x² − 8x + m &gt; 0 for all x. Find the range of m 求 m 范围</li><li>Given a² + b² + 2a − 4b + 5 = 0, find a, b 求 a、b</li></ol><button class=\"reveal\" onclick=\"ans(this)\">Show answers 显示答案</button><div class=\"answer\"><div class=\"answer-inner\">1. Δ = 4 − 20 &lt; 0, opens up → yes 恒成立 (also (x+1)²+4)<br>2. Δ = 64 − 4m &lt; 0 → m &gt; 16<br>3. (a+1)² + (b−2)² = 0 → a = −1, b = 2</div></div></div>"}, {"key": "cross", "nav": "🏫 Other schools 他校拓展", "num": "", "track": false, "title": "Other-school extensions (source labelled)", "zh": "他校拓展题（标注来源学校）", "body": "<p class=\"enh\">Other top Shanghai schools test the same tricks. <b>Guangjian stays the main line</b>; these are extensions, each labelled with its source school and what that school likes.</p><p class=\"zh\">主线仍是光剑，这些作拓展，每题标来源学校和该校偏好。</p><div class=\"xschool\"><div><span class=\"stag pinghe\">Pinghe 平和</span><b>Completing the square 配方逼值</b></div><p class=\"xpref\">Pinghe likes circles, quadratics, competition algebra (completing the square, reducing powers). 平和爱圆、二次函数、竞赛代数。</p><p>Real a, b, c satisfy a² + b² + c² + 4 ≤ ab + 3b + 2c. Find 200a + 9b + c.</p><div class=\"practice\" style=\"border-style:solid;border-color:#E3DEF7\"><button class=\"reveal\" onclick=\"ans(this)\">Show solution 显示解答</button><div class=\"answer\"><div class=\"answer-inner\">(a−b/2)² + ¾(b−2)² + (c−1)² ≤ 0 → a=1, b=2, c=1 → <b>219</b> (same as §07 Ex 2)</div></div></div></div><div class=\"xschool\"><div><span class=\"stag lingke\">Ulink 领科</span><b>AM–GM application 基本不等式应用</b></div><p class=\"xpref\">Ulink has the widest range; likes turning a condition into AM–GM. 领科面最广，爱用均值不等式求最值。</p><p>a, b &gt; 0 and a + b = 1. Find the minimum of 1/a + 1/b.</p><div class=\"practice\" style=\"border-style:solid;border-color:#E3DEF7\"><button class=\"reveal\" onclick=\"ans(this)\">Show solution 显示解答</button><div class=\"answer\"><div class=\"answer-inner\">1/a + 1/b = (a+b)/(ab) = 1/(ab); ab ≤ ((a+b)/2)² = ¼ → ≥ <b>4</b> (a = b = ½)</div></div></div></div><div class=\"xschool\"><div><span class=\"stag shiwai\">SWS IB 世外</span><b>Absolute value (cases) 绝对值分类</b></div><p class=\"xpref\">SWS likes competition problems, absolute value, case discussion. 世外爱竞赛、绝对值、分类讨论。</p><p>Solve 解　|x − 1| + |x + 2| &lt; 5.</p><div class=\"practice\" style=\"border-style:solid;border-color:#E3DEF7\"><button class=\"reveal\" onclick=\"ans(this)\">Show solution 显示解答</button><div class=\"answer\"><div class=\"answer-inner\">Split by position 分段：−2 ≤ x ≤ 1 sum = 3 &lt; 5 ✓; x &gt; 1: 2x+1 &lt; 5 → 1 &lt; x &lt; 2; x &lt; −2: −2x−1 &lt; 5 → −3 &lt; x &lt; −2. Combine → <b>−3 &lt; x &lt; 2</b></div></div></div></div><div class=\"note\">The same tricks work at Guangjian, Pinghe, SWS and Ulink — master this note and you cover all four. 练熟这份，四校通吃。</div>"}, {"key": "end", "nav": "Summary 小结", "num": "", "track": false, "title": "Summary & self-check", "zh": "小结与自查", "body": "<h3 class=\"blk\">Self-check 自查 (tap to tick 点一下打勾)</h3><div><div class=\"check-item\" onclick=\"tick(this)\"><div class=\"check-box\"></div><div class=\"check-txt\">Linear: flip the sign when ÷ a negative　一次：乘/除负数变号</div></div><div class=\"check-item\" onclick=\"tick(this)\"><div class=\"check-box\"></div><div class=\"check-txt\">Systems: solve each, take the intersection　不等式组取交集</div></div><div class=\"check-item\" onclick=\"tick(this)\"><div class=\"check-box\"></div><div class=\"check-txt\">Quadratic: outside the roots for &gt;0, between for &lt;0　二次：大于取两边、小于取中间</div></div><div class=\"check-item\" onclick=\"tick(this)\"><div class=\"check-box\"></div><div class=\"check-txt\">Absolute value: |x|&lt;a between, |x|&gt;a outside　绝对值</div></div><div class=\"check-item\" onclick=\"tick(this)\"><div class=\"check-box\"></div><div class=\"check-txt\">Fractional: ÷ → ×, denominator ≠ 0　分式：除改乘、分母≠0</div></div><div class=\"check-item\" onclick=\"tick(this)\"><div class=\"check-box\"></div><div class=\"check-txt\">AM–GM: positives, equality when equal　均值：正数、相等取等</div></div><div class=\"check-item\" onclick=\"tick(this)\"><div class=\"check-box\"></div><div class=\"check-txt\">Complete the square; \"for all x\" → a&gt;0 and Δ&lt;0　配方；恒成立</div></div></div><div class=\"note\" style=\"margin-top:18px\"><strong>Pass mark 过关：</strong>get the first five sections' practice right and you have the foundation. 前五节练习做对即掌握地基。</div><div class=\"parent\"><h4>For parents 给家长的话</h4><p class=\"zh\">不等式最常见失分点就是<b>乘除负数忘变号</b>，盯这一点。后两节难题：均值不等式记牢\"正数+相等取等\"；配方法（§07 例2）是平和、世外的竞赛常客。这份练熟，等于同时覆盖光剑、平和、世外、领科四校的不等式。</p></div>"}];
+const tocList=document.getElementById('tocList'),content=document.getElementById('content'),progFill=document.getElementById('progFill'),progLabel=document.getElementById('progLabel'),prevBtn=document.getElementById('prevBtn'),nextBtn=document.getElementById('nextBtn'),doneBtn=document.getElementById('doneBtn');
+let cur=0;const done=new Set();const trackedTotal=S.filter(s=>s.track).length;
+S.forEach((s,i)=>{const a=document.createElement('a');a.dataset.i=i;a.innerHTML=`<span class="n">${s.num||'·'}</span><span class="lbl">${s.nav}</span><span class="tick"></span>`;a.onclick=()=>go(i);tocList.appendChild(a);});
+const tocLinks=[...tocList.children];
+function render(){
+  const s=S[cur];
+  const badgeHtml = s.badge==='core'?'<span class="badge core">★ Must-know 必背</span>':s.badge==='gk'?'<span class="badge gk">★ Often tested 常考</span>':s.badge==='hard'?'<span class="badge hard">★ Harder 难题</span>':'';
+  const zt = s.zh?`<div class="zh-title">${s.zh}</div>`:'';
+  content.innerHTML=`<div class="sec-head">${s.num?`<div class="sec-num">${s.num}</div>`:''}<div class="sec-titles"><h2>${s.title}</h2>${zt}${badgeHtml}</div></div><div class="divider"></div>${s.body}`;
+  tocLinks.forEach((a,i)=>a.classList.toggle('active',i===cur));
+  prevBtn.disabled=cur===0;nextBtn.disabled=cur===S.length-1;
+  if(s.track){doneBtn.style.display='';const d=done.has(cur);doneBtn.textContent=d?'Done 已学完 ✓':'Done 学完了 ✓';doneBtn.classList.toggle('is-done',d);}else{doneBtn.style.display='none';}
+  content.focus({preventScroll:true});window.scrollTo({top:0,behavior:'smooth'});
+}
+function go(i){cur=Math.max(0,Math.min(S.length-1,i));render();closeMenu();}
+prevBtn.onclick=()=>go(cur-1);nextBtn.onclick=()=>go(cur+1);
+doneBtn.onclick=()=>{if(!S[cur].track)return;if(done.has(cur))done.delete(cur);else done.add(cur);updateProgress();render();if(done.has(cur)&&cur<S.length-1)setTimeout(()=>go(cur+1),260);};
+function updateProgress(){const n=[...done].filter(i=>S[i].track).length;progFill.style.width=(n/trackedTotal*100)+'%';progLabel.textContent=`${n} / ${trackedTotal}`;tocLinks.forEach((a,i)=>a.classList.toggle('done',done.has(i)&&S[i].track));}
+function ans(btn){const box=btn.nextElementSibling;const open=box.classList.toggle('open');btn.textContent=open?btn.textContent.replace('Show','Hide').replace('显示','隐藏'):btn.textContent.replace('Hide','Show').replace('隐藏','显示');}
+function tick(el){el.classList.toggle('on');}
+const PASCAL_EXP={0:'(a+b)⁰ = 1',1:'(a+b)¹ = a + b',2:'(a+b)² = a² + 2ab + b²',3:'(a+b)³ = a³ + 3a²b + 3ab² + b³',4:'(a+b)⁴ = a⁴ + 4a³b + 6a²b² + 4ab³ + b⁴',5:'(a+b)⁵ = a⁵ + 5a⁴b + 10a³b² + 10a²b³ + 5ab⁴ + b⁵',6:'(a+b)⁶ = a⁶ + 6a⁵b + 15a⁴b² + 20a³b³ + 15a²b⁴ + 6ab⁵ + b⁶'};
+function pascalPick(r){document.querySelectorAll('#pascalTri .prow').forEach(el=>el.classList.toggle('sel',+el.dataset.r===r));const out=document.getElementById('pascalOut');if(out)out.innerHTML='Row 第 '+r+' 行 → <b>'+PASCAL_EXP[r]+'</b>';}
+const toc=document.getElementById('toc'),scrim=document.getElementById('scrim');
+document.getElementById('menuBtn').onclick=()=>{toc.classList.add('open');scrim.classList.add('show');};
+function closeMenu(){toc.classList.remove('open');scrim.classList.remove('show');}
+scrim.onclick=closeMenu;
+document.addEventListener('keydown',e=>{if(e.target.tagName==='BUTTON')return;if(e.key==='ArrowRight'&&cur<S.length-1)go(cur+1);if(e.key==='ArrowLeft'&&cur>0)go(cur-1);});
+render();updateProgress();
+</script>
+</body>
+</html>

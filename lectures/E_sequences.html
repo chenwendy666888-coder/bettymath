@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Surds · Sequences · Induction · 根式·数列·归纳</title>
+<style>
+  :root{
+    --bg:#F4F6FB;--surface:#FFFFFF;--ink:#1B1B2A;--muted:#6A6A82;--line:#E3E6F0;
+    --indigo:#4A43C4;--indigo-deep:#2E2A6B;--indigo-soft:#EEF0FC;
+    --amber:#C77A15;--amber-soft:#FCF2DF;--green:#1F8A5B;--green-soft:#E6F5EE;
+    --rose:#C0453B;--rose-soft:#FBEDEC;--radius:14px;
+    --shadow:0 1px 2px rgba(30,30,60,.05), 0 8px 24px rgba(30,30,60,.06);
+    --font:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Segoe UI",Roboto,"Helvetica Neue",sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.75;font-size:16px;-webkit-font-smoothing:antialiased;}
+  header.top{position:sticky;top:0;z-index:30;background:rgba(244,246,251,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:14px 22px;}
+  .top-row{display:flex;align-items:center;gap:14px;max-width:1180px;margin:0 auto;}
+  .brand{display:flex;flex-direction:column;gap:2px;min-width:0;}
+  .brand .eyebrow{font-size:12px;letter-spacing:.14em;color:var(--indigo);font-weight:700;text-transform:uppercase;}
+  .brand h1{margin:0;font-size:16px;font-weight:800;color:var(--indigo-deep);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .prog-wrap{margin-left:auto;display:flex;align-items:center;gap:10px;min-width:170px;}
+  .prog-label{font-size:12.5px;color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums;}
+  .prog-track{flex:1;height:8px;background:#DDE1EE;border-radius:99px;overflow:hidden;min-width:80px;}
+  .prog-fill{height:100%;width:0;background:linear-gradient(90deg,var(--indigo),#7A73E6);border-radius:99px;transition:width .5s cubic-bezier(.2,.8,.2,1);}
+  .menu-btn{display:none;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:8px 10px;font-size:15px;cursor:pointer;color:var(--indigo-deep);}
+  .layout{display:grid;grid-template-columns:262px 1fr;gap:30px;max-width:1180px;margin:26px auto;padding:0 22px;align-items:start;}
+  nav.toc{position:sticky;top:88px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:12px;box-shadow:var(--shadow);}
+  .toc h2{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:6px 8px 10px;font-weight:700;}
+  .toc a{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:10px;text-decoration:none;color:var(--ink);font-size:14px;cursor:pointer;border:1px solid transparent;transition:background .15s,border-color .15s;}
+  .toc a:hover{background:var(--indigo-soft);}
+  .toc a.active{background:var(--indigo-soft);border-color:#D5D8F5;font-weight:700;color:var(--indigo-deep);}
+  .toc .n{font-variant-numeric:tabular-nums;font-weight:700;color:var(--indigo);font-size:13px;width:22px;flex:none;}
+  .toc a.active .n{color:var(--indigo-deep);}
+  .toc .lbl{flex:1;min-width:0;}
+  .toc .tick{width:16px;height:16px;flex:none;border-radius:50%;border:2px solid #CBD0E4;display:grid;place-items:center;font-size:10px;color:#fff;}
+  .toc a.done .tick{background:var(--green);border-color:var(--green);}
+  .toc a.done .tick::after{content:"✓";}
+  main{min-width:0;}
+  section.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:32px 34px 30px;animation:rise .4s ease both;}
+  @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .sec-head{display:flex;align-items:flex-start;gap:16px;margin-bottom:6px;}
+  .sec-num{font-size:34px;font-weight:800;color:var(--indigo);line-height:1;font-variant-numeric:tabular-nums;flex:none;padding-top:2px;}
+  .sec-titles{flex:1;min-width:0;}
+  .sec-titles h2{margin:0;font-size:22px;font-weight:800;color:var(--indigo-deep);}
+  .sec-titles .zh-title{font-size:15px;color:var(--muted);font-weight:700;margin-top:2px;}
+  .badge{display:inline-flex;align-items:center;gap:5px;margin-top:8px;font-size:12.5px;font-weight:700;padding:3px 10px;border-radius:99px;}
+  .badge.gk{background:var(--amber-soft);color:var(--amber);}
+  .badge.core{background:var(--indigo-soft);color:var(--indigo);}
+  .badge.warn,.badge.hard{background:var(--rose-soft);color:var(--rose);}
+  .divider{height:1px;background:var(--line);margin:20px 0;}
+  h3.blk{font-size:15px;font-weight:800;color:var(--indigo);margin:22px 0 10px;display:flex;align-items:center;gap:8px;}
+  h3.blk::before{content:"";width:5px;height:16px;border-radius:3px;background:var(--indigo);display:inline-block;}
+  p{margin:9px 0;}
+  .content b{color:var(--indigo-deep);}
+  .content ul,.content ol{margin:10px 0;padding-left:22px;}
+  .content li{margin:6px 0;}
+  .zh{color:#4a4a5e;font-size:14.5px;}
+  .zh::before{content:"中  ";color:var(--green);font-weight:800;font-size:11px;letter-spacing:.05em;}
+  .enh::before{content:"EN  ";color:var(--indigo);font-weight:800;font-size:11px;letter-spacing:.05em;}
+  .terms{background:#F1F7F4;border:1px solid #CFE6DA;border-radius:10px;padding:11px 15px;margin:12px 0;font-size:14px;color:#14653f;line-height:1.9;}
+  .terms b{color:#14653f;}
+  .terms .t{white-space:nowrap;}
+  .kbd-formula{display:block;background:var(--indigo-soft);border:1px solid #D9DCF6;border-radius:10px;padding:14px 18px;margin:14px 0;font-size:18px;text-align:center;color:var(--indigo-deep);font-weight:700;}
+  .example{background:#FBFBFE;border:1px solid var(--line);border-left:4px solid var(--indigo);border-radius:12px;padding:16px 18px;margin:16px 0;}
+  .ex-title{font-weight:800;color:var(--indigo-deep);font-size:15px;margin-bottom:6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .ex-tag{font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:99px;background:var(--amber-soft);color:var(--amber);}
+  .steps{margin:8px 0;}
+  .step{position:relative;padding:5px 0 5px 20px;}
+  .step::before{content:"";position:absolute;left:5px;top:14px;width:6px;height:6px;border-radius:50%;background:var(--indigo);}
+  .ex-ans{margin-top:10px;background:var(--green-soft);border-radius:8px;padding:8px 12px;font-weight:800;color:var(--green);}
+  .note{background:var(--amber-soft);border-radius:10px;padding:12px 16px;margin:14px 0;font-size:14.5px;color:#7a5210;}
+  .note.warn{background:var(--rose-soft);color:#8c2f28;}
+  .note strong{color:inherit;}
+  .practice{background:#FFFFFF;border:1.5px dashed #C9CEE6;border-radius:12px;padding:16px 18px;margin:18px 0;}
+  .practice-head{font-weight:800;color:var(--indigo-deep);margin-bottom:6px;display:flex;align-items:center;gap:8px;}
+  .practice-head::before{content:"✎";color:var(--indigo);}
+  .reveal{margin-top:10px;background:var(--indigo);color:#fff;border:none;border-radius:9px;padding:9px 16px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;}
+  .reveal:hover{background:#3a34a8;}
+  .answer{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+  .answer.open{max-height:1400px;margin-top:12px;}
+  .answer-inner{background:var(--green-soft);border-radius:10px;padding:12px 16px;font-size:14.5px;}
+  .answer-inner b{color:var(--green);}
+  .pascal{display:flex;flex-direction:column;align-items:center;gap:9px;margin:18px 0 10px;}
+  .prow{display:flex;gap:9px;cursor:pointer;padding:5px 9px;border-radius:12px;border:1.5px solid transparent;transition:background .15s,border-color .15s;}
+  .prow:hover{background:var(--indigo-soft);}
+  .prow.sel{background:var(--amber-soft);border-color:#EEDBB0;}
+  .pcell{display:grid;place-items:center;min-width:40px;height:40px;padding:0 7px;background:var(--surface);border:1.5px solid var(--line);border-radius:10px;font-weight:800;color:var(--indigo-deep);font-variant-numeric:tabular-nums;}
+  .prow.sel .pcell{border-color:var(--amber);color:var(--amber);}
+  .pascal-out{text-align:center;background:var(--indigo-soft);border:1px solid #D9DCF6;border-radius:10px;padding:12px 16px;font-size:15px;color:var(--indigo-deep);margin:6px 0;min-height:22px;}
+  .lore{background:#F2F3FC;border:1px solid #E0E3F5;border-left:4px solid #8983E0;border-radius:12px;padding:14px 18px;margin:16px 0;font-size:14.5px;color:#3b3b54;}
+  .lore h5{margin:0 0 8px;color:var(--indigo-deep);font-size:14.5px;font-weight:800;}
+  .check-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line);cursor:pointer;}
+  .check-item:last-child{border-bottom:none;}
+  .check-box{width:20px;height:20px;border:2px solid #C4C9E0;border-radius:6px;flex:none;margin-top:3px;display:grid;place-items:center;color:#fff;font-size:13px;}
+  .check-item.on .check-box{background:var(--green);border-color:var(--green);}
+  .check-item.on .check-box::after{content:"✓";}
+  .check-item.on .check-txt{color:var(--muted);text-decoration:line-through;}
+  .parent{background:var(--indigo-soft);border-radius:12px;padding:16px 18px;margin-top:22px;}
+  .parent h4{margin:0 0 6px;color:var(--indigo-deep);}
+  .pager{display:flex;align-items:center;gap:12px;margin-top:26px;}
+  .pager button{flex:1;border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:13px 16px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;color:var(--indigo-deep);}
+  .pager button:hover:not(:disabled){background:var(--indigo-soft);}
+  .pager button:disabled{opacity:.4;cursor:not-allowed;}
+  .pager .done-btn{flex:1.3;background:var(--indigo);color:#fff;border-color:var(--indigo);}
+  .pager .done-btn.is-done{background:var(--green);border-color:var(--green);}
+  .scrim{display:none;}
+  @media (max-width:860px){
+    .layout{grid-template-columns:1fr;padding:0 16px;margin-top:16px;}
+    .menu-btn{display:block;}
+    nav.toc{position:fixed;top:0;left:0;bottom:0;width:280px;z-index:50;border-radius:0 16px 16px 0;transform:translateX(-102%);transition:transform .28s ease;overflow-y:auto;padding-top:18px;}
+    nav.toc.open{transform:none;}
+    .scrim.show{display:block;position:fixed;inset:0;background:rgba(20,20,40,.4);z-index:40;}
+    .brand h1{font-size:14px;white-space:normal;}.prog-wrap{min-width:110px;}
+    section.card{padding:24px 20px;}.sec-num{font-size:28px;}.sec-titles h2{font-size:19px;}
+    .pager{flex-wrap:wrap;}.pager .done-btn{order:-1;flex-basis:100%;}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important;}}
+  :focus-visible{outline:3px solid #A9A4F0;outline-offset:2px;border-radius:6px;}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-row">
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+    <div class="brand"><span class="eyebrow">Guangjian Maths · Module E</span><h1>Surds · Sequences · Induction · 根式·数列·归纳</h1></div>
+    <div class="prog-wrap" aria-label="Progress"><span class="prog-label" id="progLabel">0 / 5</span><div class="prog-track"><div class="prog-fill" id="progFill"></div></div></div>
+  </div>
+</header>
+<div class="scrim" id="scrim"></div>
+<div class="layout">
+  <nav class="toc" id="toc" aria-label="Contents"><h2>Contents 目录</h2><div id="tocList"></div></nav>
+  <main>
+    <section class="card content" id="content" tabindex="-1"></section>
+    <div class="pager">
+      <button id="prevBtn">← Prev 上一节</button>
+      <button class="done-btn" id="doneBtn">Done 学完了 ✓</button>
+      <button id="nextBtn">Next 下一节 →</button>
+    </div>
+  </main>
+</div>
+<script>
+const S = [{"key": "intro", "nav": "Intro 导读", "num": "", "track": false, "title": "Surds, sequences & induction", "zh": "根式·数列·归纳", "body": "<p class=\"enh\">This note covers patterns and sums: <b>sequences</b>, spotting an <b>nth-term formula</b>, clever <b>telescoping</b> sums, and <b>induction</b>. Guangjian loves these, especially the surd and number-pattern ones.</p><p class=\"zh\">这一份讲规律与求和：<b>数列</b>、找<b>通项公式</b>、巧妙的<b>裂项相消</b>、<b>数学归纳法</b>。光剑很爱考，尤其带根号和数字规律的。</p><div class=\"note\">Sections 3–6 marked <span class=\"badge hard\">★ Harder 难题</span> include real Guangjian / SWS exam types. 含光剑/世外真题型。</div>"}, {"key": "s1", "nav": "Sequences 等差等比", "num": "01", "track": true, "title": "Arithmetic & geometric sequences", "zh": "等差与等比数列", "body": "<div class=\"terms\"><b>Key terms 关键词</b>：<span class=\"t\">sequence 数列</span> · <span class=\"t\">term 项</span> · <span class=\"t\">common difference d 公差</span> · <span class=\"t\">common ratio r 公比</span> · <span class=\"t\">nth term 通项</span></div><h3 class=\"blk\">Explanation 讲解</h3><p class=\"enh\"><b>Arithmetic 等差</b> (add each time): aₙ = a₁ + (n−1)d. <b>Geometric 等比</b> (multiply each time): aₙ = a₁·rⁿ⁻¹.</p><span class=\"kbd-formula\">Arithmetic 等差： aₙ = a₁ + (n−1)d<br>Geometric 等比： aₙ = a₁ · rⁿ⁻¹</span><div class=\"example\"><div class=\"ex-title\">Example 1 例1</div><p>2, 5, 8, 11, … find the 10th term 求第10项.</p><div class=\"steps\"><div class=\"step\">d = 3, a₁ = 2 → a₁₀ = 2 + 9·3</div></div><div class=\"ex-ans\">29</div></div><div class=\"example\"><div class=\"ex-title\">Example 2 例2</div><p>3, 6, 12, 24, … find the 6th term.</p><div class=\"steps\"><div class=\"step\">r = 2 → a₆ = 3·2⁵</div></div><div class=\"ex-ans\">96</div></div><div class=\"practice\"><div class=\"practice-head\">Practice 1 练习1</div><ol><li>1, 4, 7, 10, … the 20th term</li><li>5, 10, 20, 40, … the 7th term</li><li>Arithmetic with a₁ = 7, d = −2. Find a₅</li></ol><button class=\"reveal\" onclick=\"ans(this)\">Show answers 显示答案</button><div class=\"answer\"><div class=\"answer-inner\">1. 1+19·3 = 58　2. 5·2⁶ = 320　3. 7 + 4·(−2) = −1</div></div></div>"}, {"key": "s2", "nav": "Patterns 找规律", "num": "02", "track": true, "title": "Spotting the nth-term", "zh": "找规律写通项", "body": "<div class=\"terms\"><b>Key terms 关键词</b>：<span class=\"t\">pattern 规律</span> · <span class=\"t\">nth term 通项</span> · <span class=\"t\">triangular number 三角形数</span></div><h3 class=\"blk\">Explanation 讲解</h3><p class=\"enh\">Look at how each term is built from n. A key family: <b>triangular numbers</b> 1, 3, 6, 10, 15, … = 1+2+…+n = <b>n(n+1)/2</b>.</p><p class=\"zh\">看每一项怎么由 n 生成。一个关键序列：<b>三角形数</b> 1,3,6,10,… = 1+2+…+n = <b>n(n+1)/2</b>。</p><div class=\"example\"><div class=\"ex-title\">Example 例</div><p>1, 3, 6, 10, 15, … find the nth term and the 20th.</p><div class=\"steps\"><div class=\"step\">Tₙ = n(n+1)/2 → T₂₀ = 20·21/2</div></div><div class=\"ex-ans\">Tₙ = n(n+1)/2, T₂₀ = 210</div></div><div class=\"practice\"><div class=\"practice-head\">Practice 2 练习2</div><ol><li>1, 4, 9, 16, … the nth term</li><li>2, 4, 6, 8, … the nth term</li><li>Triangular numbers: find T₁₀</li></ol><button class=\"reveal\" onclick=\"ans(this)\">Show answers 显示答案</button><div class=\"answer\"><div class=\"answer-inner\">1. n²　2. 2n　3. 10·11/2 = 55</div></div></div>"}, {"key": "s3", "nav": "Triangle arrangement 三角形数排列", "num": "03", "track": true, "badge": "hard", "title": "Triangular-number arrangement", "zh": "三角形数排列（真题）", "body": "<div class=\"terms\"><b>Key terms 关键词</b>：<span class=\"t\">row 行</span> · <span class=\"t\">position 第几个</span> · <span class=\"t\">Tₙ = n(n+1)/2</span></div><h3 class=\"blk\">Explanation 讲解 <span class=\"badge hard\">★ 光剑春招真题型</span></h3><p class=\"enh\">Numbers are written in rows: row 1 has 1 number, row 2 has 2, row 3 has 3, … Row k <b>ends</b> at Tₖ = k(k+1)/2. To locate a number N, find the row k where it lands.</p><p class=\"zh\">数字按行排：第1行1个、第2行2个… 第 k 行<b>末尾</b>是 Tₖ = k(k+1)/2。要定位 N，就找它落在第几行。</p><div class=\"example\"><div class=\"ex-title\">Example 例 <span class=\"ex-tag\">光剑</span></div><p>1; 2,3; 4,5,6; 7,8,9,10; … Which row and position is 2013 in? 2013 在第几行第几个？</p><div class=\"steps\"><div class=\"step\">Row-ends: T₆₂ = 62·63/2 = 1953, T₆₃ = 63·64/2 = 2016</div><div class=\"step\">Since 1953 &lt; 2013 ≤ 2016, it is in row 63</div><div class=\"step\">Position = 2013 − 1953 = 60</div></div><div class=\"ex-ans\">Row 63, position 60　第 63 行第 60 个</div></div><div class=\"practice\"><div class=\"practice-head\">Practice 3 练习3</div><ol><li>Which row is 50 in? (find k with T_{k−1} &lt; 50 ≤ Tₖ)</li><li>Row-end of row 10 是多少?</li><li>Which row and position is 100 in?</li></ol><button class=\"reveal\" onclick=\"ans(this)\">Show answers 显示答案</button><div class=\"answer\"><div class=\"answer-inner\">1. T₉=45, T₁₀=55 → row 10<br>2. T₁₀ = 55<br>3. T₁₃=91, T₁₄=105 → row 14, position 100−91 = 9</div></div></div>"}, {"key": "s4", "nav": "Surd telescoping 根式裂项", "num": "04", "track": true, "badge": "hard", "title": "Surd telescoping sums", "zh": "根式裂项相消（真题）", "body": "<div class=\"terms\"><b>Key terms 关键词</b>：<span class=\"t\">telescoping 裂项相消</span> · <span class=\"t\">rationalise 有理化</span> · <span class=\"t\">conjugate 共轭</span></div><h3 class=\"blk\">Explanation 讲解 <span class=\"badge hard\">★ 光剑真题型</span></h3><p class=\"enh\">Turn each term into a <b>difference</b> so most cancel. Key: 1/(√k + √(k+1)) = √(k+1) − √k (rationalise).</p><p class=\"zh\">把每一项化成<b>两个根式之差</b>，中间全部相消。关键：1/(√k + √(k+1)) = √(k+1) − √k（有理化）。</p><div class=\"example\"><div class=\"ex-title\">Example 1 例1</div><p>1/(√1+√2) + 1/(√2+√3) + … + 1/(√8+√9)</p><div class=\"steps\"><div class=\"step\">Each = √(k+1)−√k → (√2−√1)+(√3−√2)+…+(√9−√8) = √9 − √1</div></div><div class=\"ex-ans\">3 − 1 = 2</div></div><div class=\"example\"><div class=\"ex-title\">Example 2 例2 <span class=\"ex-tag\">光剑</span></div><p>1/√(1+√(1²−1)) + 1/√(3+√(3²−1)) + … + 1/√(49+√(49²−1))</p><div class=\"steps\"><div class=\"step\">Identity 恒等式：√(n+√(n²−1)) = √((n+1)/2) + √((n−1)/2)</div><div class=\"step\">So each term = √((n+1)/2) − √((n−1)/2)，for n = 1,3,5,…,49</div><div class=\"step\">Telescopes 裂项相消 → √25 − √0</div></div><div class=\"ex-ans\">5</div></div><div class=\"practice\"><div class=\"practice-head\">Practice 4 练习4</div><ol><li>1/(√1+√2)+…+1/(√15+√16) = ?</li><li>1/(√1+√2)+…+1/(√99+√100) = ?</li></ol><button class=\"reveal\" onclick=\"ans(this)\">Show answers 显示答案</button><div class=\"answer\"><div class=\"answer-inner\">1. √16 − √1 = 4 − 1 = 3<br>2. √100 − √1 = 10 − 1 = 9</div></div></div>"}, {"key": "s5", "nav": "Product telescoping 平方差连乘", "num": "05", "track": true, "badge": "hard", "title": "Difference-of-squares product", "zh": "平方差连乘（真题）", "body": "<div class=\"terms\"><b>Key terms 关键词</b>：<span class=\"t\">difference of squares 平方差</span> · <span class=\"t\">telescoping product 连乘相消</span></div><h3 class=\"blk\">Explanation 讲解 <span class=\"badge hard\">★ 世外真题型</span></h3><p class=\"enh\">Multiply by a hidden (2 − 1) = 1 to start a chain of difference-of-squares.</p><p class=\"zh\">乘一个隐藏的 (2 − 1) = 1，触发平方差连锁：(2−1)(2+1)=2²−1，再乘 (2²+1)=2⁴−1，…</p><div class=\"example\"><div class=\"ex-title\">Example 例 <span class=\"ex-tag\">世外</span></div><p>x = (1+2)(1+2²)(1+2⁴)(1+2⁸)…(1+2ⁿ) and x + 1 = 2¹²⁸. Find n.</p><div class=\"steps\"><div class=\"step\">×(2−1): (2−1)(1+2) = 2²−1; ×(1+2²) = 2⁴−1; … each factor doubles the exponent</div><div class=\"step\">So x = 2^(2n) − 1 → x+1 = 2^(2n) = 2¹²⁸ → 2n = 128</div></div><div class=\"ex-ans\">n = 64</div></div><div class=\"practice\"><div class=\"practice-head\">Practice 5 练习5</div><ol><li>(2−1)(2+1)(2²+1)(2⁴+1) = 2^? − 1　填指数</li><li>If (1+2)(1+2²)(1+2⁴) + 1 = 2ᵏ, find k</li></ol><button class=\"reveal\" onclick=\"ans(this)\">Show answers 显示答案</button><div class=\"answer\"><div class=\"answer-inner\">1. 2⁸ − 1<br>2. = 2⁸ → k = 8</div></div></div>"}, {"key": "s6", "nav": "Induction 数学归纳法", "num": "06", "track": true, "badge": "hard", "title": "Mathematical induction", "zh": "数学归纳法", "body": "<div class=\"terms\"><b>Key terms 关键词</b>：<span class=\"t\">mathematical induction 数学归纳法</span> · <span class=\"t\">base case 起始</span> · <span class=\"t\">inductive step 归纳步</span> · <span class=\"t\">assume 假设</span></div><h3 class=\"blk\">Explanation 讲解</h3><p class=\"enh\">To prove a statement is true for <b>every</b> positive integer n, use <b>two steps</b>:</p><span class=\"kbd-formula\">① Base case 起始：check it works for n = 1<br>② Inductive step 归纳步：assume it works for n = k, prove it for n = k+1</span><p class=\"zh\">要证对<b>所有</b>正整数 n 成立：① 验 n=1 成立；② 假设 n=k 成立，推出 n=k+1 也成立。两步都成立，就对所有 n 成立（像多米诺骨牌）。</p><div class=\"example\"><div class=\"ex-title\">Example 例</div><p>Prove 证明　1 + 2 + 3 + … + n = n(n+1)/2</p><div class=\"steps\"><div class=\"step\">① n=1: LHS = 1, RHS = 1·2/2 = 1 ✓</div><div class=\"step\">② Assume 1+…+k = k(k+1)/2. Then 1+…+k+(k+1) = k(k+1)/2 + (k+1)</div><div class=\"step\">= (k+1)(k/2 + 1) = (k+1)(k+2)/2 ✓ — the formula with n = k+1</div></div><div class=\"ex-ans\">True for all n 对所有 n 成立</div></div><div class=\"practice\"><div class=\"practice-head\">Practice 6 练习6</div><ol><li>Check the base case (n=1) for 1+3+5+…+(2n−1) = n²　验起始</li><li>What is 1+3+5+…+(2·5−1)? Does it equal 5²?　算一下验证</li></ol><button class=\"reveal\" onclick=\"ans(this)\">Show answers 显示答案</button><div class=\"answer\"><div class=\"answer-inner\">1. n=1: LHS = 1, RHS = 1² = 1 ✓<br>2. 1+3+5+7+9 = 25 = 5² ✓</div></div></div>"}, {"key": "end", "nav": "Summary 小结", "num": "", "track": false, "title": "Summary", "zh": "小结", "body": "<h3 class=\"blk\">Self-check 自查</h3><div><div class=\"check-item\" onclick=\"tick(this)\"><div class=\"check-box\"></div><div class=\"check-txt\">Arithmetic aₙ=a₁+(n−1)d; geometric aₙ=a₁rⁿ⁻¹</div></div><div class=\"check-item\" onclick=\"tick(this)\"><div class=\"check-box\"></div><div class=\"check-txt\">Triangular numbers Tₙ=n(n+1)/2　三角形数</div></div><div class=\"check-item\" onclick=\"tick(this)\"><div class=\"check-box\"></div><div class=\"check-txt\">【难】locate N by row-ends Tₖ　三角形数排列定位</div></div><div class=\"check-item\" onclick=\"tick(this)\"><div class=\"check-box\"></div><div class=\"check-txt\">【难】surd telescoping 1/(√k+√(k+1))=√(k+1)−√k</div></div><div class=\"check-item\" onclick=\"tick(this)\"><div class=\"check-box\"></div><div class=\"check-txt\">【难】difference-of-squares product 平方差连乘</div></div><div class=\"check-item\" onclick=\"tick(this)\"><div class=\"check-box\"></div><div class=\"check-txt\">【难】induction: base case + inductive step　归纳两步</div></div></div><div class=\"parent\"><h4>For parents 给家长的话</h4><p class=\"zh\">这一份是光剑\"找规律/求和\"的主战场。三角形数排列(第3节)、根式裂项(第4节)都是真题原型；归纳法先让她记牢\"两步\"的格式即可。</p></div>"}];
+const tocList=document.getElementById('tocList'),content=document.getElementById('content'),progFill=document.getElementById('progFill'),progLabel=document.getElementById('progLabel'),prevBtn=document.getElementById('prevBtn'),nextBtn=document.getElementById('nextBtn'),doneBtn=document.getElementById('doneBtn');
+let cur=0;const done=new Set();const trackedTotal=S.filter(s=>s.track).length;
+S.forEach((s,i)=>{const a=document.createElement('a');a.dataset.i=i;a.innerHTML=`<span class="n">${s.num||'·'}</span><span class="lbl">${s.nav}</span><span class="tick"></span>`;a.onclick=()=>go(i);tocList.appendChild(a);});
+const tocLinks=[...tocList.children];
+function render(){
+  const s=S[cur];
+  const badgeHtml = s.badge==='core'?'<span class="badge core">★ Must-know 必背</span>':s.badge==='gk'?'<span class="badge gk">★ Often tested 常考</span>':s.badge==='hard'?'<span class="badge hard">★ Harder 难题</span>':'';
+  const zt = s.zh?`<div class="zh-title">${s.zh}</div>`:'';
+  content.innerHTML=`<div class="sec-head">${s.num?`<div class="sec-num">${s.num}</div>`:''}<div class="sec-titles"><h2>${s.title}</h2>${zt}${badgeHtml}</div></div><div class="divider"></div>${s.body}`;
+  tocLinks.forEach((a,i)=>a.classList.toggle('active',i===cur));
+  prevBtn.disabled=cur===0;nextBtn.disabled=cur===S.length-1;
+  if(s.track){doneBtn.style.display='';const d=done.has(cur);doneBtn.textContent=d?'Done 已学完 ✓':'Done 学完了 ✓';doneBtn.classList.toggle('is-done',d);}else{doneBtn.style.display='none';}
+  content.focus({preventScroll:true});window.scrollTo({top:0,behavior:'smooth'});
+}
+function go(i){cur=Math.max(0,Math.min(S.length-1,i));render();closeMenu();}
+prevBtn.onclick=()=>go(cur-1);nextBtn.onclick=()=>go(cur+1);
+doneBtn.onclick=()=>{if(!S[cur].track)return;if(done.has(cur))done.delete(cur);else done.add(cur);updateProgress();render();if(done.has(cur)&&cur<S.length-1)setTimeout(()=>go(cur+1),260);};
+function updateProgress(){const n=[...done].filter(i=>S[i].track).length;progFill.style.width=(n/trackedTotal*100)+'%';progLabel.textContent=`${n} / ${trackedTotal}`;tocLinks.forEach((a,i)=>a.classList.toggle('done',done.has(i)&&S[i].track));}
+function ans(btn){const box=btn.nextElementSibling;const open=box.classList.toggle('open');btn.textContent=open?btn.textContent.replace('Show','Hide').replace('显示','隐藏'):btn.textContent.replace('Hide','Show').replace('隐藏','显示');}
+function tick(el){el.classList.toggle('on');}
+const PASCAL_EXP={0:'(a+b)⁰ = 1',1:'(a+b)¹ = a + b',2:'(a+b)² = a² + 2ab + b²',3:'(a+b)³ = a³ + 3a²b + 3ab² + b³',4:'(a+b)⁴ = a⁴ + 4a³b + 6a²b² + 4ab³ + b⁴',5:'(a+b)⁵ = a⁵ + 5a⁴b + 10a³b² + 10a²b³ + 5ab⁴ + b⁵',6:'(a+b)⁶ = a⁶ + 6a⁵b + 15a⁴b² + 20a³b³ + 15a²b⁴ + 6ab⁵ + b⁶'};
+function pascalPick(r){document.querySelectorAll('#pascalTri .prow').forEach(el=>el.classList.toggle('sel',+el.dataset.r===r));const out=document.getElementById('pascalOut');if(out)out.innerHTML='Row 第 '+r+' 行 → <b>'+PASCAL_EXP[r]+'</b>';}
+const toc=document.getElementById('toc'),scrim=document.getElementById('scrim');
+document.getElementById('menuBtn').onclick=()=>{toc.classList.add('open');scrim.classList.add('show');};
+function closeMenu(){toc.classList.remove('open');scrim.classList.remove('show');}
+scrim.onclick=closeMenu;
+document.addEventListener('keydown',e=>{if(e.target.tagName==='BUTTON')return;if(e.key==='ArrowRight'&&cur<S.length-1)go(cur+1);if(e.key==='ArrowLeft'&&cur>0)go(cur-1);});
+render();updateProgress();
+</script>
+</body>
+</html>

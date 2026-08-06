@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>模块 A · 高难度 50 题（变通版）</title>
+<style>
+  :root{
+    --bg:#F4F6FB;--surface:#FFFFFF;--ink:#1B1B2A;--muted:#6A6A82;--line:#E3E6F0;
+    --indigo:#4A43C4;--indigo-deep:#2E2A6B;--indigo-soft:#EEF0FC;
+    --amber:#C77A15;--amber-soft:#FCF2DF;--green:#1F8A5B;--green-soft:#E6F5EE;--rose:#C0453B;--rose-soft:#FBEDEC;
+    --shadow:0 1px 2px rgba(30,30,60,.05), 0 8px 24px rgba(30,30,60,.06);
+    --font:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Segoe UI",Roboto,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased;}
+  header.top{position:sticky;top:0;z-index:20;background:rgba(244,246,251,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:14px 20px;}
+  .top-row{display:flex;align-items:center;gap:14px;max-width:820px;margin:0 auto;flex-wrap:wrap;}
+  .eyebrow{font-size:12px;letter-spacing:.14em;color:var(--indigo);font-weight:700;text-transform:uppercase;}
+  h1.title{margin:2px 0 0;font-size:18px;font-weight:800;color:var(--indigo-deep);}
+  .timer{margin-left:auto;display:flex;align-items:center;gap:8px;}
+  .timer .clock{font-variant-numeric:tabular-nums;font-weight:800;font-size:22px;color:var(--indigo-deep);min-width:74px;text-align:center;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:4px 10px;}
+  .timer button{border:1px solid var(--line);background:var(--surface);border-radius:9px;padding:7px 12px;font-size:13.5px;font-weight:700;cursor:pointer;font-family:inherit;color:var(--indigo-deep);}
+  .timer button:hover{background:var(--indigo-soft);}
+  .wrap{max-width:820px;margin:24px auto;padding:0 20px;}
+  .intro{background:var(--indigo-soft);border:1px solid #D9DCF6;border-radius:14px;padding:16px 18px;margin-bottom:16px;}
+  .intro b{color:var(--indigo-deep);}
+  .cheat{background:#FFFDF8;border:1px solid #EEDFC0;border-radius:14px;padding:14px 18px;margin-bottom:22px;}
+  .cheat h4{margin:0 0 8px;color:var(--amber);font-size:14px;}
+  .cheat ul{margin:0;padding-left:20px;} .cheat li{margin:5px 0;font-size:14px;}
+  .part{background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:22px 24px;margin-bottom:22px;}
+  .part-head{display:flex;align-items:center;gap:12px;margin-bottom:4px;flex-wrap:wrap;}
+  .part-num{font-size:14px;font-weight:800;color:#fff;background:var(--indigo);border-radius:8px;padding:2px 11px;}
+  .part-head h2{margin:0;font-size:19px;font-weight:800;color:var(--indigo-deep);}
+  .diff{font-size:12px;font-weight:800;border-radius:99px;padding:3px 11px;margin-left:auto;}
+  .diff.adv{background:var(--indigo-soft);color:var(--indigo);}
+  .diff.gk{background:var(--amber-soft);color:var(--amber);}
+  .diff.hard{background:var(--rose-soft);color:var(--rose);}
+  .part-note{color:var(--muted);font-size:13.5px;margin:6px 0 12px;}
+  ol.q{margin:6px 0;padding-left:6px;list-style:none;counter-reset:qq;}
+  ol.q li{counter-increment:qq;position:relative;padding:11px 0 11px 44px;border-bottom:1px dashed #EDEFF7;font-size:16.5px;}
+  ol.q li:last-child{border-bottom:none;}
+  ol.q li::before{content:counter(qq);position:absolute;left:0;top:10px;width:30px;height:26px;background:var(--indigo-soft);color:var(--indigo);border-radius:8px;display:grid;place-items:center;font-size:12.5px;font-weight:800;font-variant-numeric:tabular-nums;}
+  .tag{display:inline-block;font-size:11.5px;font-weight:700;color:var(--rose);background:var(--rose-soft);border-radius:6px;padding:1px 7px;margin-left:6px;}
+  .reveal{margin-top:14px;background:var(--indigo);color:#fff;border:none;border-radius:10px;padding:10px 18px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;}
+  .reveal:hover{background:#3a34a8;}
+  .answer{max-height:0;overflow:hidden;transition:max-height .4s ease;}
+  .answer.open{max-height:2600px;margin-top:14px;}
+  .answer-inner{background:var(--green-soft);border:1px solid #CFEBDD;border-radius:12px;padding:14px 18px;}
+  .answer-inner h4{margin:0 0 8px;color:#14653f;font-size:14px;}
+  .answer-inner ol{margin:0;padding-left:22px;}
+  .answer-inner li{margin:5px 0;font-size:14.5px;}
+  .answer-inner b{color:#14653f;} .answer-inner .w{color:#3b6b53;font-size:13px;}
+  .foot{background:var(--amber-soft);border-radius:14px;padding:16px 18px;color:#7a5210;font-size:14.5px;}
+  .foot b{color:#7a5210;}
+  @media print{header.top{position:static;} .timer,.reveal{display:none;} .answer{max-height:none!important;} .part{box-shadow:none;break-inside:avoid;}}
+  :focus-visible{outline:3px solid #A9A4F0;outline-offset:2px;border-radius:6px;}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-row">
+    <div><div class="eyebrow">模块 A · 拔高专练</div><h1 class="title">一元二次方程与韦达定理 · 高难度 50 题（变通版）</h1></div>
+    <div class="timer"><span class="clock" id="clock">00:00</span><button id="swBtn" onclick="swToggle()">开始</button><button onclick="swReset()">清零</button></div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="intro">
+    <p><b>50 道拔高题，题型更"变通"</b>：除了对称式、代入求参、含参讨论，还加了公共根、一根是另一根 k 倍、构造新方程、反求方程、根的分布，以及好几处要<b>回代检验</b>才不掉坑的题。建议分 2–3 次做，每部分做完再对答案。</p>
+  </div>
+  <div class="cheat">
+    <h4>🔑 变形速查</h4>
+    <ul>
+      <li>α²+β²=(α+β)²−2αβ；(α−β)²=(α+β)²−4αβ；α³+β³=(α+β)³−3αβ(α+β)</li>
+      <li>α⁴+β⁴=(α²+β²)²−2(αβ)²；1/α+1/β=(α+β)/αβ；α/β+β/α=(α²+β²)/αβ</li>
+      <li>构造以 α′、β′ 为根的方程：x² −(α′+β′)x + α′β′ = 0（别忘回代检验 Δ≥0）</li>
+    </ul>
+  </div>
+
+  <div id="list"></div>
+
+  <div class="foot">
+    <p><b>几处专门设的坑（做完自查）：</b></p>
+    <p>· <span class="tag">回代检验</span>标记的题（D8、C 系列、两根关系题），解出参数后必须回去验 Δ≥0，否则"根"不存在要舍；<br>
+    · <b>代入求参</b>看清方程末尾常数的 <b>符号</b>（决定凑 m+1/m 还是 m−1/m，最后 −2 还是 +2）；<br>
+    · <b>公共根</b>题：先解出"已知方程"的根，再逐个代入另一个方程，别漏解。</p>
+    <p>做完把错题号发我，我针对错得最多的类型再出同型题或做逐步展开专项。</p>
+  </div>
+</div>
+
+<script>
+const PARTS = [
+  { num:"A", title:"韦达定理与对称式", diff:["adv","进阶"], note:"全部用 α+β、αβ 表示后代入，不要解根。",
+    q:[
+      "α、β 是 x² − 5x + 3 = 0 的两根，求 α² + β²",
+      "α、β 是 x² − 4x − 3 = 0 的两根，求 α² + β²",
+      "α、β 是 x² − 6x + 7 = 0 的两根，求 (α − β)²",
+      "α、β 是 x² − 5x + 2 = 0 的两根，求 1/α + 1/β",
+      "α、β 是 x² + 3x − 1 = 0 的两根，求 1/α² + 1/β²",
+      "α、β 是 x² − 7x + 11 = 0 的两根，求 α/β + β/α",
+      "α、β 是 x² − 2x − 4 = 0 的两根，求 α³ + β³",
+      "α、β 是 x² + 3x + 1 = 0 的两根，求 α³ + β³",
+      "α、β 是 x² − 4x + 1 = 0 的两根，求 α⁴ + β⁴",
+      "α、β 是 x² − 6x + 4 = 0 的两根，求 (α + 2)(β + 2)",
+      "α、β 是 x² − 5x + 6 = 0 的两根，求 (α − 1)(β − 1)",
+      "α、β 是 x² − 3x − 2 = 0 的两根，求 α²β + αβ² + αβ"
+    ],
+    a:[
+      "(α+β)²−2αβ = 25 − 6 = <b>19</b>",
+      "16 − 2·(−3) = <b>22</b>",
+      "(α+β)²−4αβ = 36 − 28 = <b>8</b>",
+      "(α+β)/(αβ) = <b>5/2</b>",
+      "<span class='w'>(1/α+1/β)²−2/(αβ) = (−3)²−2/(−1) =</span> <b>11</b>",
+      "<span class='w'>(α²+β²)/αβ = (49−22)/11 =</span> <b>27/11</b>",
+      "<span class='w'>(α+β)³−3αβ(α+β) = 8 − 3(−4)(2) =</span> <b>32</b>",
+      "<span class='w'>(−3)³−3(1)(−3) = −27+9 =</span> <b>−18</b>",
+      "<span class='w'>(α²+β²)²−2(αβ)² = 14² − 2 =</span> <b>194</b>",
+      "<span class='w'>αβ+2(α+β)+4 = 4+12+4 =</span> <b>20</b>",
+      "<span class='w'>αβ−(α+β)+1 = 6−5+1 =</span> <b>2</b>",
+      "<span class='w'>αβ(α+β)+αβ = (−2)(3)+(−2) =</span> <b>−8</b>"
+    ]},
+  { num:"B", title:"代入求参与降次", diff:["gk","进阶→光剑"], note:"根代进方程一定成立；降次用方程本身把高次换低次；看清常数符号。",
+    q:[
+      "方程 x² − 4x + m = 0 有一个根是 x = 1，求 m 及另一个根",
+      "方程 2x² + kx − 6 = 0 有一个根是 x = 2，求 k 及另一个根",
+      "方程 √6·m·x² − m²·x − 3 = 0 有一个根是 x = 3，求 m² + m⁻²",
+      "方程 √2·m·x² − m²·x + 2 = 0 有一个根是 x = 2，求 m² + m⁻²　<span class='tag'>注意符号</span>",
+      "已知 m + 1/m = 6，求 m² + 1/m² 及 m³ + 1/m³",
+      "α 是 x² − 4x + 1 = 0 的一个根，求 α² + 1/α² 及 α³ + 1/α³",
+      "α、β 是 x² − 2x − 2 = 0 的两根，求 α³ − 2β² + 10β",
+      "α、β 是 x² − 5x + 3 = 0 的两根，求 α³ + β³ − (α² + β²)",
+      "α、β 是 x² − 3x + 1 = 0 的两根，求 α⁴ + β⁴",
+      "α、β 是 x² − 4x + 2 = 0 的两根，求 α²/β + β²/α"
+    ],
+    a:[
+      "代 x=1：1−4+m=0 → m = <b>3</b>；αβ = 3、一根 1 → 另一根 = <b>3</b>",
+      "代 x=2：8+2k−6=0 → k = <b>−1</b>；αβ = −3、一根 2 → 另一根 = <b>−3/2</b>",
+      "<span class='w'>整理 m²−3√6 m+1=0 → m+1/m=3√6 →</span> (3√6)²−2 = <b>52</b>",
+      "<span class='w'>末尾是 + → 凑出 m−1/m=2√2 → (2√2)²+2 =</span> <b>10</b>",
+      "m²+1/m² = 36−2 = <b>34</b>；<span class='w'>m³+1/m³ = 6³−3·6 =</span> <b>198</b>",
+      "<span class='w'>由方程 ÷α 得 α+1/α=4；</span> α²+1/α² = <b>14</b>；α³+1/α³ = 64−12 = <b>52</b>",
+      "<span class='w'>降次：α³=6α+4、β²=2β+2 → 6α+6β = 6(α+β) =</span> <b>12</b>",
+      "<span class='w'>α³+β³=125−45=80，α²+β²=19 →</span> 80−19 = <b>61</b>",
+      "<span class='w'>(α²+β²)²−2(αβ)² = 7²−2 =</span> <b>47</b>",
+      "<span class='w'>= (α³+β³)/(αβ) = (64−24)/2 =</span> <b>20</b>"
+    ]},
+  { num:"C", title:"含参：解的个数与范围", diff:["gk","光剑常考"], note:"二次项系数含参先讨论 =0；求范围用 Δ 不等式；两根正负用韦达符号。",
+    q:[
+      "关于 x 的方程 kx² − 3x + 1 = 0 只有一个实数解，求所有 k",
+      "关于 x 的方程 x² − 4x + m = 0 有两个不相等实根，求 m 的取值范围",
+      "关于 x 的方程 x² − 2x + (m − 1) = 0 有实数根，求 m 的取值范围",
+      "关于 x 的方程 (m − 2)x² + 2x + 1 = 0 只有一个实数解，求所有 m",
+      "一元二次方程 x² − 6x + k = 0 的两根都是正数，求 k 的取值范围",
+      "关于 x 的方程 x² + mx + 9 = 0 有两个相等实根，求 m",
+      "一元二次方程 x² − (m + 1)x + m = 0 的两根异号，求 m 的取值范围",
+      "关于 x 的方程 mx² + (2m + 1)x + m = 0 有两个不相等实根，求 m 的取值范围",
+      "一元二次方程 x² − 2mx + (m² − 1) = 0 的两根都是正数，求 m 的取值范围"
+    ],
+    a:[
+      "k=0：−3x+1=0 一个解 ✓；k≠0：Δ=9−4k=0→k=9/4。<b>k = 0 或 9/4</b>",
+      "Δ = 16 − 4m > 0 → <b>m < 4</b>",
+      "Δ = 4 − 4(m−1) ≥ 0 → <b>m ≤ 2</b>",
+      "m=2：2x+1=0 一个解 ✓；m≠2：Δ=4−4(m−2)=0→m=3。<b>m = 2 或 3</b>",
+      "Δ=36−4k≥0（k≤9）、αβ=k>0、α+β=6>0。<b>0 < k ≤ 9</b>",
+      "Δ = m²−36 = 0 → <b>m = ±6</b>",
+      "两根异号 ⇔ αβ < 0 → m < 0。<b>m < 0</b>",
+      "m≠0 且 Δ=(2m+1)²−4m²=4m+1>0 → <b>m > −1/4 且 m ≠ 0</b>",
+      "<span class='w'>Δ=4>0 恒成立；αβ=m²−1>0→|m|>1；α+β=2m>0→m>0 →</span> <b>m > 1</b>"
+    ]},
+  { num:"D", title:"两根关系与构造方程", diff:["hard","光剑难度"], note:"把关系翻译成 α+β、αβ；构造新方程用和与积；解完回代检验 Δ。",
+    q:[
+      "方程 x² − (m + 2)x + 2m = 0 的两根互为相反数，求 m",
+      "方程 x² − 5x + (m − 1) = 0 的两根互为倒数，求 m",
+      "方程 x² − kx + 8 = 0 的一根是另一根的 2 倍，求 k",
+      "方程 x² − 8x + m = 0 的一根比另一根大 2，求 m 及两根",
+      "已知 x² − 3x + 1 = 0 的两根为 α、β，求以 α+1、β+1 为根的一元二次方程",
+      "已知 x² − 5x + 2 = 0 的两根为 α、β，求以 1/α、1/β 为根的一元二次方程",
+      "一个一元二次方程（首项系数为 1）的两根是 1 + √3 和 1 − √3，求这个方程",
+      "方程 x² − (2k − 1)x + (k² − 1) = 0 的两根平方和为 9，求 k　<span class='tag'>回代检验</span>",
+      "关于 x 的方程 x² − mx + (2m − 3) = 0 有两个相等实根，求 m",
+      "一元二次方程的两根 α、β 满足 α + β = 4、αβ = −5，求 α² + β²，并写出该方程"
+    ],
+    a:[
+      "α+β=0 → m+2=0 → <b>m = −2</b>（αβ=2m=−4<0，两根存在 ✓）",
+      "αβ=1 → m−1=1 → <b>m = 2</b>（Δ=25−4=21>0 ✓）",
+      "设两根 β、2β：2β²=8→β=±2；k=3β → <b>k = ±6</b>",
+      "(α−β)²=4 → 64−4m=4 → m=15；两根之和 8、积 15 → <b>m=15，两根 3、5</b>",
+      "新和=α+β+2=5，新积=αβ+(α+β)+1=1+3+1=5 → <b>x² − 5x + 5 = 0</b>",
+      "新和=(α+β)/αβ=5/2，新积=1/(αβ)=1/2 → <b>2x² − 5x + 1 = 0</b>",
+      "和=2、积=1−3=−2 → <b>x² − 2x − 2 = 0</b>",
+      "(2k−1)²−2(k²−1)=9 → 2k²−4k−6=0 → k=3 或 −1；k=3 时 Δ<0 舍 → <b>k = −1</b>",
+      "Δ=m²−4(2m−3)=m²−8m+12=0 → (m−2)(m−6)=0 → <b>m = 2 或 6</b>",
+      "α²+β²=(α+β)²−2αβ=16+10=<b>26</b>；方程 <b>x² − 4x − 5 = 0</b>"
+    ]},
+  { num:"E", title:"综合变通", diff:["hard","光剑难度"], note:"公共根、反求方程、根式两根、根的分布——综合运用前面所有招。",
+    q:[
+      "方程 x² − 3x + 2 = 0 与 x² − 5x + m = 0 有一个公共根，求 m 的所有可能值",
+      "方程 x² + 2x − 3 = 0 与 x² + mx + 3 = 0 有一个公共根，求 m",
+      "方程 x² − 6x + 4 = 0 的两根为 α、β，求 |α − β|",
+      "α、β 是 x² − px + q = 0 的两根，且 α² + β² = 13、αβ = 6，求 p、q（p > 0）",
+      "方程 x² − 2x − 1 = 0 的两根为 α、β，求 α² + β² + α²β²",
+      "关于 x 的方程 x² + (2m − 1)x + m² = 0 有两个实数根，求 m 的取值范围",
+      "方程 x² − 5x + k = 0 的一根是另一根的 4 倍，求 k",
+      "α 是 x² − x − 1 = 0 的一个根，求 α² + 1/α²",
+      "方程 x² − 3x + 1 = 0 的两根为 α、β，求 α/β + β/α + α² + β²"
+    ],
+    a:[
+      "x²−3x+2=0 的根为 1、2。代 1：1−5+m=0→m=4；代 2：4−10+m=0→m=6。<b>m = 4 或 6</b>",
+      "x²+2x−3=0 的根为 1、−3。代 1：m=−4；代 −3：9−3m+3=0→m=4。<b>m = −4 或 4</b>",
+      "(α−β)²=36−16=20 → <b>|α−β| = 2√5</b>",
+      "q=αβ=6；α²+β²=p²−2q=p²−12=13→p²=25→<b>p=5，q=6</b>",
+      "α²+β²=(2)²−2(−1)=6，α²β²=(αβ)²=1 → <b>7</b>",
+      "Δ=(2m−1)²−4m²=−4m+1≥0 → <b>m ≤ 1/4</b>",
+      "设两根 β、4β：5β=5→β=1；k=4β²=4·1 → <b>k = 4</b>",
+      "<span class='w'>由方程 ÷α 得 α−1/α=1 → α²+1/α²=(α−1/α)²+2 =</span> <b>3</b>",
+      "<span class='w'>α/β+β/α=(α²+β²)/αβ=7/1=7；α²+β²=7 →</span> 7+7 = <b>14</b>"
+    ]}
+];
+
+const list=document.getElementById('list');
+PARTS.forEach(P=>{
+  const card=document.createElement('div'); card.className='part';
+  const qs=P.q.map(t=>`<li>${t}</li>`).join('');
+  const as=P.a.map(t=>`<li>${t}</li>`).join('');
+  card.innerHTML=`
+    <div class="part-head"><span class="part-num">${P.num}</span><h2>${P.title}</h2><span class="diff ${P.diff[0]}">${P.diff[1]}</span></div>
+    <p class="part-note">${P.note}</p>
+    <ol class="q">${qs}</ol>
+    <button class="reveal" onclick="ans(this)">显示 ${P.num} 部分答案</button>
+    <div class="answer"><div class="answer-inner"><h4>${P.num} 部分答案</h4><ol>${as}</ol></div></div>`;
+  list.appendChild(card);
+});
+function ans(btn){const box=btn.nextElementSibling;const open=box.classList.toggle('open');btn.textContent=open?btn.textContent.replace('显示','隐藏'):btn.textContent.replace('隐藏','显示');}
+let sw={t:0,run:false,id:null};
+function fmt(s){const m=String(Math.floor(s/60)).padStart(2,'0');const ss=String(s%60).padStart(2,'0');return m+':'+ss;}
+function swToggle(){const b=document.getElementById('swBtn');if(sw.run){clearInterval(sw.id);sw.run=false;b.textContent='继续';}else{sw.run=true;b.textContent='暂停';sw.id=setInterval(()=>{sw.t++;document.getElementById('clock').textContent=fmt(sw.t);},1000);}}
+function swReset(){clearInterval(sw.id);sw={t:0,run:false,id:null};document.getElementById('clock').textContent='00:00';document.getElementById('swBtn').textContent='开始';}
+</script>
+</body>
+</html>
