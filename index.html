@@ -1,6 +1,21 @@
 <!DOCTYPE html>
 <html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Maths Study Hub · 数学学习中心</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="数学大树">
+<meta name="theme-color" content="#4A43C4">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#4A43C4">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="数学大树">
+<meta name="format-detection" content="telephone=no">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="manifest" href="manifest.json">
 <style>
 :root{--bg:#F4F6FB;--surface:#fff;--ink:#1B1B2A;--muted:#6A6A82;--line:#E3E6F0;--indigo:#4A43C4;--indigo-deep:#2E2A6B;--indigo-soft:#EEF0FC;--amber:#D98A24;--amber-soft:#FEF6E7;--green:#1F8A5B;--green-soft:#E6F5EE;--grey-soft:#EEF0F4;--shadow:0 1px 2px rgba(30,30,60,.05),0 8px 24px rgba(30,30,60,.06);--font:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Segoe UI",Roboto,sans-serif;}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.65}
@@ -278,13 +293,14 @@ function place(){
   },380);
 }
 function startTour(){tstep=0;ov.classList.add('on');place();}
-function endTour(){ov.classList.remove('on');try{localStorage.setItem('gj_tour_done','1');}catch(e){}}
+function endTour(){ov.classList.remove('on');ov.style.display='none';setTimeout(()=>{ov.style.display='';},50);}
+ov.addEventListener('click',e=>{ if(e.target===ov) endTour(); });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&ov.classList.contains('on')) endTour(); });
 document.getElementById('tNext').onclick=()=>{if(tstep<STEPS.length-1){tstep++;place();}else{endTour();}};
 document.getElementById('tPrev').onclick=()=>{if(tstep>0){tstep--;place();}};
 document.getElementById('tSkip').onclick=endTour;
 window.addEventListener('resize',()=>{if(ov.classList.contains('on'))place();});
-// 首次访问自动开启
-try{ if(!localStorage.getItem('gj_tour_done')){ setTimeout(startTour,600); } }catch(e){}
+// 引导仅在点击「🧭 新手引导」时开启（不自动弹出）
 
 updateAll();
 </script>
