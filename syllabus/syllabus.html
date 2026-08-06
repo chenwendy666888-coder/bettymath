@@ -1,144 +1,178 @@
 <!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>主考纲 Syllabus · 数学大树</title><style>
-:root{--bg:#F4F6FB;--surface:#fff;--ink:#1B1B2A;--muted:#6A6A82;--line:#E3E6F0;--indigo:#4A43C4;--indigo-deep:#2E2A6B;--indigo-soft:#EEF0FC;--amber:#C77A15;--amber-soft:#FCF2DF;--green:#1F8A5B;--green-soft:#E6F5EE;--rose:#C0453B;--rose-soft:#FBEDEC;--grey-soft:#EEF0F4;--shadow:0 1px 2px rgba(30,30,60,.05),0 8px 24px rgba(30,30,60,.06);--font:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Segoe UI",Roboto,sans-serif;}
+<title>主考纲 Syllabus · 光剑数学</title><style>
+:root{--bg:#F4F6FB;--surface:#fff;--ink:#1B1B2A;--muted:#6A6A82;--line:#E3E6F0;--indigo:#4A43C4;--indigo-deep:#2E2A6B;--indigo-soft:#EEF0FC;--amber:#C77A15;--amber-soft:#FCF2DF;--green:#1F8A5B;--green-soft:#E6F5EE;--rose:#C0453B;--rose-soft:#FBEDEC;--grey-soft:#EEF0F4;--shadow:0 1px 2px rgba(30,30,60,.05),0 6px 20px rgba(30,30,60,.05);--font:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Segoe UI",Roboto,sans-serif;}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.6}
-.hero{background:linear-gradient(135deg,#1F8A5B,#2E2A6B);color:#fff;padding:30px 22px}
-.hero-in{max-width:960px;margin:0 auto}.hero .eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;opacity:.85;font-weight:700}
-.hero h1{margin:6px 0 4px;font-size:25px}.hero p{margin:0;opacity:.92;font-size:14.5px}.back{color:#fff;opacity:.9;text-decoration:none;font-size:13px;font-weight:700}
-.legend{max-width:960px;margin:14px auto 0;padding:0 22px;display:flex;gap:8px;flex-wrap:wrap;font-size:12.5px}
-.legend span{background:#fff;border:1px solid var(--line);border-radius:99px;padding:3px 10px;color:var(--muted);font-weight:700}
-.wrap{max-width:960px;margin:18px auto;padding:0 22px}
-.pil{margin-bottom:22px}.pil h2{font-size:18px;color:var(--indigo-deep);margin:14px 0 2px}
-.psub{color:var(--muted);font-size:13px;margin:0 0 10px}
-.mrow{display:flex;gap:12px;background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:12px 14px;margin:8px 0}
-.mrow.todo{opacity:.72}
-.mid{flex:none;width:40px;height:40px;border-radius:10px;background:var(--indigo-soft);color:var(--indigo-deep);display:grid;place-items:center;font-weight:800;font-size:14px}
-.mmain{flex:1;min-width:0}.men{font-weight:800;color:var(--indigo-deep);font-size:15px}.mzh{color:var(--muted);font-size:13px;font-weight:700}
-.ladder{display:flex;flex-wrap:wrap;gap:6px;margin:7px 0}
-.lv{font-size:11.5px;border-radius:7px;padding:2px 8px;font-weight:700}
-.lv.g{background:var(--green-soft);color:var(--green)}.lv.y{background:var(--amber-soft);color:var(--amber)}.lv.r{background:var(--rose-soft);color:var(--rose)}
-.mtags{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
-.tp{font-size:11px;font-weight:800;border-radius:99px;padding:2px 8px}.tp.star{background:var(--amber-soft);color:var(--amber)}.tp.amc{background:var(--rose-soft);color:var(--rose)}.tp.al{background:var(--indigo-soft);color:var(--indigo)}
-.stt{font-size:11px;font-weight:800;border-radius:99px;padding:2px 8px}.stt.bi{background:var(--green-soft);color:var(--green)}.stt.cn{background:var(--amber-soft);color:var(--amber)}.stt.todo{background:var(--grey-soft);color:var(--muted)}
-.amc,.al,.bd,.plan,.pbd{background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:16px 18px;margin:12px 0}
-.amc{border-left:4px solid var(--rose)}.al{border-left:4px solid var(--indigo)}.bd{border-left:4px solid var(--muted)}.plan{border-left:4px solid var(--green)}.pbd{border-left:4px solid var(--amber)}
-.amc h3,.al h3,.bd h3,.plan h3,.pbd h3{margin:0 0 8px;font-size:15px;color:var(--indigo-deep)}
-.amc ul{margin:0;padding-left:20px;font-size:14px}.amc li{margin:4px 0}
-.bdrow{display:flex;gap:10px;flex-wrap:wrap}.bdrow span{background:var(--rose-soft);color:var(--rose);border-radius:8px;padding:6px 12px;font-weight:700;font-size:13px}
-table{width:100%;border-collapse:collapse;font-size:13.5px}th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}th{background:var(--indigo-soft);color:var(--indigo-deep)}td:first-child{font-weight:800;color:var(--indigo);white-space:nowrap;width:70px}
-.pnote{font-size:13px;color:var(--muted);margin:0 0 8px}
-footer{max-width:960px;margin:10px auto 40px;padding:0 22px;color:var(--muted);font-size:13px}
-
-.dltools{position:fixed;top:12px;right:14px;z-index:70;display:flex;gap:8px}
-.dltools a,.dltools button{border:none;border-radius:9px;padding:8px 12px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;color:#fff;text-decoration:none;box-shadow:0 4px 12px rgba(30,30,60,.18)}
-.dltools .b-md{background:#1F8A5B}.dltools .b-pdf{background:#4A43C4}
-@media(max-width:860px){.dltools{top:auto;bottom:14px;right:12px}}
-@media print{.hero,.sumbar,.back,.reset,.dltools,.legend,.howto{display:none!important}}
+.hero{background:var(--surface);border-bottom:1px solid var(--line);padding:20px 22px}
+.hero-in{max-width:1000px;margin:0 auto}.back{color:var(--indigo);text-decoration:none;font-size:13px;font-weight:700}
+.hero h1{margin:6px 0 4px;font-size:22px;color:var(--indigo-deep)}.hero p{margin:0;color:var(--muted);font-size:13.5px}
+.wrap{max-width:1000px;margin:20px auto;padding:0 22px}
+.pil{margin-bottom:26px}.pil h2{font-size:16px;color:var(--indigo);letter-spacing:.02em;border-bottom:2px solid var(--indigo-soft);padding-bottom:6px;margin:0 0 12px}
+.mod{background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:14px 16px;margin:10px 0}
+.mod.dim{background:#FCFCFE}
+.mh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.code{flex:none;width:38px;height:38px;border-radius:9px;background:var(--indigo-deep);color:#fff;display:grid;place-items:center;font-weight:800;font-size:13px}
+.mt{flex:1;min-width:200px;font-size:15px;color:var(--ink)}.mt b{color:var(--indigo-deep)}
+.opn{color:var(--indigo);text-decoration:none;font-weight:800;font-size:13.5px;white-space:nowrap}
+.stt{font-size:11px;font-weight:800;border-radius:99px;padding:2px 8px;margin-left:4px}.stt.done{background:var(--green-soft);color:var(--green)}.stt.cn{background:var(--amber-soft);color:var(--amber)}.stt.todo{background:var(--grey-soft);color:var(--muted)}
+.segs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+@media(max-width:760px){.segs{grid-template-columns:1fr}}
+.seg h4{margin:0 0 5px;font-size:12px;letter-spacing:.04em;color:var(--muted);text-transform:uppercase}
+.seg p{margin:0;font-size:13.5px}
+.seg ul{margin:0;padding-left:16px;font-size:13px}.seg li{margin:3px 0}
+.ty li{margin:5px 0}
+.src{font-size:10.5px;font-weight:800;border-radius:6px;padding:1px 6px;white-space:nowrap}
+.src.s-real{background:var(--rose-soft);color:var(--rose)}.src.s-amc{background:var(--amber-soft);color:var(--amber)}.src.s-other{background:var(--indigo-soft);color:var(--indigo)}
+.bd{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 16px;font-size:14px;color:var(--muted);font-weight:700}
+.plan{padding-left:20px;font-size:14px}.plan li{margin:6px 0}
+.note{background:var(--amber-soft);color:#7a5210;border-radius:10px;padding:10px 14px;font-size:13px;margin-top:10px}
+.legend{max-width:1000px;margin:8px auto 0;padding:0 22px;font-size:12px;color:var(--muted)}
+.legend .src{margin-right:4px}
 </style></head><body>
 <div class="hero"><div class="hero-in"><a class="back" href="../index.html">← 学习中心 Hub</a>
-<div class="eyebrow">Master Syllabus · Math Base Tree</div><h1>主考纲 · 数学大树</h1>
-<p>从零打地基 → 光剑必考 → AMC 枝桠 → 衔接 A-Level。每块按 0→1 台阶，带真题倾向与标签。</p></div></div>
-<div class="legend"><span>🟢 初步</span><span>🟡 中阶</span><span>🔴 光剑/AMC</span><span>⭐ 光剑必考</span><span>🏆 AMC</span><span>🎓 A-Level</span><span>✅ 双语</span><span>🟡 中文</span><span>⏳ 待建</span></div>
-<div class="wrap">
-<section class="pil"><h2>🌱 树干 · 数感与运算 Number Base</h2><p class="psub">真·从零，会的跳过、不会的补</p><div class="mrow todo">
-      <div class="mid">N</div>
-      <div class="mmain"><div class="men">Number & operations</div><div class="mzh">数感与运算</div>
-        <div class="ladder"><span class="lv g">🟢 初步 整数/负数/绝对值</span><span class="lv y">🟡 中阶 分数·比例·根号入门</span><span class="lv r">🔴 光剑/AMC 变号原理</span></div>
-        <div class="mtags"><span class="tp star">⭐光剑</span><span class="tp al">🎓A-Level</span> <span class="stt todo">⏳ 待建</span></div></div></div></section><section class="pil"><h2>🌿 大枝 1 · 代数 Algebra</h2><div class="mrow ">
-      <div class="mid">P1</div>
-      <div class="mmain"><div class="men">Algebra Basics</div><div class="mzh">代数基本功</div>
-        <div class="ladder"><span class="lv g">🟢 初步 幂/乘法公式/因式分解</span><span class="lv y">🟡 中阶 根式/分式</span><span class="lv r">🔴 光剑/AMC 立方公式·连乘裂项</span></div>
-        <div class="mtags"><span class="tp star">⭐光剑</span><span class="tp amc">🏆AMC</span><span class="tp al">🎓A-Level</span> <span class="stt bi">✅ 双语</span></div></div></div><div class="mrow ">
-      <div class="mid">P3</div>
-      <div class="mmain"><div class="men">Inequalities</div><div class="mzh">不等式</div>
-        <div class="ladder"><span class="lv g">🟢 初步 一次/组</span><span class="lv y">🟡 中阶 二次/绝对值/分式</span><span class="lv r">🔴 光剑/AMC 均值/配方恒成立</span></div>
-        <div class="mtags"><span class="tp star">⭐光剑</span><span class="tp al">🎓A-Level</span> <span class="stt bi">✅ 双语</span></div></div></div><div class="mrow ">
-      <div class="mid">A</div>
-      <div class="mmain"><div class="men">Quadratics & Vieta</div><div class="mzh">方程与韦达</div>
-        <div class="ladder"><span class="lv g">🟢 初步 解方程/韦达</span><span class="lv y">🟡 中阶 判别式/降次/含参</span><span class="lv r">🔴 光剑/AMC 绝对值二次讨论·大数字换元</span></div>
-        <div class="mtags"><span class="tp star">⭐光剑</span><span class="tp amc">🏆AMC</span> <span class="stt cn">🟡 中文</span></div></div></div><div class="mrow ">
-      <div class="mid">B</div>
-      <div class="mmain"><div class="men">Functions & Composite</div><div class="mzh">函数与复合</div>
-        <div class="ladder"><span class="lv g">🟢 初步 f(x)求值</span><span class="lv y">🟡 中阶 复合/反/变换</span><span class="lv r">🔴 光剑/AMC fg=gf·旋转·函数方程·新定义</span></div>
-        <div class="mtags"><span class="tp star">⭐光剑</span><span class="tp amc">🏆AMC</span><span class="tp al">🎓A-Level</span> <span class="stt cn">🟡 中文</span></div></div></div><div class="mrow ">
-      <div class="mid">D</div>
-      <div class="mmain"><div class="men">Substitution & Manipulation</div><div class="mzh">换元与代数变形</div>
-        <div class="ladder"><span class="lv g">🟢 初步 整体换元/配方</span><span class="lv y">🟡 中阶 对称式</span><span class="lv r">🔴 光剑/AMC 对称因式分解·配方逼值</span></div>
-        <div class="mtags"><span class="tp star">⭐光剑</span><span class="tp amc">🏆AMC</span> <span class="stt bi">✅ 双语</span></div></div></div><div class="mrow ">
-      <div class="mid">E</div>
-      <div class="mmain"><div class="men">Surds·Sequences·Induction</div><div class="mzh">根式·数列·归纳</div>
-        <div class="ladder"><span class="lv g">🟢 初步 等差等比</span><span class="lv y">🟡 中阶 找规律通项</span><span class="lv r">🔴 光剑/AMC 根式裂项·平方差连乘·归纳法</span></div>
-        <div class="mtags"><span class="tp star">⭐光剑</span><span class="tp amc">🏆AMC</span><span class="tp al">🎓A-Level</span> <span class="stt bi">✅ 双语</span></div></div></div></section><section class="pil"><h2>🌿 大枝 2 · 几何 Geometry</h2><p class="psub">重头戏，六块（只不考立体）</p><div class="mrow ">
-      <div class="mid">G1</div>
-      <div class="mmain"><div class="men">Triangles</div><div class="mzh">三角形</div>
-        <div class="ladder"><span class="lv g">🟢 初步 内角/等边等腰</span><span class="lv y">🟡 中阶 全等/相似/重心</span><span class="lv r">🔴 光剑/AMC 面积法·海伦·将军饮马</span></div>
-        <div class="mtags"><span class="tp star">⭐光剑</span><span class="tp amc">🏆AMC</span> <span class="stt bi">✅ 双语</span></div></div></div><div class="mrow todo">
-      <div class="mid">G2</div>
-      <div class="mmain"><div class="men">Quadrilaterals</div><div class="mzh">四边形</div>
-        <div class="ladder"><span class="lv g">🟢 初步 性质</span><span class="lv y">🟡 中阶 中位线/面积</span><span class="lv r">🔴 光剑/AMC 梯形三角形面积·菱形最值</span></div>
-        <div class="mtags"><span class="tp star">⭐光剑</span> <span class="stt todo">⏳ 待建</span></div></div></div><div class="mrow todo">
-      <div class="mid">G3</div>
-      <div class="mmain"><div class="men">Circles</div><div class="mzh">圆</div>
-        <div class="ladder"><span class="lv g">🟢 初步 圆的量/圆周角</span><span class="lv y">🟡 中阶 弧长/扇形/切线</span><span class="lv r">🔴 光剑/AMC 圆心距内含内切外切</span></div>
-        <div class="mtags"><span class="tp star">⭐光剑</span> <span class="stt todo">⏳ 待建</span></div></div></div><div class="mrow todo">
-      <div class="mid">G4</div>
-      <div class="mmain"><div class="men">Fold / Rotate</div><div class="mzh">翻折·旋转·对称</div>
-        <div class="ladder"><span class="lv g">🟢 初步 轴/中心对称</span><span class="lv y">🟡 中阶 平移/翻折</span><span class="lv r">🔴 光剑/AMC 翻折+相似·旋转+三角比</span></div>
-        <div class="mtags"><span class="tp star">⭐光剑</span> <span class="stt todo">⏳ 待建</span></div></div></div><div class="mrow todo">
-      <div class="mid">G5</div>
-      <div class="mmain"><div class="men">Trigonometry</div><div class="mzh">锐角三角比</div>
-        <div class="ladder"><span class="lv g">🟢 初步 sin/cos/tan定义</span><span class="lv y">🟡 中阶 解直角三角形/cot</span><span class="lv r">🔴 光剑/AMC 仰角俯角·方位角航行</span></div>
-        <div class="mtags"><span class="tp star">⭐光剑</span><span class="tp al">🎓A-Level</span> <span class="stt todo">⏳ 待建</span></div></div></div><div class="mrow todo">
-      <div class="mid">G6</div>
-      <div class="mmain"><div class="men">Coordinate Geometry</div><div class="mzh">坐标几何</div>
-        <div class="ladder"><span class="lv g">🟢 初步 距离/中点/斜率</span><span class="lv y">🟡 中阶 直线与抛物线/面积</span><span class="lv r">🔴 光剑/AMC 反比例+相似·正八边形·向量黄金分割</span></div>
-        <div class="mtags"><span class="tp star">⭐光剑</span><span class="tp al">🎓A-Level</span> <span class="stt todo">⏳ 待建</span></div></div></div></section><section class="pil"><h2>🌿 大枝 3 · 计数·概率·数论</h2><div class="mrow todo">
-      <div class="mid">F1</div>
-      <div class="mmain"><div class="men">Perm. & Comb.</div><div class="mzh">排列组合</div>
-        <div class="ladder"><span class="lv g">🟢 初步 加法乘法原理</span><span class="lv y">🟡 中阶 C(n,k)</span><span class="lv r">🔴 光剑/AMC 随机游走 C(6,3)</span></div>
-        <div class="mtags"><span class="tp star">⭐光剑</span><span class="tp amc">🏆AMC</span> <span class="stt todo">⏳ 待建</span></div></div></div><div class="mrow todo">
-      <div class="mid">F2</div>
-      <div class="mmain"><div class="men">Probability</div><div class="mzh">概率</div>
-        <div class="ladder"><span class="lv g">🟢 初步 古典概率</span><span class="lv y">🟡 中阶 几何概率/树状图</span><span class="lv r">🔴 光剑/AMC 二次函数+概率</span></div>
-        <div class="mtags"><span class="tp star">⭐光剑</span> <span class="stt todo">⏳ 待建</span></div></div></div><div class="mrow todo">
-      <div class="mid">F3</div>
-      <div class="mmain"><div class="men">Number Theory</div><div class="mzh">数论</div>
-        <div class="ladder"><span class="lv g">🟢 初步 倍数/约数/质数</span><span class="lv y">🟡 中阶 整除/余数</span><span class="lv r">🔴 光剑/AMC 末位周期·数位乘积·完全平方数</span></div>
-        <div class="mtags"><span class="tp star">⭐光剑</span><span class="tp amc">🏆AMC</span> <span class="stt todo">⏳ 待建</span></div></div></div><div class="mrow todo">
-      <div class="mid">F4</div>
-      <div class="mmain"><div class="men">Statistics</div><div class="mzh">统计</div>
-        <div class="ladder"><span class="lv g">🟢 初步 平均/中位/众数</span><span class="lv y">🟡 中阶 方差</span></div>
-        <div class="mtags"><span class="tp star">⭐光剑</span> <span class="stt todo">⏳ 待建</span></div></div></div></section><section class="pil"><h2>🌿 大枝 4 · 应用与建模 Applications</h2><div class="mrow todo">
-      <div class="mid">APP</div>
-      <div class="mmain"><div class="men">Modelling & Applications</div><div class="mzh">应用与建模</div>
-        <div class="ladder"><span class="lv g">🟢 初步 列方程/不等式</span><span class="lv y">🟡 中阶 行程速度</span><span class="lv r">🔴 光剑/AMC 最优化利润·方位角航行</span></div>
-        <div class="mtags"><span class="tp star">⭐光剑</span> <span class="stt todo">⏳ 待建</span></div></div></div></section>
-<div class="amc">
-  <h3>🍃 枝桠层 · 竞赛 / AMC（横挂各枝，光剑爱考，尤其数字 & 带根号）</h3>
-  <ul>
-    <li>🏆 <b>数论 tricky</b>：整除余数、末位周期、数位乘积、完全平方数、位数问题【AMC8/10 例题册】</li>
-    <li>🏆 <b>根号 tricky</b>：根式裂项、平方差连乘、无理方程、嵌套根号</li>
-    <li>🏆 <b>新定义/绝对值</b>：魔术盒、|x| 讨论、定义新运算【AMC10 自招库】</li>
-    <li>🏆 <b>逻辑/袋鼠</b>：逻辑推理、空间想象、字母算式、估算【WLSA】</li>
-    <li>🏆 对数 log、海伦公式（个别 ★★★★，点到为止）</li>
-  </ul></div>
-<div class="al">
-  <h3>🎓 A-Level 预备枝（非光剑，打地基/以后用）</h3>
-  <p>立体几何、体积/表面积、集合与逻辑符号、复数虚数入门、对数指数深入、三角恒等式。<b>光剑 0 次考</b>，为完整数学世界 & 衔接 A-Level/Further 保留为可选枝。</p></div>
-<div class="bd"><h3>❌ 明确不考（全卷扫描 0 次）</h3>
-  <div class="bdrow"><span>立体几何 / 体积 / 表面积</span><span>复数 / 虚数</span><span>集合论</span></div></div>
-<div class="plan"><h3>📅 20–30 天学习进程（约 1–1.5 章/天）</h3>
-  <p class="pnote">已完成 P1/P2/P3 + 模块 A → 起步约 4 章。以下排光剑主干优先。</p>
-  <table><tr><th>阶段</th><th>内容</th></tr>
-  <tr><td>第一周</td><td>B 函数（2天）· D 换元 · E 根式数列（2天）· 代数复习</td></tr>
-  <tr><td>第二周</td><td>G1 三角形（2天）· G2 四边形 · G6 坐标几何 · G5 三角比+方位角（2天）· 几何复习</td></tr>
-  <tr><td>第三周</td><td>G3 圆 · G4 翻折旋转 · F1 排列组合 · F2 概率 · F3 数论(+AMC数字枝) · 混合测</td></tr>
-  <tr><td>第四周</td><td>应用建模 · AMC 枝专练 · 真题 tricky 层 · 全真模拟×2 · 查漏</td></tr>
-  <tr><td>机动</td><td>F4 统计 / 上实向量黄金分割 / WLSA 逻辑 / A-Level 枝（择需）</td></tr>
-  </table></div>
-<div class="pbd"><h3>📊 进度条设计（按知识点，非文档数）</h3>
-  <p>每个知识点给权重（优先用真题占比：相似 22%、切线 16%、无理方程 10%…），进度 = 已掌握权重 ÷ 总权重。做多条：总进度 + 各大枝 + 一条 ⭐光剑必考专用。掌握判定 = 自查全勾 + 练习达标。已并入知识图谱与 hub 顶部。</p></div>
-</div>
-<footer>主线光剑，其他上海名校真题作拓展并标学校。三原则：双语（先英后中）· 练习不给提示 · 真题标来源。</footer>
+<h1>主考纲 · 光剑数学</h1>
+<p>数学英文卷、竞赛味重、代数为主几何为辅。下面每个模块讲清三件事：<b>会做什么 · 具体内容 · 光剑真题型（带出处）</b>。</p></div></div>
+<div class="legend">出处标签：<span class="src s-real">【真题】</span>光剑原题/同型　<span class="src s-amc">【AMC/赛】</span>竞赛型　<span class="src s-other">【他校】</span>名校拓展</div>
+<div class="wrap"><section class="pil"><h2>代数 Algebra</h2><div class="mod ">
+      <div class="mh"><span class="code">P1</span>
+        <div class="mt"><b>Algebra Basics</b> · 代数基本功 <span class="stt done">✅ 双语已建</span></div><a class="opn" href="lectures/01_algebra-basics.html">打开讲义 →</a></div>
+      <div class="segs">
+        <div class="seg"><h4>会做 Can-do</h4><p>把任何代数式化简、展开、因式分解、通分；根式化到最简并有理化。</p></div>
+        <div class="seg"><h4>具体内容 Topics</h4><ul><li>指数律 aᵐ·aⁿ=aᵐ⁺ⁿ、(aᵐ)ⁿ、a⁰、a⁻ⁿ</li><li>乘法公式：平方差、完全平方、立方和/差 a³±b³</li><li>杨辉三角展开 (a+b)ⁿ</li><li>因式分解：提公因、套公式、十字相乘、分组</li><li>根式：化简、同类合并、分母有理化（共轭）</li><li>分式：约分、通分、除→乘倒数</li></ul></div>
+        <div class="seg"><h4>光剑真题型 Exam types</h4><ul class="ty"><li>已知一根（含 √7 系数）代入求 m²+m⁻² <span class="src s-real">【真题】</span></li><li>a³ ± b³ 因式分解 <span class="src s-other">【常考】</span></li><li>分母有理化 3/(√5−√2) <span class="src s-other">【常考】</span></li></ul></div>
+      </div></div><div class="mod ">
+      <div class="mh"><span class="code">P3</span>
+        <div class="mt"><b>Inequalities</b> · 不等式 <span class="stt done">✅ 双语已建</span></div><a class="opn" href="lectures/03_inequalities.html">打开讲义 →</a></div>
+      <div class="segs">
+        <div class="seg"><h4>会做 Can-do</h4><p>解各类不等式并会画数轴解集；用二次/绝对值/均值求参数范围与最值。</p></div>
+        <div class="seg"><h4>具体内容 Topics</h4><ul><li>一次不等式（乘除负数变号）、不等式组取交集</li><li>二次不等式：大于取两边、小于取中间</li><li>绝对值：|x|<a 夹中间、|x|>a 取两边</li><li>分式不等式：除→乘、分母≠0</li><li>均值不等式 a+b≥2√(ab) 求最值</li><li>配方 + 判别式 Δ<0 求“恒成立”参数</li></ul></div>
+        <div class="seg"><h4>光剑真题型 Exam types</h4><ul class="ty"><li>恒成立求 m 范围（Δ<0） <span class="src s-other">【常考】</span></li><li>配方逼值 a²+b²+c²+4≤ab+3b+2c → 219 <span class="src s-other">【平和】</span></li><li>1/a+1/b 最小值（a+b=1） <span class="src s-other">【领科】</span></li></ul></div>
+      </div></div><div class="mod ">
+      <div class="mh"><span class="code">A</span>
+        <div class="mt"><b>Quadratics & Vieta</b> · 一元二次方程与韦达 <span class="stt cn">🟡 中文（待双语）</span></div><a class="opn" href="lectures/A_quadratics-vieta.html">打开讲义 →</a></div>
+      <div class="segs">
+        <div class="seg"><h4>会做 Can-do</h4><p>解一元二次、用韦达求对称式、判别式讨论根的情况；会降次、会讨论含参解的个数。</p></div>
+        <div class="seg"><h4>具体内容 Topics</h4><ul><li>解方程：因式分解 / 公式 / 配方</li><li>韦达：α+β=−b/a、αβ=c/a，求 α²+β²、1/α+1/β</li><li>判别式 Δ 判断根、含参求范围</li><li>降次法：用 α²=2α+2 反复代换求高次式</li><li>含参“解的个数”——须讨论二次项系数=0 退化为一次</li><li>含绝对值的二次、构造新方程</li></ul></div>
+        <div class="seg"><h4>光剑真题型 Exam types</h4><ul class="ty"><li>已知一根含 √7 求 m²+m⁻² <span class="src s-real">【真题】</span></li><li>α²=2α+2 降次求 α³−2β²+10β <span class="src s-real">【真题】</span></li><li>dx²−(d−1)x+d=0 恰一根，求 d 的个数 <span class="src s-real">【真题】</span></li><li>x²−100|x−10|=k 随 k 变化解的个数（0/2/3/4） <span class="src s-real">【真题·模拟】</span></li></ul></div>
+      </div></div><div class="mod ">
+      <div class="mh"><span class="code">B</span>
+        <div class="mt"><b>Functions & Composite</b> · 函数与复合 <span class="stt cn">🟡 中文（待双语）</span></div><a class="opn" href="lectures/B_functions.html">打开讲义 →</a></div>
+      <div class="segs">
+        <div class="seg"><h4>会做 Can-do</h4><p>读写函数记号、算复合与反函数、由图象做平移翻折伸缩、解函数方程。</p></div>
+        <div class="seg"><h4>具体内容 Topics</h4><ul><li>函数记号 f: x ↦ 2x−a 求值</li><li>复合 fg、ff、fff；反函数 f⁻¹</li><li>图象变换：平移 / 翻折 / 伸缩复合</li><li>曲线绕原点旋转 180°（(x,y)→(−x,−y)）</li><li>函数方程（代换联立）</li></ul></div>
+        <div class="seg"><h4>光剑真题型 Exam types</h4><ul class="ty"><li>解 fff(x)=771 <span class="src s-real">【真题】</span></li><li>fg(x)=gf(x) 只一个实根 → 用 Δ 求参 <span class="src s-real">【真题】</span></li><li>由 f 极值点求 y=−2f(3−x) 的极值点 <span class="src s-real">【真题】</span></li><li>2ˣ+x·f(2⁻ˣ)=x²+x³ 求 f(8) <span class="src s-real">【真题】</span></li></ul></div>
+      </div></div><div class="mod ">
+      <div class="mh"><span class="code">D</span>
+        <div class="mt"><b>Substitution & Manipulation</b> · 换元与代数变形 <span class="stt done">✅ 双语已建</span></div><a class="opn" href="lectures/D_substitution.html">打开讲义 →</a></div>
+      <div class="segs">
+        <div class="seg"><h4>会做 Can-do</h4><p>看到重复整体就换元；用 s、p 处理对称式；用配方“逼”出每个变量的值。</p></div>
+        <div class="seg"><h4>具体内容 Topics</h4><ul><li>整体换元：令 t=某坨 → 化成二次</li><li>对称式：s=x+y、p=xy，x²+y²=s²−2p 等</li><li>对称/轮换多项式因式分解（a=b 代入为 0 ⇒ (a−b) 是因式）</li><li>配方成平方和 =0 ⇒ 每项=0</li><li>大数字设 u、v + 对称恒等</li></ul></div>
+        <div class="seg"><h4>光剑真题型 Exam types</h4><ul class="ty"><li>令 t=2a+1/a 解 3(4a²+1/a²)+7t=64 <span class="src s-amc">【自查·赛】</span></li><li>x²y+…−x³−y³−z³−2xyz 因式分解 <span class="src s-amc">【类似·竞赛】</span></li><li>配方逼值 → 200a+9b+c=219 <span class="src s-other">【平和】</span></li><li>(2020−a)(2019−a)=2021 求平方和=4043 <span class="src s-other">【领科】</span></li></ul></div>
+      </div></div><div class="mod ">
+      <div class="mh"><span class="code">E</span>
+        <div class="mt"><b>Surds · Sequences · Induction</b> · 根式·数列·归纳 <span class="stt done">✅ 双语已建</span></div><a class="opn" href="lectures/E_sequences.html">打开讲义 →</a></div>
+      <div class="segs">
+        <div class="seg"><h4>会做 Can-do</h4><p>写数列通项、在三角形数阵里定位、用裂项/共轭把长串求和、用归纳法证明。</p></div>
+        <div class="seg"><h4>具体内容 Topics</h4><ul><li>等差 aₙ=a₁+(n−1)d、等比 aₙ=a₁rⁿ⁻¹</li><li>找规律写通项；三角形数 Tₙ=n(n+1)/2</li><li>根式裂项 1/(√k+√(k+1))=√(k+1)−√k</li><li>平方差连乘（乘隐藏的 2−1 触发）</li><li>共轭配对求最接近的整数</li><li>数学归纳法：起始 + 归纳步</li></ul></div>
+        <div class="seg"><h4>光剑真题型 Exam types</h4><ul class="ty"><li>Σ 1/√(n+√(n²−1))（n=1,3,…,49）= 5 <span class="src s-real">【真题】</span></li><li>数阵中 2013 在第 63 行第 60 个 <span class="src s-real">【真题】</span></li><li>最接近 (√6+√7)⁴ 的整数 <span class="src s-amc">【自查·赛】</span></li><li>(1+2)(1+2²)…，x+1=2¹²⁸ 求 n=64 <span class="src s-other">【世外】</span></li></ul></div>
+      </div></div></section><section class="pil"><h2>几何 Geometry（重头戏）</h2><div class="mod ">
+      <div class="mh"><span class="code">G1</span>
+        <div class="mt"><b>Triangles</b> · 三角形 <span class="stt done">✅ 双语已建</span></div><a class="opn" href="lectures/G1_triangles.html">打开讲义 →</a></div>
+      <div class="segs">
+        <div class="seg"><h4>会做 Can-do</h4><p>判等边/等腰、证全等与相似、用相似面积比与重心比例、用面积法与海伦求面积。</p></div>
+        <div class="seg"><h4>具体内容 Topics</h4><ul><li>内角和 180°、等边/等腰、三边关系</li><li>全等 SSS/SAS/ASA/AAS</li><li>相似 AA；边比 k、面积比 k²</li><li>中线与重心（分中线 2:1、分三等面积）</li><li>面积法：同底等高</li><li>海伦公式 √(s(s−a)(s−b)(s−c))</li></ul></div>
+        <div class="seg"><h4>光剑真题型 Exam types</h4><ul class="ty"><li>相似求面积（面积比=k²） <span class="src s-other">【常考】</span></li><li>将军饮马求 AC+BC 最小 / |AC−BC| 最大 <span class="src s-real">【真题·赛】</span></li><li>面积比 / 塞瓦线求内部四边形面积 <span class="src s-real">【真题·赛】</span></li></ul></div>
+      </div></div><div class="mod dim">
+      <div class="mh"><span class="code">G2</span>
+        <div class="mt"><b>Quadrilaterals</b> · 四边形 <span class="stt todo">⏳ 待建</span></div></div>
+      <div class="segs">
+        <div class="seg"><h4>会做 Can-do</h4><p>用平行四边形/矩形/菱形/梯形的性质求边、角、面积，处理动点。</p></div>
+        <div class="seg"><h4>具体内容 Topics</h4><ul><li>平行四边形、矩形、菱形、正方形、梯形的判定与性质</li><li>中位线、对角线</li><li>面积（含分割法）</li><li>动点问题</li></ul></div>
+        <div class="seg"><h4>光剑真题型 Exam types</h4><ul class="ty"><li>梯形中由 12/13/4 求三角形面积 <span class="src s-real">【真题·春招】</span></li><li>四边形动点求面积/最值 <span class="src s-other">【多校】</span></li></ul></div>
+      </div></div><div class="mod dim">
+      <div class="mh"><span class="code">G3</span>
+        <div class="mt"><b>Circles</b> · 圆 <span class="stt todo">⏳ 待建</span></div></div>
+      <div class="segs">
+        <div class="seg"><h4>会做 Can-do</h4><p>用圆周角、切线性质、弧长扇形公式，判断两圆位置（圆心距）。</p></div>
+        <div class="seg"><h4>具体内容 Topics</h4><ul><li>圆心角 / 圆周角</li><li>弧长、扇形面积</li><li>切线的性质与判定</li><li>圆心距：内含 / 内切 / 相交 / 外切 / 外离</li><li>圆与坐标结合</li></ul></div>
+        <div class="seg"><h4>光剑真题型 Exam types</h4><ul class="ty"><li>切线性质综合 <span class="src s-real">【真题（某卷占 16%）】</span></li><li>两圆位置由圆心距分类 <span class="src s-other">【平和】</span></li></ul></div>
+      </div></div><div class="mod dim">
+      <div class="mh"><span class="code">G4</span>
+        <div class="mt"><b>Fold · Rotate · Symmetry</b> · 翻折·旋转·对称 <span class="stt todo">⏳ 待建</span></div></div>
+      <div class="segs">
+        <div class="seg"><h4>会做 Can-do</h4><p>对图形做轴/中心对称、平移、翻折、旋转，并求由此产生的长度与角。</p></div>
+        <div class="seg"><h4>具体内容 Topics</h4><ul><li>轴对称 / 中心对称 / 平移</li><li>翻折（折叠）求长度、角</li><li>旋转</li></ul></div>
+        <div class="seg"><h4>光剑真题型 Exam types</h4><ul class="ty"><li>翻折 + 相似（压轴） <span class="src s-other">【多校压轴】</span></li><li>旋转后求某角的正切值 <span class="src s-other">【上海一模】</span></li></ul></div>
+      </div></div><div class="mod dim">
+      <div class="mh"><span class="code">G5</span>
+        <div class="mt"><b>Trigonometry</b> · 锐角三角比 <span class="stt todo">⏳ 待建</span></div></div>
+      <div class="segs">
+        <div class="seg"><h4>会做 Can-do</h4><p>用 sin/cos/tan/cot 解直角三角形，处理仰角俯角与方位角航行。</p></div>
+        <div class="seg"><h4>具体内容 Topics</h4><ul><li>sin/cos/tan/cot 定义、特殊角</li><li>解直角三角形</li><li>仰角、俯角</li><li>方位角、航行（海里）</li></ul></div>
+        <div class="seg"><h4>光剑真题型 Exam types</h4><ul class="ty"><li>cot∠A=2、BC=3 求 AC <span class="src s-other">【上实/一模】</span></li><li>测铁塔/建筑高度 <span class="src s-other">【一模】</span></li><li>按方位角航行求距离 <span class="src s-other">【应用】</span></li></ul></div>
+      </div></div><div class="mod dim">
+      <div class="mh"><span class="code">G6</span>
+        <div class="mt"><b>Coordinate Geometry</b> · 坐标几何 <span class="stt todo">⏳ 待建</span></div></div>
+      <div class="segs">
+        <div class="seg"><h4>会做 Can-do</h4><p>在坐标系里求距离/中点/斜率、点关于直线的对称、直线与曲线交点围成的面积。</p></div>
+        <div class="seg"><h4>具体内容 Topics</h4><ul><li>两点距离、中点、斜率、直线方程</li><li>点关于直线的对称（反射）</li><li>点到直线的最短距离（3-4-5 结构）</li><li>直线 × 反比例 y=k/x 交点、围成面积</li><li>向量、黄金分割（上实）</li></ul></div>
+        <div class="seg"><h4>光剑真题型 Exam types</h4><ul class="ty"><li>(3,−4) 关于 3x−4y=50 的对称点 <span class="src s-other">【自查】</span></li><li>直线 × y=k/x 围三角形面积 <span class="src s-other">【自查·进】</span></li><li>正八边形/梯形面积 <span class="src s-real">【真题·春招】</span></li></ul></div>
+      </div></div></section><section class="pil"><h2>计数 · 概率 · 数论</h2><div class="mod dim">
+      <div class="mh"><span class="code">F1</span>
+        <div class="mt"><b>Perm. & Comb.</b> · 排列组合 <span class="stt todo">⏳ 待建</span></div></div>
+      <div class="segs">
+        <div class="seg"><h4>会做 Can-do</h4><p>用加法/乘法原理和组合数 C(n,k) 计数（与杨辉三角相连）。</p></div>
+        <div class="seg"><h4>具体内容 Topics</h4><ul><li>加法原理、乘法原理</li><li>排列、组合 C(n,k)</li><li>杨辉三角 ↔ C(n,k)</li></ul></div>
+        <div class="seg"><h4>光剑真题型 Exam types</h4><ul class="ty"><li>机器人走 6 步回原点 C(6,3)/2⁶ <span class="src s-real">【真题】</span></li></ul></div>
+      </div></div><div class="mod dim">
+      <div class="mh"><span class="code">F2</span>
+        <div class="mt"><b>Probability</b> · 概率 <span class="stt todo">⏳ 待建</span></div></div>
+      <div class="segs">
+        <div class="seg"><h4>会做 Can-do</h4><p>算古典概率与几何概率，用树状图分步。</p></div>
+        <div class="seg"><h4>具体内容 Topics</h4><ul><li>古典概率</li><li>几何概率</li><li>树状图</li></ul></div>
+        <div class="seg"><h4>光剑真题型 Exam types</h4><ul class="ty"><li>正方体两面相对的概率 <span class="src s-other">【自查·进】</span></li><li>抛物线落点 / 二次函数 + 概率 <span class="src s-other">【多校】</span></li></ul></div>
+      </div></div><div class="mod dim">
+      <div class="mh"><span class="code">F3</span>
+        <div class="mt"><b>Number Theory</b> · 数论 <span class="stt todo">⏳ 待建</span></div></div>
+      <div class="segs">
+        <div class="seg"><h4>会做 Can-do</h4><p>处理整除、余数、末位周期、数位、质数与完全平方数（AMC 数字题的主场）。</p></div>
+        <div class="seg"><h4>具体内容 Topics</h4><ul><li>倍数 / 约数 / 质数</li><li>整除性、余数</li><li>末位数字的周期</li><li>数位（多位数）问题、完全平方数</li></ul></div>
+        <div class="seg"><h4>光剑真题型 Exam types</h4><ul class="ty"><li>各数位乘积=1000 的五位数有几个 <span class="src s-amc">【AMC】</span></li><li>除以 8 余几 <span class="src s-amc">【AMC8】</span></li><li>相邻几位构成 7 或 13 的倍数（推末位） <span class="src s-real">【真题·赛】</span></li><li>2020→20×20=400 找完全平方数 <span class="src s-amc">【AMC】</span></li></ul></div>
+      </div></div><div class="mod dim">
+      <div class="mh"><span class="code">F4</span>
+        <div class="mt"><b>Statistics</b> · 统计 <span class="stt todo">⏳ 待建</span></div></div>
+      <div class="segs">
+        <div class="seg"><h4>会做 Can-do</h4><p>读数据、算平均/中位/众数与方差。</p></div>
+        <div class="seg"><h4>具体内容 Topics</h4><ul><li>平均数、中位数、众数</li><li>方差、数据分析</li></ul></div>
+        <div class="seg"><h4>光剑真题型 Exam types</h4><ul class="ty"><li>由中位数/众数反推数据 <span class="src s-other">【领科】</span></li></ul></div>
+      </div></div></section><section class="pil"><h2>应用与建模</h2><div class="mod dim">
+      <div class="mh"><span class="code">APP</span>
+        <div class="mt"><b>Modelling & Applications</b> · 应用与建模 <span class="stt todo">⏳ 待建</span></div></div>
+      <div class="segs">
+        <div class="seg"><h4>会做 Can-do</h4><p>把实际情境列成方程/不等式/二次函数，求最优与行程。</p></div>
+        <div class="seg"><h4>具体内容 Topics</h4><ul><li>列方程 / 不等式建模</li><li>二次函数顶点求最大利润</li><li>行程、速度</li><li>方位角航行（+三角比）</li></ul></div>
+        <div class="seg"><h4>光剑真题型 Exam types</h4><ul class="ty"><li>进货/定价求最大利润 <span class="src s-other">【多校】</span></li><li>按方位角航行求距离 <span class="src s-other">【应用】</span></li></ul></div>
+      </div></div></section>
+<section class="pil"><h2>竞赛 / AMC 枝桠（横挂各枝，光剑爱考数字 & 带根号）</h2>
+<div class="mod"><div class="segs" style="grid-template-columns:1fr">
+<div class="seg"><h4>常见 tricky 题型</h4><ul>
+<li>数论：整除余数、末位周期、数位乘积、完全平方数 <span class="src s-amc">【AMC8/10 例题册】</span></li>
+<li>根号：根式裂项、平方差连乘、无理方程、共轭配对 <span class="src s-real">【真题】</span></li>
+<li>新定义 / 绝对值：魔术盒、|x| 讨论、自定义运算 <span class="src s-amc">【自招库】</span></li>
+<li>逻辑 / 袋鼠：逻辑推理、空间、字母算式、估算 <span class="src s-other">【WLSA】</span></li>
+<li>个别：对数 log、海伦公式（★★★★，点到为止）</li>
+</ul></div></div></div></section>
+
+<section class="pil"><h2>明确不考（全卷扫描 0 次）</h2>
+<p class="bd">立体几何 / 体积 / 表面积　·　复数 / 虚数　·　集合论　—— 这三块光剑不考；仅作以后 A-Level 的可选地基。</p></section>
+
+<section class="pil"><h2>大致节奏（约 1–1.5 章/天，不硬赶）</h2>
+<ol class="plan">
+<li><b>代数收尾</b>：B 函数 → D 换元 → E 根式数列（含裂项、归纳法）</li>
+<li><b>几何主体</b>：G1 三角形 → G2 四边形 → G6 坐标几何 → G5 三角比（+方位角）</li>
+<li><b>几何 + 计数</b>：G3 圆 → G4 翻折旋转 → F1 排列组合 → F2 概率 → F3 数论（+AMC 数字）</li>
+<li><b>应用 + 冲刺</b>：应用建模 → AMC 枝专练 → 真题 tricky 层 → 限时全真模拟 → 查漏</li>
+</ol>
+<p class="note">进度以“知识点掌握”计（自查全勾 + 练习达标），不以看完几份文档计——详见知识图谱顶部两条进度条。</p>
+</section></div>
 <div class="dltools no-print"><a class="b-md" href="master-syllabus.md" download>⬇ MD</a><button class="b-pdf" onclick="window.print()">🖨 PDF</button></div>
 </body></html>
