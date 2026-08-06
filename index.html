@@ -2,7 +2,7 @@
 <html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Maths Study Hub · 数学学习中心</title>
 <style>
-:root{--bg:#F4F6FB;--surface:#fff;--ink:#1B1B2A;--muted:#6A6A82;--line:#E3E6F0;--indigo:#4A43C4;--indigo-deep:#2E2A6B;--indigo-soft:#EEF0FC;--amber:#C77A15;--amber-soft:#FCF2DF;--green:#1F8A5B;--green-soft:#E6F5EE;--grey-soft:#EEF0F4;--shadow:0 1px 2px rgba(30,30,60,.05),0 8px 24px rgba(30,30,60,.06);--font:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Segoe UI",Roboto,sans-serif;}
+:root{--bg:#F4F6FB;--surface:#fff;--ink:#1B1B2A;--muted:#6A6A82;--line:#E3E6F0;--indigo:#4A43C4;--indigo-deep:#2E2A6B;--indigo-soft:#EEF0FC;--amber:#D98A24;--amber-soft:#FEF6E7;--green:#1F8A5B;--green-soft:#E6F5EE;--grey-soft:#EEF0F4;--shadow:0 1px 2px rgba(30,30,60,.05),0 8px 24px rgba(30,30,60,.06);--font:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Segoe UI",Roboto,sans-serif;}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.65}
 .hero{background:linear-gradient(135deg,#2E2A6B,#4A43C4);color:#fff;padding:34px 22px}
 .hero-in{max-width:1080px;margin:0 auto}
@@ -36,8 +36,55 @@
 .chk{font-size:12.5px;color:var(--muted);display:flex;align-items:center;gap:5px;cursor:pointer;user-select:none}
 footer{max-width:1080px;margin:10px auto 40px;padding:0 22px;color:var(--muted);font-size:13px}
 a{color:var(--indigo)}
+
+/* 学习路径条 Learning Path */
+.path-wrap{background:linear-gradient(180deg,rgba(138,131,224,.16),rgba(138,131,224,.05));border-bottom:1px solid var(--line)}
+.path-in{max-width:1080px;margin:0 auto;padding:16px 22px 6px}
+.path-top{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.path-in h2{font-size:16px;color:var(--indigo-deep);margin:0}
+.path-in .ph{font-size:12.5px;color:var(--muted)}
+.path-scroll{overflow-x:auto;overflow-y:hidden;cursor:grab;padding:14px 2px 10px;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+.path-scroll.drag{cursor:grabbing}
+.path-scroll::-webkit-scrollbar{height:8px}.path-scroll::-webkit-scrollbar-thumb{background:#CBD0E6;border-radius:9px}
+.ptrack{display:flex;align-items:center;gap:0;min-width:max-content}
+.phead{display:flex;flex-direction:column;align-items:center;justify-content:center;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:8px 12px;margin:0 8px 0 0;box-shadow:var(--shadow);white-space:nowrap}
+.phead .em{font-size:19px;line-height:1}.phead .nm{font-size:11.5px;font-weight:800;margin-top:3px}.phead .ct{font-size:10px;color:var(--muted);margin-top:1px}
+.g-prep .nm{color:var(--green)}.g-alg .nm{color:var(--indigo)}.g-geo .nm{color:var(--amber)}.g-cnt .nm{color:var(--rose)}.g-app .nm{color:var(--indigo-deep)}
+.conn{width:22px;height:3px;background:#D3D8EA;border-radius:2px;flex:none}
+.conn.done{background:var(--green)}
+.pchip{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:92px;background:#fff;border:1.5px solid #D7DBEA;border-radius:14px;padding:9px 12px;margin:0 4px;cursor:pointer;box-shadow:var(--shadow);white-space:nowrap;transition:transform .12s ease,box-shadow .12s ease}
+.pchip:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,30,60,.12)}
+.pchip .pid{font-size:10.5px;font-weight:800;color:var(--muted)}
+.pchip .pzh{font-size:12.5px;font-weight:800;color:var(--ink);margin-top:1px}
+.pchip .pen{font-size:9px;color:var(--muted)}
+.pchip .st{margin-top:3px;font-size:10px;font-weight:800}
+.pchip.done{background:var(--green-soft);border-color:var(--green)}
+.pchip.locked{cursor:default;border-style:dashed;opacity:.72;background:var(--grey-soft)}
+.pchip .freq{position:absolute;top:-9px;right:-7px;font-size:10px;font-weight:800;color:#fff;background:var(--amber);border-radius:99px;padding:1px 6px;box-shadow:0 2px 5px rgba(0,0,0,.14)}
+.pchip .freq.z{background:#EEF0F4;color:#9AA0C8;border:1px solid #D7DBEA;box-shadow:none}
+.pchip .popen{position:absolute;top:-8px;left:-7px;width:20px;height:20px;border-radius:99px;background:var(--indigo);color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 2px 5px rgba(0,0,0,.14)}
+.pathbar-wrap{background:rgba(255,255,255,.6);border-radius:99px;height:8px;overflow:hidden;max-width:420px;margin:2px 0 0}
+.pathbar{height:100%;width:0;background:linear-gradient(90deg,var(--green),#4Fc48c);border-radius:99px;transition:width .4s}
+
+/* 新手引导 Guided tour */
+#tourOv{position:fixed;inset:0;z-index:200;display:none}
+#tourOv.on{display:block}
+#tourHi{position:absolute;border-radius:14px;box-shadow:0 0 0 9999px rgba(24,24,44,.62);transition:all .35s cubic-bezier(.2,.8,.2,1);pointer-events:none;border:2px solid #FFE9A8}
+#tourTip{position:absolute;max-width:320px;background:#fff;border-radius:14px;box-shadow:0 12px 40px rgba(0,0,0,.28);padding:16px 18px;transition:all .35s cubic-bezier(.2,.8,.2,1)}
+#tourTip .tnum{font-size:11px;font-weight:800;color:var(--indigo);letter-spacing:.08em}
+#tourTip h3{margin:3px 0 6px;font-size:16px;color:var(--indigo-deep)}
+#tourTip p{margin:0;font-size:13.5px;color:var(--ink);line-height:1.6}
+#tourTip .trow{display:flex;align-items:center;gap:8px;margin-top:14px}
+#tourTip .tskip{font-size:12.5px;color:var(--muted);text-decoration:none;margin-right:auto;cursor:pointer;background:none;border:none;font-family:inherit}
+#tourTip button.nav{border:none;border-radius:9px;padding:8px 14px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit}
+#tourTip .prev{background:var(--grey-soft);color:var(--indigo-deep)}
+#tourTip .next{background:var(--indigo);color:#fff}
 </style></head>
 <body>
+<div id="tourOv"><div id="tourHi"></div><div id="tourTip">
+  <div class="tnum" id="tNum"></div><h3 id="tTitle"></h3><p id="tBody"></p>
+  <div class="trow"><button class="tskip" id="tSkip">跳过引导</button><button class="nav prev" id="tPrev">← 上一步</button><button class="nav next" id="tNext">下一步 →</button></div>
+</div></div>
 <div class="hero"><div class="hero-in">
   <div class="eyebrow">Maths Base · Guangjian & beyond</div>
   <h1>数学学习中心 Study Hub</h1>
@@ -47,11 +94,19 @@ a{color:var(--indigo)}
     <a class="hb ghost" href="syllabus/syllabus.html">📋 主考纲 Syllabus</a>
     <a class="hb ghost" href="syllabus/checkpoints.html">✅ 考点自查</a>
     <a class="hb ghost" href="syllabus/guangjian-exam-analysis.html">📊 光剑考点全表</a>
+    <a class="hb ghost" href="syllabus/cross-topic.html">🎯 综合题</a>
+    <a class="hb ghost" href="practice/stage-drills.html">🏃 阶段演练</a>
+    <a class="hb" id="tourBtn" href="#" onclick="startTour();return false;" style="background:#FFE9A8;color:#7a5210">🧭 新手引导</a>
   </div>
   <div class="prbar-wrap"><div class="prbar" id="prbar"></div></div>
   <div class="prtxt" id="prtxt">已学 0 项</div>
 </div></div>
-<div class="wrap"><section class="grp"><h2>预备篇 · Foundations</h2><p class="sub">从零打底，先学这三份（已双语）</p><div class="grid"><div class="card bi"><div class="cid">01</div>
+<div class="path-wrap"><div class="path-in">
+  <div class="path-top"><h2>🧭 学习路径 Learning Path</h2><span class="ph">左右滑动 · 点方块标「已学」· 右上角 <b style="color:var(--amber)">×N</b> = 光剑实测考频（56题中）· 点 ↗ 打开讲义</span></div>
+  <div class="path-scroll" id="pscroll"><div class="ptrack" id="ptrack"></div></div>
+  <div class="pathbar-wrap"><div class="pathbar" id="pathbar"></div></div>
+</div></div>
+<div class="wrap"><section class="grp" id="grp-prep"><h2>预备篇 · Foundations</h2><p class="sub">从零打底，先学这三份（已双语）</p><div class="grid"><div class="card bi"><div class="cid">01</div>
       <div class="cbody"><div class="cen">Algebra Basics</div><div class="czh">代数基本功</div>
       <span class="badge bi">双语 Bilingual</span><div class="prs"><a class="pl" href="practice/p01_algebra-basics_60min.html">60-min practice 针对性练习</a><a class="pl" href="practice/p01_algebra-basics_60min.md">· MD</a></div></div>
       <div class="cfoot"><a class="open" href="lectures/01_algebra-basics.html">Open 打开 →</a><label class="chk"><input type="checkbox" data-id="01"> 已学 Learned</label></div></div><div class="card bi"><div class="cid">02</div>
@@ -105,10 +160,10 @@ a{color:var(--indigo)}
       <div class="cfoot"><span class="open dis">施工中</span></div></div><div class="card todo"><div class="cid">AMC</div>
       <div class="cbody"><div class="cen">AMC branches (number & surd)</div><div class="czh">AMC 枝桠（数论·根号）</div>
       <span class="badge todo">待建 Coming</span></div>
-      <div class="cfoot"><span class="open dis">施工中</span></div></div></div></section><section class="grp"><h2>参考 · Reference</h2><p class="sub">地图、大纲、自查——可打开、可下载</p><div class="grid">
+      <div class="cfoot"><span class="open dis">施工中</span></div></div></div></section><section class="grp" id="grp-ref"><h2>参考 · Reference</h2><p class="sub">地图、大纲、自查——可打开、可下载</p><div class="grid">
   <div class="card bi"><div class="cid">ROOT</div><div class="cbody"><div class="cen">Root Knowledge Base</div><div class="czh">根知识表 · 初中29章→光剑</div><span class="badge bi">HTML + MD</span><div class="prs"><a class="pl" href="syllabus/junior-high-knowledge.md" download>⬇ 初中MD</a></div></div><div class="cfoot"><a class="open" href="syllabus/root-base.html">Open 打开 →</a></div></div><div class="card bi"><div class="cid">MAP</div><div class="cbody"><div class="cen">Knowledge Map</div><div class="czh">知识图谱（点节点看前置/联立）</div><span class="badge bi">互动 Interactive</span></div><div class="cfoot"><a class="open" href="map.html">Open 打开 →</a></div></div>
   <div class="card bi"><div class="cid">SYL</div><div class="cbody"><div class="cen">Master Syllabus</div><div class="czh">主考纲 · 数学大树</div><span class="badge bi">HTML + MD</span><div class="prs"><a class="pl" href="syllabus/master-syllabus.md" download>⬇ MD</a></div></div><div class="cfoot"><a class="open" href="syllabus/syllabus.html">Open 打开 →</a></div></div>
-  <div class="card bi"><div class="cid">CHK</div><div class="cbody"><div class="cen">Self-check</div><div class="czh">考点自查（可评级）</div><span class="badge bi">HTML + MD</span><div class="prs"><a class="pl" href="syllabus/checkpoints.md" download>⬇ MD</a></div></div><div class="cfoot"><a class="open" href="syllabus/checkpoints.html">Open 打开 →</a></div></div><div class="card bi"><div class="cid">EXAM</div><div class="cbody"><div class="cen">Guangjian Topic Map</div><div class="czh">光剑考点全表 · 5套56题频次+侧重点</div><span class="badge bi">数据 Data · 仪表盘</span><div class="prs"><a class="pl" href="syllabus/guangjian-exam-analysis.md" download>⬇ MD</a></div></div><div class="cfoot"><a class="open" href="syllabus/guangjian-exam-analysis.html">Open 打开 →</a></div></div>
+  <div class="card bi"><div class="cid">CHK</div><div class="cbody"><div class="cen">Self-check</div><div class="czh">考点自查（可评级）</div><span class="badge bi">HTML + MD</span><div class="prs"><a class="pl" href="syllabus/checkpoints.md" download>⬇ MD</a></div></div><div class="cfoot"><a class="open" href="syllabus/checkpoints.html">Open 打开 →</a></div></div><div class="card bi"><div class="cid">EXAM</div><div class="cbody"><div class="cen">Guangjian Topic Map</div><div class="czh">光剑考点全表 · 5套56题频次+侧重点</div><span class="badge bi">数据 Data · 仪表盘</span><div class="prs"><a class="pl" href="syllabus/guangjian-exam-analysis.md" download>⬇ MD</a></div></div><div class="cfoot"><a class="open" href="syllabus/guangjian-exam-analysis.html">Open 打开 →</a></div></div><div class="card bi" id="card-cross"><div class="cid">CROSS</div><div class="cbody"><div class="cen">Cross-Topic Problems</div><div class="czh">综合题 · 多考点交汇（tab+可折叠例题）</div><span class="badge bi">互动 Interactive</span></div><div class="cfoot"><a class="open" href="syllabus/cross-topic.html">Open 打开 →</a></div></div><div class="card bi" id="card-drills"><div class="cid">DRILL</div><div class="cbody"><div class="cen">Stage Drills</div><div class="czh">阶段模拟演练 · 限时计时器</div><span class="badge bi">计时 Timed</span></div><div class="cfoot"><a class="open" href="practice/stage-drills.html">Open 打开 →</a></div></div>
 </div></section>
 </div>
 <footer>
@@ -120,16 +175,117 @@ const KEY='gj_learned';
 function load(){try{return new Set(JSON.parse(localStorage.getItem(KEY)||'[]'));}catch(e){return new Set();}}
 function save(s){try{localStorage.setItem(KEY,JSON.stringify([...s]));}catch(e){}}
 let learned=load();
-const boxes=[...document.querySelectorAll('input[type=checkbox][data-id]')];
-const total=boxes.length;
-function upd(){
-  const n=[...learned].filter(id=>boxes.some(b=>b.dataset.id===id)).length;
-  document.getElementById('prbar').style.width=(total?n/total*100:0)+'%';
-  document.getElementById('prtxt').textContent='已学 '+n+' / '+total+' 项（可学）';
+
+const GROUPS=[
+ {cls:'g-prep',emoji:'🌱',name:'预备篇',mods:[
+   {id:'00',zh:'数感 Base',en:'Number Base',built:false,freq:5},
+   {id:'01',zh:'代数基本功',en:'Algebra Basics',href:'lectures/01_algebra-basics.html',built:true},
+   {id:'02',zh:'图像基础',en:'Graphs',href:'lectures/02_graphs.html',built:true},
+   {id:'03',zh:'不等式',en:'Inequalities',href:'lectures/03_inequalities.html',built:true,freq:1}]},
+ {cls:'g-alg',emoji:'🔢',name:'代数',mods:[
+   {id:'A',zh:'韦达·一元二次',en:'Quadratics & Vieta',href:'lectures/A_quadratics-vieta.html',built:true,freq:9},
+   {id:'B',zh:'函数复合',en:'Functions',href:'lectures/B_functions.html',built:true,freq:9},
+   {id:'D',zh:'换元变形',en:'Substitution',href:'lectures/D_substitution.html',built:true,freq:5},
+   {id:'E',zh:'根式·数列',en:'Surds & Seq',href:'lectures/E_sequences.html',built:true,freq:6}]},
+ {cls:'g-geo',emoji:'📐',name:'几何',mods:[
+   {id:'G1',zh:'三角形·相似',en:'Triangles',href:'lectures/G1_triangles.html',built:true,freq:10},
+   {id:'G2',zh:'四边形',en:'Quadrilaterals',built:false,freq:8},
+   {id:'G3',zh:'圆',en:'Circles',built:false,freq:4},
+   {id:'G4',zh:'翻折·旋转',en:'Fold/Rotate',built:false,freq:3},
+   {id:'G5',zh:'锐角三角比',en:'Trigonometry',built:false,freq:0},
+   {id:'G6',zh:'坐标几何',en:'Coordinate',built:false,freq:9}]},
+ {cls:'g-cnt',emoji:'🎲',name:'计数·概率·数论',mods:[
+   {id:'F1',zh:'排列组合',en:'Perm & Comb',built:false,freq:3},
+   {id:'F2',zh:'概率',en:'Probability',built:false,freq:3},
+   {id:'F3',zh:'数论',en:'Number Theory',built:false,freq:1}]},
+ {cls:'g-app',emoji:'🧩',name:'应用·AMC',mods:[
+   {id:'APP',zh:'应用建模',en:'Modelling',built:false,freq:1},
+   {id:'AMC',zh:'AMC枝桠',en:'AMC branches',built:false}]}
+];
+const BUILT=[]; GROUPS.forEach(g=>g.mods.forEach(m=>{if(m.built)BUILT.push(m.id);}));
+
+function renderPath(){
+  const track=document.getElementById('ptrack'); let h='';
+  GROUPS.forEach((g,gi)=>{
+    const done=g.mods.filter(m=>learned.has(m.id)).length;
+    h+=`<div class="phead ${g.cls}"><span class="em">${g.emoji}</span><span class="nm">${g.name}</span><span class="ct">${done}/${g.mods.length}</span></div>`;
+    g.mods.forEach((m,mi)=>{
+      if(mi>0){const pd=learned.has(g.mods[mi-1].id)&&learned.has(m.id);h+=`<span class="conn ${pd?'done':''}"></span>`;}
+      const isDone=learned.has(m.id);
+      const cls=m.built?(isDone?'done':''):'locked';
+      const fq=(typeof m.freq==='number')?`<span class="freq ${m.freq===0?'z':''}">×${m.freq}</span>`:'';
+      const op=m.built?`<a class="popen" href="${m.href}" title="打开讲义" onclick="event.stopPropagation()">↗</a>`:'';
+      const st=m.built?(isDone?'<span class="st" style="color:#1F8A5B">🟢 已学</span>':'<span class="st" style="color:#6A6A82">○ 未学</span>'):'<span class="st" style="color:#9AA0C8">🔒 待建</span>';
+      h+=`<div class="pchip ${cls}" data-mid="${m.id}" data-built="${m.built}">${fq}${op}<span class="pid">${m.id}</span><span class="pzh">${m.zh}</span><span class="pen">${m.en}</span>${st}</div>`;
+    });
+    if(gi<GROUPS.length-1) h+=`<span class="conn"></span>`;
+  });
+  track.innerHTML=h;
+  track.querySelectorAll('.pchip[data-built="true"]').forEach(c=>{
+    c.onclick=()=>{const id=c.dataset.mid; if(learned.has(id))learned.delete(id); else learned.add(id); save(learned); updateAll();};
+  });
 }
-boxes.forEach(b=>{ b.checked=learned.has(b.dataset.id);
-  b.onchange=()=>{ if(b.checked)learned.add(b.dataset.id); else learned.delete(b.dataset.id); save(learned); upd(); };
+function syncBoxes(){ document.querySelectorAll('input[type=checkbox][data-id]').forEach(b=>{ b.checked=learned.has(b.dataset.id); }); }
+function updateAll(){
+  const n=BUILT.filter(id=>learned.has(id)).length, total=BUILT.length;
+  const pct=total? n/total*100:0;
+  const pb=document.getElementById('prbar'); if(pb)pb.style.width=pct+'%';
+  const pt=document.getElementById('prtxt'); if(pt)pt.textContent='已学 '+n+' / '+total+' 项（可学）';
+  const hb=document.getElementById('pathbar'); if(hb)hb.style.width=pct+'%';
+  renderPath(); syncBoxes();
+}
+// 卡片勾选联动
+document.querySelectorAll('input[type=checkbox][data-id]').forEach(b=>{
+  b.onchange=()=>{ if(b.checked)learned.add(b.dataset.id); else learned.delete(b.dataset.id); save(learned); updateAll(); };
 });
-upd();
+// 拖动滚动 (play 手感)
+(function(){
+  const sc=document.getElementById('pscroll'); if(!sc)return;
+  let down=false,sx=0,sl=0;
+  sc.addEventListener('pointerdown',e=>{down=true;sc.classList.add('drag');sx=e.clientX;sl=sc.scrollLeft;});
+  window.addEventListener('pointerup',()=>{down=false;sc.classList.remove('drag');});
+  window.addEventListener('pointermove',e=>{if(!down)return;sc.scrollLeft=sl-(e.clientX-sx);});
+})();
+
+/* ===== 新手引导 Guided Tour ===== */
+const STEPS=[
+ {sel:'.path-wrap',t:'学习路径 Learning Path',b:'从左到右按顺序学：🌱预备篇→🔢代数→📐几何…。<b>点方块</b>标「已学」，进度会记录；右上角橙色 <b>×N</b> 是这块在光剑真题里考过几次；点小 <b>↗</b> 直接打开讲义。可左右拖动。'},
+ {sel:'#grp-prep',t:'从这里开始学',b:'零基础就从<b>预备篇</b>三份入手，点卡片上的「Open 打开」进入双语讲义（先英文后中文，带术语表）。学完把卡片右下角「已学」勾上。'},
+ {sel:'#grp-prep .prs',t:'针对性练习',b:'讲义配套的练习在卡片里。<b>练习只有题目、没有提示</b>，用来自测；书写版 MD 可下载打印。做完对照讲义自查。'},
+ {sel:'#card-cross',t:'综合题 · 多考点',b:'光剑压轴几乎都是"一道题跨好几个考点"。这里按<b>代数×几何、圆综合、代数×概率…</b>分 tab，每类有可折叠的精讲例题——先会单点，再来这里练串联。'},
+ {sel:'#card-drills',t:'阶段模拟演练',b:'学完一个阶段来这里<b>限时刷一套</b>，页面右下角有计时器，模拟考场节奏。'},
+ {sel:'#grp-ref',t:'参考区 · 随时查',b:'<b>根知识表</b>(初中29章地基)、<b>知识图谱</b>(点节点看前置/考频)、<b>光剑考点全表</b>(频次+侧重)、<b>主考纲</b>、<b>考点自查</b>都在这。不知道学什么时先看这里。'},
+ {sel:'#prbar',t:'进度会自动记录',b:'勾过的「已学」存在你自己的浏览器里，下次打开还在。顶部这条和路径条都会同步显示进度。开始学吧！🎉'}
+];
+let tstep=0;
+const ov=document.getElementById('tourOv'),hi=document.getElementById('tourHi'),tip=document.getElementById('tourTip');
+function place(){
+  const st=STEPS[tstep]; let el=document.querySelector(st.sel)||document.body;
+  document.getElementById('tNum').textContent='引导 '+(tstep+1)+' / '+STEPS.length;
+  document.getElementById('tTitle').textContent=st.t;
+  document.getElementById('tBody').innerHTML=st.b;
+  document.getElementById('tPrev').style.visibility=tstep===0?'hidden':'visible';
+  document.getElementById('tNext').textContent=tstep===STEPS.length-1?'完成 ✓':'下一步 →';
+  el.scrollIntoView({behavior:'smooth',block:'center'});
+  setTimeout(()=>{
+    const r=el.getBoundingClientRect(), pad=8;
+    hi.style.top=(r.top-pad)+'px';hi.style.left=(r.left-pad)+'px';hi.style.width=(r.width+pad*2)+'px';hi.style.height=(r.height+pad*2)+'px';
+    // tip 位置: 优先放下方, 空间不够放上方
+    const tw=Math.min(320,window.innerWidth-24), th=tip.offsetHeight||180;
+    let top=r.bottom+14, left=Math.min(Math.max(12,r.left), window.innerWidth-tw-12);
+    if(top+th>window.innerHeight-12) top=Math.max(12,r.top-th-14);
+    tip.style.top=top+'px';tip.style.left=left+'px';
+  },380);
+}
+function startTour(){tstep=0;ov.classList.add('on');place();}
+function endTour(){ov.classList.remove('on');try{localStorage.setItem('gj_tour_done','1');}catch(e){}}
+document.getElementById('tNext').onclick=()=>{if(tstep<STEPS.length-1){tstep++;place();}else{endTour();}};
+document.getElementById('tPrev').onclick=()=>{if(tstep>0){tstep--;place();}};
+document.getElementById('tSkip').onclick=endTour;
+window.addEventListener('resize',()=>{if(ov.classList.contains('on'))place();});
+// 首次访问自动开启
+try{ if(!localStorage.getItem('gj_tour_done')){ setTimeout(startTour,600); } }catch(e){}
+
+updateAll();
 </script>
 </body></html>

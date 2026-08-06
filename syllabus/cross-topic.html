@@ -1,0 +1,170 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Cross-Topic Problems · 综合题·多考点交汇</title><style>
+:root{--bg:#F4F6FB;--surface:#fff;--ink:#1B1B2A;--muted:#6A6A82;--line:#E3E6F0;--indigo:#4A43C4;--indigo-deep:#2E2A6B;--indigo-soft:#EEF0FC;--amber:#D98A24;--amber-soft:#FEF6E7;--green:#1F8A5B;--green-soft:#E6F5EE;--rose:#C0453B;--rose-soft:#FBEDEC;--grey-soft:#EEF0F4;--shadow:0 1px 2px rgba(30,30,60,.05),0 8px 24px rgba(30,30,60,.06);--font:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Segoe UI",Roboto,sans-serif;}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.7}
+.hero{background:linear-gradient(135deg,#2E2A6B,#4A43C4);color:#fff;padding:24px 22px}.hero-in{max-width:1000px;margin:0 auto}
+.back{color:#fff;opacity:.85;text-decoration:none;font-size:13px;font-weight:700}.hero h1{margin:8px 0 4px;font-size:23px}.hero .en{font-size:13px;opacity:.85;font-weight:700;letter-spacing:.03em}.hero p{margin:6px 0 0;opacity:.92;font-size:14px}
+.wrap{max-width:1000px;margin:18px auto;padding:0 22px}
+.intro{background:var(--indigo-soft);border:1px solid #D9DCF6;border-left:4px solid var(--indigo);border-radius:12px;padding:13px 17px;font-size:13.8px;margin-bottom:14px}
+.intro b{color:var(--indigo-deep)}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.tab{border:1.5px solid var(--line);background:var(--surface);border-radius:12px;padding:9px 14px;font-size:13.5px;font-weight:800;cursor:pointer;font-family:inherit;color:var(--indigo-deep);box-shadow:var(--shadow);display:flex;flex-direction:column;gap:1px;align-items:flex-start}
+.tab .t-en{font-size:10.5px;color:var(--muted);font-weight:700}
+.tab.on{background:var(--indigo);color:#fff;border-color:var(--indigo)}.tab.on .t-en{color:rgba(255,255,255,.85)}
+.sec{display:none}.sec.on{display:block}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:18px 20px;margin-bottom:14px}
+.card h2{margin:0 0 2px;font-size:18px;color:var(--indigo-deep)}.card .zh{color:var(--muted);font-weight:700;font-size:14px;margin-bottom:8px}
+.why{background:var(--amber-soft);border-radius:10px;padding:9px 13px;font-size:13px;color:#7a5210;margin:8px 0 12px}
+.terms{width:100%;border-collapse:collapse;margin:8px 0 12px;font-size:13px}
+.terms td{border:1px solid var(--line);padding:5px 10px}.terms td:first-child{font-weight:800;color:var(--indigo-deep);width:42%;white-space:nowrap}
+.types{margin:6px 0 12px;font-size:13.5px}.types li{margin:3px 0}
+.types .src{font-size:11px;font-weight:800;color:var(--rose);background:var(--rose-soft);border-radius:99px;padding:1px 8px;margin-left:4px}
+.toolbar{display:flex;gap:8px;margin:6px 0 10px}
+.tbtn{border:1.5px solid var(--indigo);background:var(--surface);color:var(--indigo);border-radius:9px;padding:6px 12px;font-size:12.5px;font-weight:800;cursor:pointer;font-family:inherit}
+details.ex{border:1px solid var(--line);border-radius:12px;margin:10px 0;overflow:hidden;background:#fff}
+details.ex>summary{cursor:pointer;list-style:none;padding:11px 15px;font-weight:800;font-size:14px;color:var(--indigo-deep);background:var(--indigo-soft);display:flex;align-items:center;gap:8px}
+details.ex>summary::-webkit-details-marker{display:none}
+details.ex>summary::before{content:"▶";font-size:10px;color:var(--indigo);transition:transform .2s}
+details.ex[open]>summary::before{transform:rotate(90deg)}
+.exbody{padding:14px 16px}
+.qtag{font-size:11px;font-weight:800;color:var(--rose);background:var(--rose-soft);border-radius:99px;padding:1px 9px;margin-left:auto}
+.prob{background:var(--grey-soft);border-radius:10px;padding:11px 14px;font-size:14px;margin-bottom:6px}
+.prob .en{font-weight:600}.prob .cn{color:var(--muted);font-size:12.8px;margin-top:3px}
+.sol{font-size:13.8px}.sol .step{margin:7px 0}.sol .lb{font-weight:800;color:var(--indigo)}
+.ans{background:var(--green-soft);border:1px solid #BFE6D2;border-radius:10px;padding:9px 13px;font-weight:800;color:#12613f;margin-top:8px}
+.chk{font-size:11.5px;color:var(--green);font-weight:800;margin-left:8px}
+.note{background:var(--amber-soft);color:#7a5210;border-radius:10px;padding:10px 14px;font-size:13px;margin-top:8px}
+.dltools{position:fixed;top:12px;right:14px;z-index:70}.dltools a{background:var(--indigo);color:#fff;border-radius:9px;padding:8px 12px;font-size:13px;font-weight:800;text-decoration:none;box-shadow:0 4px 12px rgba(30,30,60,.18)}
+@media(max-width:760px){.terms td:first-child{width:auto}}
+@media print{.dltools,.back,.tabs,.toolbar{display:none}.sec{display:block!important}details.ex{page-break-inside:avoid}details.ex>summary::before{content:""}}
+</style></head><body>
+<div class="hero"><div class="hero-in"><a class="back" href="../index.html">← 学习中心 Hub</a>
+<div class="en">CROSS-TOPIC PROBLEMS · MULTI-CONCEPT</div>
+<h1>综合题 · 多考点交汇</h1>
+<p>光剑真题大量是"一道题跨好几个考点"。这里按交汇类型分 tab，每类给典型题型 + 可折叠的改编同型例题（点标题展开）。</p></div></div>
+<div class="wrap">
+<div class="intro">🔗 <b>为什么单开这一板块：</b>任务②扫的 56 题里，纯单考点的很少——真正拉分的压轴几乎都是<b>多考点复合</b>（反比例+相似、圆+切线+勾股+相似、韦达+二次最值、随机游走=计数+概率…）。会单点 ≠ 会综合，所以要专门练"把两三个知识点串起来"。所有例题均 <b>✅ sympy 验证</b>，为<b>改编同型题</b>（非真题原题，标【同型·卷】）。</div>
+
+<div class="tabs" id="tabs"></div>
+
+<!-- ===== Tab 1 代数×几何 ===== -->
+<section class="sec" data-k="0"><div class="card">
+<h2>Algebra × Geometry</h2><div class="zh">代数 × 几何</div>
+<div class="why">最常见的交汇：把<b>函数/方程</b>放到<b>坐标系</b>里，用代数解出交点，再用<b>几何</b>（距离、相似、面积）收尾。</div>
+<table class="terms"><tr><td>reciprocal function</td><td>反比例函数 y = k/x</td></tr><tr><td>intersection point</td><td>交点（联立求解）</td></tr><tr><td>distance between points</td><td>两点间距离 √(Δx²+Δy²)</td></tr><tr><td>similar triangles</td><td>相似三角形（对应边成比例）</td></tr></table>
+<b>典型题型 Types</b><ul class="types">
+<li>一次函数 × 反比例函数 → 求交点 / 两交点距离<span class="src">同型·A12·E1⑩</span></li>
+<li>直线 × 反比例 → 相似求 k / 求面积<span class="src">同型·B8</span></li>
+<li>坐标 + 四边形（菱形/矩形）→ 求顶点 / 对角线<span class="src">同型·B4</span></li></ul>
+<div class="toolbar"><button class="tbtn" data-exp>▽ 一键全展开</button><button class="tbtn" data-col>△ 一键全合拢</button></div>
+<details class="ex"><summary>例题 Worked example · 一次×反比例×距离<span class="qtag">同型·A12</span></summary><div class="exbody">
+<div class="prob"><div class="en">The line <b>y = x − 1</b> intersects the reciprocal curve <b>y = 6/x</b> at two points. Find the distance between them.</div><div class="cn">直线 y=x−1 与反比例 y=6/x 交于两点，求这两点间的距离。</div></div>
+<div class="sol">
+<div class="step"><span class="lb">① 联立 Set equal:</span> x − 1 = 6/x ⟹ x² − x − 6 = 0</div>
+<div class="step"><span class="lb">② 解 Solve:</span> (x−3)(x+2)=0 ⟹ x = 3 或 x = −2</div>
+<div class="step"><span class="lb">③ 求点 Points:</span> (3, 2) 和 (−2, −3)</div>
+<div class="step"><span class="lb">④ 距离 Distance:</span> √[(3−(−2))² + (2−(−3))²] = √(25+25) = √50</div>
+<div class="ans">= 5√2 <span class="chk">✅ sympy 验证</span></div>
+<div class="note"><b>交汇点：</b>②是<b>代数</b>（解一元二次），④是<b>几何/勾股</b>（两点距离）。这就是"代数解出坐标，几何收尾"的标准套路。</div>
+</div></div></details>
+</div></section>
+
+<!-- ===== Tab 2 圆综合 ===== -->
+<section class="sec" data-k="1"><div class="card">
+<h2>Geometry × Geometry (Circle)</h2><div class="zh">几何 × 几何（圆综合）</div>
+<div class="why">光剑圆的压轴几乎不单考——总是<b>切线 + 勾股 + 相似</b>三件套一起上。</div>
+<table class="terms"><tr><td>tangent to a circle</td><td>圆的切线（切点处 ⟂ 半径）</td></tr><tr><td>tangent length</td><td>切线长（PA² = OP² − r²）</td></tr><tr><td>perpendicular from centre</td><td>垂径定理（半径 ⟂ 弦则平分弦）</td></tr></table>
+<b>典型题型 Types</b><ul class="types">
+<li>圆外一点求切线长（切线 ⟂ 半径 + 勾股）<span class="src">同型·C8</span></li>
+<li>切线 + 相似 + 垂径 综合求线段<span class="src">同型·E2⑫</span></li>
+<li>正多边形 + 圆 → 面积 / 边长<span class="src">同型·E1八边形</span></li></ul>
+<div class="toolbar"><button class="tbtn" data-exp>▽ 一键全展开</button><button class="tbtn" data-col>△ 一键全合拢</button></div>
+<details class="ex"><summary>例题 Worked example · 切线长（切线⟂半径+勾股）<span class="qtag">同型·C8</span></summary><div class="exbody">
+<div class="prob"><div class="en">Circle O has radius <b>5</b>. P is outside the circle with <b>OP = 13</b>. PA is tangent to the circle at A. Find the tangent length <b>PA</b>.</div><div class="cn">圆 O 半径为 5，圆外一点 P 满足 OP=13，PA 与圆相切于 A，求切线长 PA。</div></div>
+<div class="sol">
+<div class="step"><span class="lb">① 切线性质 Tangent:</span> 切线 ⟂ 半径，故 △OAP 在 A 处为直角三角形（∠OAP = 90°）。</div>
+<div class="step"><span class="lb">② 勾股 Pythagoras:</span> PA² = OP² − OA² = 13² − 5² = 169 − 25 = 144</div>
+<div class="ans">PA = 12 <span class="chk">✅ sympy 验证</span></div>
+<div class="note"><b>交汇点：</b>①用的是<b>圆</b>的性质（切线⟂半径），②用的是<b>三角形</b>的勾股。进阶版会再叠一层<b>相似</b>（割线定理），套路一样：先立直角，再勾股/相似。</div>
+</div></div></details>
+</div></section>
+
+<!-- ===== Tab 3 代数×代数 ===== -->
+<section class="sec" data-k="2"><div class="card">
+<h2>Algebra × Algebra</h2><div class="zh">代数 × 代数（方程·韦达·对称式）</div>
+<div class="why">不给你直接的根，而是用<b>韦达定理</b>拿到"和与积"，再用<b>对称式变形</b>算目标——是英文卷的高频套路。</div>
+<table class="terms"><tr><td>Vieta's formulas</td><td>韦达定理：α+β = −b/a，αβ = c/a</td></tr><tr><td>symmetric expression</td><td>对称式（如 α²+β², α³+β³）</td></tr><tr><td>identity</td><td>恒等式 α²+β² = (α+β)² − 2αβ</td></tr></table>
+<b>典型题型 Types</b><ul class="types">
+<li>韦达 + 对称式求值（不解方程）<span class="src">同型·B3</span></li>
+<li>韦达 + 二次函数最值（带约束）<span class="src">同型·C10</span></li>
+<li>整体换元 + 对称/轮换因式分解<span class="src">同型·B7·A9</span></li></ul>
+<div class="toolbar"><button class="tbtn" data-exp>▽ 一键全展开</button><button class="tbtn" data-col>△ 一键全合拢</button></div>
+<details class="ex"><summary>例题 Worked example · 韦达 + 对称式<span class="qtag">同型·B3</span></summary><div class="exbody">
+<div class="prob"><div class="en">The two roots of <b>x² − 6x + 4 = 0</b> are α and β (do not solve for them). Find <b>α² + β²</b>.</div><div class="cn">已知 x²−6x+4=0 的两根为 α、β（不必解出），求 α²+β²。</div></div>
+<div class="sol">
+<div class="step"><span class="lb">① 韦达 Vieta:</span> α+β = 6，αβ = 4</div>
+<div class="step"><span class="lb">② 恒等变形 Identity:</span> α²+β² = (α+β)² − 2αβ = 6² − 2·4 = 36 − 8</div>
+<div class="ans">= 28 <span class="chk">✅ sympy 验证</span></div>
+<div class="note"><b>交汇点：</b>①是<b>方程</b>（韦达），②是<b>代数变形</b>（对称式恒等式）。关键是<b>不去解根</b>，用"和与积"直接算——省时且避免根式。</div>
+</div></div></details>
+</div></section>
+
+<!-- ===== Tab 4 代数×概率 ===== -->
+<section class="sec" data-k="3"><div class="card">
+<h2>Algebra × Probability / Counting</h2><div class="zh">代数 × 概率 / 计数</div>
+<div class="why">概率题的分母/分子往往要靠<b>排列组合</b>数出来，本质是"先计数、再算概率"。</div>
+<table class="terms"><tr><td>combinations C(n,k)</td><td>组合数 C(n,k)=n!/[k!(n−k)!]</td></tr><tr><td>equally likely outcomes</td><td>等可能结果（古典概型）</td></tr><tr><td>random walk</td><td>随机游走（每步 ±1）</td></tr></table>
+<b>典型题型 Types</b><ul class="types">
+<li>随机游走：走 n 步回到原点的概率<span class="src">同型·A4</span></li>
+<li>立方体/骰子面 → 计数 + 概率<span class="src">同型·A7</span></li>
+<li>取球（放回/不放回）→ 概率<span class="src">同型·C7</span></li></ul>
+<div class="toolbar"><button class="tbtn" data-exp>▽ 一键全展开</button><button class="tbtn" data-col>△ 一键全合拢</button></div>
+<details class="ex"><summary>例题 Worked example · 随机游走回原点<span class="qtag">同型·A4</span></summary><div class="exbody">
+<div class="prob"><div class="en">Starting at the origin on a number line, each step moves <b>+1 or −1</b> with equal probability. After <b>4 steps</b>, what is the probability of being back at the origin?</div><div class="cn">从数轴原点出发，每步等概率地 +1 或 −1，走 4 步后，恰好回到原点的概率是多少？</div></div>
+<div class="sol">
+<div class="step"><span class="lb">① 总数 Total:</span> 每步 2 种，4 步共 2⁴ = 16 条路径。</div>
+<div class="step"><span class="lb">② 计数 Count:</span> 回原点需 2 步 +1、2 步 −1 → 选哪 2 步向右 = C(4,2) = 6 条。</div>
+<div class="step"><span class="lb">③ 概率 Probability:</span> 6 / 16</div>
+<div class="ans">= 3/8 <span class="chk">✅ sympy 验证</span></div>
+<div class="note"><b>交汇点：</b>②是<b>计数</b>（组合数 C(4,2)），③是<b>概率</b>（有利÷总数）。C(n,k) 正好接上 P1 里的杨辉三角。</div>
+</div></div></details>
+</div></section>
+
+<!-- ===== Tab 5 函数×变换 ===== -->
+<section class="sec" data-k="4"><div class="card">
+<h2>Functions × Transformation</h2><div class="zh">函数 × 变换</div>
+<div class="why">复合函数、图象变换、旋转反求参——都是"函数"与"方程/几何变换"的交汇，英文卷 A-Level 味最浓。</div>
+<table class="terms"><tr><td>composite function</td><td>复合函数 f(f(x)) / f(g(x))</td></tr><tr><td>fixed point</td><td>不动点 f(x)=x</td></tr><tr><td>transformation</td><td>图象变换（平移/翻折/伸缩/旋转）</td></tr></table>
+<b>典型题型 Types</b><ul class="types">
+<li>复合函数 + 解方程（含不动点 f(f(x))=x）<span class="src">同型·B5</span></li>
+<li>图象变换 y = a·f(b−x) + c<span class="src">同型·A6</span></li>
+<li>抛物线旋转 180° 反求参数<span class="src">同型·B6</span></li></ul>
+<div class="toolbar"><button class="tbtn" data-exp>▽ 一键全展开</button><button class="tbtn" data-col>△ 一键全合拢</button></div>
+<details class="ex"><summary>例题 Worked example · 复合函数 + 解方程<span class="qtag">同型·B5</span></summary><div class="exbody">
+<div class="prob"><div class="en">Let <b>f(x) = 2x + 1</b>. Find <b>f(f(x))</b>, then solve <b>f(f(x)) = x</b>.</div><div class="cn">设 f(x)=2x+1。先求 f(f(x))，再解方程 f(f(x))=x。</div></div>
+<div class="sol">
+<div class="step"><span class="lb">① 复合 Compose:</span> f(f(x)) = 2·(2x+1) + 1 = 4x + 3</div>
+<div class="step"><span class="lb">② 解方程 Solve:</span> 4x + 3 = x ⟹ 3x = −3</div>
+<div class="ans">x = −1 <span class="chk">✅ sympy 验证</span></div>
+<div class="note"><b>交汇点：</b>①是<b>函数</b>（复合运算），②是<b>代数</b>（解一次方程）。真题里 f 常是二次，复合后变成解一元二次——套路不变，只是方程升级。</div>
+</div></div></details>
+</div></section>
+
+</div>
+<div class="dltools"><a href="#" onclick="window.print();return false">🖨 PDF</a></div>
+<script>
+const TABS=[["代数×几何","Algebra × Geometry"],["圆综合","Geometry × Circle"],["代数×代数","Algebra × Algebra"],["代数×概率","Algebra × Probability"],["函数×变换","Functions × Transform"]];
+const tabbox=document.getElementById('tabs');
+tabbox.innerHTML=TABS.map((t,i)=>`<button class="tab${i===0?' on':''}" data-i="${i}"><span>${t[0]}</span><span class="t-en">${t[1]}</span></button>`).join('');
+const secs=[...document.querySelectorAll('.sec')];
+function show(i){
+  document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('on',+b.dataset.i===i));
+  secs.forEach(s=>s.classList.toggle('on',+s.dataset.k===i));
+}
+tabbox.querySelectorAll('.tab').forEach(b=>b.onclick=()=>show(+b.dataset.i));
+show(0);
+// 一键展开/合拢 (仅当前 tab 内)
+document.querySelectorAll('[data-exp]').forEach(b=>b.onclick=()=>b.closest('.card').querySelectorAll('details.ex').forEach(d=>d.open=true));
+document.querySelectorAll('[data-col]').forEach(b=>b.onclick=()=>b.closest('.card').querySelectorAll('details.ex').forEach(d=>d.open=false));
+</script>
+</body></html>

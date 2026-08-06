@@ -235,5 +235,6 @@ README.md
 - `index.html`（hub，含 参考区：根知识表/知识图谱/主考纲/自查）
 - `map.html`（知识图谱，竖版，节点 id 见上文）
 - `lectures/`：01/02/03（双语预备）、A/B（中文）、D/E/G1（双语）——**每份右上角已有 ⬇MD / 🖨PDF**
-- `practice/`（5 套）、`syllabus/`（root-base.html / syllabus.html / checkpoints.html + md / **guangjian-exam-analysis.html+md ← 任务②成果**）
+- `practice/`（5 套 + **stage-drills.html 阶段演练**）、`syllabus/`（root-base.html / syllabus.html / checkpoints.html + md / **guangjian-exam-analysis.html+md** / **cross-topic.html 综合题**）
+- index 新增：🧭新手引导(首访自动) + 🧭学习路径条(×N考频) + 🎯综合题/🏃阶段演练入口
 - 待建：G2–G6、F1–F4、应用、AMC、A/B 双语化、数感Base；以及上面 ③④⑤（②已完成）。

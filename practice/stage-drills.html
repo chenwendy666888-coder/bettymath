@@ -1,0 +1,91 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Stage Drills · 阶段模拟演练</title><style>
+:root{--bg:#F4F6FB;--surface:#fff;--ink:#1B1B2A;--muted:#6A6A82;--line:#E3E6F0;--indigo:#4A43C4;--indigo-deep:#2E2A6B;--indigo-soft:#EEF0FC;--amber:#D98A24;--amber-soft:#FEF6E7;--green:#1F8A5B;--green-soft:#E6F5EE;--rose:#C0453B;--rose-soft:#FBEDEC;--grey-soft:#EEF0F4;--shadow:0 1px 2px rgba(30,30,60,.05),0 8px 24px rgba(30,30,60,.06);--font:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Segoe UI",Roboto,sans-serif;}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.65}
+.hero{background:linear-gradient(135deg,#2E2A6B,#4A43C4);color:#fff;padding:24px 22px}.hero-in{max-width:1000px;margin:0 auto}
+.back{color:#fff;opacity:.85;text-decoration:none;font-size:13px;font-weight:700}.hero h1{margin:8px 0 4px;font-size:23px}.hero .en{font-size:13px;opacity:.85;font-weight:700}.hero p{margin:6px 0 0;opacity:.92;font-size:14px}
+.wrap{max-width:1000px;margin:18px auto;padding:0 22px}
+.intro{background:var(--amber-soft);border:1px solid #F0E1C0;border-left:4px solid var(--amber);border-radius:12px;padding:12px 16px;font-size:13.5px;color:#7a5210;margin-bottom:16px}
+.stage{background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:16px 18px;margin-bottom:14px}
+.stage h2{margin:0 0 2px;font-size:16px;color:var(--indigo-deep);display:flex;align-items:center;gap:8px}
+.stage .zh{color:var(--muted);font-size:12.5px;margin-bottom:10px}
+.drill{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:9px 0;border-top:1px solid var(--line)}
+.drill:first-of-type{border-top:none}
+.dname{font-weight:800;font-size:13.8px;color:var(--ink)}
+.dmin{font-size:11.5px;font-weight:800;color:var(--amber);background:var(--amber-soft);border-radius:99px;padding:2px 9px}
+.dgo{margin-left:auto;display:flex;gap:6px}
+.dgo a{font-size:12.5px;font-weight:800;text-decoration:none;background:var(--indigo-soft);color:var(--indigo);padding:5px 11px;border-radius:9px}
+.dgo a.md{background:var(--grey-soft);color:var(--muted)}
+.dgo a:hover{background:#e0e3fa}
+.todo{opacity:.62}.todo .dgo a{background:var(--grey-soft);color:var(--muted);pointer-events:none}
+.badge{font-size:11px;font-weight:800;border-radius:99px;padding:1px 8px}
+.badge.rdy{background:var(--green-soft);color:var(--green)}.badge.soon{background:var(--grey-soft);color:var(--muted)}
+.mock{background:var(--indigo-soft);border:1px solid #D9DCF6;border-left:4px solid var(--indigo);border-radius:12px;padding:13px 17px;font-size:13.5px;margin-top:6px}
+.mock b{color:var(--indigo-deep)}
+/* 计时器 */
+.timer{position:fixed;right:16px;bottom:16px;z-index:60;background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:0 8px 28px rgba(30,30,60,.16);padding:14px 16px;width:210px;text-align:center}
+.timer .tt{font-size:11px;font-weight:800;color:var(--muted);letter-spacing:.08em}
+.timer .clock{font-size:34px;font-weight:800;color:var(--indigo-deep);font-variant-numeric:tabular-nums;margin:2px 0 6px}
+.timer .presets{display:flex;gap:5px;justify-content:center;margin-bottom:8px;flex-wrap:wrap}
+.timer .presets button{border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:3px 8px;font-size:11.5px;font-weight:800;cursor:pointer;font-family:inherit;color:var(--indigo-deep)}
+.timer .presets button.on{background:var(--indigo);color:#fff;border-color:var(--indigo)}
+.timer .ctrls{display:flex;gap:6px}
+.timer .ctrls button{flex:1;border:none;border-radius:9px;padding:8px;font-size:12.5px;font-weight:800;cursor:pointer;font-family:inherit;color:#fff}
+.timer .go{background:var(--green)}.timer .rs{background:var(--muted)}
+.timer.done .clock{color:var(--rose)}
+@media(max-width:560px){.timer{right:10px;bottom:10px;width:180px}}
+@media print{.timer{display:none}}
+</style></head><body>
+<div class="hero"><div class="hero-in"><a class="back" href="../index.html">← 学习中心 Hub</a>
+<div class="en">STAGE DRILLS · TIMED PRACTICE</div>
+<h1>阶段模拟演练</h1>
+<p>学完一个阶段 → 来这里限时刷一套。右下角有计时器，模拟真实考场节奏。练习只给题目、不给提示。</p></div></div>
+<div class="wrap">
+<div class="intro">🏃 <b>怎么用：</b>①先学完对应阶段的讲义 → ②右下角计时器选好时长、点「开始」→ ③打开该阶段的练习，限时做完 → ④对照讲义/答案自查，把错的记下来告诉姐姐。<b>做整套真题时请用"全真模考"</b>（见页尾），保证是没见过的题。</div>
+
+<div class="stage"><h2>🌱 预备篇 Foundations <span class="badge rdy">可练</span></h2><div class="zh">代数基本功 · 图像 · 不等式</div>
+<div class="drill"><span class="dname">代数基本功 · 60 分钟针对练</span><span class="dmin">⏱ 60 min</span><div class="dgo"><a href="p01_algebra-basics_60min.html">开始 →</a><a class="md" href="p01_algebra-basics_60min.md" download>MD</a></div></div>
+</div>
+
+<div class="stage"><h2>🔢 代数 Algebra <span class="badge rdy">可练</span></h2><div class="zh">韦达·一元二次 / 函数 / 换元 / 根式数列</div>
+<div class="drill"><span class="dname">模块 A · 进阶练习</span><span class="dmin">⏱ 45 min</span><div class="dgo"><a href="pA_module-a-advanced.html">开始 →</a><a class="md" href="pA_module-a-advanced.md" download>MD</a></div></div>
+<div class="drill"><span class="dname">模块 A · 变通 50 难题</span><span class="dmin">⏱ 90 min</span><div class="dgo"><a href="pA_50-hard.html">开始 →</a><a class="md" href="pA_50-hard_writing.md" download>MD</a></div></div>
+<div class="drill"><span class="dname">模块 A · 代入求参专项</span><span class="dmin">⏱ 30 min</span><div class="dgo"><a href="pA_special-substitution.html">开始 →</a></div></div>
+<div class="drill"><span class="dname">模块 B · 函数练习</span><span class="dmin">⏱ 40 min</span><div class="dgo"><a href="pB_module-b.html">开始 →</a><a class="md" href="pB_module-b_writing.md" download>MD</a></div></div>
+</div>
+
+<div class="stage todo"><h2>📐 几何 Geometry <span class="badge soon">待建</span></h2><div class="zh">按频次排产：四边形(8) → 相似(10) → 坐标几何(9) → 圆(4) → 旋转(3) → 三角比</div>
+<div class="drill"><span class="dname">G1–G6 阶段演练</span><span class="dmin">⏱ 待定</span><div class="dgo"><a href="#">待建</a></div></div>
+</div>
+
+<div class="stage todo"><h2>🎲 计数·概率·数论 & 🧩 应用·AMC <span class="badge soon">待建</span></h2><div class="zh">F1–F3 / 应用建模 / AMC 数字·根号 tricky</div>
+<div class="drill"><span class="dname">计数概率 + AMC 枝 演练</span><span class="dmin">⏱ 待定</span><div class="dgo"><a href="#">待建</a></div></div>
+</div>
+
+<div class="mock">🎯 <b>全真模考 Full Mock（真题原卷·限时）：</b>日常练习都用"改编同型题"（保证你做整卷时没见过）；等 <b>真题解析版</b>建好后（任务④），这里会挂上光剑 4 年制/3 年制真题原卷，配 60–90 分钟计时，用于考前全真演练。届时新增卡片会出现在此。</div>
+</div>
+
+<div class="timer" id="timer">
+  <div class="tt">⏱ 计时器 TIMER</div>
+  <div class="clock" id="clock">60:00</div>
+  <div class="presets" id="presets">
+    <button data-m="30">30</button><button data-m="45">45</button><button data-m="60" class="on">60</button><button data-m="90">90</button>
+  </div>
+  <div class="ctrls"><button class="go" id="go">开始</button><button class="rs" id="rs">重置</button></div>
+</div>
+<script>
+let total=60*60, left=total, tick=null, running=false;
+const clock=document.getElementById('clock'), timer=document.getElementById('timer'), go=document.getElementById('go');
+function fmt(s){const m=Math.floor(s/60),ss=s%60;return String(m).padStart(2,'0')+':'+String(ss).padStart(2,'0');}
+function draw(){clock.textContent=fmt(left);}
+function stop(){clearInterval(tick);tick=null;running=false;go.textContent='继续';}
+function start(){if(running)return;running=true;go.textContent='暂停';tick=setInterval(()=>{left--;draw();if(left<=0){stop();timer.classList.add('done');go.textContent='时间到';}},1000);}
+go.onclick=()=>{if(running){stop();}else{if(left<=0){left=total;timer.classList.remove('done');draw();}start();}};
+document.getElementById('rs').onclick=()=>{stop();left=total;timer.classList.remove('done');go.textContent='开始';draw();};
+document.querySelectorAll('#presets button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('#presets button').forEach(x=>x.classList.remove('on'));b.classList.add('on');
+  total=(+b.dataset.m)*60;left=total;stop();timer.classList.remove('done');go.textContent='开始';draw();
+});
+draw();
+</script>
+</body></html>

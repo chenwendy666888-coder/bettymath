@@ -21,6 +21,9 @@ syllabus/
   master-syllabus.md       主考纲（数学大树 v2.1，含光剑实测侧重）
   checkpoints.md           考点自查清单
   guangjian-exam-analysis.html/.md  光剑考点全表（任务②·5套56题频次+侧重+仪表盘）
+  cross-topic.html         综合题·多考点交汇（tab+可折叠例题）
+practice/
+  stage-drills.html        阶段模拟演练（限时计时器）
 ```
 
 ## 说明
