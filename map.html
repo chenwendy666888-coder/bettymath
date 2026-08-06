@@ -52,6 +52,7 @@ svg{display:block;width:100%;min-width:760px}
       <span><span class="lz"></span> 依赖 prerequisite（先学上面的）</span>
       <span><span class="lc"></span> 联立 linked（同一件事的不同面）</span>
       <span>🟢 已掌握　⚪ 待学　⭐ 光剑　🏆 AMC　🎓 A-Level</span>
+      <span>🟠 <b>×N</b> = 光剑实测考频（任务②·56题中）</span>
     </div>
   </div>
   <div class="panel" id="panel"><div class="placeholder">点一个节点 Tap a node<br>看它的<b>前置</b>、<b>解锁</b>、<b>关联</b>，并可标"已掌握"。</div></div>
@@ -59,6 +60,20 @@ svg{display:block;width:100%;min-width:760px}
 <script>
 const DATA = {"nodes": [{"id": "num", "col": 0, "en": "Number & operations", "zh": "数感与运算", "tags": "⭐🎓", "status": "todo", "x": 648, "y": 90}, {"id": "numline", "col": 1, "en": "Number line", "zh": "数轴", "tags": "⭐🎓", "status": "done", "x": 175, "y": 300}, {"id": "coord", "col": 1, "en": "Coordinate plane", "zh": "坐标系", "tags": "⭐🎓", "status": "done", "x": 490, "y": 300}, {"id": "readg", "col": 1, "en": "Reading graphs", "zh": "看图读信息", "tags": "⭐🎓", "status": "done", "x": 805, "y": 300}, {"id": "shade", "col": 1, "en": "Lines & shading", "zh": "画线与阴影", "tags": "⭐🎓", "status": "done", "x": 1120, "y": 300}, {"id": "alg", "col": 2, "en": "Algebra basics", "zh": "代数基本功", "tags": "⭐🏆🎓", "status": "done", "x": 175, "y": 520}, {"id": "eq", "col": 2, "en": "Equations", "zh": "方程", "tags": "⭐🏆", "status": "done", "x": 332, "y": 520}, {"id": "vieta", "col": 2, "en": "Vieta / roots", "zh": "韦达定理", "tags": "⭐🏆", "status": "done", "x": 490, "y": 520}, {"id": "ineq", "col": 2, "en": "Inequalities", "zh": "不等式", "tags": "⭐🎓", "status": "done", "x": 648, "y": 520}, {"id": "func", "col": 2, "en": "Functions", "zh": "函数", "tags": "⭐🏆🎓", "status": "todo", "x": 805, "y": 520}, {"id": "seq", "col": 2, "en": "Sequences & induction", "zh": "数列·归纳", "tags": "⭐🏆🎓", "status": "todo", "x": 962, "y": 520}, {"id": "subst", "col": 2, "en": "Substitution", "zh": "换元变形", "tags": "⭐🏆", "status": "todo", "x": 1120, "y": 520}, {"id": "tri", "col": 3, "en": "Triangles", "zh": "三角形", "tags": "⭐🏆", "status": "todo", "x": 175, "y": 745}, {"id": "quad", "col": 3, "en": "Quadrilaterals", "zh": "四边形", "tags": "⭐", "status": "todo", "x": 364, "y": 745}, {"id": "circ", "col": 3, "en": "Circles", "zh": "圆", "tags": "⭐", "status": "todo", "x": 553, "y": 745}, {"id": "trans", "col": 3, "en": "Fold / rotate", "zh": "翻折·旋转", "tags": "⭐", "status": "todo", "x": 742, "y": 745}, {"id": "trig", "col": 3, "en": "Trigonometry", "zh": "锐角三角比", "tags": "⭐🎓", "status": "todo", "x": 931, "y": 745}, {"id": "cgeo", "col": 3, "en": "Coordinate geometry", "zh": "坐标几何", "tags": "⭐🎓", "status": "todo", "x": 1120, "y": 745}, {"id": "perm", "col": 4, "en": "Perm. & comb.", "zh": "排列组合", "tags": "⭐🏆", "status": "todo", "x": 175, "y": 965}, {"id": "prob", "col": 4, "en": "Probability", "zh": "概率", "tags": "⭐", "status": "todo", "x": 490, "y": 965}, {"id": "nt", "col": 4, "en": "Number theory", "zh": "数论", "tags": "⭐🏆", "status": "todo", "x": 805, "y": 965}, {"id": "stat", "col": 4, "en": "Statistics", "zh": "统计", "tags": "⭐", "status": "todo", "x": 1120, "y": 965}, {"id": "app", "col": 5, "en": "Modelling / optimise", "zh": "建模·最优化", "tags": "⭐", "status": "todo", "x": 175, "y": 1175}, {"id": "nav", "col": 5, "en": "Bearings / navigation", "zh": "方位角航行", "tags": "⭐", "status": "todo", "x": 1120, "y": 1175}, {"id": "ntx", "col": 6, "en": "Number tricks", "zh": "数论 tricky", "tags": "🏆", "status": "todo", "x": 175, "y": 1380}, {"id": "surdx", "col": 6, "en": "Surd tricks", "zh": "根号 tricky", "tags": "🏆", "status": "todo", "x": 490, "y": 1380}, {"id": "newdef", "col": 6, "en": "New-def / abs", "zh": "新定义·绝对值", "tags": "🏆", "status": "todo", "x": 805, "y": 1380}, {"id": "logic", "col": 6, "en": "Logic / Kangaroo", "zh": "逻辑·袋鼠", "tags": "🏆", "status": "todo", "x": 1120, "y": 1380}], "edges": [{"a": "num", "b": "numline", "t": "pre"}, {"a": "num", "b": "alg", "t": "pre"}, {"a": "numline", "b": "ineq", "t": "pre"}, {"a": "numline", "b": "coord", "t": "pre"}, {"a": "coord", "b": "readg", "t": "pre"}, {"a": "readg", "b": "shade", "t": "pre"}, {"a": "readg", "b": "func", "t": "pre"}, {"a": "shade", "b": "ineq", "t": "cross"}, {"a": "coord", "b": "cgeo", "t": "pre"}, {"a": "coord", "b": "trig", "t": "cross"}, {"a": "alg", "b": "eq", "t": "pre"}, {"a": "alg", "b": "func", "t": "pre"}, {"a": "alg", "b": "ineq", "t": "pre"}, {"a": "alg", "b": "seq", "t": "pre"}, {"a": "alg", "b": "subst", "t": "pre"}, {"a": "eq", "b": "vieta", "t": "pre"}, {"a": "eq", "b": "func", "t": "cross"}, {"a": "ineq", "b": "func", "t": "cross"}, {"a": "vieta", "b": "subst", "t": "cross"}, {"a": "eq", "b": "ineq", "t": "cross"}, {"a": "func", "b": "cgeo", "t": "pre"}, {"a": "func", "b": "app", "t": "pre"}, {"a": "alg", "b": "perm", "t": "pre"}, {"a": "perm", "b": "prob", "t": "pre"}, {"a": "prob", "b": "stat", "t": "pre"}, {"a": "alg", "b": "nt", "t": "pre"}, {"a": "seq", "b": "nt", "t": "cross"}, {"a": "tri", "b": "cgeo", "t": "cross"}, {"a": "tri", "b": "trans", "t": "cross"}, {"a": "tri", "b": "quad", "t": "cross"}, {"a": "tri", "b": "circ", "t": "cross"}, {"a": "trig", "b": "nav", "t": "pre"}, {"a": "trig", "b": "app", "t": "cross"}, {"a": "circ", "b": "cgeo", "t": "cross"}, {"a": "nt", "b": "ntx", "t": "pre"}, {"a": "alg", "b": "surdx", "t": "pre"}, {"a": "seq", "b": "surdx", "t": "cross"}, {"a": "func", "b": "newdef", "t": "cross"}, {"a": "eq", "b": "newdef", "t": "cross"}, {"a": "nt", "b": "ntx", "t": "cross"}, {"a": "ntx", "b": "logic", "t": "cross"}, {"a": "perm", "b": "logic", "t": "cross"}], "cols": {"0": "数感 Base", "1": "图像 Graphs", "2": "代数 Algebra", "3": "几何 Geometry", "4": "数论·概率 Count/NT", "5": "应用 Apps", "6": "AMC 枝桠"}, "bandy": {"0": 90, "1": 300, "2": 520, "3": 745, "4": 965, "5": 1175, "6": 1380}};
 const NODES=DATA.nodes, EDGES=DATA.edges, BANDY=DATA.bandy;
+const FREQ={
+ coord:{n:9,note:"坐标系/坐标几何 · ch6"}, cgeo:{n:9,note:"反比例+直线·距离·反射"},
+ eq:{n:9,note:"一元二次/方程 · ch22"}, vieta:{n:2,note:"韦达+降次"},
+ tri:{n:10,note:"相似10(含面积法)·三角形5"}, quad:{n:8,note:"菱形/矩形/梯形+面积"},
+ circ:{n:4,note:"切线/垂径/内切"}, trans:{n:3,note:"旋转3·轴对称(将军饮马)3"},
+ func:{n:9,note:"复合5·函数方程·图象变换·二次4"}, seq:{n:2,note:"数列/找规律/裂项"},
+ subst:{n:5,note:"换元·对称/轮换因式分解"}, alg:{n:6,note:"根式6·因式分解2"},
+ ineq:{n:1,note:"不等式组整数解"}, trig:{n:0,note:"本批0次 · A-Level仍需(优先级下调)"},
+ perm:{n:3,note:"排列组合/计数"}, prob:{n:3,note:"随机游走·古典概率"},
+ nt:{n:1,note:"数位/整除"}, stat:{n:0,note:"本批0次"},
+ app:{n:1,note:"最值/建模"}, nav:{n:0,note:"本批0次 · A-Level用"},
+ ntx:{n:1,note:"数论tricky(AMC)"}, surdx:{n:2,note:"根式裂项/共轭估值"},
+ newdef:{n:3,note:"绝对值讨论3·新定义"}, logic:{n:1,note:"逻辑/新定义"}
+};
 const byId={}; NODES.forEach(n=>byId[n.id]=n);
 const COLC={0:"#8983E0",1:"#4A43C4",2:"#2E2A6B",3:"#1F8A5B",4:"#C77A15",5:"#C0453B",6:"#8c2f28"};
 const svg=document.getElementById('svg');
@@ -102,6 +117,9 @@ function render(){
     s+=`<text x="${n.x+3}" y="${n.y-5}" text-anchor="middle" font-size="10.5" fill="#6A6A82">${n.en}</text>`;
     s+=`<text x="${n.x+3}" y="${n.y+12}" text-anchor="middle" font-size="12.5" font-weight="800" fill="#1B1B2A">${n.zh}</text>`;
     s+=`<text x="${n.x+3}" y="${n.y+23}" text-anchor="middle" font-size="9.5">${(n.status==='done'?'🟢 ':'')+n.tags}</text>`;
+    const fq=FREQ[n.id];
+    if(fq&&fq.n>0){ const bx=x+w-30, by=y-9; s+=`<rect x="${bx}" y="${by}" width="30" height="18" rx="9" fill="#C77A15"/><text x="${bx+15}" y="${by+13}" text-anchor="middle" font-size="11" font-weight="800" fill="#fff">×${fq.n}</text>`; }
+    else if(fq&&fq.n===0){ const bx=x+w-30, by=y-9; s+=`<rect x="${bx}" y="${by}" width="30" height="18" rx="9" fill="#EEF0F4" stroke="#D7DBEA"/><text x="${bx+15}" y="${by+13}" text-anchor="middle" font-size="10" font-weight="800" fill="#9AA0C8">0</text>`; }
     s+=`</g>`;
   });
   svg.innerHTML=s;
@@ -116,6 +134,7 @@ function showPanel(id){
   const p=document.getElementById('panel');
   p.innerHTML=`<h2>${n.en}</h2><div class="zh">${n.zh}</div>
     <div class="tagrow">${tag(n.tags)} ${n.status==='done'?'<span class="tag" style="background:var(--green-soft);color:var(--green)">🟢 已掌握</span>':''}</div>
+    ${(function(){var fq=FREQ[n.id];if(!fq)return '';var col=fq.n>0?'#C77A15':'#9AA0C8';return '<div style="background:#FCF2DF;border:1px solid #F0E1C0;border-radius:10px;padding:8px 11px;margin:6px 0;font-size:12.8px"><b style="color:'+col+'">光剑实测考频：×'+fq.n+'</b> <span style="color:#6A6A82">（56题中）</span><br><span style="color:#6A6A82">'+fq.note+'</span></div>';})()}
     <div class="grp"><h4>↑ 前置 Prerequisites（先学这些）</h4>${list(a.preIn)}</div>
     <div class="grp"><h4>↓ 解锁 Unlocks（学完能学）</h4>${list(a.unlock)}</div>
     <div class="grp"><h4>↔ 关联/联立 Linked（同一件事的不同面）</h4>${list(a.cross)}</div>
