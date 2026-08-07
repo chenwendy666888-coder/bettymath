@@ -179,8 +179,8 @@ lin:{name:'一次·描点',en:'Linear',range:{xmin:-6,xmax:6,ymin:-6,ymax:6},
  overview:{h:'一次函数 y = m x + b',p:'图象是一条直线。m 和 b 各管一件事，先搞清英文名。<br><span style="opacity:.85">EN: A straight line. m = slope/gradient, b = the y-intercept.</span>',flow:['m = slope/gradient 斜率','b = intercept 截距','描点','连线']},
  steps:[
   {t:'什么是一次函数',e:'What is a linear function',key:true,b:'y = m x + b 的图象是<b>直线</b>。两样东西定一条线：<b>斜率</b>和<b>截距</b>。'},
-  {t:'斜率 slope (gradient)',e:'slope = gradient',key:true,b:'<b>m = 斜率</b>（英式常写 <b>gradient</b>，美式 <b>slope</b>，一个意思）：每向右 1 格，直线上升 m 格。<b>m&gt;0</b> 从左下到右上(递增)；<b>m&lt;0</b> 从左上到右下(递减)；|m| 越大越陡。'},
-  {t:'截距 intercept',e:'y-intercept',key:true,b:'<b>b = 截距</b>（准确说 <b>y-intercept</b>）：直线与 y 轴的交点 (0, b)。注意别把 slope 和 intercept 弄混：一个是"斜不斜"，一个是"在哪穿过 y 轴"。'},
+  {t:'斜率 m 的正负 Sign of m',e:'m = slope/gradient',key:true,b:'<b>m = 斜率</b>（英式 <b>gradient</b>／美式 <b>slope</b>）：每向右 1 格升 m 格。<br><b>m&gt;0</b>：左下→右上，递增 ↗ going up；<br><b>m&lt;0</b>：左上→右下，递减 ↘ going down；<br><b>m=0</b>：水平线 y=b horizontal。|m| 越大越陡 steeper。<br><span style="color:#6A6A82">EN: m&gt;0 slopes up, m&lt;0 slopes down, m=0 is flat; bigger |m| = steeper.</span>'},
+  {t:'截距 b 的正负 Sign of b',e:'b = y-intercept',key:true,b:'<b>b = 截距</b>（<b>y-intercept</b>）：直线穿过 y 轴的点 (0, b)。<br><b>b&gt;0</b>：在原点<b>上方</b>穿过 y 轴 above O；<br><b>b&lt;0</b>：在原点<b>下方</b>穿过 below O；<br><b>b=0</b>：正好<b>过原点</b> (0,0) through the origin。<br>别把 slope 和 intercept 弄混：m 管斜不斜，b 管在哪穿过 y 轴。<br><span style="color:#6A6A82">EN: b&gt;0 crosses the y-axis above O, b&lt;0 below O, b=0 through the origin.</span>'},
   {t:'选 x 代入算 y（描点）',e:'Choose x, compute y',b:'取 x=−2,−1,0,1,2 代入 y=m·x+b，把 y 填进表格。'},
   {t:'描点到坐标系',e:'Plot the points',anim:'points',b:'把 (x, y) 一个个点上去（点"播放"看它们逐个出现），会发现排成一条直线。'},
   {t:'连成直线',e:'Join into a line',anim:'curve',b:'连起来并向两端延长。b 在 y 轴上，m 决定斜的方向与陡度。'}
@@ -190,7 +190,8 @@ lin:{name:'一次·描点',en:'Linear',range:{xmin:-6,xmax:6,ymin:-6,ymax:6},
   if(s>=2)pt(0,b,C.rose,'截距 (0, '+round(b)+')');
   if(s>=4){const n=(s===4)?Math.max(1,Math.ceil(t*P.length)):P.length;P.slice(0,n).forEach(([x,y])=>pt(x,y,C.amb,''));}
   if(s>=5)plot(f,C.ind,s===5?t:1);
-  if(s>=1&&s<4){ctx.fillStyle=C.mut;ctx.font='bold 12px sans-serif';ctx.textAlign='left';ctx.fillText(m>0?'m>0 递增 ↗':(m<0?'m<0 递减 ↘':'m=0 水平'),12,20);}
+  if(s>=1&&s<4){ctx.fillStyle=C.mut;ctx.font='bold 12px sans-serif';ctx.textAlign='left';ctx.fillText(m>0?'m>0 递增 ↗':(m<0?'m<0 递减 ↘':'m=0 水平'),12,20);
+    ctx.fillText(b>0?('b>0  (0,'+b+') 原点上方'):(b<0?('b<0  (0,'+b+') 原点下方'):'b=0  过原点'),12,38);}
  },
  controls(){const{m,b}=state.lin;const rows=this.pts().map(([x,y])=>`<td>${round(y)}</td>`).join('');
   return `<div class="formula">${fmtLin(m,b)}</div>

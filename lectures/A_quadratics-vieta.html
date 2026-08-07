@@ -174,6 +174,16 @@
  section.card{box-shadow:none!important;border:none!important;padding:0!important;animation:none!important}
  .answer{max-height:none!important;overflow:visible!important}
  .psec{page-break-after:always}}
+  .terms{background:#F1F3FC;border:1px solid #D9DCF6;border-radius:10px;padding:6px 8px;margin:14px 0;}
+  .terms table{width:100%;border-collapse:collapse;font-size:14px;}
+  .terms td{padding:5px 10px;border-bottom:1px solid #E3E6F0;vertical-align:top;color:var(--ink);}
+  .terms td:first-child{font-weight:800;color:var(--indigo-deep);white-space:nowrap;width:48%;}
+  .terms tr:last-child td{border-bottom:none;}
+  .terms caption{caption-side:top;text-align:left;font-size:12px;font-weight:800;letter-spacing:.06em;color:var(--indigo);padding:4px 10px 2px;}
+  .enh{background:#F7F8FE;border-left:3px solid var(--indigo);border-radius:8px;padding:11px 15px;margin:12px 0;}
+  .enh .lead{font-size:11px;font-weight:800;letter-spacing:.08em;color:var(--indigo);display:block;margin-bottom:4px;}
+  .enh p{margin:6px 0;}
+  .zh-lead{font-size:11px;font-weight:800;letter-spacing:.05em;color:var(--muted);display:block;margin:16px 0 2px;text-transform:uppercase;}
 </style>
 </head>
 <body>
@@ -214,6 +224,10 @@ const S = [
     key:"intro", nav:"导读", num:"", track:false,
     title:"导读：怎么用这份讲义",
     body:`
+
+      <div class="terms"><table><caption>Key terms 关键词</caption><tr><td>quadratic equation 一元二次方程</td><td>ax²+bx+c=0 (a≠0)</td></tr><tr><td>root 根</td><td>a value of x that makes it true</td></tr><tr><td>Vieta's formulas 韦达定理</td><td>root–coefficient relations</td></tr><tr><td>discriminant Δ 判别式</td><td>b²−4ac</td></tr></table></div>
+      <div class="enh"><span class="lead">IN ENGLISH</span><p>This is the self-study version of <b>Module A</b> (quadratic equations & Vieta). Each section goes <b>Explanation → worked Examples</b> (do them on paper) <b>→ Practice</b> (try first, then reveal the answer).</p><p>Module A is the <b>"must-score" zone</b> of the Guangjian paper. We build from "what is a quadratic" up to the four techniques the exam loves; sections marked <span class="badge gk">★ 光剑常考</span> deserve extra care.</p></div>
+      <span class="zh-lead">中文详解 · In Chinese</span>
       <p>这是<b>模块 A 的自学版</b>。设计成你一个人看着就能学：每节先看<b>讲解</b>，再看<b>例题</b>（拿纸跟着做一遍），最后做<b>练习</b>——练习答案是藏起来的，<b>先自己做，再点"显示答案"</b>。</p>
       <h3 class="blk">开始前</h3>
       <p>需要先学完<b>讲义 01（代数基本功）</b>：乘法公式、因式分解、根式。这一份会用到那些。</p>
@@ -228,6 +242,10 @@ const S = [
     key:"s1", nav:"认识方程", num:"01", track:true,
     title:"认识一元二次方程",
     body:`
+
+      <div class="terms"><table><caption>Key terms 关键词</caption><tr><td>quadratic equation 一元二次方程</td><td>highest power of x is 2</td></tr><tr><td>coefficient 系数</td><td>the numbers a, b, c</td></tr><tr><td>standard form 标准形式</td><td>ax²+bx+c=0</td></tr><tr><td>root 根</td><td>a solution of the equation</td></tr></table></div>
+      <div class="enh"><span class="lead">IN ENGLISH</span><p>A <b>quadratic equation</b> has the form <b>ax²+bx+c=0</b> with <b>a≠0</b>. "一元" = one unknown (x); "二次" = the highest power of x is 2. Here a, b, c are the <b>coefficients</b> (a cannot be 0, or the x² disappears). A value of x that makes the equation true is a <b>root</b>; a quadratic has <b>at most two roots</b>.</p></div>
+      <span class="zh-lead">中文详解 · In Chinese</span>
       <h3 class="blk">讲解</h3>
       <p><b>一元二次方程</b>长这样：</p>
       <span class="kbd-formula">a·x² + b·x + c = 0　（a ≠ 0）</span>
@@ -266,12 +284,16 @@ const S = [
     key:"s2", nav:"三种解法", num:"02", track:true,
     title:"解一元二次方程（三种方法）",
     body:`
+
+      <div class="terms"><table><caption>Key terms 关键词</caption><tr><td>factorise 因式分解</td><td>write it as (…)(…)=0</td></tr><tr><td>quadratic formula 求根公式</td><td>x=(−b±√Δ)/(2a)</td></tr><tr><td>completing the square 配方法</td><td>make a perfect square</td></tr><tr><td>null factor law</td><td>A·B=0 ⇒ A=0 or B=0</td></tr></table></div>
+      <div class="enh"><span class="lead">IN ENGLISH</span><p>Three methods — try the fastest first. <b>(1) Factorising</b> (first choice): if A·B=0 then A=0 or B=0, so write the left side as two brackets and set each to 0. <b>(2) Quadratic formula</b> (always works, memorise it): x=(−b±√(b²−4ac))/(2a). <b>(3) Completing the square</b> (good to know): turn the left side into (x+p)²=q.</p></div>
+      <span class="zh-lead">中文详解 · In Chinese</span>
       <p>解方程有三招。先看能不能用最快的第一招，不行再往后。</p>
       <h3 class="blk">方法一：因式分解法（优先用）</h3>
       <p><b>原理</b>：若 A·B = 0，则 A = 0 或 B = 0。把左边分解成两括号相乘 = 0，再让每个括号 = 0。</p>
       <div class="example">
         <div class="ex-title">例 1</div>
-        <p>解 x² − 5x + 6 = 0。</p>
+        <p><b>EN:</b> Solve x²−5x+6=0.</p><p>解 x² − 5x + 6 = 0。</p>
         <div class="steps">
           <div class="step">十字相乘：找两数相乘 6、相加 −5 → −2 和 −3</div>
           <div class="step">(x − 2)(x − 3) = 0</div>
@@ -334,6 +356,10 @@ const S = [
     key:"s3", nav:"判别式 Δ", num:"03", track:true,
     title:"判别式 Δ（不解方程就知道有几个根）",
     body:`
+
+      <div class="terms"><table><caption>Key terms 关键词</caption><tr><td>discriminant Δ 判别式</td><td>b²−4ac</td></tr><tr><td>distinct real roots 不相等实根</td><td>Δ &gt; 0</td></tr><tr><td>repeated (equal) root 重根</td><td>Δ = 0</td></tr><tr><td>no real roots 无实根</td><td>Δ &lt; 0</td></tr></table></div>
+      <div class="enh"><span class="lead">IN ENGLISH</span><p>The part under the root sign, <b>b²−4ac</b>, is the <b>discriminant Δ</b> (say "delta"). It tells you the number of roots <b>without solving</b>: <b>Δ&gt;0</b> → two <b>distinct</b> real roots; <b>Δ=0</b> → two <b>equal</b> roots (a repeated root); <b>Δ&lt;0</b> → <b>no</b> real roots.</p></div>
+      <span class="zh-lead">中文详解 · In Chinese</span>
       <h3 class="blk">讲解</h3>
       <p>求根公式里根号下面那部分 <b>b² − 4ac</b>，给它取名叫<b>判别式</b>，记作 <b>Δ</b>（读 delta）。它决定根的情况：</p>
       <table class="mini">
@@ -381,6 +407,10 @@ const S = [
     key:"s4", nav:"韦达定理", num:"04", track:true, badge:"core",
     title:"韦达定理（根与系数的关系）",
     body:`
+
+      <div class="terms"><table><caption>Key terms 关键词</caption><tr><td>Vieta's formulas 韦达定理</td><td>sum & product of the roots</td></tr><tr><td>sum of roots 两根之和</td><td>α+β = −b/a</td></tr><tr><td>product of roots 两根之积</td><td>αβ = c/a</td></tr><tr><td>α, β</td><td>the two roots</td></tr></table></div>
+      <div class="enh"><span class="lead">IN ENGLISH</span><p>The heart of Module A: <b>without solving</b>, you can still find the sum and product of the two roots. If <b>α, β</b> are the roots of ax²+bx+c=0, then <b>α+β = −b/a</b> and <b>αβ = c/a</b>. When a=1 it is simply α+β=−b, αβ=c. The exam often asks for an expression in α and β — compute it from the sum and product; you never need the actual roots.</p></div>
+      <span class="zh-lead">中文详解 · In Chinese</span>
       <h3 class="blk">讲解</h3>
       <p>这是模块 A 的<b>灵魂</b>：<b>不用解出根，也能知道"两根之和"和"两根之积"。</b></p>
       <p>设 α、β 是 a·x² + b·x + c = 0 的两根（α、β 是希腊字母，当成两个根的名字）：</p>
@@ -389,7 +419,7 @@ const S = [
       <div class="note">为什么有用：光剑常给方程，让你求含 α、β 的式子的值——<strong>根本不用解出 α、β 具体是多少</strong>，用和与积就能算。</div>
       <div class="example">
         <div class="ex-title">例 1</div>
-        <p>x² − 7x + 10 = 0 的两根 α、β，求 α+β 和 αβ。</p>
+        <p><b>EN:</b> For the roots α, β of x²−7x+10=0, find α+β and αβ.</p><p>x² − 7x + 10 = 0 的两根 α、β，求 α+β 和 αβ。</p>
         <div class="steps">
           <div class="step">a=1, b=−7, c=10</div>
           <div class="step">α+β = −b = 7；　αβ = c = 10</div>
@@ -421,6 +451,10 @@ const S = [
     key:"s5", nav:"对称式求值", num:"05", track:true, badge:"gk",
     title:"用韦达定理求对称式",
     body:`
+
+      <div class="terms"><table><caption>Key terms 关键词</caption><tr><td>symmetric expression 对称式</td><td>unchanged when α, β swap</td></tr><tr><td>α²+β²</td><td>= (α+β)²−2αβ</td></tr><tr><td>1/α+1/β</td><td>= (α+β)/(αβ)</td></tr><tr><td>(α−β)²</td><td>= (α+β)²−4αβ</td></tr></table></div>
+      <div class="enh"><span class="lead">IN ENGLISH</span><p>A <b>symmetric expression</b> is one that stays the same when α and β are swapped (e.g. α²+β², 1/α+1/β). <b>Key idea: any symmetric expression can be written using only α+β and αβ</b>, then substitute Vieta. Memorise: α²+β²=(α+β)²−2αβ; 1/α+1/β=(α+β)/(αβ); (α−β)²=(α+β)²−4αβ. Higher up: α³+β³=(α+β)³−3αβ(α+β).</p></div>
+      <span class="zh-lead">中文详解 · In Chinese</span>
       <h3 class="blk">讲解</h3>
       <p>"对称式"是交换 α、β 后不变的式子，如 α²+β²、1/α+1/β。<b>核心思路：任何对称式，都能只用 α+β 和 αβ 表示，再代入韦达。</b></p>
       <p><b>三个最常用的变形（背下来）：</b></p>
@@ -428,7 +462,7 @@ const S = [
       <p>（第 1、3 个都来自讲义 01 的完全平方公式，倒着用。）</p>
       <div class="example">
         <div class="ex-title">例 1</div>
-        <p>x² − 6x + 4 = 0 的两根，求 α² + β²。</p>
+        <p><b>EN:</b> For the roots of x²−6x+4=0, find α²+β².</p><p>x² − 6x + 4 = 0 的两根，求 α² + β²。</p>
         <div class="steps">
           <div class="step">韦达：α+β = 6，αβ = 4</div>
           <div class="step">(α+β)² − 2αβ = 36 − 8</div>
@@ -482,6 +516,10 @@ const S = [
     key:"s6", nav:"代入求参", num:"06", track:true, badge:"gk",
     title:"已知一个根，代入求参数",
     body:`
+
+      <div class="terms"><table><caption>Key terms 关键词</caption><tr><td>substitute a root 代根</td><td>a root must satisfy the equation</td></tr><tr><td>parameter 参数</td><td>the unknown m or k</td></tr><tr><td>build m + 1/m</td><td>then square it</td></tr><tr><td>(m+1/m)²</td><td>= m² + 2 + 1/m²</td></tr></table></div>
+      <div class="enh"><span class="lead">IN ENGLISH</span><p>Type: the equation contains a <b>parameter</b> (m, k) and you are told one root — find the parameter. <b>Core idea: a root, put back in, must satisfy the equation</b>, which gives an equation in the parameter; solve it. A favourite Guangjian move: to find m²+1/m², first <b>build m+1/m</b>, then use (m+1/m)²−2.</p></div>
+      <span class="zh-lead">中文详解 · In Chinese</span>
       <h3 class="blk">讲解</h3>
       <p><b>题型</b>：方程带参数（m、k），并告诉你一个根，让你求参数。<b>核心：根代进方程，方程一定成立</b>——代入后得到关于参数的方程，解它。</p>
       <div class="example">
@@ -492,7 +530,7 @@ const S = [
       </div>
       <div class="example">
         <div class="ex-title">例 2 <span class="ex-tag gk">光剑真题型</span></div>
-        <p>方程 √5·m·x² − m²·x − 3 = 0 有一个根是 <b>x = 3</b>，求 m² + m⁻²。</p>
+        <p><b>EN:</b> The equation √5·m·x²−m²·x−3=0 has a root x=3. Find m²+m⁻².</p><p>方程 √5·m·x² − m²·x − 3 = 0 有一个根是 <b>x = 3</b>，求 m² + m⁻²。</p>
         <div class="steps">
           <div class="step"><b>第一步 代入 x=3：</b>9√5 m − 3m² − 3 = 0</div>
           <div class="step"><b>第二步 整理</b>（除以 −3）：m² − 3√5 m + 1 = 0</div>
@@ -536,6 +574,10 @@ const S = [
     key:"s7", nav:"降次法", num:"07", track:true, badge:"gk",
     title:"降次法（用方程本身把高次降下来）",
     body:`
+
+      <div class="terms"><table><caption>Key terms 关键词</caption><tr><td>degree reduction 降次</td><td>replace α² by a linear term</td></tr><tr><td>α² = pα+q</td><td>comes from the equation</td></tr><tr><td>reduce α³, α⁵ …</td><td>α³ = α·α² = …</td></tr><tr><td>then use Vieta</td><td>collect α+β and αβ</td></tr></table></div>
+      <div class="enh"><span class="lead">IN ENGLISH</span><p>Type: α is a root of a quadratic and you want a <b>high power</b> (α³, α⁵). <b>Core: if α is a root of x²−px−q=0 then α²=pα+q</b> — use it to replace every α² by a linear term in α, bringing high powers down step by step. You usually end with α+β or αβ, then apply Vieta.</p></div>
+      <span class="zh-lead">中文详解 · In Chinese</span>
       <h3 class="blk">讲解</h3>
       <p><b>题型</b>：给你 α 是某二次方程的根，求 α 的<b>高次</b>式子（α³、α⁵）。<b>核心</b>：若 α 是 x² − px − q = 0 的根，则 <b>α² = pα + q</b>——用它把"α²"换成"一次的 α"，把高次一路降下来。</p>
       <div class="example">
@@ -549,7 +591,7 @@ const S = [
       </div>
       <div class="example">
         <div class="ex-title">例 2 <span class="ex-tag gk">光剑真题型</span></div>
-        <p>α、β 是 x² − 2x − 2 = 0 的两根，求 α³ − 2β² + 10β。</p>
+        <p><b>EN:</b> α, β are the roots of x²−2x−2=0. Find α³−2β²+10β.</p><p>α、β 是 x² − 2x − 2 = 0 的两根，求 α³ − 2β² + 10β。</p>
         <div class="steps">
           <div class="step"><b>降次关系：</b>α² = 2α + 2，β² = 2β + 2</div>
           <div class="step"><b>降 α³：</b>α³ = α·α² = α(2α+2) = 2α²+2α = 2(2α+2)+2α = 6α + 4</div>
@@ -580,6 +622,10 @@ const S = [
     key:"s8", nav:"含参·解个数", num:"08", track:true, badge:"warn",
     title:"含参方程「解的个数」——当心退化",
     body:`
+
+      <div class="terms"><table><caption>Key terms 关键词</caption><tr><td>parameter in the x² term</td><td>watch out!</td></tr><tr><td>degenerate 退化</td><td>coefficient = 0 → linear</td></tr><tr><td>exactly one solution 恰好一个解</td><td>two cases to check</td></tr><tr><td>Δ = 0</td><td>the double-root case</td></tr></table></div>
+      <div class="enh"><span class="lead">IN ENGLISH</span><p>Type: a parametrised equation asking when it has <b>exactly one real solution</b>. <b>BIG trap:</b> if the <b>x² coefficient itself contains the parameter</b>, then when that coefficient is 0 the equation is no longer quadratic but <b>linear</b> — which has one solution, and that also counts, so never miss it! Split into two cases: <b>(1)</b> x² coefficient = 0 (degenerates to linear, usually one solution); <b>(2)</b> x² coefficient ≠ 0 (a genuine quadratic → set <b>Δ=0</b>).</p></div>
+      <span class="zh-lead">中文详解 · In Chinese</span>
       <h3 class="blk">讲解</h3>
       <p><b>题型</b>：方程带参数，问"恰好一个实数解"时参数取什么/有几个值。</p>
       <div class="note warn"><strong>大坑：</strong>方程写成 ax²+bx+c=0，但如果 <strong>a 里也含参数</strong>，当 <strong>a = 0</strong> 时它就不是二次方程，而是<strong>一次方程</strong>，只有一个解——这也算"恰好一个解"，<strong>绝不能漏！</strong></p>
@@ -599,7 +645,7 @@ const S = [
       </div>
       <div class="example">
         <div class="ex-title">例 2 <span class="ex-tag gk">光剑真题型</span></div>
-        <p>dx² − (d−1)x + d = 0 恰好一个实数解，d 有几个取值？</p>
+        <p><b>EN:</b> dx²−(d−1)x+d=0 has exactly one real solution. How many values can d take?</p><p>dx² − (d−1)x + d = 0 恰好一个实数解，d 有几个取值？</p>
         <div class="steps">
           <div class="step"><b>情况一 d=0：</b>方程变 x=0，一个解 ✓</div>
           <div class="step"><b>情况二 d≠0：</b>Δ = (d−1)² − 4d² = −3d² − 2d + 1 = 0</div>
@@ -644,6 +690,10 @@ const S = [
     key:"s9", nav:"两根关系", num:"09", track:true,
     title:"两根关系的进阶题（选学）",
     body:`
+
+      <div class="terms"><table><caption>Key terms 关键词</caption><tr><td>relation between roots 两根关系</td><td>translate to α+β, αβ</td></tr><tr><td>|α−β|</td><td>via (α−β)²=(α+β)²−4αβ</td></tr><tr><td>build a new equation 构造新方程</td><td>x²−(sum)x+(product)=0</td></tr><tr><td>check Δ≥0 回代检验</td><td>else discard the answer</td></tr></table></div>
+      <div class="enh"><span class="lead">IN ENGLISH</span><p>Some problems give an <b>extra condition</b> on the roots (their difference, or that both are positive integers). Translate the condition into α+β and αβ, then combine with Vieta. To build a quadratic whose roots are new values α′, β′: <b>x²−(α′+β′)x+α′β′=0</b>. Always <b>check the original Δ≥0</b> at the end — otherwise the "roots" don't exist and the answer must be discarded.</p></div>
+      <span class="zh-lead">中文详解 · In Chinese</span>
       <h3 class="blk">讲解</h3>
       <p>有些题给两根的额外条件（差为几、都是正整数），要把条件也翻译成 α+β、αβ 的式子，再和韦达联立。</p>
       <div class="example">
@@ -691,6 +741,10 @@ const S = [
     key:"cross", nav:"🏫 他校拓展", num:"", track:false,
     title:"他校拓展题（光剑同类 · 已标注来源学校）",
     body:`
+
+      <div class="terms"><table><caption>Key terms 关键词</caption><tr><td>cross-school extension 他校拓展</td><td>same skills, other schools</td></tr><tr><td>source school 来源学校</td><td>华二 / 世外 / 平和 / 领科</td></tr><tr><td>same techniques</td><td>Vieta, degree reduction, |x|, substitution</td></tr><tr><td>main line 主线</td><td>still Guangjian</td></tr></table></div>
+      <div class="enh"><span class="lead">IN ENGLISH</span><p>Below are <b>same-type hard problems</b> from other Shanghai international schools' 2024 spring admissions — they test the very skills of Module A (Vieta, degree reduction, absolute-value equations, casework, substitution). Guangjian stays the main line; each problem is tagged with its <b>source school</b> and that school's preference. Try first, then reveal.</p></div>
+      <span class="zh-lead">中文详解 · In Chinese</span>
       <p>下面是上海其他国际学校 2024 春招的<b>同类难题</b>——考的招式和光剑模块 A 一样（韦达、降幂、绝对值方程、分类讨论、换元对称式）。<b>主线仍是光剑</b>，这些只作拓展；每题都标了<b>来源学校</b>和<b>该校偏好</b>，方便你知道谁爱考什么。先自己做，再点开解答。</p>
 
       <div class="xschool">
@@ -754,6 +808,10 @@ const S = [
     key:"end", nav:"小结与自查", num:"", track:false,
     title:"本讲小结与自查",
     body:`
+
+      <div class="terms"><table><caption>Key terms 关键词</caption><tr><td>summary 小结</td><td>the skills of Module A</td></tr><tr><td>self-check 自查</td><td>tick what you can do</td></tr><tr><td>must-score zone</td><td>secure these marks</td></tr><tr><td>four techniques</td><td>symmetric / substitute / reduce / casework</td></tr></table></div>
+      <div class="enh"><span class="lead">IN ENGLISH</span><p>A <b>self-check</b> of Module A — tick each skill you can do on your own. The four exam techniques to master: <b>symmetric expressions</b> via sum & product; <b>substitute a given root</b>; <b>degree reduction</b>; and the <b>"exactly one solution" casework</b> (mind the degenerate a=0!).</p></div>
+      <span class="zh-lead">中文详解 · In Chinese</span>
       <h3 class="blk">学完自查（点一下打勾）</h3>
       <div id="checklist">
         <div class="check-item" onclick="tick(this)"><div class="check-box"></div><div class="check-txt">认得一元二次方程，知道 a、b、c</div></div>

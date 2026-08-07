@@ -127,6 +127,16 @@
  section.card{box-shadow:none!important;border:none!important;padding:0!important;animation:none!important}
  .answer{max-height:none!important;overflow:visible!important}
  .psec{page-break-after:always}}
+  .terms{background:#F1F3FC;border:1px solid #D9DCF6;border-radius:10px;padding:6px 8px;margin:14px 0;}
+  .terms table{width:100%;border-collapse:collapse;font-size:14px;}
+  .terms td{padding:5px 10px;border-bottom:1px solid #E3E6F0;vertical-align:top;color:var(--ink);}
+  .terms td:first-child{font-weight:800;color:var(--indigo-deep);white-space:nowrap;width:46%;}
+  .terms tr:last-child td{border-bottom:none;}
+  .terms caption{caption-side:top;text-align:left;font-size:12px;font-weight:800;letter-spacing:.06em;color:var(--indigo);padding:4px 10px 2px;}
+  .enh{background:#F7F8FE;border-left:3px solid var(--indigo);border-radius:8px;padding:11px 15px;margin:12px 0;}
+  .enh .lead{font-size:11px;font-weight:800;letter-spacing:.08em;color:var(--indigo);display:block;margin-bottom:4px;}
+  .enh p{margin:6px 0;}
+  .zh-lead{font-size:11px;font-weight:800;letter-spacing:.05em;color:var(--muted);display:block;margin:16px 0 2px;text-transform:uppercase;}
 </style>
 </head>
 <body>
@@ -163,6 +173,10 @@ const S = [
     key:"intro", nav:"导读", num:"", track:false,
     title:"导读：这一份是全新的东西",
     body:`
+
+      <div class="terms"><table><caption>Key terms 关键词</caption><tr><td>function 函数</td><td>一台把输入变成输出的"机器"</td></tr><tr><td>notation 记号</td><td>f(x)、fg(x)、f⁻¹ 这些写法</td></tr><tr><td>composite 复合函数</td><td>把两台机器接起来</td></tr><tr><td>inverse 反函数</td><td>把机器倒着走</td></tr></table></div>
+      <div class="enh"><span class="lead">IN ENGLISH</span><p>Module B is all about <b>functions</b>. The ideas are not hard, but the <b>notation</b> is new: f(x), composite fg(x) and inverse f⁻¹. Once you can read the symbols, the rest follows.</p><p>The first four sections (notation → composite → inverse → transformations) are the <b>foundation</b>. The last three are the hard types the exam loves (fg = gf, rotating a curve, functional equations). If they feel like a jump at first, copy every step of the worked example and re-do it.</p></div>
+      <span class="zh-lead">中文详解 · In Chinese</span>
       <p>模块 B 讲<b>函数</b>。这块国内初中基本不教这套写法（f(x)、复合函数 fg(x)、反函数 f⁻¹），所以对你是<b>全新</b>的——但它不难，只是"记号"陌生。把记号看懂，后面就顺了。</p>
       <h3 class="blk">前置</h3>
       <p>需要讲义 01（代数变形）和讲义 02（解方程、判别式）的底子。这一份会用到解一元二次方程、判别式 Δ。</p>
@@ -175,6 +189,10 @@ const S = [
     key:"s1", nav:"函数记号 f(x)", num:"01", track:true,
     title:"函数与函数记号 f(x)",
     body:`
+
+      <div class="terms"><table><caption>Key terms 关键词</caption><tr><td>function 函数</td><td>input → output machine 输入→输出</td></tr><tr><td>f(x) — "f of x"</td><td>the output when x goes into f</td></tr><tr><td>substitute 代入</td><td>replace every x with the value/expression</td></tr><tr><td>graph 图象</td><td>all the points (x, f(x))</td></tr></table></div>
+      <div class="enh"><span class="lead">IN ENGLISH</span><p>A <b>function</b> is an input → output machine: give it a number, it returns a number by a rule. <b>f(x)</b> is read "f of x" and means "the output you get by putting x into machine f". Warning: <b>f(x) is NOT f × x</b> — it is "f acting on x".</p><p>To <b>evaluate</b>, just replace every x. For f(x)=2x−3: f(4)=2·4−3=5, f(0)=−3. The input can also be an expression: f(a+1)=2(a+1)−3=2a−1. The <b>graph</b> is all points (x, f(x)); for f(x)=2x−3 that is a straight line.</p></div>
+      <span class="zh-lead">中文详解 · In Chinese</span>
       <h3 class="blk">讲解</h3>
       <p><b>函数</b>就是一台"输入 → 输出"的机器：给它一个数，它按规则吐出一个数。</p>
       <div class="machine"><span class="io">输入 x</span><span class="arr">→</span><span class="box">f</span><span class="arr">→</span><span class="io">输出 f(x)</span></div>
@@ -190,7 +208,7 @@ const S = [
       <div class="note">光剑还常用箭头写法 <b>f: x ↦ 2x − 3</b>，意思和 f(x) = 2x − 3 完全一样。</div>
       <div class="example">
         <div class="ex-title">例 1</div>
-        <p>f(x) = x² − 3x，求 f(2)、f(−1)、f(0)。</p>
+        <p><b>EN:</b> Given f(x)=x²−3x, find f(2), f(−1), f(0).</p><p>f(x) = x² − 3x，求 f(2)、f(−1)、f(0)。</p>
         <div class="steps">
           <div class="step">f(2) = 2² − 3·2 = 4 − 6 = −2</div>
           <div class="step">f(−1) = (−1)² − 3·(−1) = 1 + 3 = 4</div>
@@ -232,6 +250,10 @@ const S = [
     key:"s2", nav:"复合函数", num:"02", track:true, badge:"core",
     title:"复合函数（两台机器接起来）",
     body:`
+
+      <div class="terms"><table><caption>Key terms 关键词</caption><tr><td>composite function 复合函数</td><td>fg(x) = f(g(x))</td></tr><tr><td>order 顺序</td><td>do g first, then f（从右往左）</td></tr><tr><td>fg ≠ gf</td><td>order matters 一般不相等</td></tr><tr><td>ff(x)</td><td>means f(f(x)) 一层层往里代</td></tr></table></div>
+      <div class="enh"><span class="lead">IN ENGLISH</span><p>A <b>composite function</b> chains two machines. <b>fg(x) means f(g(x))</b>: do <b>g first</b>, then put the result into <b>f</b>. Read it <b>right to left</b>. In general <b>fg ≠ gf</b> — the order matters. Also ff(x)=f(f(x)), fff(x)=f(f(f(x))), substituting layer by layer.</p></div>
+      <span class="zh-lead">中文详解 · In Chinese</span>
       <h3 class="blk">讲解</h3>
       <p>把两台机器接起来：先过一台，输出再进另一台。<b>fg(x) 的意思是 f(g(x))</b>——<b>先做 g，再把结果丢进 f</b>。</p>
       <div class="machine"><span class="io">x</span><span class="arr">→</span><span class="box">g</span><span class="arr">→</span><span class="io">g(x)</span><span class="arr">→</span><span class="box">f</span><span class="arr">→</span><span class="io">f(g(x))</span></div>
@@ -248,7 +270,7 @@ const S = [
       </div>
       <div class="example">
         <div class="ex-title">例 2 <span class="ex-tag gk">光剑真题型</span></div>
-        <p>f(x) = 2x − 3，求 fff(x)，并解 fff(x) = 771。</p>
+        <p><b>EN:</b> If f(x)=2x−3, find fff(x) and solve fff(x)=771.</p><p>f(x) = 2x − 3，求 fff(x)，并解 fff(x) = 771。</p>
         <div class="steps">
           <div class="step">f(x) = 2x − 3</div>
           <div class="step">ff(x) = f(2x−3) = 2(2x−3) − 3 = 4x − 9</div>
@@ -289,6 +311,10 @@ const S = [
     key:"s3", nav:"反函数", num:"03", track:true,
     title:"反函数 f⁻¹（机器倒着走）",
     body:`
+
+      <div class="terms"><table><caption>Key terms 关键词</caption><tr><td>inverse function 反函数</td><td>f⁻¹ undoes f 把输出还原成输入</td></tr><tr><td>if f(a)=b</td><td>then f⁻¹(b)=a</td></tr><tr><td>3-step method</td><td>y=f(x) → solve x → swap y↔x</td></tr><tr><td>the "−1"</td><td>notation, NOT a power/reciprocal</td></tr></table></div>
+      <div class="enh"><span class="lead">IN ENGLISH</span><p>The <b>inverse function f⁻¹</b> undoes f — the machine run backwards. If f(a)=b then <b>f⁻¹(b)=a</b>. To find it in <b>three steps</b>: (1) write y=f(x); (2) solve for x in terms of y; (3) swap y and x. The "−1" in f⁻¹ is <b>notation for the inverse</b>, not a power and not a reciprocal. To find a single value f⁻¹(k), just solve f(x)=k.</p></div>
+      <span class="zh-lead">中文详解 · In Chinese</span>
       <h3 class="blk">讲解</h3>
       <p><b>反函数 f⁻¹</b> 把输出"还原"成输入——机器倒着走。若 f(a) = b，则 <b>f⁻¹(b) = a</b>。</p>
       <p><b>怎么求（三步）：</b></p>
@@ -300,7 +326,7 @@ const S = [
       <p>（注意：f⁻¹ 里的 "−1" 不是次方、不是倒数，是"反函数"的记号。）</p>
       <div class="example">
         <div class="ex-title">例 1</div>
-        <p>f(x) = 3x + 1，求 f⁻¹(x)。</p>
+        <p><b>EN:</b> Find the inverse f⁻¹(x) of f(x)=3x+1.</p><p>f(x) = 3x + 1，求 f⁻¹(x)。</p>
         <div class="steps">
           <div class="step">y = 3x + 1</div>
           <div class="step">解 x：x = (y − 1) / 3</div>
@@ -345,6 +371,10 @@ const S = [
     key:"s4", nav:"图象变换", num:"04", track:true, badge:"gk",
     title:"图象变换（图象怎么动）",
     body:`
+
+      <div class="terms"><table><caption>Key terms 关键词</caption><tr><td>translation 平移</td><td>f(x)+k up；f(x+k) LEFT</td></tr><tr><td>reflection 翻折</td><td>−f(x) in x-axis；f(−x) in y-axis</td></tr><tr><td>stretch 伸缩</td><td>a·f(x) vertical stretch ×a</td></tr><tr><td>inside change</td><td>affects x — opposite direction</td></tr></table></div>
+      <div class="enh"><span class="lead">IN ENGLISH</span><p>Changing f(x) moves its graph. <b>Outside</b> changes affect y (as expected); <b>inside</b> changes affect x (opposite way). Rules: <b>f(x)+k</b> up by k; <b>f(x+k)</b> shifts <b>LEFT</b> by k (opposite sign!); <b>−f(x)</b> reflects in the x-axis; <b>f(−x)</b> reflects in the y-axis; <b>a·f(x)</b> stretches vertically by factor a.</p><p>For a max/min point (p, q) on y=f(x), the matching point on <b>y = a·f(x+h)+k</b>: get the x-coordinate from <b>x+h = p</b> (inside works in reverse); the y-coordinate becomes <b>a·q + k</b> (if a &lt; 0, max and min swap).</p></div>
+      <span class="zh-lead">中文详解 · In Chinese</span>
       <h3 class="blk">讲解</h3>
       <p>对 f(x) 做一点改动，它的图象就会平移 / 翻折 / 伸缩。<b>规则表：</b></p>
       <ul>
@@ -400,11 +430,15 @@ const S = [
     key:"s5", nav:"fg=gf 型", num:"05", track:true, badge:"hard",
     title:"难题一：fg(x) = gf(x) 型",
     body:`
+
+      <div class="terms"><table><caption>Key terms 关键词</caption><tr><td>set equal 令相等</td><td>fg(x) = gf(x)</td></tr><tr><td>rearrange 整理</td><td>into a quadratic 二次方程</td></tr><tr><td>discriminant Δ</td><td>b²−4ac</td></tr><tr><td>exactly one solution</td><td>⇒ Δ = 0 唯一解</td></tr></table></div>
+      <div class="enh"><span class="lead">IN ENGLISH</span><p><b>Method.</b> Work out fg(x) and gf(x) separately, set them <b>equal</b>, and rearrange into a single quadratic. If the question says the equation has <b>exactly one real solution</b>, set the <b>discriminant Δ = 0</b> (this uses the Δ from Note 02). Solve for the unknown.</p></div>
+      <span class="zh-lead">中文详解 · In Chinese</span>
       <h3 class="blk">讲解</h3>
       <p><b>套路：</b>把 fg(x) 和 gf(x) 分别算出来，令它们相等，整理成一个方程。若题目要"<b>只有一个实数解</b>"，就让<b>判别式 Δ = 0</b>（这就用上讲义 02 的判别式了）。</p>
       <div class="example">
         <div class="ex-title">例 <span class="ex-tag gk">光剑真题</span></div>
-        <p>f(x) = 2x − a（a ≠ 0），g(x) = x² − 6x。若 fg(x) = gf(x) 只有一个实数解，求 a。</p>
+        <p><b>EN:</b> f(x)=2x−a (a≠0), g(x)=x²−6x. Given fg(x)=gf(x) has exactly one real solution, find a.</p><p>f(x) = 2x − a（a ≠ 0），g(x) = x² − 6x。若 fg(x) = gf(x) 只有一个实数解，求 a。</p>
         <div class="steps">
           <div class="step"><b>算 fg：</b>fg(x) = f(g(x)) = 2(x²−6x) − a = 2x² − 12x − a</div>
           <div class="step"><b>算 gf：</b>gf(x) = g(2x−a) = (2x−a)² − 6(2x−a) = 4x² − 4ax + a² − 12x + 6a</div>
@@ -436,6 +470,10 @@ const S = [
     key:"s6", nav:"曲线变换与旋转", num:"06", track:true, badge:"hard",
     title:"难题二：曲线的翻折与旋转",
     body:`
+
+      <div class="terms"><table><caption>Key terms 关键词</caption><tr><td>reflect in x-axis</td><td>replace y → −y</td></tr><tr><td>reflect in y-axis</td><td>replace x → −x</td></tr><tr><td>rotate 180° about O</td><td>x → −x AND y → −y</td></tr><tr><td>compare coefficients</td><td>对照系数求参数</td></tr></table></div>
+      <div class="enh"><span class="lead">IN ENGLISH</span><p>To transform a <b>whole curve</b> y=f(x), use <b>substitution</b>. Reflect in the x-axis: replace y with −y. Reflect in the y-axis: replace x with −x. <b>Rotate 180° about the origin</b>: replace x→−x <b>and</b> y→−y together. After substituting, expand and <b>compare coefficients</b> with the target equation to find the unknowns.</p></div>
+      <span class="zh-lead">中文详解 · In Chinese</span>
       <h3 class="blk">讲解</h3>
       <p>对<b>整条曲线</b> y = f(x) 做变换，用"<b>代换</b>"求新方程。核心：</p>
       <ul>
@@ -446,7 +484,7 @@ const S = [
       <p><b>方法：</b>新曲线上的点 (x, y)，对应回原曲线的点是 (−x, −y)（旋转的情形），把它代进原方程即可。</p>
       <div class="example">
         <div class="ex-title">例 <span class="ex-tag gk">光剑真题</span></div>
-        <p>曲线 y = −(x − p)(x − 3 − q) + p 绕原点旋转 180° 后得到 y = (x − 3)² + 4，求 p + q。</p>
+        <p><b>EN:</b> Rotating the curve y=−(x−p)(x−3−q)+p by 180° about the origin gives y=(x−3)²+4. Find p+q.</p><p>曲线 y = −(x − p)(x − 3 − q) + p 绕原点旋转 180° 后得到 y = (x − 3)² + 4，求 p + q。</p>
         <div class="steps">
           <div class="step"><b>旋转 180°：</b>新曲线上的 (x, y) 对应原曲线的 (−x, −y)，代入原方程</div>
           <div class="step">−y = −(−x − p)(−x − 3 − q) + p</div>
@@ -480,6 +518,10 @@ const S = [
     key:"s7", nav:"函数方程", num:"07", track:true, badge:"hard",
     title:"难题三：函数方程（求 f 在某点的值）",
     body:`
+
+      <div class="terms"><table><caption>Key terms 关键词</caption><tr><td>functional equation 函数方程</td><td>an identity hiding f</td></tr><tr><td>holds for all x</td><td>对所有 x 成立</td></tr><tr><td>substitute a value</td><td>choose x so f’s bracket = target</td></tr><tr><td>form & solve simultaneously</td><td>代换联立</td></tr></table></div>
+      <div class="enh"><span class="lead">IN ENGLISH</span><p>You are given an <b>identity true for all x</b> that contains an unknown function f, and asked for f at one point. <b>Two tools:</b> (1) <b>substitute a clever value</b> — to find f(8), choose the x that makes f’s bracket equal 8; (2) <b>make a second equation</b> by substituting x→−x (or x→1−x, etc.), then <b>solve the two simultaneously</b>.</p></div>
+      <span class="zh-lead">中文详解 · In Chinese</span>
       <h3 class="blk">讲解</h3>
       <p>题目给一个<b>对所有 x 成立</b>的等式，里面藏着未知函数 f，让你求 f 在某个点的值。<b>两种利器：</b></p>
       <ol>
@@ -499,7 +541,7 @@ const S = [
       </div>
       <div class="example">
         <div class="ex-title">例 2 <span class="ex-tag gk">光剑真题</span></div>
-        <p>2ˣ + x·f(2⁻ˣ) = x² + x³ 对所有 x 成立，求 f(8)。</p>
+        <p><b>EN:</b> Given 2ˣ + x·f(2⁻ˣ) = x² + x³ for all x, find f(8).</p><p>2ˣ + x·f(2⁻ˣ) = x² + x³ 对所有 x 成立，求 f(8)。</p>
         <div class="steps">
           <div class="step"><b>想让 f 的括号 = 8：</b>需 2⁻ˣ = 8 = 2³ → −x = 3 → <b>x = −3</b></div>
           <div class="step">代 x = −3：2⁻³ + (−3)·f(2³) = (−3)² + (−3)³</div>
@@ -529,6 +571,10 @@ const S = [
     key:"end", nav:"小结与自查", num:"", track:false,
     title:"本讲小结与自查",
     body:`
+
+      <div class="terms"><table><caption>Key terms 关键词</caption><tr><td>summary 小结</td><td>the 8 skills of Module B</td></tr><tr><td>self-check 自查</td><td>tick what you can do</td></tr><tr><td>foundation</td><td>sections 1–4 are essential</td></tr><tr><td>hard types</td><td>sections 5–7 are exam favourites</td></tr></table></div>
+      <div class="enh"><span class="lead">IN ENGLISH</span><p>Below is a <b>self-check</b>. Tick each skill you can do on your own. If you can do the exercises in sections 1–4 (notation, composite, inverse, transformations), you have the foundation of Module B. The three hard types take practice — copy the worked examples step by step.</p></div>
+      <span class="zh-lead">中文详解 · In Chinese</span>
       <h3 class="blk">学完自查（点一下打勾）</h3>
       <div>
         <div class="check-item" onclick="tick(this)"><div class="check-box"></div><div class="check-txt">看懂 f(x) 记号，会求 f(数)、f(式子)</div></div>

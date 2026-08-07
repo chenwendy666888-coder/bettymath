@@ -1,0 +1,212 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Glossary Quiz · 词汇自测考试</title><style>
+:root{--bg:#F4F6FB;--surface:#fff;--ink:#1B1B2A;--muted:#6A6A82;--line:#E3E6F0;--indigo:#4A43C4;--indigo-deep:#2E2A6B;--indigo-soft:#EEF0FC;--amber:#D98A24;--amber-soft:#FEF6E7;--green:#1F8A5B;--green-soft:#E6F5EE;--rose:#C0453B;--rose-soft:#FBEDEC;--grey-soft:#EEF0F4;--shadow:0 1px 2px rgba(30,30,60,.05),0 8px 24px rgba(30,30,60,.06);--font:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Segoe UI",Roboto,sans-serif;}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.6}
+.hero{background:linear-gradient(135deg,#2E2A6B,#4A43C4);color:#fff;padding:20px}.hero-in{max-width:760px;margin:0 auto}
+.back{color:#fff;opacity:.85;text-decoration:none;font-size:13px;font-weight:700}.hero h1{margin:8px 0 4px;font-size:22px}.hero .en{font-size:12px;opacity:.85;font-weight:700}.hero p{margin:6px 0 0;opacity:.92;font-size:13px}
+.wrap{max-width:760px;margin:18px auto;padding:0 22px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:22px 24px;margin-bottom:16px}
+h3{margin:0 0 12px;font-size:15px;color:var(--indigo-deep)}
+.modes{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mode{border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;cursor:pointer;background:var(--surface);text-align:left;font-family:inherit;position:relative}
+.mode.on{border-color:var(--indigo);background:var(--indigo-soft)}
+.mode .t{font-weight:800;font-size:14px;color:var(--indigo-deep)}.mode .d{font-size:12px;color:var(--muted);margin-top:2px}
+.mode .ck{position:absolute;top:10px;right:12px;font-size:14px;color:var(--indigo);opacity:0}.mode.on .ck{opacity:1}
+.mixhint{font-size:12px;color:var(--amber);font-weight:700;margin-top:8px}
+.expander{border:1.5px solid var(--line);border-radius:12px;overflow:hidden}
+.exp-head{display:flex;align-items:center;gap:8px;padding:11px 14px;cursor:pointer;font-weight:800;font-size:14px;color:var(--indigo-deep);user-select:none}
+.exp-head .arrow{transition:transform .2s}.expander.open .exp-head .arrow{transform:rotate(90deg)}
+.exp-head .sum{margin-left:auto;font-size:12px;color:var(--muted);font-weight:700}
+.exp-body{display:none;padding:4px 14px 14px}.expander.open .exp-body{display:block}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1.5px solid var(--line);border-radius:99px;padding:5px 11px;font-size:12px;font-weight:700;cursor:pointer;background:var(--surface);color:var(--indigo-deep)}
+.chip.on{background:var(--indigo);color:#fff;border-color:var(--indigo)}
+.row2{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:14px}
+.seg{display:inline-flex;gap:4px}.seg button{border:1.5px solid var(--line);background:var(--surface);border-radius:9px;padding:6px 12px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;color:var(--indigo-deep)}.seg button.on{background:var(--indigo);color:#fff;border-color:var(--indigo)}
+.btn{border:none;border-radius:11px;padding:11px 20px;font-size:15px;font-weight:800;cursor:pointer;font-family:inherit;color:#fff;background:var(--indigo)}
+.btn.g{background:var(--green)}.btn.ghost{background:var(--surface);color:var(--indigo);border:1.5px solid var(--indigo)}.btn.sm{padding:8px 14px;font-size:13px}
+.resume{background:var(--amber-soft);border:1px solid #F0E1C0;border-radius:12px;padding:12px 15px;margin-bottom:14px;font-size:13.5px;color:#7a5210}
+.prog{height:8px;background:#E3E6F0;border-radius:99px;overflow:hidden;margin-bottom:14px}.prog>div{height:100%;background:linear-gradient(90deg,var(--indigo),#7A73E6);width:0;transition:width .3s}
+.qmeta{font-size:12.5px;color:var(--muted);font-weight:700;margin-bottom:6px;display:flex;justify-content:space-between}
+.prompt{text-align:center;padding:16px 10px}
+.prompt .big{font-size:30px;font-weight:800;color:var(--indigo-deep)}
+.prompt .sub{font-size:13px;color:var(--muted);margin-top:6px}
+.playbtn{border:none;background:var(--indigo);color:#fff;border-radius:50%;width:76px;height:76px;font-size:30px;cursor:pointer;box-shadow:var(--shadow)}
+.replay{border:1.5px solid var(--indigo);background:var(--surface);color:var(--indigo);border-radius:10px;padding:7px 14px;font-weight:800;cursor:pointer;font-family:inherit;font-size:13px;margin-top:10px}
+input.ans{width:100%;border:2px solid var(--line);border-radius:12px;padding:13px 15px;font-size:18px;font-family:inherit;margin-top:14px;text-align:center}
+input.ans:focus{outline:none;border-color:var(--indigo)}
+.result-top{text-align:center;padding:8px}.score{font-size:46px;font-weight:800;color:var(--indigo)}
+.bymod{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:8px}
+.bymod span{font-size:12px;font-weight:700;background:var(--grey-soft);border-radius:99px;padding:3px 10px;color:var(--indigo-deep)}
+.feedback{border-radius:12px;padding:12px 15px;font-size:13.5px;margin:10px 0}.feedback.pend{background:var(--amber-soft);color:#7a5210}
+.review-item{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;padding:10px 0;border-top:1px solid var(--line)}.review-item:first-child{border-top:none}
+.ri-q{font-size:14px}.ri-q .en{font-weight:800;color:var(--indigo-deep)}.ri-q .ya{font-size:12.5px;color:var(--muted)}
+.badge{font-size:11px;font-weight:800;border-radius:99px;padding:2px 9px}
+.badge.right{background:var(--green-soft);color:var(--green)}.badge.wrong{background:var(--rose-soft);color:var(--rose)}.badge.pending{background:var(--amber-soft);color:#7a5210}
+.jud{display:inline-flex;gap:5px;margin-top:5px}.jud button{border:1.5px solid var(--line);background:var(--surface);border-radius:8px;padding:4px 9px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit}
+.jud button.y.on{background:var(--green);color:#fff;border-color:var(--green)}.jud button.n.on{background:var(--rose);color:#fff;border-color:var(--rose)}
+.hide{display:none}.tip{font-size:12px;color:var(--muted);margin-top:10px}
+</style></head><body>
+<div class="hero"><div class="hero-in"><a class="back" href="../index.html">← 学习中心 Hub</a>
+<div class="en">GLOSSARY QUIZ · SELF-ASSESSMENT</div>
+<h1>数学英语词汇 · 自测考试</h1>
+<p>模式可多选（自动 Mix 随机抽题）。全部答完后统一评判；进度自动本地存档，结果可导出。</p></div></div>
+<div class="wrap">
+
+<div class="card" id="setup">
+  <div class="resume hide" id="resume"></div>
+  <h3>① 选模式 Modes（可多选 → 混合）</h3>
+  <div class="modes" id="modes"></div>
+  <div class="mixhint hide" id="mixhint"></div>
+  <h3 style="margin-top:18px">② 选范围 Modules</h3>
+  <div class="expander" id="rangeExp">
+    <div class="exp-head" id="rangeHead"><span class="arrow">▸</span> 选择模块 <span class="sum" id="rangeSum"></span></div>
+    <div class="exp-body"><div class="row2" style="margin-top:0;margin-bottom:8px"><button class="btn ghost sm" id="selAll">全选</button><button class="btn ghost sm" id="selNone">全不选</button></div><div class="chips" id="chips"></div></div>
+  </div>
+  <div class="row2"><span style="font-size:13px;font-weight:700;color:var(--muted)">题量</span><div class="seg" id="count"></div></div>
+  <div class="row2" style="margin-top:16px"><button class="btn" id="start">开始测试 Start →</button></div>
+  <div class="tip">听力模式用女声朗读；含数学符号的词（如 f(g(x))、(b²−4ac)）只要打英文单词即可，不用打符号。</div>
+</div>
+
+<div class="card hide" id="quiz">
+  <div class="prog"><div id="progbar"></div></div>
+  <div class="qmeta"><span id="qidx"></span><span id="qmode"></span></div>
+  <div class="prompt" id="prompt"></div>
+  <input class="ans" id="ans" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="输入答案，按 Enter 继续">
+  <div class="row2" style="margin-top:14px;justify-content:space-between">
+    <button class="btn ghost sm" id="skip">跳过</button>
+    <button class="btn g" id="nextBtn">下一题 →</button>
+  </div>
+  <div class="tip">答完直接按 <b>Enter</b> 进入下一题（会自动存下你的答案）。全部做完才统一判分。</div>
+</div>
+
+<div class="card hide" id="result">
+  <div class="result-top"><div class="score" id="score"></div><div id="scoresub" style="color:var(--muted);font-weight:700"></div><div class="bymod" id="bymod"></div></div>
+  <div class="feedback pend hide" id="pendNote"></div>
+  <div class="row2" style="justify-content:center"><button class="btn ghost sm" id="expJSON">⬇ 导出 JSON</button><button class="btn ghost sm" id="expTXT">⬇ 导出 TXT</button></div>
+  <h3 style="margin-top:16px">逐题复查 Review（可手动改判）</h3>
+  <div id="review"></div>
+  <div class="row2" style="margin-top:16px"><button class="btn" id="again">再来一套 ↺</button><button class="btn ghost" id="home">换模式</button></div>
+  <div class="tip">中文默写默认自动初判：对上词表意思即算对，对不上标"待复核"，由你点 ✓/✗ 定案，分数实时更新。英文按拼写（大小写/空格/连字符宽松）。</div>
+</div>
+
+</div>
+<script>
+const DATA=[{"en": "approximate", "zh": "近似", "sec": 0}, {"en": "correct to 3 significant figures (s.f.)", "zh": "精确到三位有效数字", "sec": 0}, {"en": "deduce", "zh": "推出、推断", "sec": 0}, {"en": "determine", "zh": "确定、求出", "sec": 0}, {"en": "draw", "zh": "精确画图", "sec": 0}, {"en": "estimate", "zh": "估算", "sec": 0}, {"en": "evaluate", "zh": "求值（算出具体数值）", "sec": 0}, {"en": "expand", "zh": "展开（去括号）", "sec": 0}, {"en": "express … in terms of …", "zh": "用…表示…", "sec": 0}, {"en": "factorise / factor", "zh": "因式分解", "sec": 0}, {"en": "find / work out / calculate", "zh": "求出、算出", "sec": 0}, {"en": "give your answer to 2 decimal places (d.p.)", "zh": "保留两位小数", "sec": 0}, {"en": "given that", "zh": "已知…", "sec": 0}, {"en": "hence", "zh": "由此（用上一问结果继续）", "sec": 0}, {"en": "hence or otherwise", "zh": "由此或用其他方法", "sec": 0}, {"en": "in its simplest form", "zh": "化到最简形式", "sec": 0}, {"en": "increasing / decreasing", "zh": "递增 / 递减", "sec": 0}, {"en": "leave your answer in surd form", "zh": "保留根号形式（不取近似）", "sec": 0}, {"en": "plot", "zh": "描点作图", "sec": 0}, {"en": "prove", "zh": "证明", "sec": 0}, {"en": "respectively", "zh": "分别地", "sec": 0}, {"en": "round", "zh": "四舍五入", "sec": 0}, {"en": "shade the region", "zh": "把区域涂上阴影", "sec": 0}, {"en": "show that", "zh": "证明…成立（结果已给）", "sec": 0}, {"en": "simplify", "zh": "化简", "sec": 0}, {"en": "sketch", "zh": "草绘（画大致图象）", "sec": 0}, {"en": "solve", "zh": "解（方程/不等式）", "sec": 0}, {"en": "state / write down", "zh": "直接写出（不用过程）", "sec": 0}, {"en": "substitute", "zh": "代入", "sec": 0}, {"en": "verify", "zh": "验证", "sec": 0}, {"en": "=  equals", "zh": "等于", "sec": 1}, {"en": "≠  not equal to", "zh": "不等于", "sec": 1}, {"en": "≈  approximately equal to", "zh": "约等于", "sec": 1}, {"en": ">  greater than", "zh": "大于", "sec": 1}, {"en": "<  less than", "zh": "小于", "sec": 1}, {"en": "≥  greater than or equal to", "zh": "大于等于", "sec": 1}, {"en": "≤  less than or equal to", "zh": "小于等于", "sec": 1}, {"en": "±  plus or minus", "zh": "正负", "sec": 1}, {"en": "√  square root", "zh": "根号 / 平方根", "sec": 1}, {"en": "∛  cube root", "zh": "立方根", "sec": 1}, {"en": "x²  x squared", "zh": "x 的平方", "sec": 1}, {"en": "x³  x cubed", "zh": "x 的立方", "sec": 1}, {"en": "|x|  absolute value (modulus) of x", "zh": "x 的绝对值", "sec": 1}, {"en": "π  pi", "zh": "圆周率", "sec": 1}, {"en": "∞  infinity", "zh": "无穷", "sec": 1}, {"en": "∑  sigma (sum)", "zh": "求和", "sec": 1}, {"en": "∴  therefore", "zh": "所以", "sec": 1}, {"en": "∵  because", "zh": "因为", "sec": 1}, {"en": "∠  angle", "zh": "角", "sec": 1}, {"en": "⊥  is perpendicular to", "zh": "垂直", "sec": 1}, {"en": "∥  is parallel to", "zh": "平行", "sec": 1}, {"en": "≅  is congruent to", "zh": "全等", "sec": 1}, {"en": "∼  is similar to", "zh": "相似", "sec": 1}, {"en": "Δ  discriminant (b²−4ac)", "zh": "判别式", "sec": 1}, {"en": "f(x)  f of x", "zh": "函数值", "sec": 1}, {"en": "f⁻¹(x)  inverse function", "zh": "反函数", "sec": 1}, {"en": "f(g(x))  composite function", "zh": "复合函数", "sec": 1}, {"en": "∈  is an element of / belongs to", "zh": "属于", "sec": 1}, {"en": "°  degree", "zh": "度", "sec": 1}, {"en": "a : b  ratio of a to b", "zh": "比", "sec": 1}, {"en": "%  per cent", "zh": "百分数", "sec": 1}, {"en": "absolute value", "zh": "绝对值", "sec": 2}, {"en": "algebraic fraction", "zh": "分式", "sec": 2}, {"en": "base", "zh": "底数", "sec": 2}, {"en": "binomial", "zh": "二项式", "sec": 2}, {"en": "bracket", "zh": "括号", "sec": 2}, {"en": "cancel", "zh": "约分", "sec": 2}, {"en": "coefficient", "zh": "系数", "sec": 2}, {"en": "common denominator", "zh": "通分", "sec": 2}, {"en": "common factor", "zh": "公因式", "sec": 2}, {"en": "constant", "zh": "常数", "sec": 2}, {"en": "cross method", "zh": "十字相乘", "sec": 2}, {"en": "cubed", "zh": "立方", "sec": 2}, {"en": "denominator", "zh": "分母", "sec": 2}, {"en": "difference of two squares", "zh": "平方差", "sec": 2}, {"en": "even / odd number", "zh": "偶数 / 奇数", "sec": 2}, {"en": "expand", "zh": "展开", "sec": 2}, {"en": "expand the brackets", "zh": "去括号 / 展开", "sec": 2}, {"en": "expression", "zh": "代数式", "sec": 2}, {"en": "factor", "zh": "因数、因式", "sec": 2}, {"en": "grouping", "zh": "分组", "sec": 2}, {"en": "highest common factor (HCF)", "zh": "最大公因数", "sec": 2}, {"en": "index / exponent", "zh": "指数", "sec": 2}, {"en": "integer", "zh": "整数", "sec": 2}, {"en": "like terms", "zh": "同类项", "sec": 2}, {"en": "lowest common multiple (LCM)", "zh": "最小公倍数", "sec": 2}, {"en": "multiple", "zh": "倍数", "sec": 2}, {"en": "numerator", "zh": "分子", "sec": 2}, {"en": "numerator / denominator", "zh": "分子 / 分母", "sec": 2}, {"en": "Pascal's / Yang Hui's triangle", "zh": "杨辉三角", "sec": 2}, {"en": "perfect square", "zh": "完全平方", "sec": 2}, {"en": "positive / negative", "zh": "正 / 负", "sec": 2}, {"en": "power", "zh": "幂", "sec": 2}, {"en": "power / index (pl. indices)", "zh": "幂 / 指数", "sec": 2}, {"en": "prime number", "zh": "质数", "sec": 2}, {"en": "rational number", "zh": "有理数", "sec": 2}, {"en": "rationalise the denominator", "zh": "分母有理化", "sec": 2}, {"en": "real number", "zh": "实数", "sec": 2}, {"en": "reciprocal", "zh": "倒数", "sec": 2}, {"en": "simplify", "zh": "化简", "sec": 2}, {"en": "simplify the fraction", "zh": "约分", "sec": 2}, {"en": "square / cube", "zh": "平方 / 立方", "sec": 2}, {"en": "squared", "zh": "平方", "sec": 2}, {"en": "surd / square root", "zh": "根式 / 平方根", "sec": 2}, {"en": "term", "zh": "项", "sec": 2}, {"en": "variable", "zh": "变量、未知数", "sec": 2}, {"en": "above / below the line", "zh": "直线上方/下方", "sec": 3}, {"en": "above/below the x-axis", "zh": "在 x 轴上方/下方", "sec": 3}, {"en": "absolute value", "zh": "绝对值", "sec": 3}, {"en": "asymptote", "zh": "渐近线", "sec": 3}, {"en": "axis of symmetry", "zh": "对称轴", "sec": 3}, {"en": "closed/filled circle", "zh": "实心圆", "sec": 3}, {"en": "coordinate", "zh": "坐标", "sec": 3}, {"en": "coordinate plane", "zh": "坐标平面", "sec": 3}, {"en": "coordinates (x, y)", "zh": "坐标", "sec": 3}, {"en": "curve", "zh": "曲线", "sec": 3}, {"en": "dashed / solid line", "zh": "虚线/实线", "sec": 3}, {"en": "distance", "zh": "距离", "sec": 3}, {"en": "distance between two points", "zh": "两点间距离", "sec": 3}, {"en": "equation of a line", "zh": "直线方程", "sec": 3}, {"en": "gradient / slope", "zh": "斜率", "sec": 3}, {"en": "horizontal / vertical", "zh": "水平 / 竖直", "sec": 3}, {"en": "hyperbola", "zh": "双曲线", "sec": 3}, {"en": "increasing / decreasing", "zh": "递增 / 递减", "sec": 3}, {"en": "intercept", "zh": "交点/截距", "sec": 3}, {"en": "intersection point", "zh": "交点", "sec": 3}, {"en": "interval", "zh": "区间", "sec": 3}, {"en": "linear function", "zh": "一次函数", "sec": 3}, {"en": "midpoint", "zh": "中点", "sec": 3}, {"en": "negative", "zh": "负数", "sec": 3}, {"en": "number line", "zh": "数轴", "sec": 3}, {"en": "open circle", "zh": "空心圆", "sec": 3}, {"en": "opens up / down", "zh": "开口向上/下", "sec": 3}, {"en": "opposite", "zh": "相反数", "sec": 3}, {"en": "ordered pair (x, y)", "zh": "有序数对", "sec": 3}, {"en": "origin", "zh": "原点", "sec": 3}, {"en": "parabola", "zh": "抛物线", "sec": 3}, {"en": "parallel / perpendicular", "zh": "平行 / 垂直", "sec": 3}, {"en": "plot", "zh": "描点", "sec": 3}, {"en": "plot a point", "zh": "描点", "sec": 3}, {"en": "point of intersection", "zh": "交点", "sec": 3}, {"en": "quadrant", "zh": "象限", "sec": 3}, {"en": "quadratic inequality", "zh": "二次不等式", "sec": 3}, {"en": "reciprocal function", "zh": "反比例函数", "sec": 3}, {"en": "region", "zh": "区域", "sec": 3}, {"en": "root", "zh": "根", "sec": 3}, {"en": "shade / region", "zh": "阴影 / 区域", "sec": 3}, {"en": "solution set", "zh": "解集", "sec": 3}, {"en": "straight line", "zh": "直线", "sec": 3}, {"en": "table of values", "zh": "列表法", "sec": 3}, {"en": "vertex", "zh": "顶点", "sec": 3}, {"en": "vertex (of a parabola)", "zh": "顶点", "sec": 3}, {"en": "x-axis / y-axis", "zh": "x 轴 / y 轴", "sec": 3}, {"en": "x-intercept", "zh": "x 轴截距", "sec": 3}, {"en": "y-intercept", "zh": "y 轴截距", "sec": 3}, {"en": "AM–GM", "zh": "均值不等式", "sec": 4}, {"en": "arithmetic mean", "zh": "算术平均", "sec": 4}, {"en": "at least / at most", "zh": "至少 / 至多", "sec": 4}, {"en": "boundary line", "zh": "边界线", "sec": 4}, {"en": "denominator ≠ 0", "zh": "分母不为零", "sec": 4}, {"en": "discriminant Δ", "zh": "判别式", "sec": 4}, {"en": "equality holds", "zh": "取等号", "sec": 4}, {"en": "feasible region", "zh": "可行域", "sec": 4}, {"en": "fractional inequality", "zh": "分式不等式", "sec": 4}, {"en": "geometric mean", "zh": "几何平均", "sec": 4}, {"en": "greater than / less than", "zh": "大于 / 小于", "sec": 4}, {"en": "greater than or equal to", "zh": "大于等于", "sec": 4}, {"en": "half-plane", "zh": "半平面", "sec": 4}, {"en": "holds for all x", "zh": "恒成立", "sec": 4}, {"en": "inequality", "zh": "不等式", "sec": 4}, {"en": "intersection", "zh": "交集", "sec": 4}, {"en": "less than or equal to", "zh": "小于等于", "sec": 4}, {"en": "minimum / maximum", "zh": "最小/最大值", "sec": 4}, {"en": "no solution", "zh": "无解", "sec": 4}, {"en": "number line", "zh": "数轴", "sec": 4}, {"en": "open / closed circle", "zh": "空心 / 实心圆点", "sec": 4}, {"en": "outside / between the roots", "zh": "取两边 / 取中间", "sec": 4}, {"en": "reverse the inequality", "zh": "不等号变向", "sec": 4}, {"en": "same sign", "zh": "同号", "sec": 4}, {"en": "satisfy", "zh": "满足", "sec": 4}, {"en": "shade", "zh": "涂阴影", "sec": 4}, {"en": "simultaneous inequalities", "zh": "不等式组", "sec": 4}, {"en": "solution set", "zh": "解集", "sec": 4}, {"en": "solve", "zh": "解", "sec": 4}, {"en": "strict inequality", "zh": "严格不等式（>，<）", "sec": 4}, {"en": "system of inequalities", "zh": "不等式组", "sec": 4}, {"en": "the sign flips", "zh": "不等号变向", "sec": 4}, {"en": "vertex / corner", "zh": "顶点：可行域的角点（约束线的交点）", "sec": 4}, {"en": "|x| < a", "zh": "夹中间", "sec": 4}, {"en": "|x| > a", "zh": "取两边", "sec": 4}, {"en": "auxiliary variable", "zh": "辅助未知数", "sec": 5}, {"en": "big numbers", "zh": "大数字", "sec": 5}, {"en": "complete the square", "zh": "配方", "sec": 5}, {"en": "cyclic", "zh": "轮换", "sec": 5}, {"en": "each square = 0", "zh": "每项为零", "sec": 5}, {"en": "factorise", "zh": "因式分解", "sec": 5}, {"en": "let", "zh": "设", "sec": 5}, {"en": "let u = …", "zh": "设 u = …", "sec": 5}, {"en": "let u, v", "zh": "设 u、v", "sec": 5}, {"en": "quadratic in disguise", "zh": "伪装的二次", "sec": 5}, {"en": "replace", "zh": "替换", "sec": 5}, {"en": "simplify by substitution", "zh": "换元化简", "sec": 5}, {"en": "substitute", "zh": "换元", "sec": 5}, {"en": "substitute a root", "zh": "代根验证", "sec": 5}, {"en": "substitute back", "zh": "回代", "sec": 5}, {"en": "substitution", "zh": "换元、代入", "sec": 5}, {"en": "sum of squares", "zh": "平方和", "sec": 5}, {"en": "symmetric expression", "zh": "对称式", "sec": 5}, {"en": "arithmetic sequence", "zh": "等差数列", "sec": 6}, {"en": "assume", "zh": "假设", "sec": 6}, {"en": "base case", "zh": "起始", "sec": 6}, {"en": "common difference", "zh": "公差", "sec": 6}, {"en": "common difference d", "zh": "公差", "sec": 6}, {"en": "common ratio", "zh": "公比", "sec": 6}, {"en": "common ratio r", "zh": "公比", "sec": 6}, {"en": "conjugate", "zh": "共轭（如 √a+√b 与 √a−√b）", "sec": 6}, {"en": "consecutive", "zh": "连续的", "sec": 6}, {"en": "difference of squares", "zh": "平方差", "sec": 6}, {"en": "geometric sequence", "zh": "等比数列", "sec": 6}, {"en": "index laws / laws of indices", "zh": "指数运算律", "sec": 6}, {"en": "inductive step", "zh": "归纳步", "sec": 6}, {"en": "mathematical induction", "zh": "数学归纳法", "sec": 6}, {"en": "nth term", "zh": "第 n 项、通项", "sec": 6}, {"en": "pattern", "zh": "规律", "sec": 6}, {"en": "position", "zh": "第几个", "sec": 6}, {"en": "radical", "zh": "根号", "sec": 6}, {"en": "rationalise", "zh": "有理化", "sec": 6}, {"en": "rationalise the denominator", "zh": "分母有理化", "sec": 6}, {"en": "row", "zh": "行", "sec": 6}, {"en": "sequence", "zh": "数列", "sec": 6}, {"en": "series", "zh": "级数（求和）", "sec": 6}, {"en": "square root / cube root", "zh": "平方根 / 立方根", "sec": 6}, {"en": "sum of the first n terms", "zh": "前 n 项和", "sec": 6}, {"en": "surd", "zh": "根式", "sec": 6}, {"en": "telescoping", "zh": "裂项相消", "sec": 6}, {"en": "telescoping product", "zh": "连乘相消", "sec": 6}, {"en": "term", "zh": "项", "sec": 6}, {"en": "triangular number", "zh": "三角形数", "sec": 6}, {"en": "completing the square", "zh": "配方法", "sec": 7}, {"en": "discriminant (b²−4ac)", "zh": "判别式", "sec": 7}, {"en": "no real roots", "zh": "无实根", "sec": 7}, {"en": "product of roots", "zh": "两根之积", "sec": 7}, {"en": "quadratic equation", "zh": "一元二次方程", "sec": 7}, {"en": "quadratic formula", "zh": "求根公式", "sec": 7}, {"en": "real / distinct roots", "zh": "实根 / 不相等的根", "sec": 7}, {"en": "repeated (equal) roots", "zh": "重根", "sec": 7}, {"en": "root / solution", "zh": "根、解", "sec": 7}, {"en": "sum of roots", "zh": "两根之和", "sec": 7}, {"en": "Vieta's formulas", "zh": "韦达定理", "sec": 7}, {"en": "composite function f(g(x))", "zh": "复合函数", "sec": 8}, {"en": "domain", "zh": "定义域", "sec": 8}, {"en": "fixed point f(x)=x", "zh": "不动点", "sec": 8}, {"en": "function", "zh": "函数", "sec": 8}, {"en": "input / output", "zh": "输入 / 输出", "sec": 8}, {"en": "inverse function f⁻¹(x)", "zh": "反函数", "sec": 8}, {"en": "mapping", "zh": "映射", "sec": 8}, {"en": "range", "zh": "值域", "sec": 8}, {"en": "reflection", "zh": "翻折、对称", "sec": 8}, {"en": "shift up / down", "zh": "上下平移", "sec": 8}, {"en": "stretch", "zh": "伸缩", "sec": 8}, {"en": "substitute a value", "zh": "代入求值", "sec": 8}, {"en": "transformation", "zh": "图象变换", "sec": 8}, {"en": "translation", "zh": "平移", "sec": 8}, {"en": "altitude / height", "zh": "高", "sec": 9}, {"en": "bisect", "zh": "平分", "sec": 9}, {"en": "centroid", "zh": "重心", "sec": 9}, {"en": "congruent", "zh": "全等", "sec": 9}, {"en": "corresponding", "zh": "对应", "sec": 9}, {"en": "corresponding sides / angles", "zh": "对应边 / 对应角", "sec": 9}, {"en": "equilateral", "zh": "等边", "sec": 9}, {"en": "exterior angle", "zh": "外角", "sec": 9}, {"en": "Heron's formula", "zh": "海伦公式", "sec": 9}, {"en": "hypotenuse", "zh": "斜边", "sec": 9}, {"en": "interior angle", "zh": "内角", "sec": 9}, {"en": "interior angles", "zh": "内角", "sec": 9}, {"en": "isosceles", "zh": "等腰", "sec": 9}, {"en": "median", "zh": "中线", "sec": 9}, {"en": "midpoint", "zh": "中点", "sec": 9}, {"en": "Pythagoras' theorem", "zh": "勾股定理", "sec": 9}, {"en": "ratio of areas", "zh": "面积比", "sec": 9}, {"en": "right-angled triangle", "zh": "直角三角形", "sec": 9}, {"en": "same base & height", "zh": "同底等高", "sec": 9}, {"en": "same base and height", "zh": "同底等高", "sec": 9}, {"en": "scale factor k", "zh": "相似比", "sec": 9}, {"en": "scalene", "zh": "不等边", "sec": 9}, {"en": "semi-perimeter", "zh": "半周长", "sec": 9}, {"en": "side", "zh": "边", "sec": 9}, {"en": "similar", "zh": "相似", "sec": 9}, {"en": "triangle", "zh": "三角形", "sec": 9}, {"en": "triangle inequality", "zh": "三边关系", "sec": 9}, {"en": "vertex (plural vertices)", "zh": "顶点", "sec": 9}, {"en": "area", "zh": "面积", "sec": 10}, {"en": "diagonal", "zh": "对角线", "sec": 10}, {"en": "kite", "zh": "筝形", "sec": 10}, {"en": "opposite / adjacent", "zh": "对 / 邻", "sec": 10}, {"en": "parallel sides", "zh": "平行边", "sec": 10}, {"en": "parallelogram", "zh": "平行四边形", "sec": 10}, {"en": "perimeter", "zh": "周长", "sec": 10}, {"en": "quadrilateral", "zh": "四边形", "sec": 10}, {"en": "rectangle", "zh": "矩形", "sec": 10}, {"en": "rhombus", "zh": "菱形", "sec": 10}, {"en": "square", "zh": "正方形", "sec": 10}, {"en": "trapezium", "zh": "梯形", "sec": 10}, {"en": "angle at the centre / circumference", "zh": "圆心角 / 圆周角", "sec": 11}, {"en": "arc", "zh": "弧", "sec": 11}, {"en": "centre", "zh": "圆心", "sec": 11}, {"en": "chord", "zh": "弦", "sec": 11}, {"en": "circle", "zh": "圆", "sec": 11}, {"en": "circumference", "zh": "圆周长", "sec": 11}, {"en": "diameter", "zh": "直径", "sec": 11}, {"en": "inscribed / circumscribed", "zh": "内接 / 外接", "sec": 11}, {"en": "perpendicular from centre", "zh": "垂径（圆心到弦的垂线）", "sec": 11}, {"en": "point of tangency", "zh": "切点", "sec": 11}, {"en": "radius", "zh": "半径", "sec": 11}, {"en": "sector", "zh": "扇形", "sec": 11}, {"en": "segment", "zh": "弓形", "sec": 11}, {"en": "tangent", "zh": "切线", "sec": 11}, {"en": "tangent length", "zh": "切线长", "sec": 11}, {"en": "combination", "zh": "组合", "sec": 12}, {"en": "equally likely", "zh": "等可能", "sec": 12}, {"en": "event", "zh": "事件", "sec": 12}, {"en": "factorial n!", "zh": "阶乘", "sec": 12}, {"en": "frequency", "zh": "频数", "sec": 12}, {"en": "mean / median / mode", "zh": "平均数 / 中位数 / 众数", "sec": 12}, {"en": "outcome", "zh": "结果", "sec": 12}, {"en": "permutation", "zh": "排列", "sec": 12}, {"en": "probability", "zh": "概率", "sec": 12}, {"en": "random", "zh": "随机的", "sec": 12}, {"en": "range", "zh": "极差", "sec": 12}, {"en": "with / without replacement", "zh": "有放回 / 无放回", "sec": 12}, {"en": "combinations C(n,k)", "zh": "组合数 C(n,k)=n!/[k!(n−k)!]", "sec": 13}, {"en": "composite function", "zh": "复合函数 f(f(x)) / f(g(x))", "sec": 13}, {"en": "cross-topic problem", "zh": "综合题（跨考点）", "sec": 13}, {"en": "distance between points", "zh": "两点间距离 √(Δx²+Δy²)", "sec": 13}, {"en": "equally likely outcomes", "zh": "等可能结果（古典概型）", "sec": 13}, {"en": "feasible region", "zh": "可行域", "sec": 13}, {"en": "fixed point", "zh": "不动点 f(x)=x", "sec": 13}, {"en": "identity", "zh": "恒等式 α²+β² = (α+β)² − 2αβ", "sec": 13}, {"en": "intersection point", "zh": "交点（联立求解）", "sec": 13}, {"en": "optimum / maximum / minimum", "zh": "最优 / 最大 / 最小", "sec": 13}, {"en": "perpendicular from centre", "zh": "垂径定理（半径 ⟂ 弦则平分弦）", "sec": 13}, {"en": "random walk", "zh": "随机游走（每步 ±1）", "sec": 13}, {"en": "reciprocal function", "zh": "反比例函数 y = k/x", "sec": 13}, {"en": "similar triangles", "zh": "相似三角形（对应边成比例）", "sec": 13}, {"en": "tangent length", "zh": "切线长（PA² = OP² − r²）", "sec": 13}, {"en": "tangent to a circle", "zh": "圆的切线（切点处 ⟂ 半径）", "sec": 13}, {"en": "transformation", "zh": "图象变换（平移/翻折/伸缩/旋转）", "sec": 13}, {"en": "Vieta's formulas", "zh": "韦达定理：α+β = −b/a，αβ = c/a", "sec": 13}], SECTIONS=[{"id": 0, "name": "指令词 Command Words"}, {"id": 1, "name": "符号读法 Symbols"}, {"id": 2, "name": "P1 代数基本功 Algebra Basics"}, {"id": 3, "name": "P2 图像与坐标 Graphs & Coordinates"}, {"id": 4, "name": "P3 不等式 Inequalities"}, {"id": 5, "name": "D 换元 Substitution"}, {"id": 6, "name": "E 根式与数列 Surds & Sequences"}, {"id": 7, "name": "A 方程与韦达 Equations & Vieta"}, {"id": 8, "name": "B 函数 Functions"}, {"id": 9, "name": "G1 三角形 Triangles"}, {"id": 10, "name": "G2 四边形 Quadrilaterals"}, {"id": 11, "name": "G3 圆 Circles"}, {"id": 12, "name": "F 计数·概率·统计 Counting/Probability"}, {"id": 13, "name": "综合·跨考点 Cross-topic"}];
+const MODES=[
+ {id:'listen_en',t:'🎧 听 → 拼英文',d:'放女声，打英文（查拼写）',ansEN:true,listen:true},
+ {id:'listen_zh',t:'🎧 听 → 写中文',d:'放女声，打中文',ansEN:false,listen:true},
+ {id:'en_zh',t:'🔤 看英文 → 写中文',d:'显示英文，写中文',ansEN:false,listen:false},
+ {id:'zh_en',t:'🀄 看中文 → 写英文',d:'显示中文，拼英文',ansEN:true,listen:false},
+];
+const MODEMAP={}; MODES.forEach(m=>MODEMAP[m.id]=m);
+const LS='gj_quiz_sess';
+let modesSel=new Set(['listen_en']), selSecs=new Set(SECTIONS.map(s=>s.id)), count=20;
+let sess=null, locked=false;
+const $=id=>document.getElementById(id);
+function show(id){['setup','quiz','result'].forEach(x=>$(x).classList.toggle('hide',x!==id));}
+
+// ===== 判定 =====
+function canonList(target){const outs=[];(target.match(/\(([^)]+)\)/g)||[]).forEach(p=>{const inner=p.slice(1,-1).replace(/[.\s]/g,'');if(/^[A-Za-z]{2,6}$/.test(inner))outs.push(inner.toLowerCase());});
+  target.replace(/\([^)]*\)/g,' ').split(/[\/,，]/).forEach(alt=>{const toks=alt.trim().split(/\s+/).filter(t=>t.length>1&&/^[A-Za-z][A-Za-z'’\-]*$/.test(t));const c=toks.join('').toLowerCase().replace(/[^a-z]/g,'');if(c)outs.push(c);});return [...new Set(outs)];}
+function studentCanon(s){return (s||'').toLowerCase().replace(/[^a-z]/g,'');}
+function checkEN(ans,target){const a=studentCanon(ans);if(!a)return false;return canonList(target).includes(a);}
+function enOK(target){return canonList(target).length>0;}
+function sayText(en){return en.replace(/[^A-Za-z(),.\/'’\- ]/g,' ').replace(/\s+/g,' ').trim();}
+function speakOK(en){return sayText(en).replace(/[^A-Za-z]/g,'').length>=3;}
+function zhAccept(t){return t.split(/[\/、，,;；]/).map(x=>x.replace(/[（）()\s。，、；]/g,'').trim()).filter(Boolean);}
+function checkZH(ans,t){const a=(ans||'').replace(/[（）()\s。，、；]/g,'');if(!a)return false;return zhAccept(t).some(v=>{v=v.replace(/[（）()\s。，、；]/g,'');return v===a||(v.length>=2&&a.length>=2&&(v.includes(a)||a.includes(v)));});}
+function validFor(item,modeId){const m=MODEMAP[modeId];if(m.ansEN&&!enOK(item.en))return false;if(m.listen&&!speakOK(item.en))return false;return true;}
+
+// ===== setup UI =====
+const modesEl=$('modes');
+MODES.forEach(m=>{const b=document.createElement('button');b.className='mode'+(modesSel.has(m.id)?' on':'');b.innerHTML='<span class="ck">✓</span><div class="t">'+m.t+'</div><div class="d">'+m.d+'</div>';b.onclick=()=>{if(modesSel.has(m.id)){if(modesSel.size>1)modesSel.delete(m.id);}else modesSel.add(m.id);b.classList.toggle('on',modesSel.has(m.id));syncMix();};modesEl.appendChild(b);});
+function syncMix(){const h=$('mixhint');if(modesSel.size>1){h.classList.remove('hide');h.textContent='已选 '+modesSel.size+' 种模式 → 每题随机抽一种（Mix）';}else h.classList.add('hide');}
+syncMix();
+const chipsEl=$('chips');
+SECTIONS.forEach(s=>{const b=document.createElement('button');b.className='chip on';b.dataset.id=s.id;b.textContent=s.name;b.onclick=()=>{if(selSecs.has(s.id))selSecs.delete(s.id);else selSecs.add(s.id);syncChips();};chipsEl.appendChild(b);});
+function syncChips(){[...chipsEl.children].forEach(c=>c.classList.toggle('on',selSecs.has(+c.dataset.id)));$('rangeSum').textContent=selSecs.size===SECTIONS.length?('全部 '+SECTIONS.length+' 个'):('已选 '+selSecs.size+' 个');}
+$('selAll').onclick=()=>{selSecs=new Set(SECTIONS.map(s=>s.id));syncChips();};
+$('selNone').onclick=()=>{selSecs=new Set();syncChips();};
+$('rangeHead').onclick=()=>$('rangeExp').classList.toggle('open');
+syncChips();
+const countEl=$('count');[10,20,40,'全部'].forEach(v=>{const b=document.createElement('button');b.textContent=v;if(v===20)b.classList.add('on');b.onclick=()=>{count=(v==='全部')?99999:v;[...countEl.children].forEach(c=>c.classList.remove('on'));b.classList.add('on');};countEl.appendChild(b);});
+
+// ===== 发音(女声) =====
+function pickVoice(){try{const vs=speechSynthesis.getVoices();const fem=/(female|Kate|Serena|Stephanie|Hazel|Libby|Sonia|Amy|Emma|Fiona|Moira|Tessa|Karen|Samantha|Victoria|Zira|Susan|Catherine|Google UK English Female)/i;const gb=vs.filter(v=>/en-GB/i.test(v.lang));const en=vs.filter(v=>/^en/i.test(v.lang));return gb.find(v=>fem.test(v.name))||en.find(v=>fem.test(v.name))||gb[0]||en[0]||null;}catch(e){return null;}}
+function speak(txt){try{if(!('speechSynthesis' in window))return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(txt);u.lang='en-GB';u.rate=0.9;u.pitch=1.15;const v=pickVoice();if(v)u.voice=v;speechSynthesis.speak(u);}catch(e){}}
+
+// ===== 存档 =====
+function saveSess(){try{localStorage.setItem(LS,JSON.stringify(sess));}catch(e){}}
+function loadSess(){try{return JSON.parse(localStorage.getItem(LS)||'null');}catch(e){return null;}}
+function clearSess(){try{localStorage.removeItem(LS);}catch(e){}}
+
+// ===== 出题 =====
+function build(){
+  const pool=DATA.filter(d=>selSecs.has(d.sec)).slice();
+  for(let i=pool.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[pool[i],pool[j]]=[pool[j],pool[i]];}
+  const chosen=[];const want=Math.min(count,pool.length);
+  for(const d of pool){if(chosen.length>=want)break;const valid=[...modesSel].filter(mid=>validFor(d,mid));if(valid.length===0)continue;const mode=valid[Math.floor(Math.random()*valid.length)];chosen.push({en:d.en,zh:d.zh,sec:d.sec,mode,ans:'',status:''});}
+  sess={modes:[...modesSel],secs:[...selSecs],quiz:chosen,qi:0,phase:'quiz',ts:Date.now()};saveSess();
+}
+
+$('start').onclick=()=>{if(selSecs.size===0){alert('请至少选一个模块');return;}build();if(sess.quiz.length===0){alert('该范围/模式组合没有可出的题');return;}show('quiz');renderQ();};
+
+function renderQ(){const q=sess.quiz[sess.qi];const m=MODEMAP[q.mode];
+  $('progbar').style.width=(sess.qi/sess.quiz.length*100)+'%';
+  $('qidx').textContent='第 '+(sess.qi+1)+' / '+sess.quiz.length+' 题';
+  $('qmode').textContent=m.t+'　·　答案：'+(m.ansEN?'英文':'中文');
+  const p=$('prompt');
+  if(m.listen){p.innerHTML='<button class="playbtn" id="play">🔊</button><div class="sub">听发音，然后'+(m.ansEN?'拼出英文':'写出中文')+'</div><button class="replay" id="replay">🔁 再听</button>';setTimeout(()=>speak(sayText(q.en)),150);$('play').onclick=()=>speak(sayText(q.en));$('replay').onclick=()=>speak(sayText(q.en));}
+  else if(m.id==='en_zh'){p.innerHTML='<div class="big">'+q.en+'</div><div class="sub">写出中文意思</div>';}
+  else{p.innerHTML='<div class="big">'+q.zh+'</div><div class="sub">拼出英文</div>';}
+  const inp=$('ans');inp.value=q.ans||'';inp.placeholder=m.ansEN?'输入英文…':'输入中文…';
+  $('nextBtn').textContent=(sess.qi===sess.quiz.length-1)?'完成 ✓':'下一题 →';
+  setTimeout(()=>inp.focus(),60);
+}
+function advance(){if(locked)return;locked=true;const q=sess.quiz[sess.qi];q.ans=$('ans').value.trim();saveSess();
+  if(sess.qi<sess.quiz.length-1){sess.qi++;renderQ();}else{finish();}
+  setTimeout(()=>{locked=false;},120);
+}
+$('ans').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();advance();}});
+$('nextBtn').onclick=advance;
+$('skip').onclick=()=>{$('ans').value='';advance();};
+
+function gradeAll(){sess.quiz.forEach(q=>{const m=MODEMAP[q.mode];if(m.ansEN){q.status=checkEN(q.ans,q.en)?'right':'wrong';}else{q.status=checkZH(q.ans,q.zh)?'right':'pending';}});}
+function finish(){sess.phase='done';gradeAll();saveSess();show('result');renderResult();}
+
+function renderResult(){const rv=$('review');rv.innerHTML='';
+  sess.quiz.forEach((q,idx)=>{const m=MODEMAP[q.mode];const el=document.createElement('div');el.className='review-item';
+    const badge='<span class="badge '+q.status+'">'+(q.status==='right'?'✓ 对':q.status==='wrong'?'✗ 错':'待复核')+'</span>';
+    el.innerHTML='<div class="ri-q"><span class="en">'+q.en+'</span> · '+q.zh+'<br><span class="ya">['+m.t+'] 你的答案：'+(q.ans||'（空）')+'</span></div>'+
+      '<div style="text-align:right">'+badge+'<div class="jud"><button class="y'+(q.status==='right'?' on':'')+'" data-i="'+idx+'" data-v="right">✓</button><button class="n'+(q.status==='wrong'?' on':'')+'" data-i="'+idx+'" data-v="wrong">✗</button></div></div>';
+    rv.appendChild(el);});
+  rv.querySelectorAll('.jud button').forEach(b=>b.onclick=()=>{sess.quiz[+b.dataset.i].status=b.dataset.v;saveSess();renderResult();});
+  const right=sess.quiz.filter(q=>q.status==='right').length,pend=sess.quiz.filter(q=>q.status==='pending').length,tot=sess.quiz.length;
+  $('score').textContent=right+' / '+tot;
+  $('scoresub').textContent='正确率 '+Math.round(right/tot*100)+'%'+(pend?('　·　'+pend+' 项待复核'):'');
+  // 分模块
+  const bm={};sess.quiz.forEach(q=>{const nm=SECTIONS[q.sec].name;bm[nm]=bm[nm]||{r:0,t:0};bm[nm].t++;if(q.status==='right')bm[nm].r++;});
+  $('bymod').innerHTML=Object.keys(bm).map(k=>'<span>'+k+' '+bm[k].r+'/'+bm[k].t+'</span>').join('');
+  const pn=$('pendNote');if(pend){pn.classList.remove('hide');pn.textContent='有 '+pend+' 项中文默写待复核：请在下方点 ✓ 或 ✗ 定案，分数会实时更新。';}else pn.classList.add('hide');
+}
+function dl(text,name,type){try{const blob=new Blob([text],{type:type});const u=URL.createObjectURL(blob);const a=document.createElement('a');a.href=u;a.download=name;a.click();URL.revokeObjectURL(u);}catch(e){}}
+$('expJSON').onclick=()=>{const right=sess.quiz.filter(q=>q.status==='right').length;const out={date:new Date().toISOString(),modes:sess.modes,total:sess.quiz.length,correct:right,accuracy:Math.round(right/sess.quiz.length*100)+'%',items:sess.quiz.map(q=>({en:q.en,zh:q.zh,mode:q.mode,answer:q.ans,verdict:q.status}))};dl(JSON.stringify(out,null,2),'quiz-result-'+Date.now()+'.json','application/json');};
+$('expTXT').onclick=()=>{const right=sess.quiz.filter(q=>q.status==='right').length;let t='数学英语词汇自测结果\n日期: '+new Date().toLocaleString()+'\n得分: '+right+' / '+sess.quiz.length+' ('+Math.round(right/sess.quiz.length*100)+'%)\n\n';sess.quiz.forEach((q,i)=>{t+=(i+1)+'. ['+({right:'对',wrong:'错',pending:'待复核'}[q.status])+'] '+q.en+' | '+q.zh+'\n   你的答案: '+(q.ans||'（空）')+'\n';});dl(t,'quiz-result-'+Date.now()+'.txt','text/plain');};
+$('again').onclick=()=>{build();show('quiz');renderQ();};
+$('home').onclick=()=>{show('setup');checkResume();};
+
+// ===== 续答/上次结果 =====
+function checkResume(){const s=loadSess();const box=$('resume');
+  if(s&&s.quiz&&s.quiz.length){
+    if(s.phase==='quiz'&&s.qi<s.quiz.length){box.classList.remove('hide');box.innerHTML='上次有未完成的测试（进行到第 '+(s.qi+1)+'/'+s.quiz.length+' 题）。<button class="btn g sm" id="rs" style="margin-left:8px">▶ 继续</button> <button class="btn ghost sm" id="rsx">丢弃</button>';
+      $('rs').onclick=()=>{sess=s;show('quiz');renderQ();};$('rsx').onclick=()=>{clearSess();box.classList.add('hide');};}
+    else if(s.phase==='done'){box.classList.remove('hide');box.innerHTML='上次已完成一套测试。<button class="btn g sm" id="rsv" style="margin-left:8px">查看结果</button> <button class="btn ghost sm" id="rsx">清除</button>';
+      $('rsv').onclick=()=>{sess=s;show('result');renderResult();};$('rsx').onclick=()=>{clearSess();box.classList.add('hide');};}
+    else box.classList.add('hide');
+  } else box.classList.add('hide');
+}
+if(typeof speechSynthesis!=='undefined')speechSynthesis.onvoiceschanged=function(){};
+checkResume();
+</script>
+</body></html>
