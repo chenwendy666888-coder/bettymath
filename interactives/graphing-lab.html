@@ -1,0 +1,403 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Graphing Lab · 交互制图实验室</title><style>
+:root{--bg:#F4F6FB;--surface:#fff;--ink:#1B1B2A;--muted:#6A6A82;--line:#E3E6F0;--indigo:#4A43C4;--indigo-deep:#2E2A6B;--indigo-soft:#EEF0FC;--amber:#D98A24;--amber-soft:#FEF6E7;--green:#1F8A5B;--green-soft:#E6F5EE;--rose:#C0453B;--rose-soft:#FBEDEC;--grey-soft:#EEF0F4;--shadow:0 1px 2px rgba(30,30,60,.05),0 8px 24px rgba(30,30,60,.06);--font:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Segoe UI",Roboto,sans-serif;}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.6}
+.hero{background:linear-gradient(135deg,#2E2A6B,#4A43C4);color:#fff;padding:20px}.hero-in{max-width:1080px;margin:0 auto}
+.back{color:#fff;opacity:.85;text-decoration:none;font-size:13px;font-weight:700}.hero h1{margin:8px 0 4px;font-size:22px}.hero .en{font-size:12px;opacity:.85;font-weight:700}.hero p{margin:6px 0 0;opacity:.92;font-size:13px}
+.wrap{max-width:1080px;margin:14px auto;padding:0 22px}
+.tabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}
+.tab{border:1.5px solid var(--line);background:var(--surface);border-radius:11px;padding:8px 13px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;color:var(--indigo-deep);box-shadow:var(--shadow);display:flex;flex-direction:column;gap:1px;line-height:1.15}
+.tab .en{font-size:9.5px;color:var(--muted);font-weight:700}
+.tab.on{background:var(--indigo);color:#fff;border-color:var(--indigo)}.tab.on .en{color:rgba(255,255,255,.85)}
+.lab{display:grid;grid-template-columns:minmax(0,510px) 1fr;gap:18px;align-items:start}
+.cvcard{background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:12px;position:sticky;top:10px}
+canvas{width:100%;height:auto;display:block;border-radius:8px;background:#fff;touch-action:none;cursor:crosshair}
+.playbar{display:flex;gap:8px;align-items:center;margin-top:10px}
+.playbar button{border:none;border-radius:9px;padding:8px 12px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;color:#fff}
+.pb-prev{background:var(--muted)}.pb-play{background:var(--green)}.pb-next{background:var(--indigo)}.pb-reset{background:var(--surface);color:var(--indigo);border:1.5px solid var(--indigo)!important}
+.stepdot{margin-left:auto;font-size:12px;font-weight:800;color:var(--muted)}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:16px 18px}
+.overview{background:linear-gradient(135deg,#2E2A6B,#4A43C4);color:#fff;border-radius:12px;padding:13px 15px;margin-bottom:12px}
+.overview .ttl{font-size:11px;font-weight:800;letter-spacing:.06em;opacity:.85}
+.overview h3{margin:3px 0 6px;font-size:16px}.overview p{margin:0;font-size:13px;opacity:.95}
+.overview .flow{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+.overview .flow span{background:rgba(255,255,255,.16);border-radius:99px;padding:3px 10px;font-size:11.5px;font-weight:700}
+.controls{border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:12px}
+.presets{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.presets button{border:1.5px solid var(--indigo);background:var(--surface);color:var(--indigo);border-radius:9px;padding:5px 10px;font-size:12px;font-weight:800;cursor:pointer;font-family:inherit}
+.presets button.on{background:var(--indigo);color:#fff}
+.ctrl{display:flex;align-items:center;gap:8px;font-size:12.5px;margin:6px 0}
+.ctrl label{width:74px;color:var(--muted);font-weight:700}
+.ctrl input[type=range]{flex:1;accent-color:var(--indigo)}
+.ctrl .val{width:38px;text-align:right;font-weight:800;color:var(--indigo-deep);font-variant-numeric:tabular-nums}
+.formula{font-size:16px;font-weight:800;background:var(--grey-soft);border-radius:8px;padding:7px 11px;text-align:center;margin-bottom:10px;font-variant-numeric:tabular-nums}
+.ptable{width:100%;border-collapse:collapse;font-size:12.5px;margin:8px 0}
+.ptable td,.ptable th{border:1px solid var(--line);padding:3px 8px;text-align:center;font-variant-numeric:tabular-nums}
+.ptable th{background:var(--grey-soft);color:var(--indigo-deep)}
+.toggle{display:inline-flex;gap:4px}
+.toggle button{border:1.5px solid var(--line);background:var(--surface);border-radius:8px;padding:3px 10px;font-size:12.5px;font-weight:800;cursor:pointer;font-family:inherit;color:var(--indigo-deep)}
+.toggle button.on{background:var(--indigo);color:#fff;border-color:var(--indigo)}
+.cmp button{min-width:34px}
+.res{background:var(--green-soft);border-radius:10px;padding:9px 12px;font-size:13px;margin-top:8px}.res.no{background:var(--rose-soft)}.res b{color:var(--indigo-deep)}
+/* 累加式步骤卡 */
+.steps{display:flex;flex-direction:column;gap:8px;max-height:342px;overflow-y:auto;padding:2px 4px 2px 0;scroll-behavior:smooth}
+.steps::-webkit-scrollbar{width:7px}.steps::-webkit-scrollbar-thumb{background:#CBD0E6;border-radius:9px}
+.stepcard{border:1px solid var(--line);border-left:4px solid var(--line);border-radius:11px;padding:10px 14px;background:#fff;animation:slidein .3s ease;cursor:pointer}
+.stepcard:hover{border-color:#c9cdf3}
+.stepcard.cur{border-left-color:var(--indigo);background:var(--indigo-soft)}
+.stepcard.key{border-left-color:var(--amber)}
+.stepcard.key.cur{background:var(--amber-soft)}
+.stepcard .sn{font-size:10.5px;font-weight:800;color:var(--indigo);letter-spacing:.05em}
+.stepcard.key .sn{color:var(--amber)}
+.stepcard h4{margin:2px 0 4px;font-size:14.5px;color:var(--indigo-deep)}
+.stepcard.key h4::after{content:" ★重点";font-size:10px;color:var(--amber);font-weight:800}
+.stepcard p{margin:0;font-size:13px}.stepcard .en{color:var(--muted);font-size:11.5px;display:block;margin-top:3px}
+@keyframes slidein{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.tip{font-size:12px;color:var(--muted);margin-top:10px}
+@media(max-width:880px){.lab{grid-template-columns:1fr}.cvcard{position:static}}
+</style></head><body>
+<div class="hero"><div class="hero-in"><a class="back" href="../index.html">← 学习中心 Hub</a>
+<div class="en">INTERACTIVE · HOW TO DRAW GRAPHS, STEP BY STEP</div>
+<h1>交互制图实验室 · 一步步学画图</h1>
+<p>从"怎么画一条直线"到二次、三角、指数对数。上方概览常驻，下方步骤逐条累加；点「播放」看曲线一点点画出来。</p></div></div>
+<div class="wrap">
+<div class="tabs" id="tabs"></div>
+<div class="lab">
+  <div class="cvcard">
+    <canvas id="cv" width="510" height="510"></canvas>
+    <div class="playbar">
+      <button class="pb-reset" id="reset">⟲ 重来</button>
+      <button class="pb-prev" id="prev">← 上一步</button>
+      <button class="pb-play" id="play">▶ 播放</button>
+      <button class="pb-next" id="next">下一步 →</button>
+      <span class="stepdot" id="dot"></span>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="overview" id="overview"></div>
+    <div class="controls" id="controls"></div>
+    <div class="steps" id="steps"></div>
+    <div class="tip" id="tip"></div>
+  </div>
+</div>
+</div>
+<script>
+const cv=document.getElementById('cv'),ctx=cv.getContext('2d'),W=cv.width,H=cv.height;
+let R={xmin:-6,xmax:6,ymin:-6,ymax:6};
+const X=x=>(x-R.xmin)/(R.xmax-R.xmin)*W, Y=y=>H-(y-R.ymin)/(R.ymax-R.ymin)*H;
+const pX=px=>px/W*(R.xmax-R.xmin)+R.xmin, pY=py=>(H-py)/H*(R.ymax-R.ymin)+R.ymin;
+const C={ind:'#4A43C4',amb:'#D98A24',grn:'#1F8A5B',rose:'#C0453B',mut:'#6A6A82',line:'#E6E9F3'};
+const round=v=>{const r=Math.round(v*100)/100;return Object.is(r,-0)?0:r;};
+function clear(){ctx.clearRect(0,0,W,H);ctx.fillStyle='#fff';ctx.fillRect(0,0,W,H);}
+function grid(xstep,xfmt){xstep=xstep||1;const ystep=1;
+  ctx.strokeStyle=C.line;ctx.lineWidth=1;ctx.beginPath();
+  for(let v=Math.ceil(R.xmin/xstep)*xstep;v<=R.xmax;v+=xstep){ctx.moveTo(X(v),0);ctx.lineTo(X(v),H);}
+  for(let v=Math.ceil(R.ymin/ystep)*ystep;v<=R.ymax;v+=ystep){ctx.moveTo(0,Y(v));ctx.lineTo(W,Y(v));}
+  ctx.stroke();
+  ctx.strokeStyle='#9AA0C8';ctx.lineWidth=1.6;ctx.beginPath();ctx.moveTo(0,Y(0));ctx.lineTo(W,Y(0));ctx.moveTo(X(0),0);ctx.lineTo(X(0),H);ctx.stroke();
+  ctx.fillStyle=C.mut;ctx.font='10px sans-serif';ctx.textAlign='center';
+  for(let v=Math.ceil(R.xmin/xstep)*xstep;v<=R.xmax;v+=xstep){if(Math.abs(v)>1e-9)ctx.fillText(xfmt?xfmt(v):(''+round(v)),X(v),Y(0)+12);}
+  ctx.textAlign='right';for(let v=Math.ceil(R.ymin/ystep)*ystep;v<=R.ymax;v+=ystep){if(Math.abs(v)>1e-9)ctx.fillText(''+round(v),X(0)-6,Y(v)+3);}
+  ctx.textAlign='center';}
+function plot(f,col,frac,opt){opt=opt||{};ctx.strokeStyle=col;ctx.lineWidth=opt.lw||2.8;ctx.setLineDash(opt.dash||[]);ctx.beginPath();
+  const lim=W*(frac==null?1:frac);let started=false;
+  for(let px=0;px<=lim;px+=2){const x=pX(px);let y;try{y=f(x);}catch(e){y=NaN;}
+    if(!isFinite(y)||y>R.ymax+40||y<R.ymin-40){started=false;continue;}
+    const PX=X(x),PY=Y(y);if(!started){ctx.moveTo(PX,PY);started=true;}else ctx.lineTo(PX,PY);}
+  ctx.stroke();ctx.setLineDash([]);}
+function pt(x,y,col,label,below){const PX=X(x),PY=Y(y);ctx.fillStyle=col;ctx.beginPath();ctx.arc(PX,PY,5,0,7);ctx.fill();
+  ctx.strokeStyle='#fff';ctx.lineWidth=2;ctx.beginPath();ctx.arc(PX,PY,5,0,7);ctx.stroke();
+  if(label){ctx.fillStyle=col;ctx.font='bold 11px sans-serif';ctx.textAlign='left';ctx.fillText(label,PX+8,PY+(below?16:-8));}}
+function dashV(xc,col){ctx.strokeStyle=col;ctx.lineWidth=1.4;ctx.setLineDash([6,4]);ctx.beginPath();ctx.moveTo(X(xc),0);ctx.lineTo(X(xc),H);ctx.stroke();ctx.setLineDash([]);}
+function dashH(yc,col){ctx.strokeStyle=col;ctx.lineWidth=1.4;ctx.setLineDash([6,4]);ctx.beginPath();ctx.moveTo(0,Y(yc));ctx.lineTo(W,Y(yc));ctx.stroke();ctx.setLineDash([]);}
+function note(x,y,txt,col){ctx.fillStyle=col;ctx.font='bold 11px sans-serif';ctx.textAlign='center';ctx.fillText(txt,X(x),Y(y));}
+function fmtLin(m,b){return `y = ${m}x ${b<0?'− '+(-b):'+ '+b}`;}
+
+const state={
+ lin:{m:1,b:1},
+ quad:{a:1,b:-2,c:-3},
+ trig:{A:1,fn:'sin'},
+ elog:{base:2,fn:'exp'},
+ shade:{cmp:'ge',m:1,b:-1,tp:null},
+ method:{ex:'cubic'},
+ qineq:{a:1,b:-2,c:-3,cmp:'gt'}
+};
+
+// ============ 章节 ============
+const CH={
+coord:{name:'坐标系基础',en:'Coordinate Basics',range:{xmin:-5,xmax:5,ymin:-5,ymax:5},
+ overview:{h:'先把坐标系与"平移"弄懂',p:'很多同学没系统学过平面直角坐标系。这里从"一个点怎么定位"讲到"图象怎么上下左右平移"，为后面画图打地基。<br><span style="opacity:.85">EN: From locating a point (x, y) to how a graph shifts — the foundation for everything after.</span>',flow:['x轴/y轴/原点','点(x,y)','y=x 为何斜','y=x² 为何U','上下平移','左右平移']},
+ steps:[
+  {t:'① 坐标系：两条数轴',e:'Two number lines',key:true,b:'横着的是 <b>x 轴</b>，竖着的是 <b>y 轴</b>，交点叫 <b>原点 O (0,0)</b>。它们把平面分成四个<b>象限</b>（右上是第一象限，逆时针数）。'},
+  {t:'② 一个点 (x, y) 怎么定位',e:'Reading a point',key:true,b:'先看 x：向右走 x 格(负就向左)；再看 y：向上走 y 格(负就向下)。例：(3, 2) = 向右3、向上2。'},
+  {t:'③ 多描几个点',e:'Plot several points',anim:'points',b:'(1,1)、(−2,3)、(0,−2) 各自定位。习惯"先左右、后上下"。'},
+  {t:'④ 为什么 y=x 是斜线',e:'Why y=x is a diagonal',key:true,anim:'curve',b:'因为线上每个点 y 都等于 x：(−2,−2)(−1,−1)(0,0)(1,1)(2,2)，连起来是一条 45° 斜线。'},
+  {t:'⑤ 为什么 y=x² 是 U 形',e:'Why y=x² is a U',key:true,anim:'curve',b:'算几个：(−2,4)(−1,1)(0,0)(1,1)(2,4)。负数平方变正，所以左右对称、开口向上 → U 形(抛物线)。'},
+  {t:'⑥ 上下平移',e:'Vertical shift',key:true,anim:'curve',b:'在外面 <b>+c</b> 整条图上移 c：y=x²+2 就是 y=x² 整体抬高 2 格；−2 则下移。'},
+  {t:'⑦ 左右平移',e:'Horizontal shift',key:true,anim:'curve',b:'把 x 换成 <b>(x−h)</b> 整条图右移 h（注意：减是<b>右</b>移）：y=(x−1)² 是 y=x² 右移 1 格。'}
+ ],
+ draw(s,tt){
+  if(s===0){pt(0,0,C.rose,'O (0,0)');ctx.fillStyle=C.ind;ctx.font='bold 12px sans-serif';ctx.textAlign='left';ctx.fillText('x 轴',X(4.1),Y(0)-8);ctx.fillText('y 轴',X(0)+8,Y(4.6));
+    ctx.fillStyle=C.mut;ctx.font='11px sans-serif';ctx.textAlign='center';ctx.fillText('第一象限 (+,+)',X(3),Y(4.2));ctx.fillText('第二象限 (−,+)',X(-3),Y(4.2));ctx.fillText('第三象限 (−,−)',X(-3),Y(-4.3));ctx.fillText('第四象限 (+,−)',X(3),Y(-4.3));}
+  if(s===1){ctx.strokeStyle=C.amb;ctx.lineWidth=1.8;ctx.setLineDash([5,4]);ctx.beginPath();ctx.moveTo(X(0),Y(0));ctx.lineTo(X(3),Y(0));ctx.lineTo(X(3),Y(2));ctx.stroke();ctx.setLineDash([]);
+    note(1.5,-0.45,'向右 3',C.amb);ctx.textAlign='left';ctx.fillStyle=C.amb;ctx.font='bold 11px sans-serif';ctx.fillText('向上 2',X(3)+6,Y(1));pt(3,2,C.rose,'(3, 2)');}
+  if(s===2){const P=[[1,1],[-2,3],[0,-2]];const n=Math.max(1,Math.ceil((tt||1)*P.length));P.slice(0,n).forEach(([x,y])=>pt(x,y,C.amb,'('+x+', '+y+')'));}
+  if(s===3){[[-2,-2],[-1,-1],[0,0],[1,1],[2,2]].forEach(([x,y])=>pt(x,y,C.amb,''));plot(x=>x,C.ind,tt);note(3.2,3.6,'y = x',C.ind);}
+  if(s===4){[[-2,4],[-1,1],[0,0],[1,1],[2,4]].forEach(([x,y])=>pt(x,y,C.amb,'('+x+', '+y+')'));plot(x=>x*x,C.ind,tt);note(2.7,4.5,'y = x²',C.ind);}
+  if(s===5){plot(x=>x*x,C.mut,1,{lw:2,dash:[5,4]});plot(x=>x*x+2,C.ind,tt);note(-2.8,4.5,'y=x²+2 (上移2)',C.ind);ctx.strokeStyle=C.grn;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(X(0.25),Y(0.15));ctx.lineTo(X(0.25),Y(2.15));ctx.stroke();note(1.1,1.3,'↑ +2',C.grn);}
+  if(s===6){plot(x=>x*x,C.mut,1,{lw:2,dash:[5,4]});plot(x=>(x-1)*(x-1),C.ind,tt);note(3.1,4.5,'y=(x−1)² (右移1)',C.ind);note(0.1,-0.5,'→ 右移1',C.grn);}
+ },
+ controls(){return '<div class="tip">这一章是地基：点的定位、y=x 与 y=x² 为什么长这样、以及 "+c 上下移 / (x−h) 左右移"。后面每一章都建立在这上面。</div>';}
+},
+method:{name:'五步法',en:'5-Step Method',range:{xmin:-4,xmax:4,ymin:-5,ymax:5},
+ overview:{h:'画任意曲线的通用五步',p:'不管几次方，都是这套流程。下面可切换 一次 / 二次 / 三次 三个例子，看同一套方法怎么用。',flow:['① 关键点','② 轴交点','③ 趋势','④ 极限','⑤ 连成图象']},
+ ex(){return {
+   linear:{f:x=>x+1,label:'y = x + 1',roots:[-1],yint:1,turns:[],end:'直线：两端一直斜下去，没有极限拐弯',trend:'一路递增 ↑',factor:'令 y=0 → x + 1 = 0 → x = −1'},
+   quad:{f:x=>x*x-2*x-3,label:'y = x² − 2x − 3',roots:[-1,3],yint:-3,turns:[[1,-4]],end:'x→±∞ 时 y→+∞（开口向上）',trend:'先降到顶点(1,−4)再升 ↓↑',factor:'令 y=0 → (x+1)(x−3)=0 → x = −1 , 3'},
+   cubic:{f:x=>x**3-3*x,label:'y = x³ − 3x',roots:[0,-Math.sqrt(3),Math.sqrt(3)],yint:0,turns:[[-1,2],[1,-2]],end:'x→+∞:y→+∞；x→−∞:y→−∞',trend:'升→降→升 ↑↓↑',factor:'令 y=0 → x(x−√3)(x+√3)=0 → x = 0 , ±√3'}
+ }[state.method.ex];},
+ steps:[
+  {t:'① 关键点 / 临界点',e:'Key / turning points',key:true,b:'先看图会在哪"拐弯"。<b>不用求导</b>——多描几个点就能看出来：一次没有拐点；二次在顶点处拐一次；三次在两处拐弯（本例≈(−1,2)、(1,−2)）。'},
+  {t:'② 与坐标轴的交点',e:'Axis intercepts (try factorising)',key:true,b:'令 y=0 求 x 截距，<b>优先用因式分解</b>：x³−3x = x(x²−3) = x(x−√3)(x+√3) → x=0,±√3。令 x=0 得 y 截距。'},
+  {t:'③ 增减趋势',e:'Increasing / decreasing',b:'关键点把图分段，标出每段是升还是降。'},
+  {t:'④ 两端走向 / 极限',e:'End behaviour / limits',b:'看 x 很大、很小时 y 冲向哪。（有理/指数函数这一步会出现"渐近线 asymptote"。）'},
+  {t:'⑤ 连成图象',e:'Join into the graph',anim:'curve',b:'按趋势把点连起来：一次→<b>直线</b>，二次→<b>抛物线</b>，三次→<b>光滑曲线</b>。点"播放"看它画出来。'}
+ ],
+ draw(s,t){const E=this.ex();
+  if(s>=1)E.roots.forEach(r=>pt(r,0,C.rose,'('+round(r)+', 0)',r<0));
+  if(s>=1)pt(0,E.yint,C.rose,'y截距');
+  if(s===1){ctx.fillStyle=C.ind;ctx.font='bold 12px sans-serif';ctx.textAlign='left';ctx.fillText(E.factor,12,H-14);}
+  if(s>=0)E.turns.forEach(([x,y])=>pt(x,y,C.amb,'拐点('+round(x)+', '+round(y)+')'));
+  if(s>=2){ctx.fillStyle=C.grn;ctx.font='bold 12px sans-serif';ctx.textAlign='left';ctx.fillText('趋势: '+E.trend,12,20);}
+  if(s>=3&&s<4){ctx.fillStyle=C.mut;ctx.font='bold 11px sans-serif';ctx.textAlign='left';ctx.fillText(E.end,12,H-14);}
+  if(s>=4)plot(E.f,C.ind,s===4?t:1);
+ },
+ controls(){return `<div class="presets"><button data-ex="linear" class="${state.method.ex==='linear'?'on':''}">一次 y=x+1</button><button data-ex="quad" class="${state.method.ex==='quad'?'on':''}">二次 y=x²−2x−3</button><button data-ex="cubic" class="${state.method.ex==='cubic'?'on':''}">三次 y=x³−3x</button></div><div class="formula">${this.ex().label}</div><div class="tip">同一套五步，一次/二次/三次都适用。三次的拐点这里只"描点看出"，不需要导数。</div>`;}
+},
+
+lin:{name:'一次·描点',en:'Linear',range:{xmin:-6,xmax:6,ymin:-6,ymax:6},
+ overview:{h:'一次函数 y = m x + b',p:'图象是一条直线。m 和 b 各管一件事，先搞清英文名。<br><span style="opacity:.85">EN: A straight line. m = slope/gradient, b = the y-intercept.</span>',flow:['m = slope/gradient 斜率','b = intercept 截距','描点','连线']},
+ steps:[
+  {t:'什么是一次函数',e:'What is a linear function',key:true,b:'y = m x + b 的图象是<b>直线</b>。两样东西定一条线：<b>斜率</b>和<b>截距</b>。'},
+  {t:'斜率 slope (gradient)',e:'slope = gradient',key:true,b:'<b>m = 斜率</b>（英式常写 <b>gradient</b>，美式 <b>slope</b>，一个意思）：每向右 1 格，直线上升 m 格。<b>m&gt;0</b> 从左下到右上(递增)；<b>m&lt;0</b> 从左上到右下(递减)；|m| 越大越陡。'},
+  {t:'截距 intercept',e:'y-intercept',key:true,b:'<b>b = 截距</b>（准确说 <b>y-intercept</b>）：直线与 y 轴的交点 (0, b)。注意别把 slope 和 intercept 弄混：一个是"斜不斜"，一个是"在哪穿过 y 轴"。'},
+  {t:'选 x 代入算 y（描点）',e:'Choose x, compute y',b:'取 x=−2,−1,0,1,2 代入 y=m·x+b，把 y 填进表格。'},
+  {t:'描点到坐标系',e:'Plot the points',anim:'points',b:'把 (x, y) 一个个点上去（点"播放"看它们逐个出现），会发现排成一条直线。'},
+  {t:'连成直线',e:'Join into a line',anim:'curve',b:'连起来并向两端延长。b 在 y 轴上，m 决定斜的方向与陡度。'}
+ ],
+ pts(){const{m,b}=state.lin;return [-2,-1,0,1,2].map(x=>[x,m*x+b]);},
+ draw(s,t){const{m,b}=state.lin;const f=x=>m*x+b;const P=this.pts();
+  if(s>=2)pt(0,b,C.rose,'截距 (0, '+round(b)+')');
+  if(s>=4){const n=(s===4)?Math.max(1,Math.ceil(t*P.length)):P.length;P.slice(0,n).forEach(([x,y])=>pt(x,y,C.amb,''));}
+  if(s>=5)plot(f,C.ind,s===5?t:1);
+  if(s>=1&&s<4){ctx.fillStyle=C.mut;ctx.font='bold 12px sans-serif';ctx.textAlign='left';ctx.fillText(m>0?'m>0 递增 ↗':(m<0?'m<0 递减 ↘':'m=0 水平'),12,20);}
+ },
+ controls(){const{m,b}=state.lin;const rows=this.pts().map(([x,y])=>`<td>${round(y)}</td>`).join('');
+  return `<div class="formula">${fmtLin(m,b)}</div>
+  <div class="presets"><button data-p="1,0">y = x</button><button data-p="1,1">y = x + 1</button><button data-p="1,-1">y = x − 1</button><button data-p="-1,2">y = −x + 2</button><button data-p="0.5,-2">y = ½x − 2</button></div>
+  <div class="ctrl"><label>斜率 m</label><input type="range" id="lm" min="-3" max="3" step="0.5" value="${m}"><span class="val">${m}</span></div>
+  <div class="ctrl"><label>截距 b</label><input type="range" id="lb" min="-5" max="5" step="1" value="${b}"><span class="val">${b}</span></div>
+  <table class="ptable"><tr><th>x</th><td>−2</td><td>−1</td><td>0</td><td>1</td><td>2</td></tr><tr><th>y</th>${rows}</tr></table>`;}
+},
+
+quad:{name:'二次·从 y=x² 起',en:'Quadratic',range:{xmin:-6,xmax:6,ymin:-6,ymax:6},
+ overview:{h:'二次函数：从 y = x² 出发',p:'最基础的抛物线是 y=x²（开口向上、顶点原点）。+c 上移、−c 下移；a 变陡/翻转。理解这些"挪动"，就懂了所有二次。<br><span style="opacity:.85">EN: Start from y=x²; shifting and stretching it gives every quadratic.</span>',flow:['开口 a','对称轴','顶点','y交点','x交点(Δ)','曲线']},
+ steps:[
+  {t:'基础：y = x²',e:'The basic parabola',key:true,b:'先记住 y=x²：开口向上、顶点在原点、关于 y 轴对称。<b>加常数 +c</b> 整条上移(y=x²+2 上移2)，<b>−c</b> 下移；乘 <b>a</b>：|a|大更窄，<b>a&lt;0 开口翻下</b>。'},
+  {t:'① 开口方向',e:'Direction',b:'看 a 的符号：a>0 开口向上(有最低点)，a<0 向下(有最高点)。'},
+  {t:'② 对称轴',e:'Axis of symmetry',key:true,b:'对称轴是竖线 <b>x = −b/(2a)</b>（由对称性得到，不用导数）。抛物线关于它左右镜像。'},
+  {t:'③ 顶点',e:'Vertex',key:true,b:'顶点在对称轴上：把 x=−b/2a 代回求 y。它是最低/最高点。'},
+  {t:'④ 与 y 轴交点',e:'y-intercept',b:'令 x=0 → y=c，点 (0, c)。'},
+  {t:'⑤ 与 x 轴交点（根）',e:'x-intercepts (factorise)',key:true,b:'令 y=0，<b>能因式分解就分解</b>：如 x²−2x−3=(x+1)(x−3)，每个括号=0 → x=−1 或 3。<b>这些 x 就是方程 y=0 的解集</b>，也正是图象与 x 轴的交点。判别式 Δ=b²−4ac 判个数：>0 两个、=0 一个(相切)、<0 无交点。'},
+  {t:'⑥ 描对称点，连成抛物线',e:'Symmetric points & curve',anim:'curve',b:'顶点两侧取对称点，用光滑曲线连成抛物线（点播放）。'}
+ ],
+ draw(s,t){const{a,b,c}=state.quad;const f=x=>a*x*x+b*x+c;const ax=-b/(2*a),vy=f(ax),disc=b*b-4*a*c;
+  if(s>=1&&s<6){ctx.fillStyle=C.mut;ctx.font='bold 12px sans-serif';ctx.textAlign='left';ctx.fillText(a>0?'a>0 开口向上':(a<0?'a<0 开口向下':''),12,20);}
+  if(s>=2)dashV(ax,C.grn);
+  if(s>=4)pt(0,c,C.rose,'(0, '+round(c)+')');
+  if(s>=5&&disc>=0){const r1=(-b-Math.sqrt(disc))/(2*a),r2=(-b+Math.sqrt(disc))/(2*a);pt(r1,0,C.rose,'('+round(r1)+', 0)',true);if(Math.abs(r1-r2)>1e-6)pt(r2,0,C.rose,'('+round(r2)+', 0)');
+    if(s===5){const nice=Number.isInteger(r1)&&Number.isInteger(r2);let txt;if(nice){const f1=r1<0?'(x+'+(-r1)+')':'(x−'+r1+')';const f2=r2<0?'(x+'+(-r2)+')':'(x−'+r2+')';txt='令 y=0 → '+(a!==1?a:'')+f1+(Math.abs(r1-r2)>1e-6?f2:'')+' = 0 → x = '+round(r1)+(Math.abs(r1-r2)>1e-6?' , '+round(r2):'');}else{txt='令 y=0 → 用求根公式 → x = '+round(r1)+' , '+round(r2);}ctx.fillStyle=C.ind;ctx.font='bold 12px sans-serif';ctx.textAlign='left';ctx.fillText(txt,12,H-14);}}
+  if(s>=3)pt(ax,vy,C.amb,'顶点 ('+round(ax)+', '+round(vy)+')');
+  if(s>=6){plot(f,C.ind,s===6?t:1);if(s>6||t>=1)[-2,-1,1,2].forEach(d=>pt(ax+d,f(ax+d),C.amb,''));}
+ },
+ controls(){const{a,b,c}=state.quad;const disc=b*b-4*a*c;
+  return `<div class="formula">y = ${a}x² ${b<0?'− '+(-b):'+ '+b}x ${c<0?'− '+(-c):'+ '+c}</div>
+  <div class="presets"><button data-q="1,0,0">y = x²</button><button data-q="1,0,2">y = x² + 2</button><button data-q="1,0,-1">y = x² − 1</button><button data-q="1,-2,1">y = (x−1)²</button><button data-q="1,-2,-3">y = x²−2x−3</button><button data-q="-1,0,4">y = −x²+4</button></div>
+  <div class="ctrl"><label>a 开口</label><input type="range" id="qa" min="-2" max="2" step="0.5" value="${a}"><span class="val">${a}</span></div>
+  <div class="ctrl"><label>b</label><input type="range" id="qb" min="-5" max="5" step="1" value="${b}"><span class="val">${b}</span></div>
+  <div class="ctrl"><label>c 上下移</label><input type="range" id="qc" min="-5" max="5" step="1" value="${c}"><span class="val">${c}</span></div>
+  <div class="res ${disc<0?'no':''}"><b>Δ = b²−4ac = ${round(disc)}</b> → ${disc>0?'两个 x 交点':disc===0?'一个(相切)':'不与 x 轴相交'}</div>`;}
+},
+
+trig:{name:'三角·为何循环',en:'Sine & Cosine',range:{xmin:-6.6,xmax:6.6,ymin:-3,ymax:3},
+ overview:{h:'为什么 sin/cos 会循环（周期）',p:'想象你在单位圆上匀速转圈："高度"就是 sin：0→1→0→−1→0 走完一轮，再转一圈完全重复——所以每 2π 循环。cos 是"水平位置"。<br><span style="opacity:.85">EN: Going round a circle, your height rises and falls and repeats every full turn (2π) — that is the period.</span>',flow:['单位圆直觉','5 关键点','振幅 A','周期 2π','连成波']},
+ steps:[
+  {t:'直觉：转圈 → 上下起伏',e:'Intuition: going round a circle',key:true,b:'在单位圆上转，"高度"(sin)随角度上上下下。转满一圈(2π)刚好起伏一轮，下一圈照抄 → 这就是<b>周期</b>的来源。'},
+  {t:'① 五个关键点',e:'Five key points',b:'一个周期里 sin 的关键点：x=0,π/2,π,3π/2,2π → y=0,1,0,−1,0。先钉住这几个。'},
+  {t:'② 振幅 A',e:'Amplitude',key:true,b:'y=A·sin x 最高到 A、最低到 −A。A 越大波越高（这叫振幅 amplitude）。'},
+  {t:'③ 周期 2π',e:'Period = 2π',key:true,b:'每隔 <b>2π</b> 图形重复一次（就是转一圈的角度）。所以向左右无限复制。'},
+  {t:'④ 连成波浪',e:'Join into a wave',anim:'curve',b:'把关键点用光滑波浪连起来并左右重复（点播放）。'}
+ ],
+ draw(s,t){const{A,fn}=state.trig;const f=x=>A*(fn==='sin'?Math.sin(x):Math.cos(x));
+  const keys=fn==='sin'?[[0,0],[Math.PI/2,A],[Math.PI,0],[3*Math.PI/2,-A],[2*Math.PI,0]]:[[0,A],[Math.PI/2,0],[Math.PI,-A],[3*Math.PI/2,0],[2*Math.PI,A]];
+  if(s>=2){dashH(A,C.grn);dashH(-A,C.grn);note(5.6,A+0.28,'y = '+A,C.grn);note(5.6,-A-0.18,'y = −'+A,C.grn);}
+  if(s>=3){ctx.strokeStyle=C.amb;ctx.lineWidth=1.4;ctx.setLineDash([4,4]);ctx.beginPath();ctx.moveTo(X(0),Y(-2.6));ctx.lineTo(X(0),Y(2.6));ctx.moveTo(X(2*Math.PI),Y(-2.6));ctx.lineTo(X(2*Math.PI),Y(2.6));ctx.stroke();ctx.setLineDash([]);note(Math.PI,2.75,'一个周期 = 2π',C.amb);}
+  if(s>=1)keys.forEach(([x,y])=>pt(x,y,C.rose,''));
+  if(s>=4)plot(f,C.ind,s===4?t:1);
+ },
+ controls(){const{A,fn}=state.trig;
+  return `<div class="formula">y = ${A} ${fn}(x)</div>
+  <div class="ctrl"><label>函数</label><div class="toggle"><button data-tf="sin" class="${fn==='sin'?'on':''}">sin</button><button data-tf="cos" class="${fn==='cos'?'on':''}">cos</button></div></div>
+  <div class="ctrl"><label>振幅 A</label><input type="range" id="ta" min="0.5" max="2.5" step="0.5" value="${A}"><span class="val">${A}</span></div>
+  <div class="tip">x 轴是弧度：π/2≈1.57, π≈3.14, 2π≈6.28。cos 就是 sin 向左移 π/2。</div>`;}
+},
+
+elog:{name:'指数·对数',en:'Exp & Log',range:{xmin:-4,xmax:6,ymin:-2,ymax:6},
+ overview:{h:'指数为什么涨得快、为什么有渐近线',p:'指数 y=aˣ：每 +1 个 x 就 ×a（是乘不是加）→ 越涨越快；一直乘正数永远 >0，贴着 y=0 碰不到 = 渐近线。对数是它的反问，图象关于 y=x 镜像。<br><span style="opacity:.85">EN: Exponential = repeated ×a each step; never reaches 0 → asymptote. Log is its inverse.</span>',flow:['关键点','渐近线','趋势','极限','曲线']},
+ steps:[
+  {t:'直觉：一直"乘"，不是"加"',e:'Repeated multiplying',key:true,b:'y=aˣ 每走 1 步就 ×a：1→a→a²→a³…（a>1 越来越大）。加法是直线，<b>乘法</b>就弯上去了。'},
+  {t:'① 必过的关键点',e:'Anchor point',b:'指数 y=aˣ 必过 (0, 1)（任何数 0 次方=1）；对数 y=logₐx 必过 (1, 0)。'},
+  {t:'② 渐近线 asymptote',e:'Asymptote',key:true,b:'指数一直 >0，无限靠近 <b>y=0</b> 却碰不到 → 水平渐近线。对数无限靠近 <b>x=0</b> → 竖直渐近线。'},
+  {t:'③ 增减趋势',e:'Trend',b:'a>1 递增(越来越陡)；0<a<1 衰减。对数递增但越来越平。'},
+  {t:'④ 两端 / 极限',e:'End behaviour',b:'y=aˣ(a>1)：x→+∞ 冲上去；x→−∞ 贴着 y=0。'},
+  {t:'⑤ 连成光滑曲线',e:'Smooth curve',anim:'curve',b:'顺着关键点、贴着渐近线连成光滑曲线（点播放）。'}
+ ],
+ draw(s,t){const{base,fn}=state.elog;
+  if(fn==='exp'){const f=x=>Math.pow(base,x);
+   if(s>=2){dashH(0,C.rose);note(4.5,0.38,'渐近线 y = 0',C.rose);}
+   if(s>=1){pt(0,1,C.amb,'(0, 1)');pt(1,base,C.amb,'(1, '+base+')');}
+   if(s>=4&&s<5){note(3.7,5.4,'x→+∞: y→+∞',C.mut);note(-2.6,0.42,'x→−∞: y→0',C.mut);}
+   if(s>=5)plot(f,C.ind,s===5?t:1);
+  }else{const f=x=>x>0?Math.log(x)/Math.log(base):NaN;
+   if(s>=2){dashV(0,C.rose);note(0.95,5.4,'渐近线 x = 0',C.rose);}
+   if(s>=1){pt(1,0,C.amb,'(1, 0)',true);pt(base,1,C.amb,'('+base+', 1)');}
+   if(s>=4&&s<5){note(4.6,2.4,'x→+∞: 缓慢升',C.mut);note(0.6,-1.4,'x→0⁺: y→−∞',C.mut);}
+   if(s>=5)plot(f,C.ind,s===5?t:1);
+  }
+ },
+ controls(){const{base,fn}=state.elog;
+  return `<div class="formula">y = ${fn==='exp'?base+'ˣ':'log<sub>'+base+'</sub> x'}</div>
+  <div class="ctrl"><label>类型</label><div class="toggle"><button data-ef="exp" class="${fn==='exp'?'on':''}">指数 aˣ</button><button data-ef="log" class="${fn==='log'?'on':''}">对数 logₐx</button></div></div>
+  <div class="ctrl"><label>底数 a</label><input type="range" id="eb" min="2" max="4" step="1" value="${base}"><span class="val">${base}</span></div>
+  <div class="tip">指数与对数互为反函数：图象关于 y=x 对称。</div>`;}
+},
+
+shade:{name:'不等式·阴影',en:'Inequalities',range:{xmin:-6,xmax:6,ymin:-6,ymax:6},
+ overview:{h:'什么算"大于"、什么算"小于"',p:'同一个 x：线上的点 y=mx+b。比它"高"的点 y 更大 → 满足 y>…；"低"的更小 → 满足 y<…。解就是线的"某一整侧"。<br><span style="opacity:.85">EN: Above the line = bigger y (y&gt;…); below = smaller (y&lt;…). The solution is one whole side.</span>',flow:['画边界线','上/下=大/小','涂满足的一侧']},
+ steps:[
+  {t:'① 先画边界线',e:'Draw the boundary',key:true,b:'先画 y=m x+b。≥/≤ 用实线(含边界)，>/< 用虚线(不含)。'},
+  {t:'② 上方=大，下方=小',e:'Above = greater',key:true,b:'点网格放一个测试点：它会连到"同 x 处线上的点"，告诉你它在线的<b>上方(y更大)</b>还是<b>下方(y更小)</b> → 对应满足 y> 还是 y<。'},
+  {t:'③ 涂阴影 = 圈出解集',e:'Shade = the solution set',anim:'shadefill',b:'<b>阴影(shade)</b> = 满足不等式的<b>所有点组成的区域</b>，也就是<b>解集</b>。y≥… 涂上方，y≤… 涂下方；阴影里每个点都满足，阴影外都不满足。'}
+ ],
+ draw(s,t){const{cmp,m,b,tp}=state.shade;const f=x=>m*x+b;const above=(cmp==='ge'||cmp==='gt');
+    // 阴影在第③步绘制(带擦入动画)
+    if(s>=3){const frac=(s===3)?t:1;ctx.save();ctx.beginPath();ctx.rect(0,0,W*frac,H);ctx.clip();
+    ctx.fillStyle='rgba(74,67,196,0.18)';ctx.beginPath();
+    if(above){ctx.moveTo(X(R.xmin),Y(R.ymax));ctx.lineTo(X(R.xmax),Y(R.ymax));ctx.lineTo(X(R.xmax),Y(f(R.xmax)));ctx.lineTo(X(R.xmin),Y(f(R.xmin)));}
+    else{ctx.moveTo(X(R.xmin),Y(R.ymin));ctx.lineTo(X(R.xmax),Y(R.ymin));ctx.lineTo(X(R.xmax),Y(f(R.xmax)));ctx.lineTo(X(R.xmin),Y(f(R.xmin)));}
+    ctx.closePath();ctx.fill();ctx.restore();ctx.fillStyle=C.ind;ctx.font='bold 12px sans-serif';ctx.textAlign='left';ctx.fillText('阴影 = 满足不等式的所有点(解集)',12,20);}
+  if(s>=0){ctx.strokeStyle=C.ind;ctx.lineWidth=2.8;ctx.setLineDash((cmp==='gt'||cmp==='lt')?[7,5]:[]);ctx.beginPath();ctx.moveTo(X(R.xmin),Y(f(R.xmin)));ctx.lineTo(X(R.xmax),Y(f(R.xmax)));ctx.stroke();ctx.setLineDash([]);}
+  if(s>=1&&tp){const on=f(tp.x);ctx.strokeStyle=C.mut;ctx.lineWidth=1.2;ctx.setLineDash([3,3]);ctx.beginPath();ctx.moveTo(X(tp.x),Y(tp.y));ctx.lineTo(X(tp.x),Y(on));ctx.stroke();ctx.setLineDash([]);
+    pt(tp.x,on,C.grn,'线上',true);pt(tp.x,tp.y,C.rose,'测试点');}
+ },
+ controls(){const{cmp,m,b,tp}=state.shade;const sym={ge:'≥',le:'≤',gt:'>',lt:'<'}[cmp];let res='';
+  if(tp){const on=m*tp.x+b;const rel=tp.y>on?'上方(更大)':(tp.y<on?'下方(更小)':'正好在线上');const val=({ge:tp.y>=on,le:tp.y<=on,gt:tp.y>on,lt:tp.y<on})[cmp];
+   res=`<div class="res ${val?'':'no'}">点 <b>(${round(tp.x)}, ${round(tp.y)})</b>：y=${round(tp.y)}，同 x 线上 y=${round(on)}。<br>它在线的 <b>${rel}</b> → <b>${val?'✓ 满足':'✗ 不满足'}</b> y ${sym} mx+b。</div>`;}
+  return `<div class="formula">y ${sym} ${fmtLin(m,b).slice(4)}</div>
+  <div class="ctrl"><label>不等号</label><div class="cmp toggle"><button data-c="ge" class="${cmp==='ge'?'on':''}">≥</button><button data-c="le" class="${cmp==='le'?'on':''}">≤</button><button data-c="gt" class="${cmp==='gt'?'on':''}">&gt;</button><button data-c="lt" class="${cmp==='lt'?'on':''}">&lt;</button></div></div>
+  <div class="ctrl"><label>斜率 m</label><input type="range" id="sm" min="-3" max="3" step="0.5" value="${m}"><span class="val">${m}</span></div>
+  <div class="ctrl"><label>截距 b</label><input type="range" id="sb" min="-5" max="5" step="1" value="${b}"><span class="val">${b}</span></div>
+  ${res}<div class="tip">👆 到第②步后<b>点网格放测试点</b>，看它在线上方还是下方。</div>`;}
+},
+
+qineq:{name:'二次不等式',en:'Quadratic Inequality',range:{xmin:-6,xmax:6,ymin:-6,ymax:6},
+ overview:{h:'二次不等式：看抛物线在 x 轴上还是下',p:'解 ax²+bx+c ⋛ 0：先画抛物线、标两根，再看它哪段在 x 轴上方(y>0)、哪段在下方(y<0)。两根之外(outside)与之间(inside)正好一正一负。<br><span style="opacity:.85">EN: Draw the parabola, mark the roots, then read where it is above (y&gt;0) or below (y&lt;0) the x-axis. Outside vs inside the roots have opposite signs.</span>',flow:['求根 roots','画抛物线','根之外/之内','读解集']},
+ steps:[
+  {t:'① 先求根 Find the roots',e:'Factorise to find the roots',key:true,b:'令 y=0，因式分解求两根 r₁、r₂（图上 x 轴的两个交点）。<br>Set y=0 and factorise → the two roots where the parabola meets the x-axis.'},
+  {t:'② 画出抛物线 Draw the parabola',e:'Sketch y = ax²+bx+c',anim:'curve',b:'画出 y=ax²+bx+c。a>0 开口向上，a<0 向下。<br>Sketch it; a>0 opens up, a<0 opens down.'},
+  {t:'③ 根之外 / 根之内 Outside / Inside',e:'Outside vs inside the roots',key:true,b:'<b>根之外 outside</b>（x<r₁ 或 x>r₂）与 <b>根之内 inside</b>（r₁<x<r₂）抛物线一上一下——<span style="color:#1F8A5B">绿=y>0</span>，<span style="color:#C0453B">红=y<0</span>。这就是 outside / inside the roots 的图像意义。'},
+  {t:'④ 读出解集 Read the solution',e:'Read the solution set',anim:'axis',b:'要 y>0 取绿色那些 x；要 y<0 取红色那些 x，标在 x 轴上（含端点实心圆，不含空心圆）。<br>Pick the x-intervals with the right sign; closed dot if ≤/≥, open dot if </>.'}
+ ],
+ roots(){const{a,b,c}=state.qineq;const disc=b*b-4*a*c;if(disc<0)return null;const r1=(-b-Math.sqrt(disc))/(2*a),r2=(-b+Math.sqrt(disc))/(2*a);return [Math.min(r1,r2),Math.max(r1,r2)];},
+ sol(){const{a,b,c,cmp}=state.qineq;const rr=this.roots();if(!rr)return null;const [r1,r2]=rr;const mid=(r1+r2)/2;const innerNeg=(a*mid*mid+b*mid+c)<0;const wantPos=(cmp==='gt'||cmp==='ge');const incl=(cmp==='ge'||cmp==='le');const region=wantPos?(innerNeg?'outer':'inner'):(innerNeg?'inner':'outer');return {r1,r2,region,incl};},
+ draw(s,t){const{a,b,c}=state.qineq;const f=x=>a*x*x+b*x+c;const rr=this.roots();
+  if(s>=2&&rr){const[r1,r2]=rr;[[R.xmin,r1],[r1,r2],[r2,R.xmax]].forEach(([x0,x1])=>{const mid=(x0+x1)/2;const pos=f(mid)>0;ctx.fillStyle=pos?'rgba(31,138,91,0.12)':'rgba(192,69,59,0.12)';ctx.fillRect(X(x0),0,X(x1)-X(x0),H);});
+    ctx.font='bold 11px sans-serif';ctx.textAlign='center';ctx.fillStyle=C.mut;
+    ctx.fillText('根之外 outside',X((R.xmin+r1)/2),Y(0)+26);ctx.fillText('根之内 inside',X((r1+r2)/2),Y(0)+26);ctx.fillText('根之外 outside',X((r2+R.xmax)/2),Y(0)+26);}
+  if(s>=1)plot(f,C.ind,s===1?t:1);
+  if(rr){pt(rr[0],0,C.rose,'r₁='+round(rr[0]),true);pt(rr[1],0,C.rose,'r₂='+round(rr[1]));}
+  if(s>=3){const so=this.sol();if(so){const{r1,r2,region,incl}=so;ctx.lineWidth=6;ctx.strokeStyle=C.ind;
+    const seg=(x0,x1)=>{ctx.beginPath();ctx.moveTo(X(x0),Y(0));ctx.lineTo(X(x1),Y(0));ctx.stroke();};
+    const dot=(x,fl)=>{ctx.beginPath();ctx.arc(X(x),Y(0),6,0,7);if(fl){ctx.fillStyle=C.ind;ctx.fill();}else{ctx.fillStyle='#fff';ctx.fill();ctx.lineWidth=2.5;ctx.strokeStyle=C.ind;ctx.stroke();}};
+    const frac=(s===3&&t<1)?t:1;
+    if(region==='inner'){seg(r1,r1+(r2-r1)*frac);}else{seg(R.xmin,r1-(r1-R.xmin)*(1-frac));seg(r2+(R.xmax-r2)*(1-frac),R.xmax);}
+    if(frac>=1){dot(r1,incl);dot(r2,incl);}
+  }}
+ },
+ controls(){const{a,b,c,cmp}=state.qineq;const sym={gt:'>',lt:'<',ge:'≥',le:'≤'}[cmp];const so=this.sol();let res='';
+  if(so){const{r1,r2,region,incl}=so;const tt=region==='outer'?`x ${incl?'≤':'<'} ${round(r1)} 或 x ${incl?'≥':'>'} ${round(r2)}`:`${round(r1)} ${incl?'≤':'<'} x ${incl?'≤':'<'} ${round(r2)}`;
+   res=`<div class="res"><b>解集 Solution：</b>${tt}<br><span style="color:${region==='outer'?'#1F8A5B':'#C0453B'};font-weight:800">${region==='outer'?'根之外 outside the roots':'根之内 inside the roots'}</span></div>`;}
+  else res='<div class="res no">判别式 &lt;0：抛物线不与 x 轴相交（恒正或恒负）。</div>';
+  return `<div class="formula">y = ${a}x² ${b<0?'− '+(-b):'+ '+b}x ${c<0?'− '+(-c):'+ '+c} ${sym} 0</div>
+  <div class="presets"><button data-i2="1,-2,-3">x²−2x−3</button><button data-i2="1,0,-4">x²−4</button><button data-i2="1,-1,-6">x²−x−6</button><button data-i2="-1,0,4">−x²+4</button></div>
+  <div class="ctrl"><label>不等号</label><div class="cmp toggle"><button data-ic="gt" class="${cmp==='gt'?'on':''}">&gt;0</button><button data-ic="lt" class="${cmp==='lt'?'on':''}">&lt;0</button><button data-ic="ge" class="${cmp==='ge'?'on':''}">≥0</button><button data-ic="le" class="${cmp==='le'?'on':''}">≤0</button></div></div>
+  <div class="ctrl"><label>a</label><input type="range" id="ia" min="-2" max="2" step="1" value="${a}"><span class="val">${a}</span></div>
+  <div class="ctrl"><label>b</label><input type="range" id="ib" min="-5" max="5" step="1" value="${b}"><span class="val">${b}</span></div>
+  <div class="ctrl"><label>c</label><input type="range" id="ic2" min="-6" max="6" step="1" value="${c}"><span class="val">${c}</span></div>
+  ${res}<div class="tip">口诀：a&gt;0 时，&gt;0 取<b>根之外</b>、&lt;0 取<b>根之内</b>（a&lt;0 相反）。图里绿=正、红=负。</div>`;}
+}
+};
+
+const ORDER=['coord','lin','quad','trig','elog','shade','qineq','method'];
+let cur='coord',step=0,timer=null,raf=null;
+const tabbox=document.getElementById('tabs');
+tabbox.innerHTML=ORDER.map(k=>`<button class="tab${k===cur?' on':''}" data-k="${k}"><span>${CH[k].name}</span><span class="en">${CH[k].en}</span></button>`).join('');
+tabbox.querySelectorAll('.tab').forEach(tb=>tb.onclick=()=>{cur=tb.dataset.k;step=0;stopPlay();tabbox.querySelectorAll('.tab').forEach(x=>x.classList.toggle('on',x.dataset.k===cur));setRange();buildControls();goStep(0);});
+function setRange(){R=Object.assign({xmin:-6,xmax:6,ymin:-6,ymax:6},CH[cur].range||{});}
+
+function drawFrame(t){clear();if(cur==='trig')grid(Math.PI/2,v=>{const n=Math.round(v/(Math.PI/2));return n===0?'':(n%2===0?(n/2===1?'π':(n/2)+'π'):(n===1?'π/2':n+'π/2'));});else grid(1);CH[cur].draw(step,t);}
+function renderPanel(){
+  document.getElementById('overview').innerHTML=(()=>{const o=CH[cur].overview;return `<div class="ttl">本章概览 OVERVIEW</div><h3>${o.h}</h3><p>${o.p}</p><div class="flow">${o.flow.map(f=>'<span>'+f+'</span>').join('')}</div>`;})();
+  const cards=[];
+  for(let i=0;i<=step;i++){const st=CH[cur].steps[i];const cls=(i===step?'cur ':'')+(st.key?'key':'');
+    cards.push(`<div class="stepcard ${cls}" data-i="${i}"><div class="sn">STEP ${i+1}</div><h4>${st.t}</h4><p>${st.b}<span class="en">${st.e}</span></p></div>`);}
+  const box=document.getElementById('steps');box.innerHTML=cards.join('');
+  box.querySelectorAll('.stepcard').forEach(c=>c.onclick=()=>{stopPlay();goStep(+c.dataset.i);});
+  const cc=box.querySelector('.stepcard.cur');if(cc)cc.scrollIntoView({block:'nearest'});
+  document.getElementById('dot').textContent=`第 ${step+1} / ${CH[cur].steps.length} 步`;
+}
+function startAnim(){cancelRaf();const st=CH[cur].steps[step];if(st&&st.anim&&typeof performance!=='undefined'){const t0=performance.now(),dur=900;const fr=()=>{const t=Math.min(1,(performance.now()-t0)/dur);drawFrame(t);if(t<1)raf=requestAnimationFrame(fr);};fr();}else drawFrame(1);}
+function cancelRaf(){if(raf){cancelAnimationFrame(raf);raf=null;}}
+function goStep(n){step=n;renderPanel();startAnim();}
+
+function buildControls(){document.getElementById('controls').innerHTML=CH[cur].controls?CH[cur].controls():'';bindControls();}
+function bindControls(){
+  document.querySelectorAll('.presets button[data-p]').forEach(b=>b.onclick=()=>{const v=b.dataset.p.split(',').map(Number);state.lin.m=v[0];state.lin.b=v[1];buildControls();drawFrame(1);});
+  document.querySelectorAll('.presets button[data-q]').forEach(b=>b.onclick=()=>{const v=b.dataset.q.split(',').map(Number);state.quad.a=v[0];state.quad.b=v[1];state.quad.c=v[2];buildControls();drawFrame(1);});
+  document.querySelectorAll('.presets button[data-ex]').forEach(b=>b.onclick=()=>{state.method.ex=b.dataset.ex;buildControls();drawFrame(1);});
+  const bind=(id,o,k,rebuild)=>{const el=document.getElementById(id);if(el)el.oninput=()=>{o[k]=parseFloat(el.value);el.nextElementSibling.textContent=el.value;if(rebuild)buildControls();drawFrame(1);};};
+  bind('lm',state.lin,'m',true);bind('lb',state.lin,'b',true);
+  bind('qa',state.quad,'a',true);bind('qb',state.quad,'b',true);bind('qc',state.quad,'c',true);
+  bind('ta',state.trig,'A');bind('eb',state.elog,'base');
+  bind('sm',state.shade,'m',true);bind('sb',state.shade,'b',true);
+  document.querySelectorAll('[data-tf]').forEach(b=>b.onclick=()=>{state.trig.fn=b.dataset.tf;buildControls();drawFrame(1);});
+  document.querySelectorAll('[data-ef]').forEach(b=>b.onclick=()=>{state.elog.fn=b.dataset.ef;buildControls();drawFrame(1);});
+  document.querySelectorAll('[data-c]').forEach(b=>b.onclick=()=>{state.shade.cmp=b.dataset.c;buildControls();drawFrame(1);});
+  document.querySelectorAll('.presets button[data-i2]').forEach(b=>b.onclick=()=>{const v=b.dataset.i2.split(',').map(Number);state.qineq.a=v[0];state.qineq.b=v[1];state.qineq.c=v[2];buildControls();drawFrame(1);});
+  document.querySelectorAll('[data-ic]').forEach(b=>b.onclick=()=>{state.qineq.cmp=b.dataset.ic;buildControls();drawFrame(1);});
+  bind('ia',state.qineq,'a',true);bind('ib',state.qineq,'b',true);bind('ic2',state.qineq,'c',true);
+}
+cv.addEventListener('pointerdown',e=>{if(cur!=='shade')return;const r=cv.getBoundingClientRect();
+  state.shade.tp={x:Math.round(pX((e.clientX-r.left)/r.width*W)*2)/2,y:Math.round(pY((e.clientY-r.top)/r.height*H)*2)/2};
+  if(step<1)step=1;buildControls();renderPanel();drawFrame(1);});
+
+document.getElementById('next').onclick=()=>{if(step<CH[cur].steps.length-1){stopPlay();goStep(step+1);}};
+document.getElementById('prev').onclick=()=>{if(step>0){stopPlay();goStep(step-1);}};
+document.getElementById('reset').onclick=()=>{stopPlay();goStep(0);};
+function stopPlay(){if(timer){clearInterval(timer);timer=null;document.getElementById('play').textContent='▶ 播放';}}
+document.getElementById('play').onclick=function(){if(timer){stopPlay();return;}this.textContent='⏸ 暂停';
+  timer=setInterval(()=>{if(step<CH[cur].steps.length-1)goStep(step+1);else stopPlay();},1400);};
+
+setRange();buildControls();goStep(0);
+</script>
+</body></html>
