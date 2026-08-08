@@ -124,7 +124,12 @@ a{color:var(--indigo)}
   <div class="path-scroll" id="pscroll"><div class="ptrack" id="ptrack"></div></div>
   <div class="pathbar-wrap"><div class="pathbar" id="pathbar"></div></div>
 </div></div>
-<div class="wrap"><section class="grp" id="grp-prep"><h2>预备篇 · Foundations</h2><p class="sub">从零打底，先学这三份（已双语）</p><div class="grid"><div class="card bi"><div class="cid">01</div>
+<div class="wrap"><section class="grp" id="grp-found"><h2>🌱 预备篇·根基 · Foundations</h2><p class="sub">从零自学，推荐顺序：数感 → 易错坑 → 解题方法 → 图像与一次函数</p><div class="grid">
+<div class="card bi"><div class="cid">F0a</div><div class="cbody"><div class="cen">Number Sense</div><div class="czh">数感（基础版）</div><span class="badge bi">双语 Bilingual</span></div><div class="cfoot"><a class="open" href="lectures/F0a_number-sense.html">Open 打开 →</a><label class="chk"><input type="checkbox" data-id="F0a"> 已学 Learned</label></div></div>
+<div class="card bi"><div class="cid">F0c</div><div class="cbody"><div class="cen">Common Traps</div><div class="czh">常见易错坑（中阶）</div><span class="badge bi">双语 Bilingual</span></div><div class="cfoot"><a class="open" href="lectures/F0c_common-traps.html">Open 打开 →</a><label class="chk"><input type="checkbox" data-id="F0c"> 已学 Learned</label></div></div>
+<div class="card bi"><div class="cid">F0b</div><div class="cbody"><div class="cen">Problem-Solving Toolbox</div><div class="czh">解题方法工具箱</div><span class="badge bi">双语 Bilingual</span></div><div class="cfoot"><a class="open" href="lectures/F0b_problem-solving.html">Open 打开 →</a><label class="chk"><input type="checkbox" data-id="F0b"> 已学 Learned</label></div></div>
+<div class="card bi"><div class="cid">F1</div><div class="cbody"><div class="cen">Coordinates & Linear Functions</div><div class="czh">图像与坐标 + 一次函数</div><span class="badge bi">双语 Bilingual</span></div><div class="cfoot"><a class="open" href="lectures/F1_coord-linear.html">Open 打开 →</a><label class="chk"><input type="checkbox" data-id="F1"> 已学 Learned</label></div></div>
+</div></section><section class="grp" id="grp-prep"><h2>预备篇 · Foundations</h2><p class="sub">从零打底，先学这三份（已双语）</p><div class="grid"><div class="card bi"><div class="cid">01</div>
       <div class="cbody"><div class="cen">Algebra Basics</div><div class="czh">代数基本功</div>
       <span class="badge bi">双语 Bilingual</span><div class="prs"><a class="pl" href="practice/p01_algebra-basics_60min.html">60-min practice 针对性练习</a><a class="pl" href="practice/p01_algebra-basics_60min.md">· MD</a></div></div>
       <div class="cfoot"><a class="open" href="lectures/01_algebra-basics.html">Open 打开 →</a><label class="chk"><input type="checkbox" data-id="01"> 已学 Learned</label></div></div><div class="card bi"><div class="cid">02</div>
@@ -196,7 +201,10 @@ let learned=load();
 
 const GROUPS=[
  {cls:'g-prep',emoji:'🌱',name:'预备篇',mods:[
-   {id:'00',zh:'数感 Base',en:'Number Base',built:false,freq:5},
+   {id:'F0a',zh:'数感',en:'Number Sense',href:'lectures/F0a_number-sense.html',built:true},
+   {id:'F0c',zh:'易错坑',en:'Common Traps',href:'lectures/F0c_common-traps.html',built:true},
+   {id:'F0b',zh:'解题方法',en:'Problem-Solving',href:'lectures/F0b_problem-solving.html',built:true},
+   {id:'F1',zh:'图像·一次函数',en:'Coordinates & Linear',href:'lectures/F1_coord-linear.html',built:true},
    {id:'01',zh:'代数基本功',en:'Algebra Basics',href:'lectures/01_algebra-basics.html',built:true},
    {id:'02',zh:'图像基础',en:'Graphs',href:'lectures/02_graphs.html',built:true},
    {id:'03',zh:'不等式',en:'Inequalities',href:'lectures/03_inequalities.html',built:true,freq:1}]},
