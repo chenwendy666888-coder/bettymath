@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guangjian Maths · Practice · Inequalities Drills 不等式难题练习</title>
+<style>
+  :root{
+    --bg:#F4F6FB;--surface:#FFFFFF;--ink:#1B1B2A;--muted:#6A6A82;--line:#E3E6F0;
+    --indigo:#4A43C4;--indigo-deep:#2E2A6B;--indigo-soft:#EEF0FC;
+    --amber:#D98A24;--amber-soft:#FCF2DF;--green:#1F8A5B;--green-soft:#E6F5EE;
+    --rose:#C0453B;--rose-soft:#FBEDEC;--radius:14px;
+    --shadow:0 1px 2px rgba(30,30,60,.05), 0 8px 24px rgba(30,30,60,.06);
+    --font:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Segoe UI",Roboto,"Helvetica Neue",sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.75;font-size:16px;-webkit-font-smoothing:antialiased;}
+  header.top{position:sticky;top:0;z-index:30;background:rgba(244,246,251,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:14px 22px;}
+  .top-row{display:flex;align-items:center;gap:14px;max-width:1180px;margin:0 auto;}
+  .brand{display:flex;flex-direction:column;gap:2px;min-width:0;}
+  .brand .eyebrow{font-size:12px;letter-spacing:.14em;color:var(--indigo);font-weight:700;text-transform:uppercase;}
+  .brand h1{margin:0;font-size:16px;font-weight:800;color:var(--indigo-deep);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .prog-wrap{margin-left:auto;display:flex;align-items:center;gap:10px;min-width:170px;}
+  .prog-label{font-size:12.5px;color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums;}
+  .prog-track{flex:1;height:8px;background:#DDE1EE;border-radius:99px;overflow:hidden;min-width:80px;}
+  .prog-fill{height:100%;width:0;background:linear-gradient(90deg,var(--indigo),#7A73E6);border-radius:99px;transition:width .5s cubic-bezier(.2,.8,.2,1);}
+  .menu-btn{display:none;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:8px 10px;font-size:15px;cursor:pointer;color:var(--indigo-deep);}
+  .layout{display:grid;grid-template-columns:262px 1fr;gap:30px;max-width:1180px;margin:26px auto;padding:0 22px;align-items:start;}
+  nav.toc{position:sticky;top:88px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:12px;box-shadow:var(--shadow);}
+  .toc h2{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:6px 8px 10px;font-weight:700;}
+  .toc a{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:10px;text-decoration:none;color:var(--ink);font-size:14px;cursor:pointer;border:1px solid transparent;transition:background .15s,border-color .15s;}
+  .toc a:hover{background:var(--indigo-soft);}
+  .toc a.active{background:var(--indigo-soft);border-color:#D5D8F5;font-weight:700;color:var(--indigo-deep);}
+  .toc .n{font-variant-numeric:tabular-nums;font-weight:700;color:var(--indigo);font-size:13px;width:22px;flex:none;}
+  .toc a.active .n{color:var(--indigo-deep);}
+  .toc .lbl{flex:1;min-width:0;}
+  .toc .tick{width:16px;height:16px;flex:none;border-radius:50%;border:2px solid #CBD0E4;display:grid;place-items:center;font-size:10px;color:#fff;}
+  .toc a.done .tick{background:var(--green);border-color:var(--green);}
+  .toc a.done .tick::after{content:"\2713";}
+  main{min-width:0;}
+  section.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:32px 34px 30px;animation:rise .4s ease both;}
+  @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .sec-head{display:flex;align-items:flex-start;gap:16px;margin-bottom:6px;}
+  .sec-num{font-size:34px;font-weight:800;color:var(--indigo);line-height:1;font-variant-numeric:tabular-nums;flex:none;padding-top:2px;}
+  .sec-titles{flex:1;min-width:0;}
+  .sec-titles h2{margin:0;font-size:22px;font-weight:800;color:var(--indigo-deep);}
+  .sec-titles .zh-title{font-size:15px;color:var(--muted);font-weight:700;margin-top:2px;}
+  .badge{display:inline-flex;align-items:center;gap:5px;margin-top:8px;font-size:12.5px;font-weight:700;padding:3px 10px;border-radius:99px;}
+  .badge.gk{background:var(--amber-soft);color:var(--amber);}
+  .badge.core{background:var(--indigo-soft);color:var(--indigo);}
+  .badge.warn,.badge.hard{background:var(--rose-soft);color:var(--rose);}
+  .divider{height:1px;background:var(--line);margin:20px 0;}
+  h3.blk{font-size:15px;font-weight:800;color:var(--indigo);margin:22px 0 10px;display:flex;align-items:center;gap:8px;}
+  h3.blk::before{content:"";width:5px;height:16px;border-radius:3px;background:var(--indigo);display:inline-block;}
+  p{margin:9px 0;}
+  .content b{color:var(--indigo-deep);}
+  .content ul,.content ol{margin:10px 0;padding-left:22px;}
+  .content li{margin:6px 0;}
+  .zh{color:#4a4a5e;font-size:14.5px;}
+  .zh::before{content:"\4E2D  ";color:var(--green);font-weight:800;font-size:11px;letter-spacing:.05em;}
+  .enh::before{content:"EN  ";color:var(--indigo);font-weight:800;font-size:11px;letter-spacing:.05em;}
+  .terms{background:#F1F7F4;border:1px solid #CFE6DA;border-radius:10px;padding:11px 15px;margin:12px 0;font-size:14px;color:#14653f;line-height:1.9;}
+  .terms b{color:#14653f;}
+  .terms .t{white-space:nowrap;}
+  .kbd-formula{display:block;background:var(--indigo-soft);border:1px solid #D9DCF6;border-radius:10px;padding:14px 18px;margin:14px 0;font-size:18px;text-align:center;color:var(--indigo-deep);font-weight:700;}
+  .example{background:#FBFBFE;border:1px solid var(--line);border-left:4px solid var(--indigo);border-radius:12px;padding:16px 18px;margin:16px 0;}
+  .ex-title{font-weight:800;color:var(--indigo-deep);font-size:15px;margin-bottom:6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .ex-tag{font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:99px;background:var(--amber-soft);color:var(--amber);}
+  .src{font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:99px;background:var(--indigo-soft);color:var(--indigo);}
+  .steps{margin:8px 0;}
+  .step{position:relative;padding:5px 0 5px 20px;}
+  .step::before{content:"";position:absolute;left:5px;top:14px;width:6px;height:6px;border-radius:50%;background:var(--indigo);}
+  .ex-ans{margin-top:10px;background:var(--green-soft);border-radius:8px;padding:8px 12px;font-weight:800;color:var(--green);}
+  .vary{background:#F7F5FE;border:1px dashed #C9C3F0;border-radius:10px;padding:10px 14px;margin:10px 0;font-size:14px;}
+  .vary b{color:var(--indigo-deep);}
+  .note{background:var(--amber-soft);border-radius:10px;padding:12px 16px;margin:14px 0;font-size:14.5px;color:#7a5210;}
+  .note.warn{background:var(--rose-soft);color:#8c2f28;}
+  .note strong{color:inherit;}
+  .practice{background:#FFFFFF;border:1.5px dashed #C9CEE6;border-radius:12px;padding:16px 18px;margin:18px 0;}
+  .practice-head{font-weight:800;color:var(--indigo-deep);margin-bottom:6px;display:flex;align-items:center;gap:8px;}
+  .practice-head::before{content:"\270E";color:var(--indigo);}
+  .reveal{margin-top:10px;background:var(--indigo);color:#fff;border:none;border-radius:9px;padding:9px 16px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;}
+  .reveal:hover{background:#3a34a8;}
+  .answer{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+  .answer.open{max-height:2600px;margin-top:12px;}
+  .answer-inner{background:var(--green-soft);border-radius:10px;padding:12px 16px;font-size:14.5px;}
+  .answer-inner b{color:var(--green);}
+  .wp li{margin-bottom:15px;}
+  .q-en{}
+  .zt{margin-top:5px;background:var(--green-soft);color:var(--green);border:1px solid #BFE3D0;border-radius:8px;padding:3px 11px;font-size:12.5px;font-weight:700;cursor:pointer;font-family:inherit;}
+  .q-zh{max-height:0;overflow:hidden;transition:max-height .3s ease;color:#4a4a5e;font-size:14px;}
+  .q-zh.open{max-height:500px;margin-top:6px;}
+  .q-zh::before{content:"\4E2D  ";color:var(--green);font-weight:800;font-size:11px;}
+  .rtbl{width:100%;border-collapse:collapse;margin:12px 0;font-size:13.5px;}
+  .rtbl th,.rtbl td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top;}
+  .rtbl th{background:var(--indigo-soft);color:var(--indigo-deep);font-weight:800;}
+  .rtbl td b{color:var(--indigo-deep);}
+  .check-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line);cursor:pointer;}
+  .check-item:last-child{border-bottom:none;}
+  .check-box{width:20px;height:20px;border:2px solid #C4C9E0;border-radius:6px;flex:none;margin-top:3px;display:grid;place-items:center;color:#fff;font-size:13px;}
+  .check-item.on .check-box{background:var(--green);border-color:var(--green);}
+  .check-item.on .check-box::after{content:"\2713";}
+  .check-item.on .check-txt{color:var(--muted);text-decoration:line-through;}
+  .parent{background:var(--indigo-soft);border-radius:12px;padding:16px 18px;margin-top:22px;}
+  .parent h4{margin:0 0 6px;color:var(--indigo-deep);}
+  .pager{display:flex;align-items:center;gap:12px;margin-top:26px;}
+  .pager button{flex:1;border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:13px 16px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;color:var(--indigo-deep);}
+  .pager button:hover:not(:disabled){background:var(--indigo-soft);}
+  .pager button:disabled{opacity:.4;cursor:not-allowed;}
+  .pager .done-btn{flex:1.3;background:var(--indigo);color:#fff;border-color:var(--indigo);}
+  .pager .done-btn.is-done{background:var(--green);border-color:var(--green);}
+  .scrim{display:none;}
+  @media (max-width:860px){
+    .layout{grid-template-columns:1fr;padding:0 16px;margin-top:16px;}
+    .menu-btn{display:block;}
+    nav.toc{position:fixed;top:0;left:0;bottom:0;width:280px;z-index:50;border-radius:0 16px 16px 0;transform:translateX(-102%);transition:transform .28s ease;overflow-y:auto;padding-top:18px;}
+    nav.toc.open{transform:none;}
+    .scrim.show{display:block;position:fixed;inset:0;background:rgba(20,20,40,.4);z-index:40;}
+    .brand h1{font-size:14px;white-space:normal;}.prog-wrap{min-width:110px;}
+    section.card{padding:24px 20px;}.sec-num{font-size:28px;}.sec-titles h2{font-size:19px;}
+    .pager{flex-wrap:wrap;}.pager .done-btn{order:-1;flex-basis:100%;}
+    .rtbl{font-size:12.5px;}.rtbl th,.rtbl td{padding:6px 7px;}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important;}}
+  :focus-visible{outline:3px solid #A9A4F0;outline-offset:2px;border-radius:6px;}
+  .dltools{position:fixed;top:12px;right:14px;z-index:70;display:flex;gap:8px}
+  .dltools button{border:none;border-radius:9px;padding:8px 12px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;color:#fff;box-shadow:0 4px 12px rgba(30,30,60,.18)}
+  .dltools .b-pdf{background:#4A43C4}
+  @media(max-width:860px){.dltools{top:auto;bottom:14px;right:12px}}
+  @media print{.top,nav.toc,.pager,.scrim,.dltools,.menu-btn,.prog-wrap{display:none!important}
+   .layout{display:block!important;margin:0!important;padding:0!important;grid-template-columns:1fr!important}
+   main{max-width:100%!important;margin:0!important}
+   section.card{box-shadow:none!important;border:none!important;padding:0!important;animation:none!important}
+   .answer,.q-zh{max-height:none!important;overflow:visible!important}
+   .psec{page-break-after:always}}
+</style>
+</head>
+<body>
+<header class="top"><div class="top-row"><button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button><div class="brand"><span class="eyebrow">Guangjian Maths · Practice</span><h1>Inequalities Drills · 不等式难题练习</h1></div><div class="prog-wrap" aria-label="Progress"><span class="prog-label" id="progLabel">0 / 0</span><div class="prog-track"><div class="prog-fill" id="progFill"></div></div></div></div></header>
+<div class="scrim" id="scrim"></div>
+<div class="layout">
+<nav class="toc" id="toc" aria-label="Contents"><h2>Contents 目录</h2><div id="tocList"></div></nav>
+<main>
+<section class="card content" id="content" tabindex="-1"></section>
+<div class="pager"><button id="prevBtn">← Prev 上一节</button><button class="done-btn" id="doneBtn">Done 做完了 ✓</button><button id="nextBtn">Next 下一节 →</button></div>
+</main>
+</div>
+<script>
+const S = [{"key": "intro", "nav": "Intro 导读", "num": "", "track": false, "title": "Inequalities · Hard drills", "zh": "不等式难题练习·怎么用", "body": "\n <p class=\"enh\">This set is <b>practice only — no hints</b>. Read the English instruction, solve on paper, then tap <b>Show answers</b> to check. Answers give the final result only.</p>\n <p class=\"zh\">这一份是<b>纯练习、不给提示</b>。看懂英文指令，在纸上做完，再点<b>显示答案</b>对照。答案只给最终结果。</p>\n <div class=\"note warn\"><strong>The one rule this set trains 本组专练的铁律：</strong> when you <b>multiply or divide both sides by a negative number, the inequality sign flips</b> (&gt; becomes &lt;, ≥ becomes ≤). 乘/除以负数，不等号要<b>变号</b>。这是一元、二元、不等式组全都通用的一条。</div>\n <p class=\"enh\">Four levels: <b>flip → messy brackets/fractions → systems → parameters &amp; two variables</b>. All at exam / 光剑 difficulty.</p>\n <p class=\"zh\">四关：<b>变号 → 去括号去分母 → 不等式组 → 含参·二元视角</b>。全部是考试/光剑难度。</p>\n <div class=\"note\">Instruction words 指令词：<b>Solve</b>=解；<b>Find the range</b>=求取值范围；<b>integer solutions</b>=整数解；<b>no solution</b>=无解。</div>\n "}, {"key": "s1", "nav": "Flip 变号", "num": "01", "track": true, "badge": "hard", "title": "Dividing by a negative → flip", "zh": "除以负数要变号", "body": "<div class=\"terms\"><b>Key terms 关键词</b>：<span class=\"t\">inequality 不等式</span> · <span class=\"t\">reverse / flip the sign 变号</span> · <span class=\"t\">solve 解</span> · <span class=\"t\">solution set 解集</span></div><div class=\"practice\"><div class=\"practice-head\">Practice 1 练习 1</div><p class=\"zh\" style=\"margin:2px 0 8px\">（Solve = 解下列不等式；小心什么时候要变号）</p><ol><li>Solve　−3x &gt; 12</li><li>Solve　5 − 2x ≥ 11</li><li>Solve　8 − 3x ≤ 23</li><li>Solve　4(2 − x) &gt; 20</li><li>Solve　9 − 7x &gt; 2x + 27</li></ol><button class=\"reveal\" onclick=\"ans(this)\">Show answers 显示答案</button><div class=\"answer\"><div class=\"answer-inner\">1. x &lt; −4<br>2. x ≤ −3<br>3. x ≥ −5<br>4. x &lt; −3<br>5. x &lt; −2</div></div></div>"}, {"key": "s2", "nav": "Brackets/fractions 排雷", "num": "02", "track": true, "badge": "hard", "title": "Brackets &amp; fractions", "zh": "去括号·去分母", "body": "<div class=\"terms\"><b>Key terms 关键词</b>：<span class=\"t\">expand brackets 去括号</span> · <span class=\"t\">clear the fractions 去分母</span> · <span class=\"t\">lowest common denominator 最小公分母</span> · <span class=\"t\">collect terms 移项合并</span></div><div class=\"note warn\"><strong>Trap 易错：</strong>when you clear fractions, <b>every</b> term must be multiplied — including whole numbers. 去分母时每一项都要乘，包括没有分母的整数项。</div><div class=\"practice\"><div class=\"practice-head\">Practice 2 练习 2</div><p class=\"zh\" style=\"margin:2px 0 8px\">（先去括号 / 去分母，再移项；最后一步除系数时看符号）</p><ol><li>Solve　2(x − 3) − 3(2x − 1) ≤ 5</li><li>Solve　(x − 1) / 2 − (2x + 1) / 3 &gt; 1</li><li>Solve　(2x − 1) / 3 ≥ (x + 2) / 4</li><li>Solve　1 − (x − 2) / 5 &lt; (3 − x) / 2</li><li>Solve　(3x + 1) / 2 − 1 ≤ (5x − 3) / 6</li></ol><button class=\"reveal\" onclick=\"ans(this)\">Show answers 显示答案</button><div class=\"answer\"><div class=\"answer-inner\">1. x ≥ −2<br>2. x &lt; −11<br>3. x ≥ 2<br>4. x &lt; 1/3<br>5. x ≤ 0</div></div></div>"}, {"key": "s3", "nav": "Systems 不等式组", "num": "03", "track": true, "badge": "hard", "title": "Systems of inequalities", "zh": "不等式组·整数解", "body": "<div class=\"terms\"><b>Key terms 关键词</b>：<span class=\"t\">system of inequalities 不等式组</span> · <span class=\"t\">overlap / intersection 公共部分取交</span> · <span class=\"t\">number line 数轴</span> · <span class=\"t\">integer solutions 整数解</span></div><div class=\"note\">Solve each inequality, then take the <b>overlap</b> (公共部分). \"同大取大，同小取小，大小小大取中间，大大小小无解无。\"</div><div class=\"practice\"><div class=\"practice-head\">Practice 3 练习 3</div><p class=\"zh\" style=\"margin:2px 0 8px\">（先分别解，再取交；问整数解的把满足的整数列出来）</p><ol><li>Solve the system　{ 2x − 1 &gt; 3 ; x − 4 ≤ 0 }</li><li>Solve the system　{ 3x + 2 ≥ x − 4 ; 4 − x &gt; 2x − 5 }</li><li>Find all <b>integer</b> solutions　{ 2x + 1 &gt; x − 2 ; (x − 1) / 3 ≤ 1 }</li><li>Find all <b>integer</b> solutions　−4 ≤ 2x − 3 &lt; 5</li><li>Find all <b>integer</b> solutions　{ 3(x − 1) ≤ 4x − 2 ; (2x + 1) / 3 &gt; x − 1 }</li></ol><button class=\"reveal\" onclick=\"ans(this)\">Show answers 显示答案</button><div class=\"answer\"><div class=\"answer-inner\">1. 2 &lt; x ≤ 4<br>2. −3 ≤ x &lt; 3<br>3. −3 &lt; x ≤ 4 → integers 整数：−2, −1, 0, 1, 2, 3, 4<br>4. −1/2 ≤ x &lt; 4 → integers：0, 1, 2, 3<br>5. −1 ≤ x &lt; 4 → integers：−1, 0, 1, 2, 3</div></div></div>"}, {"key": "s4", "nav": "Parameters 含参·二元", "num": "04", "track": true, "badge": "hard", "title": "Parameters &amp; two variables", "zh": "含参数·二元视角", "body": "<div class=\"terms\"><b>Key terms 关键词</b>：<span class=\"t\">parameter 参数</span> · <span class=\"t\">in terms of 用…表示</span> · <span class=\"t\">range 取值范围</span> · <span class=\"t\">no solution 无解</span> · <span class=\"t\">exactly 恰好</span></div><div class=\"note\">Same rule, higher level: a <b>parameter</b> (a, m…) is just a letter standing for a number. When you divide by something that could be negative, you must decide the sign — that is where the flip lives. 同一条变号铁律，升级到含参数：除以可能为负的量时，就要判断符号。</div><div class=\"practice\"><div class=\"practice-head\">Practice 4 练习 4</div><p class=\"zh\" style=\"margin:2px 0 8px\">（二元不等式：先用一个变量表示另一个，再解；含参就把参数当字母看）</p><ol><li>Given　3x − 2y = 12 and y &lt; 0, find the range of x.</li><li>Given　4x − 3y ≥ 6, when x = 3, find the range of y.</li><li>The solution of the inequality　(a − 1)x &lt; 5　is　x &gt; 5 / (a − 1). Find the range of a.</li><li>The system　{ x &gt; 2 ; x &lt; a }　has <b>no solution</b>. Find the range of a.</li><li>The system　{ x ≥ −1 ; x ≤ a }　has <b>exactly 4</b> integer solutions. Find the range of a.</li></ol><button class=\"reveal\" onclick=\"ans(this)\">Show answers 显示答案</button><div class=\"answer\"><div class=\"answer-inner\">1. From x = (12 + 2y)/3 and y &lt; 0: <b>x &lt; 4</b><br>2. 12 − 3y ≥ 6 → −3y ≥ −6 → (flip) <b>y ≤ 2</b><br>3. To get x &gt; … the sign must flip, so a − 1 &lt; 0 → <b>a &lt; 1</b><br>4. 无解需 a ≤ 2 → <b>a ≤ 2</b><br>5. integers −1, 0, 1, 2 → need 2 ≤ a &lt; 3 → <b>2 ≤ a &lt; 3</b></div></div></div>"}, {"key": "end", "nav": "Self-check 自查", "num": "", "track": false, "title": "Self-check", "zh": "自查与过关", "body": "\n <h3 class=\"blk\">Self-check 自查（tap to tick 点一下打勾）</h3>\n <div>\n   <div class=\"check-item\" onclick=\"tick(this)\"><div class=\"check-box\"></div><div class=\"check-txt\">× or ÷ by a negative → flip the sign　乘/除负数就变号</div></div>\n   <div class=\"check-item\" onclick=\"tick(this)\"><div class=\"check-box\"></div><div class=\"check-txt\">Clear fractions: multiply every term　去分母每项都乘</div></div>\n   <div class=\"check-item\" onclick=\"tick(this)\"><div class=\"check-box\"></div><div class=\"check-txt\">System = solve each, then take the overlap　不等式组先分解再取交</div></div>\n   <div class=\"check-item\" onclick=\"tick(this)\"><div class=\"check-box\"></div><div class=\"check-txt\">List integer solutions from the range　从范围里数出整数解</div></div>\n   <div class=\"check-item\" onclick=\"tick(this)\"><div class=\"check-box\"></div><div class=\"check-txt\">Parameter / two-variable: decide the sign before dividing　含参/二元：除之前先定符号</div></div>\n </div>\n <div class=\"note\" style=\"margin-top:18px\"><strong>Pass mark 过关：</strong>get ~80% right across all four levels. 四关合计做对约 80% 就算过关。</div>\n <div class=\"parent\"><h4>For parents 给家长的话</h4>\n <p class=\"zh\">这份把不等式最容易翻车的点——\"变号\"——从简单到含参走了一遍。她方程解得不错，不等式的运算逻辑其实一模一样，唯一的新东西就是\"乘除负数要变号\"。含参和二元那关是光剑难度，做不动很正常，先保证前三关扎实。</p></div>\n "}];
+
+const tocList=document.getElementById('tocList'),content=document.getElementById('content'),progFill=document.getElementById('progFill'),progLabel=document.getElementById('progLabel'),prevBtn=document.getElementById('prevBtn'),nextBtn=document.getElementById('nextBtn'),doneBtn=document.getElementById('doneBtn');
+let cur=0;const done=new Set();const trackedTotal=S.filter(s=>s.track).length;
+S.forEach((s,i)=>{const a=document.createElement('a');a.dataset.i=i;a.innerHTML=`<span class="n">${s.num||'\u00b7'}</span><span class="lbl">${s.nav}</span><span class="tick"></span>`;a.onclick=()=>go(i);tocList.appendChild(a);});
+const tocLinks=[...tocList.children];
+function render(){
+  const s=S[cur];
+  const badgeHtml = s.badge==='core'?'<span class="badge core">\u2605 Must-know \u5fc5\u638c\u63e1</span>':s.badge==='gk'?'<span class="badge gk">\u2605 Often tested \u5e38\u8003</span>':s.badge==='hard'?'<span class="badge hard">\u2605 Harder \u96be\u9898</span>':'';
+  const zt = s.zh?`<div class="zh-title">${s.zh}</div>`:'';
+  content.innerHTML=`<div class="sec-head">${s.num?`<div class="sec-num">${s.num}</div>`:''}<div class="sec-titles"><h2>${s.title}</h2>${zt}${badgeHtml}</div></div><div class="divider"></div>${s.body}`;
+  tocLinks.forEach((a,i)=>a.classList.toggle('active',i===cur));
+  prevBtn.disabled=cur===0;nextBtn.disabled=cur===S.length-1;
+  if(s.track){doneBtn.style.display='';const d=done.has(cur);doneBtn.textContent=d?'Done \u5df2\u5b8c\u6210 \u2713':'Done \u505a\u5b8c\u4e86 \u2713';doneBtn.classList.toggle('is-done',d);}else{doneBtn.style.display='none';}
+  content.focus({preventScroll:true});window.scrollTo({top:0,behavior:'smooth'});
+}
+function go(i){cur=Math.max(0,Math.min(S.length-1,i));render();closeMenu();}
+prevBtn.onclick=()=>go(cur-1);nextBtn.onclick=()=>go(cur+1);
+doneBtn.onclick=()=>{if(!S[cur].track)return;if(done.has(cur))done.delete(cur);else done.add(cur);updateProgress();render();if(done.has(cur)&&cur<S.length-1)setTimeout(()=>go(cur+1),260);};
+function updateProgress(){const n=[...done].filter(i=>S[i].track).length;progFill.style.width=(n/trackedTotal*100)+'%';progLabel.textContent=`${n} / ${trackedTotal}`;tocLinks.forEach((a,i)=>a.classList.toggle('done',done.has(i)&&S[i].track));}
+function ans(btn){const box=btn.nextElementSibling;const open=box.classList.toggle('open');btn.textContent=open?btn.textContent.replace('Show','Hide').replace('\u663e\u793a','\u9690\u85cf'):btn.textContent.replace('Hide','Show').replace('\u9690\u85cf','\u663e\u793a');}
+function zt(btn){const box=btn.nextElementSibling;const open=box.classList.toggle('open');btn.textContent=open?'\u4e2d\u6587 \u25b4':'\u4e2d\u6587 \u25be';}
+function tick(el){el.classList.toggle('on');}
+const toc=document.getElementById('toc'),scrim=document.getElementById('scrim');
+document.getElementById('menuBtn').onclick=()=>{toc.classList.add('open');scrim.classList.add('show');};
+function closeMenu(){toc.classList.remove('open');scrim.classList.remove('show');}
+scrim.onclick=closeMenu;
+document.addEventListener('keydown',e=>{if(e.target.tagName==='BUTTON')return;if(e.key==='ArrowRight'&&cur<S.length-1)go(cur+1);if(e.key==='ArrowLeft'&&cur>0)go(cur-1);});
+render();updateProgress();
+function printAll(){var c=document.getElementById("content");try{if(c&&typeof S!=="undefined"){var curH=c.innerHTML;c.innerHTML=S.map(function(s){return '<section class="psec"><h2>'+((s.num?s.num+" ":"")+s.title)+(s.zh?" \u00b7 "+s.zh:"")+'</h2>'+s.body+'</section>';}).join("");c.querySelectorAll(".answer,.q-zh").forEach(function(a){a.classList.add("open");});window.print();c.innerHTML=curH;if(typeof render==="function")render();return;}}catch(e){}window.print();}
+
+</script>
+<div class="dltools"><button class="b-pdf" onclick="printAll()">🖨 PDF</button></div>
+</body>
+</html>

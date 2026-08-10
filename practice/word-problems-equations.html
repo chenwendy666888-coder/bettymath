@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guangjian Maths · Practice · Word Problems 应用题·列方程</title>
+<style>
+  :root{
+    --bg:#F4F6FB;--surface:#FFFFFF;--ink:#1B1B2A;--muted:#6A6A82;--line:#E3E6F0;
+    --indigo:#4A43C4;--indigo-deep:#2E2A6B;--indigo-soft:#EEF0FC;
+    --amber:#D98A24;--amber-soft:#FCF2DF;--green:#1F8A5B;--green-soft:#E6F5EE;
+    --rose:#C0453B;--rose-soft:#FBEDEC;--radius:14px;
+    --shadow:0 1px 2px rgba(30,30,60,.05), 0 8px 24px rgba(30,30,60,.06);
+    --font:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Segoe UI",Roboto,"Helvetica Neue",sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.75;font-size:16px;-webkit-font-smoothing:antialiased;}
+  header.top{position:sticky;top:0;z-index:30;background:rgba(244,246,251,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:14px 22px;}
+  .top-row{display:flex;align-items:center;gap:14px;max-width:1180px;margin:0 auto;}
+  .brand{display:flex;flex-direction:column;gap:2px;min-width:0;}
+  .brand .eyebrow{font-size:12px;letter-spacing:.14em;color:var(--indigo);font-weight:700;text-transform:uppercase;}
+  .brand h1{margin:0;font-size:16px;font-weight:800;color:var(--indigo-deep);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .prog-wrap{margin-left:auto;display:flex;align-items:center;gap:10px;min-width:170px;}
+  .prog-label{font-size:12.5px;color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums;}
+  .prog-track{flex:1;height:8px;background:#DDE1EE;border-radius:99px;overflow:hidden;min-width:80px;}
+  .prog-fill{height:100%;width:0;background:linear-gradient(90deg,var(--indigo),#7A73E6);border-radius:99px;transition:width .5s cubic-bezier(.2,.8,.2,1);}
+  .menu-btn{display:none;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:8px 10px;font-size:15px;cursor:pointer;color:var(--indigo-deep);}
+  .layout{display:grid;grid-template-columns:262px 1fr;gap:30px;max-width:1180px;margin:26px auto;padding:0 22px;align-items:start;}
+  nav.toc{position:sticky;top:88px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:12px;box-shadow:var(--shadow);}
+  .toc h2{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:6px 8px 10px;font-weight:700;}
+  .toc a{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:10px;text-decoration:none;color:var(--ink);font-size:14px;cursor:pointer;border:1px solid transparent;transition:background .15s,border-color .15s;}
+  .toc a:hover{background:var(--indigo-soft);}
+  .toc a.active{background:var(--indigo-soft);border-color:#D5D8F5;font-weight:700;color:var(--indigo-deep);}
+  .toc .n{font-variant-numeric:tabular-nums;font-weight:700;color:var(--indigo);font-size:13px;width:22px;flex:none;}
+  .toc a.active .n{color:var(--indigo-deep);}
+  .toc .lbl{flex:1;min-width:0;}
+  .toc .tick{width:16px;height:16px;flex:none;border-radius:50%;border:2px solid #CBD0E4;display:grid;place-items:center;font-size:10px;color:#fff;}
+  .toc a.done .tick{background:var(--green);border-color:var(--green);}
+  .toc a.done .tick::after{content:"\2713";}
+  main{min-width:0;}
+  section.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:32px 34px 30px;animation:rise .4s ease both;}
+  @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .sec-head{display:flex;align-items:flex-start;gap:16px;margin-bottom:6px;}
+  .sec-num{font-size:34px;font-weight:800;color:var(--indigo);line-height:1;font-variant-numeric:tabular-nums;flex:none;padding-top:2px;}
+  .sec-titles{flex:1;min-width:0;}
+  .sec-titles h2{margin:0;font-size:22px;font-weight:800;color:var(--indigo-deep);}
+  .sec-titles .zh-title{font-size:15px;color:var(--muted);font-weight:700;margin-top:2px;}
+  .badge{display:inline-flex;align-items:center;gap:5px;margin-top:8px;font-size:12.5px;font-weight:700;padding:3px 10px;border-radius:99px;}
+  .badge.gk{background:var(--amber-soft);color:var(--amber);}
+  .badge.core{background:var(--indigo-soft);color:var(--indigo);}
+  .badge.warn,.badge.hard{background:var(--rose-soft);color:var(--rose);}
+  .divider{height:1px;background:var(--line);margin:20px 0;}
+  h3.blk{font-size:15px;font-weight:800;color:var(--indigo);margin:22px 0 10px;display:flex;align-items:center;gap:8px;}
+  h3.blk::before{content:"";width:5px;height:16px;border-radius:3px;background:var(--indigo);display:inline-block;}
+  p{margin:9px 0;}
+  .content b{color:var(--indigo-deep);}
+  .content ul,.content ol{margin:10px 0;padding-left:22px;}
+  .content li{margin:6px 0;}
+  .zh{color:#4a4a5e;font-size:14.5px;}
+  .zh::before{content:"\4E2D  ";color:var(--green);font-weight:800;font-size:11px;letter-spacing:.05em;}
+  .enh::before{content:"EN  ";color:var(--indigo);font-weight:800;font-size:11px;letter-spacing:.05em;}
+  .terms{background:#F1F7F4;border:1px solid #CFE6DA;border-radius:10px;padding:11px 15px;margin:12px 0;font-size:14px;color:#14653f;line-height:1.9;}
+  .terms b{color:#14653f;}
+  .terms .t{white-space:nowrap;}
+  .kbd-formula{display:block;background:var(--indigo-soft);border:1px solid #D9DCF6;border-radius:10px;padding:14px 18px;margin:14px 0;font-size:18px;text-align:center;color:var(--indigo-deep);font-weight:700;}
+  .example{background:#FBFBFE;border:1px solid var(--line);border-left:4px solid var(--indigo);border-radius:12px;padding:16px 18px;margin:16px 0;}
+  .ex-title{font-weight:800;color:var(--indigo-deep);font-size:15px;margin-bottom:6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .ex-tag{font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:99px;background:var(--amber-soft);color:var(--amber);}
+  .src{font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:99px;background:var(--indigo-soft);color:var(--indigo);}
+  .steps{margin:8px 0;}
+  .step{position:relative;padding:5px 0 5px 20px;}
+  .step::before{content:"";position:absolute;left:5px;top:14px;width:6px;height:6px;border-radius:50%;background:var(--indigo);}
+  .ex-ans{margin-top:10px;background:var(--green-soft);border-radius:8px;padding:8px 12px;font-weight:800;color:var(--green);}
+  .vary{background:#F7F5FE;border:1px dashed #C9C3F0;border-radius:10px;padding:10px 14px;margin:10px 0;font-size:14px;}
+  .vary b{color:var(--indigo-deep);}
+  .note{background:var(--amber-soft);border-radius:10px;padding:12px 16px;margin:14px 0;font-size:14.5px;color:#7a5210;}
+  .note.warn{background:var(--rose-soft);color:#8c2f28;}
+  .note strong{color:inherit;}
+  .practice{background:#FFFFFF;border:1.5px dashed #C9CEE6;border-radius:12px;padding:16px 18px;margin:18px 0;}
+  .practice-head{font-weight:800;color:var(--indigo-deep);margin-bottom:6px;display:flex;align-items:center;gap:8px;}
+  .practice-head::before{content:"\270E";color:var(--indigo);}
+  .reveal{margin-top:10px;background:var(--indigo);color:#fff;border:none;border-radius:9px;padding:9px 16px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;}
+  .reveal:hover{background:#3a34a8;}
+  .answer{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+  .answer.open{max-height:2600px;margin-top:12px;}
+  .answer-inner{background:var(--green-soft);border-radius:10px;padding:12px 16px;font-size:14.5px;}
+  .answer-inner b{color:var(--green);}
+  .wp li{margin-bottom:15px;}
+  .q-en{}
+  .zt{margin-top:5px;background:var(--green-soft);color:var(--green);border:1px solid #BFE3D0;border-radius:8px;padding:3px 11px;font-size:12.5px;font-weight:700;cursor:pointer;font-family:inherit;}
+  .q-zh{max-height:0;overflow:hidden;transition:max-height .3s ease;color:#4a4a5e;font-size:14px;}
+  .q-zh.open{max-height:500px;margin-top:6px;}
+  .q-zh::before{content:"\4E2D  ";color:var(--green);font-weight:800;font-size:11px;}
+  .rtbl{width:100%;border-collapse:collapse;margin:12px 0;font-size:13.5px;}
+  .rtbl th,.rtbl td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top;}
+  .rtbl th{background:var(--indigo-soft);color:var(--indigo-deep);font-weight:800;}
+  .rtbl td b{color:var(--indigo-deep);}
+  .check-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line);cursor:pointer;}
+  .check-item:last-child{border-bottom:none;}
+  .check-box{width:20px;height:20px;border:2px solid #C4C9E0;border-radius:6px;flex:none;margin-top:3px;display:grid;place-items:center;color:#fff;font-size:13px;}
+  .check-item.on .check-box{background:var(--green);border-color:var(--green);}
+  .check-item.on .check-box::after{content:"\2713";}
+  .check-item.on .check-txt{color:var(--muted);text-decoration:line-through;}
+  .parent{background:var(--indigo-soft);border-radius:12px;padding:16px 18px;margin-top:22px;}
+  .parent h4{margin:0 0 6px;color:var(--indigo-deep);}
+  .pager{display:flex;align-items:center;gap:12px;margin-top:26px;}
+  .pager button{flex:1;border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:13px 16px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;color:var(--indigo-deep);}
+  .pager button:hover:not(:disabled){background:var(--indigo-soft);}
+  .pager button:disabled{opacity:.4;cursor:not-allowed;}
+  .pager .done-btn{flex:1.3;background:var(--indigo);color:#fff;border-color:var(--indigo);}
+  .pager .done-btn.is-done{background:var(--green);border-color:var(--green);}
+  .scrim{display:none;}
+  @media (max-width:860px){
+    .layout{grid-template-columns:1fr;padding:0 16px;margin-top:16px;}
+    .menu-btn{display:block;}
+    nav.toc{position:fixed;top:0;left:0;bottom:0;width:280px;z-index:50;border-radius:0 16px 16px 0;transform:translateX(-102%);transition:transform .28s ease;overflow-y:auto;padding-top:18px;}
+    nav.toc.open{transform:none;}
+    .scrim.show{display:block;position:fixed;inset:0;background:rgba(20,20,40,.4);z-index:40;}
+    .brand h1{font-size:14px;white-space:normal;}.prog-wrap{min-width:110px;}
+    section.card{padding:24px 20px;}.sec-num{font-size:28px;}.sec-titles h2{font-size:19px;}
+    .pager{flex-wrap:wrap;}.pager .done-btn{order:-1;flex-basis:100%;}
+    .rtbl{font-size:12.5px;}.rtbl th,.rtbl td{padding:6px 7px;}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important;}}
+  :focus-visible{outline:3px solid #A9A4F0;outline-offset:2px;border-radius:6px;}
+  .dltools{position:fixed;top:12px;right:14px;z-index:70;display:flex;gap:8px}
+  .dltools button{border:none;border-radius:9px;padding:8px 12px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;color:#fff;box-shadow:0 4px 12px rgba(30,30,60,.18)}
+  .dltools .b-pdf{background:#4A43C4}
+  @media(max-width:860px){.dltools{top:auto;bottom:14px;right:12px}}
+  @media print{.top,nav.toc,.pager,.scrim,.dltools,.menu-btn,.prog-wrap{display:none!important}
+   .layout{display:block!important;margin:0!important;padding:0!important;grid-template-columns:1fr!important}
+   main{max-width:100%!important;margin:0!important}
+   section.card{box-shadow:none!important;border:none!important;padding:0!important;animation:none!important}
+   .answer,.q-zh{max-height:none!important;overflow:visible!important}
+   .psec{page-break-after:always}}
+</style>
+</head>
+<body>
+<header class="top"><div class="top-row"><button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button><div class="brand"><span class="eyebrow">Guangjian Maths · Practice</span><h1>Word Problems · 应用题·列方程</h1></div><div class="prog-wrap" aria-label="Progress"><span class="prog-label" id="progLabel">0 / 0</span><div class="prog-track"><div class="prog-fill" id="progFill"></div></div></div></div></header>
+<div class="scrim" id="scrim"></div>
+<div class="layout">
+<nav class="toc" id="toc" aria-label="Contents"><h2>Contents 目录</h2><div id="tocList"></div></nav>
+<main>
+<section class="card content" id="content" tabindex="-1"></section>
+<div class="pager"><button id="prevBtn">← Prev 上一节</button><button class="done-btn" id="doneBtn">Done 做完了 ✓</button><button id="nextBtn">Next 下一节 →</button></div>
+</main>
+</div>
+<script>
+const S = [{"key": "intro", "nav": "Intro 导读", "num": "", "track": false, "title": "Word problems · how to use", "zh": "应用题·怎么用", "body": "\n <p class=\"enh\">Your exam word problems are in <b>English</b>. So here the problems are <b>English-first</b>; the Chinese version is <b>hidden behind a “中文” button</b> — try to read the English yourself first, and only open the Chinese if you are stuck.</p>\n <p class=\"zh\">考试的应用题是<b>英文</b>的。所以这里题目<b>英文在前</b>，中文<b>藏在“中文”按钮里</b>——先自己读英文，卡住了再点开中文。</p>\n <p class=\"enh\">The heart of every word problem is the same: <b>find the hidden “equals”</b> and turn a story into an equation. Section 1 sorts the problems into types, Section 2 gives the 5-step method, Section 3 works examples in full, then you practise.</p>\n <p class=\"zh\">所有应用题的核心是一样的：<b>找到那个藏起来的“相等”</b>，把故事翻译成方程。第 1 节把题分门别类，第 2 节给五步通法，第 3 节详解例题，然后你练。</p>\n <div class=\"note\">You can set <b>one</b> unknown (x) or <b>two</b> (x, y) — whichever makes the story simpler. 可以设一个未知数 x，也可以设两个 x、y——哪个让故事更好写就用哪个。</div>\n "}, {"key": "s1", "nav": "Types 题型归总", "num": "01", "track": false, "title": "Problem types &amp; the hidden “=”", "zh": "题型归总·每类的相等关系", "body": "\n <div class=\"terms\"><b>Key terms 关键词</b>：<span class=\"t\">distance 路程</span> · <span class=\"t\">speed 速度</span> · <span class=\"t\">towards each other 相向</span> · <span class=\"t\">catch up 追及</span> · <span class=\"t\">downstream/upstream 顺水/逆水</span> · <span class=\"t\">rate of work 工作效率</span> · <span class=\"t\">cost / profit 成本/利润</span> · <span class=\"t\">at least 至少</span></div>\n <p class=\"enh\">Every type below hides one <b>equal-relation</b> — learn to spot it and the equation writes itself.</p>\n <p class=\"zh\">下面每一类都藏着一个<b>相等关系</b>——学会一眼看出它，方程就自己冒出来了。</p>\n <table class=\"rtbl\">\n   <tr><th>Type 题型</th><th>The hidden “=” 相等关系</th><th>Common twist 常见变形</th></tr>\n   <tr><td><b>Meeting</b> 相遇<br>(towards each other)</td><td>distance₁ + distance₂ = total gap<br>两段路程之和 = 全程</td><td>one starts later; or given the time, find a speed<br>一方晚出发；或已知时间求速度</td></tr>\n   <tr><td><b>Catch-up</b> 追及<br>(same direction)</td><td>fast’s distance − slow’s distance = head-start gap<br>快者路程 − 慢者路程 = 领先距离</td><td>gap ÷ speed-difference<br>追及距离 ÷ 速度差</td></tr>\n   <tr><td><b>Circular track</b> 环形</td><td>same dir: path difference = 1 lap<br>opp dir: path sum = 1 lap<br>同向 路程差=一圈；反向 路程和=一圈</td><td>meet for the n-th time<br>第 n 次相遇</td></tr>\n   <tr><td><b>Boat in a stream</b> 流水行船</td><td>downstream = still + current<br>upstream = still − current<br>顺水=静水+水流；逆水=静水−水流</td><td>set <b>two</b> unknowns (still, current)<br>设两个未知数</td></tr>\n   <tr><td><b>Work rate</b> 工程</td><td>each rate × time, summed = 1 (whole job = 1)<br>各效率×时间之和 = 1（总量设 1）</td><td>one works alone first, then together<br>一人先做，再合作</td></tr>\n   <tr><td><b>Profit</b> 利润</td><td>selling = cost + profit<br>selling = marked × (1 − discount)<br>售价=成本+利润；售价=标价×折扣</td><td>mark up then discount<br>先标价再打折</td></tr>\n   <tr><td><b>Pigeonhole</b> 抽屉<br>(no equation!)</td><td>items &gt; boxes ⇒ some box ≥ 2<br>物品 &gt; 抽屉 ⇒ 必有一屉 ≥ 2</td><td>“worst case, then +1”<br>取最坏情况再 + 1</td></tr>\n </table>\n <div class=\"note\">Pigeonhole is the odd one out: you don’t set x, you reason <b>“worst case, then one more”</b>. 抽屉问题不列方程，靠“最坏情况 + 1”推理。</div>\n "}, {"key": "s2", "nav": "Method 通法", "num": "02", "track": false, "title": "The 5-step method", "zh": "列方程通法·五步", "body": "\n <p class=\"enh\">Same five steps for every problem — do them <b>in order</b>, out loud if it helps.</p>\n <p class=\"zh\">每道题都是这五步，<b>按顺序</b>来，读出声也行。</p>\n <ol>\n   <li><b>Find the unknown 找未知</b> — what exactly is asked? Underline it. 题目到底问什么？划出来。</li>\n   <li><b>Set the unknown(s) 设未知数</b> — let x = … (or x, y = …). One or two, whichever is cleaner. 设 x = …（或 x、y），一个或两个都行。</li>\n   <li><b>Find the equal relation 找相等关系</b> — the sentence that secretly means “=” (total / same distance / whole job). 那句实际在说“相等”的话。</li>\n   <li><b>Form &amp; solve 列式并解</b> — write the equation, solve it. 列出方程，解出来。</li>\n   <li><b>Check &amp; answer 检验作答</b> — does it make sense? Write the answer <b>with units</b>. 合理吗？带单位作答。</li>\n </ol>\n <div class=\"note\"><strong>Tip 小贴士：</strong>for travel problems, a tiny table of <b>speed × time = distance</b> for each mover makes the equal-relation obvious. 行程题先列个“速度×时间=路程”的小表，相等关系一目了然。</div>\n "}, {"key": "s3", "nav": "Examples 例题精讲", "num": "03", "track": true, "badge": "core", "title": "Worked examples (with variations)", "zh": "例题精讲·带变形", "body": "\n <div class=\"example\">\n   <div class=\"ex-title\">Example 1 例1 <span class=\"ex-tag\">Meeting 相遇</span> <span class=\"src\">同型·光剑行程</span></div>\n   <p class=\"enh\">Towns A and B are 300&nbsp;km apart. A car leaves A at 60&nbsp;km/h; at the same time another leaves B at 40&nbsp;km/h, driving <b>towards each other</b>. After how long do they meet?</p>\n   <p class=\"zh\">A、B 两地相距 300&nbsp;km。一车从 A 出发 60&nbsp;km/h，同时另一车从 B 出发 40&nbsp;km/h，<b>相向而行</b>。多久后相遇？</p>\n   <div class=\"steps\">\n     <div class=\"step\">Unknown 未知：meeting time t hours 相遇时间 t 小时。</div>\n     <div class=\"step\">Equal relation 相等关系：two distances add up to 300 两段路程之和 = 全程。</div>\n     <div class=\"step\">60t + 40t = 300 → 100t = 300</div>\n   </div>\n   <div class=\"ex-ans\">t = 3 → they meet after 3 hours 相遇于 3 小时后</div>\n   <div class=\"vary\"><b>Variations 变形：</b><br>\n   ① <b>One starts late</b> 一方晚出发：if B leaves 1&nbsp;h later, A drives t and B drives (t−1)：60t + 40(t−1) = 300 → 100t = 340 → <b>t = 3.4&nbsp;h</b>.<br>\n   ② <b>Given time, find a speed</b> 已知时间求速度：if A,B are 350&nbsp;km apart, meet after 2.5&nbsp;h, one goes 80&nbsp;km/h, the other v：80·2.5 + 2.5v = 350 → <b>v = 60&nbsp;km/h</b>.</div>\n </div>\n\n <div class=\"example\">\n   <div class=\"ex-title\">Example 2 例2 <span class=\"ex-tag\">Catch-up 追及</span> <span class=\"src\">同型·光剑行程</span></div>\n   <p class=\"enh\">A walker leaves at 5&nbsp;km/h. <b>Two hours later</b> a cyclist leaves the same place at 15&nbsp;km/h to catch up. How long does the cyclist ride before catching the walker?</p>\n   <p class=\"zh\">一人步行 5&nbsp;km/h 出发；<b>2 小时后</b>另一人骑车 15&nbsp;km/h 从同地出发追赶。骑车多久追上？</p>\n   <div class=\"steps\">\n     <div class=\"step\">Unknown 未知：cyclist’s riding time t hours 骑车时间 t 小时（步行者已先走 2 h）。</div>\n     <div class=\"step\">Equal relation 相等关系：when caught, both are the same distance from the start 追上时两人离出发点距离相等。</div>\n     <div class=\"step\">15t = 5(t + 2) → 15t = 5t + 10 → 10t = 10</div>\n   </div>\n   <div class=\"ex-ans\">t = 1 → the cyclist catches up after 1 hour 骑车 1 小时后追上</div>\n   <div class=\"vary\"><b>Variations 变形：</b><br>\n   ① <b>Two-variable setup</b> 多元列法：let the catch-up distance be d；walker’s time d/5, cyclist’s d/15, walker started 2&nbsp;h earlier：d/5 − d/15 = 2 → <b>d = 15&nbsp;km</b>, so t = 1&nbsp;h.<br>\n   ② <b>Gap ÷ speed-difference</b> 追及公式：head-start = 5×2 = 10&nbsp;km; closing speed = 15−5 = 10&nbsp;km/h; 10 ÷ 10 = <b>1&nbsp;h</b>.</div>\n </div>\n\n <div class=\"example\">\n   <div class=\"ex-title\">Example 3 例3 <span class=\"ex-tag\">Boat 流水</span> <span class=\"src\">同型·两元列方程</span></div>\n   <p class=\"enh\">A boat travels 24&nbsp;km <b>downstream</b> in 2&nbsp;h, and the same 24&nbsp;km <b>upstream</b> in 3&nbsp;h. Find the boat’s speed in still water and the speed of the current.</p>\n   <p class=\"zh\">一船<b>顺水</b> 24&nbsp;km 用 2 小时，<b>逆水</b>同样 24&nbsp;km 用 3 小时。求船在静水中的速度和水流速度。</p>\n   <div class=\"steps\">\n     <div class=\"step\">Key 关键：downstream = still + current, upstream = still − current 顺水=静水+水流，逆水=静水−水流。</div>\n     <div class=\"step\">Set <b>two</b> unknowns 设两个未知数：still water x, current y。</div>\n     <div class=\"step\">(x + y)·2 = 24 → x + y = 12　;　(x − y)·3 = 24 → x − y = 8</div>\n     <div class=\"step\">Add 相加：2x = 20 → x = 10 → y = 2</div>\n   </div>\n   <div class=\"ex-ans\">still water 10&nbsp;km/h, current 2&nbsp;km/h 静水 10，水流 2</div>\n   <div class=\"vary\"><b>Why two variables? 为什么用两个未知数：</b>two things are unknown (boat &amp; current), so two letters + two equations is the cleanest. 两个量都未知，两字母两方程最干净。</div>\n </div>\n\n <div class=\"example\">\n   <div class=\"ex-title\">Example 4 例4 <span class=\"ex-tag\">Pigeonhole 抽屉</span> <span class=\"src\">同型·AMC 抽屉原理</span></div>\n   <p class=\"enh\">A drawer holds socks of <b>3 colours</b>, all mixed up. In the dark, how many socks must you take out to be <b>certain</b> of a matching pair?</p>\n   <p class=\"zh\">抽屉里有 <b>3 种颜色</b>的袜子混在一起。黑暗中至少取几只，才能<b>保证</b>有颜色相同的一对？</p>\n   <div class=\"steps\">\n     <div class=\"step\">No equation 不列方程：3 colours = 3 “boxes” 3 种颜色 = 3 个抽屉。</div>\n     <div class=\"step\">Worst case 最坏情况：3 socks, one of each colour — still no pair 3 只各一色，还没成对。</div>\n     <div class=\"step\">One more (the 4th) must match a colour already out 第 4 只必与已有某色相同。</div>\n   </div>\n   <div class=\"ex-ans\">4 socks 至少 4 只</div>\n   <div class=\"vary\"><b>Variations 变形：</b><br>\n   ① <b>Three of one colour</b> 保证 3 只同色：worst case 2 of each = 6, the 7th forces a triple → <b>7</b>. 每色先各 2 只共 6，第 7 只 → 7。<br>\n   ② <b>Birthdays</b> 生日：among 13 people, two must share a birth month (12 months). 13 人必有 2 人生日同月。</div>\n </div>\n <div class=\"note\">Read each example, then <b>cover the solution and redo it</b> before moving to practice. 每道例题看完，<b>遮住解答自己再做一遍</b>，再去做练习。</div>\n "}, {"key": "s4", "nav": "Practice A 行程", "num": "04", "track": true, "badge": "hard", "title": "Practice A · Travel", "zh": "练习 A·行程（相遇·追及·环形·流水）", "body": "<div class=\"practice\"><div class=\"practice-head\">Practice A 练习 A</div><p class=\"zh\" style=\"margin:2px 0 8px\">（先自己读英文，卡住再点“中文”；组好相等关系，先列式再解）</p><ol class=\"wp\"><li><div class=\"q-en\">Two cars start <b>towards each other</b> from towns 350&nbsp;km apart at the same time and meet after 2.5&nbsp;h. One travels at 80&nbsp;km/h. Find the other car’s speed.</div><button class=\"zt\" onclick=\"zt(this)\">中文 ▾</button><div class=\"q-zh\">两车从相距 350&nbsp;km 的两地同时<b>相向</b>出发，2.5 小时后相遇，其中一辆 80&nbsp;km/h，求另一辆的速度。</div></li><li><div class=\"q-en\">A bus leaves at 60&nbsp;km/h. <b>1.5&nbsp;hours later</b> a car leaves the <b>same place</b> at 90&nbsp;km/h in the same direction. How long does the car take to catch up with the bus?</div><button class=\"zt\" onclick=\"zt(this)\">中文 ▾</button><div class=\"q-zh\">一辆客车 60&nbsp;km/h 出发，<b>1.5 小时后</b>一辆小汽车从<b>同地</b>以 90&nbsp;km/h 同向出发。小汽车多久追上客车？</div></li><li><div class=\"q-en\">A circular track is 400&nbsp;m. Two runners start together from the same point in the <b>same direction</b> at 6&nbsp;m/s and 4&nbsp;m/s. After how long does the faster runner <b>first</b> catch up with (lap) the slower one?</div><button class=\"zt\" onclick=\"zt(this)\">中文 ▾</button><div class=\"q-zh\">环形跑道 400&nbsp;m。两人从同一点<b>同向</b>同时出发，速度 6&nbsp;m/s、4&nbsp;m/s。快者<b>第一次</b>追上（多跑一圈）慢者需多久？</div></li><li><div class=\"q-en\">A boat travels 60&nbsp;km <b>downstream</b> in 3&nbsp;h and 60&nbsp;km <b>upstream</b> in 5&nbsp;h. Find the boat’s speed in still water and the speed of the current.</div><button class=\"zt\" onclick=\"zt(this)\">中文 ▾</button><div class=\"q-zh\">一船<b>顺水</b> 60&nbsp;km 用 3 小时，<b>逆水</b> 60&nbsp;km 用 5 小时。求静水速度和水流速度。</div></li></ol><button class=\"reveal\" onclick=\"ans(this)\">Show answers 显示答案</button><div class=\"answer\"><div class=\"answer-inner\">1. 80·2.5 + 2.5v = 350 → <b>v = 60&nbsp;km/h</b><br>2. 90t = 60(t + 1.5) → <b>t = 3&nbsp;h</b><br>3. (6 − 4)t = 400 → <b>t = 200&nbsp;s</b><br>4. x + y = 20, x − y = 12 → <b>still 16&nbsp;km/h, current 4&nbsp;km/h</b></div></div></div>"}, {"key": "s5", "nav": "Practice B 工程·利润·抽屉", "num": "05", "track": true, "badge": "hard", "title": "Practice B · Work, profit, pigeonhole", "zh": "练习 B·工程·利润·抽屉", "body": "<div class=\"practice\"><div class=\"practice-head\">Practice B 练习 B</div><p class=\"zh\" style=\"margin:2px 0 8px\">（工程题把总量看作 1；抽屉题不列方程，想“最坏情况 + 1”）</p><ol class=\"wp\"><li><div class=\"q-en\">A can finish a job in 6&nbsp;days; B can finish the same job in 12&nbsp;days. Working <b>together</b>, how many days do they need to finish it?</div><button class=\"zt\" onclick=\"zt(this)\">中文 ▾</button><div class=\"q-zh\">甲单独做一项工程 6 天完成，乙单独做 12 天完成。两人<b>合作</b>需几天完成？</div></li><li><div class=\"q-en\">A and B <b>together</b> finish a job in 4&nbsp;days. A working <b>alone</b> would take 6&nbsp;days. How long would B take working alone?</div><button class=\"zt\" onclick=\"zt(this)\">中文 ▾</button><div class=\"q-zh\">甲、乙<b>合作</b> 4 天完成一项工程，甲<b>单独</b>做需 6 天。乙单独做需几天？</div></li><li><div class=\"q-en\">A shop buys an item for 80&nbsp;yuan. It sets a marked price, then sells at a <b>20% discount</b> off that marked price, and <b>still makes 12&nbsp;yuan profit</b>. Find the marked price.</div><button class=\"zt\" onclick=\"zt(this)\">中文 ▾</button><div class=\"q-zh\">商店进货成本 80 元，标一个价，按标价<b>打八折</b>卖出，仍赚 <b>12 元</b>。求标价。</div></li><li><div class=\"q-en\">A bag holds pens of <b>5 different colours</b>, mixed up. Without looking: (a) how many pens must you take to be <b>sure</b> of two of the same colour? (b) to be sure of <b>three</b> of the same colour?</div><button class=\"zt\" onclick=\"zt(this)\">中文 ▾</button><div class=\"q-zh\">袋中有 <b>5 种颜色</b>的笔混在一起。不看的情况下：(a) 至少取几支能保证有<b>两支同色</b>？(b) 保证有<b>三支同色</b>？</div></li><li><div class=\"q-en\">In a class of <b>40 students</b>, explain why <b>at least 4</b> of them must have been born in the same month.</div><button class=\"zt\" onclick=\"zt(this)\">中文 ▾</button><div class=\"q-zh\">一个班 <b>40 名学生</b>，说明为什么<b>至少有 4 人</b>出生在同一个月。</div></li></ol><button class=\"reveal\" onclick=\"ans(this)\">Show answers 显示答案</button><div class=\"answer\"><div class=\"answer-inner\">5. total job = 1; 1/6 + 1/12 = 1/4 per day → <b>4 days</b><br>6. 1/6 + 1/B = 1/4 → 1/B = 1/12 → <b>B = 12 days</b><br>7. 0.8m − 80 = 12 → 0.8m = 92 → <b>marked price 115 yuan</b><br>8. (a) worst case 1 of each colour = 5, the 6th matches → <b>6</b>　(b) 2 of each = 10, the 11th → <b>11</b><br>9. 40 students into 12 months; if every month had ≤ 3, that’s ≤ 36 &lt; 40, impossible → some month has ≥ <b>4</b>. （40 ÷ 12 向上取整 = 4）</div></div></div>"}, {"key": "end", "nav": "Self-check 自查", "num": "", "track": false, "title": "Self-check", "zh": "自查与过关", "body": "\n <h3 class=\"blk\">Self-check 自查（tap to tick 点一下打勾）</h3>\n <div>\n   <div class=\"check-item\" onclick=\"tick(this)\"><div class=\"check-box\"></div><div class=\"check-txt\">I can name the equal-relation for each type　每种题型的相等关系能说出来</div></div>\n   <div class=\"check-item\" onclick=\"tick(this)\"><div class=\"check-box\"></div><div class=\"check-txt\">Meeting = distances add up; Catch-up = distance difference　相遇路程和、追及路程差</div></div>\n   <div class=\"check-item\" onclick=\"tick(this)\"><div class=\"check-box\"></div><div class=\"check-txt\">Boat/work: I can set two unknowns when needed　必要时会设两个未知数</div></div>\n   <div class=\"check-item\" onclick=\"tick(this)\"><div class=\"check-box\"></div><div class=\"check-txt\">Profit: selling = marked × discount = cost + profit　利润关系</div></div>\n   <div class=\"check-item\" onclick=\"tick(this)\"><div class=\"check-box\"></div><div class=\"check-txt\">Pigeonhole: “worst case, then +1”, no equation　抽屉“最坏情况+1”</div></div>\n   <div class=\"check-item\" onclick=\"tick(this)\"><div class=\"check-box\"></div><div class=\"check-txt\">I read the English problem first, Chinese only when stuck　先读英文，卡住再看中文</div></div>\n </div>\n <div class=\"note\" style=\"margin-top:18px\"><strong>Pass mark 过关：</strong>get 7 / 9 practice problems right, translating the story into an equation yourself. 练习做对 7/9，且能自己把故事翻译成方程。</div>\n <div class=\"parent\"><h4>For parents 给家长的话</h4>\n <p class=\"zh\">应用题她最需要练的不是解方程（那一步她已经不错），而是\"读懂英文故事 → 找到那个藏起来的相等关系 → 设未知数列式\"。所以这里题目英文在前、中文点开才看，逼她先啃英文；例题里我把相遇/追及/流水/抽屉的常见变形都走了一遍。抽屉题是光剑/AMC 爱考的一类，它不列方程，靠\"最坏情况+1\"推理，和前面几类完全不同，值得单独讲。</p></div>\n "}];
+
+const tocList=document.getElementById('tocList'),content=document.getElementById('content'),progFill=document.getElementById('progFill'),progLabel=document.getElementById('progLabel'),prevBtn=document.getElementById('prevBtn'),nextBtn=document.getElementById('nextBtn'),doneBtn=document.getElementById('doneBtn');
+let cur=0;const done=new Set();const trackedTotal=S.filter(s=>s.track).length;
+S.forEach((s,i)=>{const a=document.createElement('a');a.dataset.i=i;a.innerHTML=`<span class="n">${s.num||'\u00b7'}</span><span class="lbl">${s.nav}</span><span class="tick"></span>`;a.onclick=()=>go(i);tocList.appendChild(a);});
+const tocLinks=[...tocList.children];
+function render(){
+  const s=S[cur];
+  const badgeHtml = s.badge==='core'?'<span class="badge core">\u2605 Must-know \u5fc5\u638c\u63e1</span>':s.badge==='gk'?'<span class="badge gk">\u2605 Often tested \u5e38\u8003</span>':s.badge==='hard'?'<span class="badge hard">\u2605 Harder \u96be\u9898</span>':'';
+  const zt = s.zh?`<div class="zh-title">${s.zh}</div>`:'';
+  content.innerHTML=`<div class="sec-head">${s.num?`<div class="sec-num">${s.num}</div>`:''}<div class="sec-titles"><h2>${s.title}</h2>${zt}${badgeHtml}</div></div><div class="divider"></div>${s.body}`;
+  tocLinks.forEach((a,i)=>a.classList.toggle('active',i===cur));
+  prevBtn.disabled=cur===0;nextBtn.disabled=cur===S.length-1;
+  if(s.track){doneBtn.style.display='';const d=done.has(cur);doneBtn.textContent=d?'Done \u5df2\u5b8c\u6210 \u2713':'Done \u505a\u5b8c\u4e86 \u2713';doneBtn.classList.toggle('is-done',d);}else{doneBtn.style.display='none';}
+  content.focus({preventScroll:true});window.scrollTo({top:0,behavior:'smooth'});
+}
+function go(i){cur=Math.max(0,Math.min(S.length-1,i));render();closeMenu();}
+prevBtn.onclick=()=>go(cur-1);nextBtn.onclick=()=>go(cur+1);
+doneBtn.onclick=()=>{if(!S[cur].track)return;if(done.has(cur))done.delete(cur);else done.add(cur);updateProgress();render();if(done.has(cur)&&cur<S.length-1)setTimeout(()=>go(cur+1),260);};
+function updateProgress(){const n=[...done].filter(i=>S[i].track).length;progFill.style.width=(n/trackedTotal*100)+'%';progLabel.textContent=`${n} / ${trackedTotal}`;tocLinks.forEach((a,i)=>a.classList.toggle('done',done.has(i)&&S[i].track));}
+function ans(btn){const box=btn.nextElementSibling;const open=box.classList.toggle('open');btn.textContent=open?btn.textContent.replace('Show','Hide').replace('\u663e\u793a','\u9690\u85cf'):btn.textContent.replace('Hide','Show').replace('\u9690\u85cf','\u663e\u793a');}
+function zt(btn){const box=btn.nextElementSibling;const open=box.classList.toggle('open');btn.textContent=open?'\u4e2d\u6587 \u25b4':'\u4e2d\u6587 \u25be';}
+function tick(el){el.classList.toggle('on');}
+const toc=document.getElementById('toc'),scrim=document.getElementById('scrim');
+document.getElementById('menuBtn').onclick=()=>{toc.classList.add('open');scrim.classList.add('show');};
+function closeMenu(){toc.classList.remove('open');scrim.classList.remove('show');}
+scrim.onclick=closeMenu;
+document.addEventListener('keydown',e=>{if(e.target.tagName==='BUTTON')return;if(e.key==='ArrowRight'&&cur<S.length-1)go(cur+1);if(e.key==='ArrowLeft'&&cur>0)go(cur-1);});
+render();updateProgress();
+function printAll(){var c=document.getElementById("content");try{if(c&&typeof S!=="undefined"){var curH=c.innerHTML;c.innerHTML=S.map(function(s){return '<section class="psec"><h2>'+((s.num?s.num+" ":"")+s.title)+(s.zh?" \u00b7 "+s.zh:"")+'</h2>'+s.body+'</section>';}).join("");c.querySelectorAll(".answer,.q-zh").forEach(function(a){a.classList.add("open");});window.print();c.innerHTML=curH;if(typeof render==="function")render();return;}}catch(e){}window.print();}
+
+</script>
+<div class="dltools"><button class="b-pdf" onclick="printAll()">🖨 PDF</button></div>
+</body>
+</html>
