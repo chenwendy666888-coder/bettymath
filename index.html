@@ -1,134 +1,234 @@
 <!DOCTYPE html>
 <html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Maths Study Hub · 数学学习中心</title>
+<title>数学大树 · 学习中心 Study Hub</title>
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="数学大树">
+<meta name="theme-color" content="#4A43C4"><meta name="format-detection" content="telephone=no">
+<link rel="apple-touch-icon" href="icon-180.png"><link rel="icon" type="image/png" href="icon-192.png"><link rel="manifest" href="manifest.json">
 <style>
-:root{--bg:#F4F6FB;--surface:#fff;--ink:#1B1B2A;--muted:#6A6A82;--line:#E3E6F0;--indigo:#4A43C4;--indigo-deep:#2E2A6B;--indigo-soft:#EEF0FC;--amber:#C77A15;--amber-soft:#FCF2DF;--green:#1F8A5B;--green-soft:#E6F5EE;--grey-soft:#EEF0F4;--shadow:0 1px 2px rgba(30,30,60,.05),0 8px 24px rgba(30,30,60,.06);--font:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Segoe UI",Roboto,sans-serif;}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.65}
-.hero{background:linear-gradient(135deg,#2E2A6B,#4A43C4);color:#fff;padding:34px 22px}
-.hero-in{max-width:1080px;margin:0 auto}
-.hero .eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;opacity:.8;font-weight:700}
-.hero h1{margin:6px 0 4px;font-size:26px;font-weight:800}
-.hero p{margin:0;opacity:.9;font-size:15px}
-.herobtns{margin-top:18px;display:flex;gap:12px;flex-wrap:wrap}
-.hb{background:#fff;color:var(--indigo-deep);text-decoration:none;font-weight:800;padding:11px 18px;border-radius:12px;font-size:15px}
-.hb.ghost{background:rgba(255,255,255,.16);color:#fff;border:1px solid rgba(255,255,255,.4)}
-.prbar-wrap{margin-top:18px;background:rgba(255,255,255,.18);border-radius:99px;height:10px;overflow:hidden;max-width:420px}
-.prbar{height:100%;width:0;background:#fff;border-radius:99px;transition:width .4s}
-.prtxt{font-size:13px;opacity:.9;margin-top:6px}
-.wrap{max-width:1080px;margin:26px auto;padding:0 22px}
-.grp{margin-bottom:30px}
-.grp h2{font-size:19px;color:var(--indigo-deep);margin:0 0 2px}
-.grp .sub{color:var(--muted);font-size:13.5px;margin:0 0 14px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:16px;display:flex;flex-direction:column;gap:8px;position:relative}
-.card.todo{opacity:.72}
-.cid{position:absolute;top:12px;right:14px;font-size:12px;font-weight:800;color:#C4C9E0}
-.cen{font-weight:800;color:var(--indigo-deep);font-size:15.5px;padding-right:30px}
-.czh{color:var(--muted);font-size:13.5px;font-weight:700}
-.badge{align-self:flex-start;font-size:11.5px;font-weight:800;border-radius:99px;padding:2px 9px;margin-top:2px}
-.badge.bi{background:var(--green-soft);color:var(--green)} .badge.cn{background:var(--amber-soft);color:var(--amber)} .badge.todo{background:var(--grey-soft);color:var(--muted)}
-.prs{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
-.pl{font-size:12px;background:var(--indigo-soft);color:var(--indigo);text-decoration:none;padding:3px 9px;border-radius:8px;font-weight:700}
-.pl:hover{background:#e0e3fa}
-.cfoot{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:6px;border-top:1px solid var(--line)}
-.open{text-decoration:none;font-weight:800;color:var(--indigo);font-size:14px}
-.open.dis{color:#B4B9CE;font-weight:700}
-.chk{font-size:12.5px;color:var(--muted);display:flex;align-items:center;gap:5px;cursor:pointer;user-select:none}
-footer{max-width:1080px;margin:10px auto 40px;padding:0 22px;color:var(--muted);font-size:13px}
-a{color:var(--indigo)}
-</style></head>
-<body>
+:root{--bg:#F4F6FB;--surface:#fff;--ink:#1B1B2A;--muted:#6A6A82;--line:#E3E6F0;--indigo:#4A43C4;--indigo-deep:#2E2A6B;--amber:#D98A24;--green:#1F8A5B;--teal:#0E7C86;--shadow:0 1px 2px rgba(30,30,60,.05),0 6px 20px rgba(30,30,60,.05);--font:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Segoe UI",Roboto,sans-serif;}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.55}
+.hero{background:linear-gradient(135deg,#2E2A6B,#4A43C4);color:#fff;padding:22px}.hero-in{max-width:1040px;margin:0 auto}
+.hero .eyebrow{font-size:11px;letter-spacing:.16em;text-transform:uppercase;opacity:.78;font-weight:700}
+.hero h1{margin:5px 0 3px;font-size:22px;font-weight:800}.hero .sub{margin:0;opacity:.9;font-size:13px}
+.hbtns{margin-top:15px;display:flex;gap:9px;flex-wrap:wrap}
+.hb{text-decoration:none;font-weight:800;font-size:13px;padding:9px 14px;border-radius:11px;background:rgba(255,255,255,.16);color:#fff;border:1px solid rgba(255,255,255,.4)}
+.hb.white{background:#fff;color:var(--indigo-deep);border-color:#fff}
+.meter{margin-top:14px;font-size:12.5px;opacity:.92;display:flex;align-items:center;gap:10px}
+.meter .bar{flex:1;max-width:260px;height:7px;background:rgba(255,255,255,.22);border-radius:99px;overflow:hidden}.meter .bar>div{height:100%;width:0;background:#fff;border-radius:99px;transition:width .4s}
+.wrap{max-width:1040px;margin:20px auto;padding:0 18px 44px}
+.viewbar{display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.seg{display:inline-flex;background:#E9EBF6;border-radius:99px;padding:3px}
+.seg button{border:none;background:none;font:800 12.5px var(--font);color:var(--muted);padding:6px 15px;border-radius:99px;cursor:pointer}
+.seg button.active{background:#fff;color:var(--indigo-deep);box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.tick{width:20px;height:20px;border:2px solid #C7CBE4;border-radius:6px;background:#fff;cursor:pointer;position:relative;padding:0;flex:0 0 auto}
+.tick.on{background:var(--green);border-color:var(--green)}.tick.on::after{content:"\2713";color:#fff;font-size:12px;font-weight:800;position:absolute;left:2.5px;top:-1px}
+/* 视图1 卡片 */
+.grp{margin-bottom:24px}
+.grp h2{font-size:16px;color:var(--indigo-deep);margin:0 0 3px;display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
+.grp h2 .en{font-size:10.5px;font-weight:700;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}.grp .cnt{font-size:11.5px;font-weight:700;color:var(--muted)}
+.grp .desc{color:var(--muted);font-size:12.5px;margin:0 0 12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(232px,1fr));gap:12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:14px 15px;position:relative;display:flex;flex-direction:column}.card.todo{opacity:.62}
+.cid{position:absolute;top:12px;right:13px;font-size:12px;font-weight:800;color:#C4C9E0}
+.cen{font-weight:800;font-size:14.5px;color:var(--indigo-deep);padding-right:30px}.czh{font-size:13px;color:var(--muted);margin-top:2px}
+.badge{display:inline-block;margin-top:9px;font-size:10.5px;font-weight:800;padding:2px 9px;border-radius:99px;align-self:flex-start}
+.badge.bi{background:#EAF6EF;color:#12613f;border:1px solid #CDE9DA}.badge.rd{background:#E7F3F4;color:#0E5A63;border:1px solid #BFE0E3}.badge.todo{background:#F3F4F8;color:#8890A8;border:1px solid #E3E6F0}
+.cfoot{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:11px}.cfoot .lft{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.open2{color:var(--indigo);font-weight:800;font-size:13px;text-decoration:none}
+.prac{font-size:11px;font-weight:700;color:var(--indigo);text-decoration:none;background:#EEF0FC;border:1px solid #D9DCF6;border-radius:99px;padding:2px 9px}
+/* 视图2 看板 */
+.board{display:flex;gap:12px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:6px}
+.bcol{flex:0 0 250px;background:#EEF0FA;border:1px solid #DDE0F0;border-radius:14px;padding:11px}
+.bcolh{font-size:13.5px;font-weight:800;color:var(--indigo-deep);margin:2px 2px 4px}.bcolh .cnt{font-size:11px;color:var(--muted);font-weight:700}
+.bcold{font-size:11px;color:var(--muted);margin:0 2px 9px}
+.bcards{display:flex;flex-direction:column;gap:8px}
+.bcard{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px;text-decoration:none;color:var(--ink)}
+.bcard .bid{font-size:10px;font-weight:800;color:#fff;background:var(--indigo);border-radius:5px;padding:2px 6px;min-width:34px;text-align:center;flex:0 0 auto}
+.bcard .bnm{flex:1;min-width:0}.bcard .bnm b{font-weight:700;font-size:13px}.bcard .bnm span{display:block;font-size:10.5px;color:var(--muted)}
+.bcard.todo{opacity:.55}.bcard.todo .bid{background:#AAB0CE}
+.bcard .tick{width:18px;height:18px}.bcard .tick.on::after{left:2px}
+/* 视图3 大纲/目录树 */
+.tree{background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:8px 12px}
+details.tcat{border-bottom:1px solid var(--line)}details.tcat:last-child{border-bottom:none}
+details.tcat>summary{cursor:pointer;padding:11px 4px;font-weight:800;font-size:14.5px;color:var(--indigo-deep);list-style:none;display:flex;align-items:center;gap:8px}
+summary::-webkit-details-marker{display:none}
+.tcat>summary::before{content:"\25B8";color:var(--muted);font-size:12px;transition:transform .15s}details.tcat[open]>summary::before{transform:rotate(90deg)}
+.tcat>summary .cnt{font-size:11px;color:var(--muted);font-weight:700;margin-left:auto}
+.tmodwrap{display:flex;align-items:flex-start;gap:8px;padding-left:16px;border-top:1px dashed var(--line)}
+details.tmod{flex:1}
+details.tmod>summary{cursor:pointer;padding:9px 2px;font-size:13.5px;font-weight:700;list-style:none;display:flex;align-items:center;gap:8px}
+.tmod>summary::before{content:"\25B8";color:#C4C9E0;font-size:11px;transition:transform .15s}details.tmod[open]>summary::before{transform:rotate(90deg)}
+.tmod>summary .mid{font-size:10px;font-weight:800;color:#fff;background:var(--indigo);border-radius:5px;padding:2px 6px}
+.tmod>summary .men{font-size:11px;color:var(--muted);font-weight:600}
+.tsub{padding:2px 2px 10px 24px;display:flex;flex-direction:column;gap:5px}
+.tsub a{font-size:12.5px;color:var(--indigo);text-decoration:none;font-weight:600}.tsub a .k{color:var(--muted);font-weight:700;margin-right:5px}
+.tleaf{padding:9px 2px;font-size:13px;color:var(--muted);opacity:.7;padding-left:18px;border-top:1px dashed var(--line)}
+.twtick{margin-top:9px}
+/* 参考 */
+.reflist{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.ref{display:flex;align-items:center;gap:9px;background:var(--surface);border:1px solid var(--line);border-radius:11px;box-shadow:var(--shadow);padding:11px 12px;text-decoration:none;color:var(--ink)}
+.ref .rem{font-size:16px}.ref .rnm{font-weight:700;font-size:13.5px}.ref .ren{display:block;font-size:11px;color:var(--muted);font-weight:600}.ref:hover .rnm{color:var(--indigo)}
+footer{max-width:1040px;margin:0 auto 40px;padding:0 18px;color:var(--muted);font-size:12.5px}footer b{color:var(--indigo-deep)}
+.mask{position:fixed;inset:0;background:rgba(20,20,40,.45);display:none;z-index:100;align-items:center;justify-content:center;padding:20px}
+.modal{background:#fff;border-radius:16px;max-width:480px;width:100%;padding:22px;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.modal h3{margin:0 0 10px;color:var(--indigo-deep);font-size:18px}.modal ol{margin:0;padding-left:20px}.modal li{margin:8px 0;font-size:14px}
+.modal .x{margin-top:16px;text-align:right}.modal .x button{background:var(--indigo);color:#fff;border:none;border-radius:10px;padding:9px 18px;font:800 14px var(--font);cursor:pointer}
+</style></head><body>
 <div class="hero"><div class="hero-in">
-  <div class="eyebrow">Maths Base · Guangjian & beyond</div>
-  <h1>数学学习中心 Study Hub</h1>
-  <p>从零打地基 → 光剑必考 → AMC 枝桠 → 衔接 A-Level。双语（先英文后中文）。</p>
-  <div class="herobtns">
-    <a class="hb" href="map.html">🗺 知识图谱 Knowledge Map</a>
-    <a class="hb ghost" href="syllabus/syllabus.html">📋 主考纲 Syllabus</a>
-    <a class="hb ghost" href="syllabus/checkpoints.html">✅ 考点自查</a>
+  <div class="eyebrow">数学大树 · Guangjian & beyond</div>
+  <h1>学习中心 · Study Hub</h1>
+  <p class="sub">先英文后中文 · 解题思路 → 学校教材 → 备考深化。按考纲铺满全部模块（含待建）。</p>
+  <div class="hbtns">
+    <a class="hb white" href="syllabus/syllabus.html">📋 主考纲</a>
+    <a class="hb" href="syllabus/glossary.html">📚 背诵清单</a>
+    <a class="hb" href="interactives/graphing-lab.html">🧪 交互实验室</a>
+    <a class="hb" href="interactives/quiz.html">📝 词汇自测</a>
+    <a class="hb" href="#" id="guideBtn">🧭 新手引导</a>
   </div>
-  <div class="prbar-wrap"><div class="prbar" id="prbar"></div></div>
-  <div class="prtxt" id="prtxt">已学 0 项</div>
+  <div class="meter"><span id="mtxt">已学 0 / 0</span><div class="bar"><div id="mbar"></div></div></div>
 </div></div>
-<div class="wrap"><section class="grp"><h2>预备篇 · Foundations</h2><p class="sub">从零打底，先学这三份（已双语）</p><div class="grid"><div class="card bi"><div class="cid">01</div>
-      <div class="cbody"><div class="cen">Algebra Basics</div><div class="czh">代数基本功</div>
-      <span class="badge bi">双语 Bilingual</span><div class="prs"><a class="pl" href="practice/p01_algebra-basics_60min.html">60-min practice 针对性练习</a><a class="pl" href="practice/p01_algebra-basics_60min.md">· MD</a></div></div>
-      <div class="cfoot"><a class="open" href="lectures/01_algebra-basics.html">Open 打开 →</a><label class="chk"><input type="checkbox" data-id="01"> 已学 Learned</label></div></div><div class="card bi"><div class="cid">02</div>
-      <div class="cbody"><div class="cen">Graphs: number line · coordinates · reading</div><div class="czh">图像基础</div>
-      <span class="badge bi">双语 Bilingual</span></div>
-      <div class="cfoot"><a class="open" href="lectures/02_graphs.html">Open 打开 →</a><label class="chk"><input type="checkbox" data-id="02"> 已学 Learned</label></div></div><div class="card bi"><div class="cid">03</div>
-      <div class="cbody"><div class="cen">Inequalities</div><div class="czh">不等式</div>
-      <span class="badge bi">双语 Bilingual</span><div class="prs"><a class="pl" href="practice/inequalities-drills.html">不等式专练 14题</a></div></div>
-      <div class="cfoot"><a class="open" href="lectures/03_inequalities.html">Open 打开 →</a><label class="chk"><input type="checkbox" data-id="03"> 已学 Learned</label></div></div></div></section><section class="grp"><h2>代数 · Algebra</h2><p class="sub">方程→函数→换元→数列，代数支柱</p><div class="grid"><div class="card cn"><div class="cid">A</div>
-      <div class="cbody"><div class="cen">Quadratics & Vieta</div><div class="czh">一元二次方程与韦达</div>
-      <span class="badge cn">中文 Chinese</span><div class="prs"><a class="pl" href="practice/pA_module-a-advanced.html">Advanced 进阶</a><a class="pl" href="practice/pA_50-hard.html">50 hard 变通50题</a><a class="pl" href="practice/pA_50-hard_writing.md">Writing MD</a><a class="pl" href="practice/pA_special-substitution.html">代入求参专项</a><a class="pl" href="practice/word-problems-equations.html">应用题专练 8题</a></div></div>
-      <div class="cfoot"><a class="open" href="lectures/A_quadratics-vieta.html">Open 打开 →</a><label class="chk"><input type="checkbox" data-id="A"> 已学 Learned</label></div></div><div class="card cn"><div class="cid">B</div>
-      <div class="cbody"><div class="cen">Functions & Composite</div><div class="czh">函数与复合函数</div>
-      <span class="badge cn">中文 Chinese</span><div class="prs"><a class="pl" href="practice/pB_module-b.html">Practice 练习</a><a class="pl" href="practice/pB_module-b_writing.md">Writing MD</a></div></div>
-      <div class="cfoot"><a class="open" href="lectures/B_functions.html">Open 打开 →</a><label class="chk"><input type="checkbox" data-id="B"> 已学 Learned</label></div></div><div class="card bi"><div class="cid">D</div>
-      <div class="cbody"><div class="cen">Substitution & Manipulation</div><div class="czh">换元与代数变形</div>
-      <span class="badge bi">双语 Bilingual</span></div>
-      <div class="cfoot"><a class="open" href="lectures/D_substitution.html">Open 打开 →</a><label class="chk"><input type="checkbox" data-id="D"> 已学 Learned</label></div></div><div class="card bi"><div class="cid">E</div>
-      <div class="cbody"><div class="cen">Surds · Sequences · Induction</div><div class="czh">根式·数列·归纳</div>
-      <span class="badge bi">双语 Bilingual</span></div>
-      <div class="cfoot"><a class="open" href="lectures/E_sequences.html">Open 打开 →</a><label class="chk"><input type="checkbox" data-id="E"> 已学 Learned</label></div></div></div></section><section class="grp"><h2>几何 · Geometry</h2><p class="sub">六块，重头戏（陆续建）</p><div class="grid"><div class="card bi"><div class="cid">G1</div>
-      <div class="cbody"><div class="cen">Triangles</div><div class="czh">三角形</div>
-      <span class="badge bi">双语 Bilingual</span></div>
-      <div class="cfoot"><a class="open" href="lectures/G1_triangles.html">Open 打开 →</a><label class="chk"><input type="checkbox" data-id="G1"> 已学 Learned</label></div></div><div class="card todo"><div class="cid">G2</div>
-      <div class="cbody"><div class="cen">Quadrilaterals</div><div class="czh">四边形</div>
-      <span class="badge todo">待建 Coming</span></div>
-      <div class="cfoot"><span class="open dis">施工中</span></div></div><div class="card todo"><div class="cid">G3</div>
-      <div class="cbody"><div class="cen">Circles</div><div class="czh">圆</div>
-      <span class="badge todo">待建 Coming</span></div>
-      <div class="cfoot"><span class="open dis">施工中</span></div></div><div class="card todo"><div class="cid">G4</div>
-      <div class="cbody"><div class="cen">Fold / Rotate</div><div class="czh">翻折·旋转</div>
-      <span class="badge todo">待建 Coming</span></div>
-      <div class="cfoot"><span class="open dis">施工中</span></div></div><div class="card todo"><div class="cid">G5</div>
-      <div class="cbody"><div class="cen">Trigonometry</div><div class="czh">锐角三角比</div>
-      <span class="badge todo">待建 Coming</span></div>
-      <div class="cfoot"><span class="open dis">施工中</span></div></div><div class="card todo"><div class="cid">G6</div>
-      <div class="cbody"><div class="cen">Coordinate Geometry</div><div class="czh">坐标几何</div>
-      <span class="badge todo">待建 Coming</span></div>
-      <div class="cfoot"><span class="open dis">施工中</span></div></div></div></section><section class="grp"><h2>计数·概率·数论 & 应用 & AMC</h2><p class="sub">（陆续建）</p><div class="grid"><div class="card todo"><div class="cid">F1</div>
-      <div class="cbody"><div class="cen">Perm. & Comb.</div><div class="czh">排列组合</div>
-      <span class="badge todo">待建 Coming</span></div>
-      <div class="cfoot"><span class="open dis">施工中</span></div></div><div class="card todo"><div class="cid">F2</div>
-      <div class="cbody"><div class="cen">Probability</div><div class="czh">概率</div>
-      <span class="badge todo">待建 Coming</span></div>
-      <div class="cfoot"><span class="open dis">施工中</span></div></div><div class="card todo"><div class="cid">F3</div>
-      <div class="cbody"><div class="cen">Number Theory</div><div class="czh">数论</div>
-      <span class="badge todo">待建 Coming</span></div>
-      <div class="cfoot"><span class="open dis">施工中</span></div></div><div class="card todo"><div class="cid">APP</div>
-      <div class="cbody"><div class="cen">Modelling & Applications</div><div class="czh">应用与建模</div>
-      <span class="badge todo">待建 Coming</span></div>
-      <div class="cfoot"><span class="open dis">施工中</span></div></div><div class="card todo"><div class="cid">AMC</div>
-      <div class="cbody"><div class="cen">AMC branches (number & surd)</div><div class="czh">AMC 枝桠（数论·根号）</div>
-      <span class="badge todo">待建 Coming</span></div>
-      <div class="cfoot"><span class="open dis">施工中</span></div></div></div></section><section class="grp"><h2>参考 · Reference</h2><p class="sub">地图、大纲、自查——可打开、可下载</p><div class="grid">
-  <div class="card bi"><div class="cid">READ</div><div class="cbody"><div class="cen">The Art of Problem-Solving</div><div class="czh">读一读 · 解题的艺术（Pólya）</div><span class="badge bi">双语 · 8要点+练习</span></div><div class="cfoot"><a class="open" href="reading/art-of-problem-solving.html">Open 打开 →</a></div></div><div class="card bi"><div class="cid">VOC</div><div class="cbody"><div class="cen">Maths Glossary</div><div class="czh">数学英汉单词表（286词·可自测）</div><span class="badge bi">HTML + MD</span><div class="prs"><a class="pl" href="syllabus/glossary.md" download>⬇ MD</a></div></div><div class="cfoot"><a class="open" href="syllabus/glossary.html">Open 打开 →</a></div></div><div class="card bi"><div class="cid">ROOT</div><div class="cbody"><div class="cen">Root Knowledge Base</div><div class="czh">根知识表 · 初中29章→光剑</div><span class="badge bi">HTML + MD</span><div class="prs"><a class="pl" href="syllabus/junior-high-knowledge.md" download>⬇ 初中MD</a></div></div><div class="cfoot"><a class="open" href="syllabus/root-base.html">Open 打开 →</a></div></div><div class="card bi"><div class="cid">MAP</div><div class="cbody"><div class="cen">Knowledge Map</div><div class="czh">知识图谱（点节点看前置/联立）</div><span class="badge bi">互动 Interactive</span></div><div class="cfoot"><a class="open" href="map.html">Open 打开 →</a></div></div>
-  <div class="card bi"><div class="cid">SYL</div><div class="cbody"><div class="cen">Master Syllabus</div><div class="czh">主考纲 · 数学大树</div><span class="badge bi">HTML + MD</span><div class="prs"><a class="pl" href="syllabus/master-syllabus.md" download>⬇ MD</a></div></div><div class="cfoot"><a class="open" href="syllabus/syllabus.html">Open 打开 →</a></div></div>
-  <div class="card bi"><div class="cid">CHK</div><div class="cbody"><div class="cen">Self-check</div><div class="czh">考点自查（可评级）</div><span class="badge bi">HTML + MD</span><div class="prs"><a class="pl" href="syllabus/checkpoints.md" download>⬇ MD</a></div></div><div class="cfoot"><a class="open" href="syllabus/checkpoints.html">Open 打开 →</a></div></div>
-</div></section>
+<div class="wrap">
+  <div class="viewbar"><span style="font-size:12.5px;color:var(--muted);font-weight:700">视图</span>
+    <span class="seg"><button id="segCard" class="active">卡片</button><button id="segBoard">看板</button><button id="segTree">大纲</button></span>
+  </div>
+  <div id="viewCards"></div>
+  <div id="viewBoard" class="board" style="display:none"></div>
+  <div id="viewTree" style="display:none"><div class="tree" id="treeInner"></div></div>
+
+  <section class="grp" style="margin-top:26px"><h2>📊 考纲 · 参考 · 工具 <span class="en">Reference & Tools</span></h2>
+  <div class="reflist" id="refs"></div></section>
 </div>
-<footer>
-  <p><b>怎么用：</b>按顺序学预备篇 → 代数 → 几何 …；每份点“Open 打开”；练习在卡片里；勾“已学”会记录进度（存在浏览器本地）。知识图谱可看知识点之间的前置/联立关系。</p>
-  <p><b>放到 GitHub：</b>把整个文件夹推到仓库，Settings → Pages → 选 main 分支 /(root)，即可用网址访问。所有链接是相对路径，本地双击 index.html 也能用。</p>
-</footer>
+<footer><b>怎么用：</b>按顺序学 📖阅读 → 🧠解题思路 → 🏫学校教材 → 🎯备考；视图可切「卡片 / 看板 / 大纲」；勾「已学」记进度；不懂点讲义右下角🙋。灰色「待建」是按考纲排好、将陆续补上的模块。</footer>
+<div class="mask" id="guideMask"><div class="modal">
+  <h3>🧭 新手引导 · 怎么用</h3>
+  <ol>
+    <li>先看一点 <b>📖阅读</b> 与 <b>🧠解题思路篇</b>（数感/易错点/解题方法），建立感觉。</li>
+    <li>再按 <b>🏫学校教材内容</b> 从零学（坐标·一次函数、二次、代数基本功…）。</li>
+    <li>最后进 <b>🎯备考内容</b> 深化（韦达、函数、加料专题…）。</li>
+    <li>点卡片「打开」进双语讲义；例题分 🟢低/🟡中/🔴高，可折叠分步；不懂点右下角 🙋。</li>
+    <li>学完勾 <b>✓已学</b>，进度自动记录。灰色「待建」按考纲排好、陆续补上。</li>
+    <li>三种视图：卡片 / 看板(每类一栏) / 大纲(可逐级展开到讲义·练习·MD)。</li>
+  </ol>
+  <div class="x"><button id="guideClose">开始学习 →</button></div>
+</div></div>
 <script>
 const KEY='gj_learned';
 function load(){try{return new Set(JSON.parse(localStorage.getItem(KEY)||'[]'));}catch(e){return new Set();}}
 function save(s){try{localStorage.setItem(KEY,JSON.stringify([...s]));}catch(e){}}
-let learned=load();
-const boxes=[...document.querySelectorAll('input[type=checkbox][data-id]')];
-const total=boxes.length;
-function upd(){
-  const n=[...learned].filter(id=>boxes.some(b=>b.dataset.id===id)).length;
-  document.getElementById('prbar').style.width=(total?n/total*100:0)+'%';
-  document.getElementById('prtxt').textContent='已学 '+n+' / '+total+' 项（可学）';
+var learned=load();
+// 每个模块的资源；built = 有 lec。已成型的讲义不改，这里只是索引链接。
+const M={
+ R1:{en:'Art of Problem-Solving',zh:'读一读·解题的艺术',lec:'lectures/R1_problem-solving-reading.html',md:'lectures/R1_problem-solving-reading.md'},
+ F0a:{en:'Number Sense',zh:'数感（基础版）',lec:'lectures/F0a_number-sense.html',md:'lectures/F0a_number-sense.md'},
+ F0c:{en:'Common Traps',zh:'常见易错点',lec:'lectures/F0c_common-traps.html',md:'lectures/F0c_common-traps.md'},
+ F0b:{en:'Problem-Solving Toolbox',zh:'解题方法工具箱',lec:'lectures/F0b_problem-solving.html',md:'lectures/F0b_problem-solving.md'},
+ F1:{en:'Coordinates & Linear',zh:'图像与坐标 + 一次函数',lec:'lectures/F1_coord-linear.html',md:'lectures/F1_coord-linear.md'},
+ '01':{en:'Algebra Basics',zh:'代数基本功',lec:'lectures/01_algebra-basics.html',prac:[['60分钟练习','practice/p01_algebra-basics_60min.html'],['练习·MD','practice/p01_algebra-basics_60min.md']]},
+ '02':{en:'Graphs',zh:'图像基础',lec:'lectures/02_graphs.html'},
+ '03':{en:'Inequalities',zh:'不等式',lec:'lectures/03_inequalities.html',prac:[['不等式专练','practice/inequalities-drills.html']]},
+ G1:{en:'Triangles & Similarity',zh:'三角形 · 相似',lec:'lectures/G1_triangles.html'},
+ A:{en:'Quadratics & Vieta',zh:'韦达 · 一元二次',lec:'lectures/A_quadratics-vieta.html',prac:[['进阶练习','practice/pA_module-a-advanced.html'],['变通50题','practice/pA_50-hard.html'],['代入求参专项','practice/pA_special-substitution.html']]},
+ B:{en:'Functions',zh:'函数',lec:'lectures/B_functions.html',prac:[['练习','practice/pB_module-b.html']]},
+ D:{en:'Substitution',zh:'换元变形',lec:'lectures/D_substitution.html'},
+ E:{en:'Surds & Sequences',zh:'根式 · 数列',lec:'lectures/E_sequences.html'},
+ // 已建（补齐真实链接）
+ F2:{en:'Unknowns & Degree',zh:'「元」与「次」· 一元一次',lec:'lectures/F2_unknowns-linear.html',md:'lectures/F2_unknowns-linear.md'},
+ F3:{en:'Intro to Geometry',zh:'几何入门',lec:'lectures/F3_geometry-intro.html',md:'lectures/F3_geometry-intro.md'},
+ F4:{en:'Lines & Parallels',zh:'相交线与平行线',lec:'lectures/F4_lines-parallel.html',md:'lectures/F4_lines-parallel.md'},
+ F5:{en:'Triangles (intro)',zh:'三角形初步',lec:'lectures/F5_triangles-intro.html',md:'lectures/F5_triangles-intro.md'},
+ F6:{en:'Quadratic Functions (intro)',zh:'二次函数初步',lec:'lectures/F6_quadratic-intro.html',md:'lectures/F6_quadratic-intro.md'},
+ F7:{en:'Inequalities & Shading',zh:'不等式与阴影',lec:'lectures/F7_inequalities-shading.html',md:'lectures/F7_inequalities-shading.md'},
+ F8:{en:'Trigonometry (intro)',zh:'三角初步',lec:'lectures/F8_trig-intro.html',md:'lectures/F8_trig-intro.md'},
+ C1:{en:'Factoring & Identities',zh:'因式分解 · 恒等变形',lec:'lectures/C1_factoring.html',md:'lectures/C1_factoring.md'},
+ C2:{en:'Algebraic Fractions',zh:'分式',lec:'lectures/C2_fractions.html',md:'lectures/C2_fractions.md'},
+ C3:{en:'Absolute Value & Cases',zh:'绝对值与分类',lec:'lectures/C3_absolute-value.html',md:'lectures/C3_absolute-value.md'},
+ C4:{en:'Composite & Functional Eqns',zh:'复合函数 · 函数方程',lec:'lectures/C4_composite-functions.html',md:'lectures/C4_composite-functions.md'},
+ G2:{en:'Quadrilaterals',zh:'四边形',lec:'lectures/G2_quadrilaterals.html',md:'lectures/G2_quadrilaterals.md'},
+ G3:{en:'Circles',zh:'圆',lec:'lectures/G3_circles.html',md:'lectures/G3_circles.md'},
+ G4:{en:'Coordinate Geometry',zh:'坐标几何',lec:'lectures/G4_coordinate-geometry.html',md:'lectures/G4_coordinate-geometry.md'},
+ G5:{en:'Fold & Rotate',zh:'翻折 · 旋转',lec:'lectures/G5_transformations.html',md:'lectures/G5_transformations.md'},
+ G6:{en:'Acute Trigonometry',zh:'锐角三角比',lec:'lectures/G6_solve-right-triangle.html',md:'lectures/G6_solve-right-triangle.md'},
+ N1:{en:'Divisibility & NT',zh:'整除 · 数论',lec:'lectures/N1_number-theory.html',md:'lectures/N1_number-theory.md'},
+ N2:{en:'Permutations & Combinations',zh:'排列组合',lec:'lectures/N2_counting.html',md:'lectures/N2_counting.md'},
+ N3:{en:'Probability',zh:'概率',lec:'lectures/N3_probability.html',md:'lectures/N3_probability.md'},
+ P:{en:'Word Problems',zh:'应用题',lec:'lectures/P_word-problems.html',md:'lectures/P_word-problems.md',prac:[['应用题专练','practice/word-problems-equations.html']]},
+ AMC:{en:'AMC Topics',zh:'AMC 专题',lec:'lectures/AMC_topics.html',md:'lectures/AMC_topics.md'}
+};
+Object.keys(M).forEach(function(k){M[k].built=!!M[k].lec;M[k].id=k;});
+const CATS=[
+ {emoji:'📖',name:'阅读',en:'Reading',bcls:'rd',desc:'当课外读物，读完能用',ids:['R1']},
+ {emoji:'🧠',name:'解题思路篇',en:'Thinking',bcls:'rd',desc:'数感·易错点·方法，学任何一章前先建立感觉',ids:['F0a','F0c','F0b']},
+ {emoji:'🏫',name:'学校教材内容',en:'School Textbook',bcls:'bi',desc:'浙教版从零：坐标·一次函数、二次、代数基本功、几何入门…',ids:['01','F1','F6','02','03','F2','F3','F4','F5','G1','F7','F8','G2','G3','G6']},
+ {emoji:'🎯',name:'备考内容',en:'Exam Prep',bcls:'bi',desc:'光剑深化与英文卷「加料」：韦达、函数、换元、专项…',ids:['A','B','D','E','C1','C2','C3','C4','G4','G5']},
+ {emoji:'🎲',name:'计数 · 概率 · 数论',en:'Counting / Prob / NT',bcls:'bi',desc:'排列组合·概率·整除数论',ids:['N1','N2','N3']},
+ {emoji:'🏆',name:'应用 · AMC',en:'Applications & AMC',bcls:'bi',desc:'应用题与竞赛拓展',ids:['P','AMC']}
+];
+const REFS=[
+ {em:'📋',zh:'主考纲',en:'Master Syllabus',href:'syllabus/syllabus.html'},{em:'🗺',zh:'知识图谱',en:'Knowledge Map',href:'map.html'},
+ {em:'🌳',zh:'根知识表',en:'Root Base',href:'syllabus/root-base.html'},{em:'✅',zh:'考点自查',en:'Self-check',href:'syllabus/checkpoints.html'},
+ {em:'📊',zh:'光剑考点全表',en:'Exam Analysis',href:'syllabus/guangjian-exam-analysis.html'},{em:'🎯',zh:'综合题',en:'Cross-Topic',href:'syllabus/cross-topic.html'},
+ {em:'🏃',zh:'阶段演练',en:'Stage Drills',href:'practice/stage-drills.html'},{em:'🧪',zh:'交互实验室',en:'Graphing Lab',href:'interactives/graphing-lab.html'},
+ {em:'📚',zh:'背诵清单',en:'Glossary',href:'syllabus/glossary.html'},{em:'📝',zh:'词汇自测',en:'Vocab Quiz',href:'interactives/quiz.html'}
+];
+function tk(id){return '<button class="tick'+(learned.has(id)?' on':'')+'" data-id="'+id+'" aria-label="已学"></button>';}
+function counts(c){var b=c.ids.filter(function(i){return M[i].built;}).length;return b+' / '+c.ids.length;}
+function renderCards(){
+ var h='';
+ CATS.forEach(function(c){
+  h+='<section class="grp"><h2>'+c.emoji+' '+c.name+' <span class="en">'+c.en+'</span><span class="cnt">· 已建 '+counts(c)+'</span></h2><p class="desc">'+c.desc+'</p><div class="grid">';
+  c.ids.forEach(function(id){var m=M[id];
+   if(!m.built){h+='<div class="card todo"><div class="cid">'+id+'</div><div class="cen">'+m.en+'</div><div class="czh">'+m.zh+'</div><span class="badge todo">待建 To build</span></div>';return;}
+   var prac=(m.prac||[]).map(function(p){return '<a class="prac" href="'+p[1]+'">'+p[0]+'</a>';}).join('');
+   var bl=c.bcls==='rd'?'<span class="badge rd">阅读 Reading</span>':'<span class="badge bi">双语 Bilingual</span>';
+   h+='<div class="card"><div class="cid">'+id+'</div><div class="cen">'+m.en+'</div><div class="czh">'+m.zh+'</div>'+bl+'<div class="cfoot"><div class="lft"><a class="open2" href="'+m.lec+'">打开 →</a>'+prac+'</div>'+tk(id)+'</div></div>';
+  });
+  h+='</div></section>';
+ });
+ document.getElementById('viewCards').innerHTML=h;
 }
-boxes.forEach(b=>{ b.checked=learned.has(b.dataset.id);
-  b.onchange=()=>{ if(b.checked)learned.add(b.dataset.id); else learned.delete(b.dataset.id); save(learned); upd(); };
-});
-upd();
+function renderBoard(){
+ var h='';
+ CATS.forEach(function(c){
+  h+='<div class="bcol"><div class="bcolh">'+c.emoji+' '+c.name+' <span class="cnt">'+counts(c)+'</span></div><div class="bcold">'+c.desc+'</div><div class="bcards">';
+  c.ids.forEach(function(id){var m=M[id];
+   if(!m.built){h+='<span class="bcard todo"><span class="bid">'+id+'</span><span class="bnm"><b>'+m.zh+'</b><span>待建 · '+m.en+'</span></span></span>';return;}
+   h+='<a class="bcard" href="'+m.lec+'"><span class="bid">'+id+'</span><span class="bnm"><b>'+m.zh+'</b><span>'+m.en+'</span></span>'+tk(id)+'</a>';
+  });
+  h+='</div></div>';
+ });
+ document.getElementById('viewBoard').innerHTML=h;
+}
+function renderTree(){
+ var h='';
+ CATS.forEach(function(c,ci){
+  h+='<details class="tcat"'+(ci<2?' open':'')+'><summary>'+c.emoji+' '+c.name+' <span class="cnt">已建 '+counts(c)+'</span></summary>';
+  c.ids.forEach(function(id){var m=M[id];
+   if(!m.built){h+='<div class="tleaf">'+id+' · '+m.zh+'（待建 To build）</div>';return;}
+   var subs='<a href="'+m.lec+'"><span class="k">讲义</span>'+m.zh+'（HTML）</a>';
+   if(m.md)subs+='<a href="'+m.md+'"><span class="k">MD</span>Markdown 版</a>';
+   (m.prac||[]).forEach(function(p){subs+='<a href="'+p[1]+'"><span class="k">练习</span>'+p[0]+'</a>';});
+   h+='<div class="tmodwrap"><details class="tmod"><summary><span class="mid">'+id+'</span>'+m.zh+' <span class="men">'+m.en+'</span></summary><div class="tsub">'+subs+'</div></details><span class="twtick">'+tk(id)+'</span></div>';
+  });
+  h+='</details>';
+ });
+ document.getElementById('treeInner').innerHTML=h;
+}
+function renderRefs(){var rh='';REFS.forEach(function(r){rh+='<a class="ref" href="'+r.href+'"><span class="rem">'+r.em+'</span><span><span class="rnm">'+r.zh+'</span><span class="ren">'+r.en+'</span></span></a>';});document.getElementById('refs').innerHTML=rh;}
+function meter(){var ids=[];CATS.forEach(function(c){c.ids.forEach(function(i){if(M[i].built)ids.push(i);});});var n=ids.filter(function(i){return learned.has(i);}).length;document.getElementById('mtxt').textContent='已学 '+n+' / '+ids.length+' 已建';document.getElementById('mbar').style.width=(ids.length?n/ids.length*100:0)+'%';}
+function toggle(id){ if(learned.has(id))learned.delete(id); else learned.add(id); save(learned); document.querySelectorAll('.tick[data-id="'+id+'"]').forEach(function(b){b.classList.toggle('on',learned.has(id));}); meter(); }
+document.addEventListener('click',function(e){var t=e.target;if(t.classList&&t.classList.contains('tick')&&t.dataset.id){e.preventDefault();e.stopPropagation();toggle(t.dataset.id);}});
+// 视图切换
+var segCard=document.getElementById('segCard'),segBoard=document.getElementById('segBoard'),segTree=document.getElementById('segTree');
+var vC=document.getElementById('viewCards'),vB=document.getElementById('viewBoard'),vT=document.getElementById('viewTree');
+function setView(v){vC.style.display=v==='card'?'block':'none';vB.style.display=v==='board'?'flex':'none';vT.style.display=v==='tree'?'block':'none';
+ segCard.classList.toggle('active',v==='card');segBoard.classList.toggle('active',v==='board');segTree.classList.toggle('active',v==='tree');try{localStorage.setItem('gj_view',v);}catch(e){}}
+segCard.onclick=function(){setView('card');};segBoard.onclick=function(){setView('board');};segTree.onclick=function(){setView('tree');};
+var gm=document.getElementById('guideMask');
+document.getElementById('guideBtn').onclick=function(e){e.preventDefault();gm.style.display='flex';};
+document.getElementById('guideClose').onclick=function(){gm.style.display='none';};
+gm.onclick=function(e){if(e.target===gm)gm.style.display='none';};
+renderCards();renderBoard();renderTree();renderRefs();meter();
+var v='card';try{v=localStorage.getItem('gj_view')||'card';}catch(e){}setView(v);
 </script>
 </body></html>
