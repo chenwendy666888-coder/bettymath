@@ -1,0 +1,223 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>核心概念与术语 · Concepts & Key Terms</title><style>
+:root{--bg:#F4F6FB;--surface:#fff;--ink:#1B1B2A;--muted:#6A6A82;--line:#E3E6F0;--indigo:#4A43C4;--indigo-deep:#2E2A6B;--indigo-soft:#EEF0FC;--amber:#C77A15;--amber-soft:#FCF2DF;--green:#1F8A5B;--green-soft:#E6F5EE;--rose:#C0453B;--rose-soft:#FBEDEC;--grey-soft:#EEF0F4;--shadow:0 1px 2px rgba(30,30,60,.05),0 6px 20px rgba(30,30,60,.05);--font:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Segoe UI",Roboto,sans-serif;}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.6}
+.hero{background:var(--surface);border-bottom:1px solid var(--line);padding:20px 22px}.hero-in{max-width:920px;margin:0 auto}
+.back{color:var(--indigo);text-decoration:none;font-size:13px;font-weight:700}
+.hero h1{margin:6px 0 2px;font-size:22px;color:var(--indigo-deep)}.hero .en{font-size:13px;color:var(--muted);font-weight:700}.hero p{margin:7px 0 0;color:var(--muted);font-size:13.5px}
+.wrap{max-width:920px;margin:16px auto 90px;padding:0 22px}
+h2.bh{font-size:16px;color:var(--indigo);border-bottom:2px solid var(--indigo-soft);padding-bottom:5px;margin:26px 0 12px}
+.sub{font-size:12.6px;color:var(--muted);margin:-4px 0 12px}
+.note{background:var(--amber-soft);color:#7a5210;border-radius:10px;padding:11px 15px;font-size:12.8px;margin:10px 0}
+/* checklist */
+.ck{background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);overflow:hidden}
+.phz{background:var(--indigo-soft);color:var(--indigo-deep);font-weight:800;font-size:12px;padding:7px 14px;border-top:1px solid var(--line)}
+.ckr{display:grid;grid-template-columns:1fr auto;gap:10px;padding:10px 14px;border-top:1px solid var(--line);align-items:center}
+.ckr .txt b{font-size:13.3px}.ckr .txt .en{display:block;font-size:11.3px;color:var(--muted);font-weight:600}
+.tri{display:flex;gap:5px}
+.tri button{border:1px solid var(--line);background:var(--surface);color:var(--muted);font-family:inherit;font-weight:800;font-size:11.3px;padding:5px 9px;border-radius:8px;cursor:pointer}
+.tri button.on[data-v=y]{background:var(--green-soft);color:var(--green);border-color:#B7E0C9}
+.tri button.on[data-v=m]{background:var(--amber-soft);color:var(--amber);border-color:#EAD3A3}
+.tri button.on[data-v=n]{background:var(--rose-soft);color:var(--rose);border-color:#EFC3BE}
+/* concept cards */
+.def{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--indigo);border-radius:10px;box-shadow:var(--shadow);padding:11px 15px;margin:9px 0}
+.def .h{display:flex;gap:9px;align-items:baseline;flex-wrap:wrap}
+.def .en{font-size:15px;font-weight:800;color:var(--indigo-deep)}.def .zh{font-size:12.5px;color:var(--muted);font-weight:700}
+.def .save{margin-left:auto}
+.def .body{font-size:13px;margin:6px 0 0}.def .mix{font-size:12px;color:#7a5210;background:var(--amber-soft);border-radius:7px;padding:5px 9px;margin-top:6px}
+.vs{display:grid;grid-template-columns:1fr;gap:8px;margin:8px 0}
+.vs .card{background:var(--surface);border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow);padding:10px 14px;font-size:13px}
+.vs .card b.t{color:var(--indigo-deep)}.vs .card .eg{font-size:11.5px;color:var(--muted);margin-top:3px}
+.vs .card.link{border-left:4px solid var(--green);background:var(--green-soft)}
+.layers{background:var(--indigo-soft);border:1px solid #D9DCF6;border-radius:10px;padding:12px 15px;font-size:13px;margin:8px 0}
+.vtbl,.gtbl{background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);overflow:hidden}
+.vr{display:grid;grid-template-columns:190px 1fr auto;gap:10px;padding:9px 14px;border-top:1px solid var(--line);align-items:center;font-size:13px}
+.vr:first-child{border-top:none}
+.vr .en{font-weight:800;color:var(--indigo-deep)}.vr .zh{color:var(--muted);font-size:12px}.vr .mean{font-size:12.3px}
+.gcat{background:var(--grey-soft);color:#4a4a5e;font-weight:800;font-size:12px;padding:7px 14px;border-top:1px solid var(--line)}
+.save{border:1px solid var(--line);background:var(--surface);color:var(--amber);font-family:inherit;font-weight:800;font-size:11px;padding:4px 9px;border-radius:8px;cursor:pointer;white-space:nowrap}
+.save.done{background:var(--amber-soft);border-color:#EAD3A3}
+/* notebook */
+.nb{position:fixed;right:14px;bottom:14px;width:270px;max-height:64vh;background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:0 10px 30px rgba(30,30,60,.18);z-index:80;display:flex;flex-direction:column;overflow:hidden}
+.nb.min{width:auto}
+.nbh{background:var(--indigo);color:#fff;padding:9px 13px;font-weight:800;font-size:13px;display:flex;gap:8px;align-items:center;cursor:pointer}
+.nbh .n{background:rgba(255,255,255,.22);border-radius:99px;padding:1px 8px;font-size:11.5px}
+.nbh .tog{margin-left:auto;font-size:12px}
+.nbbody{padding:10px 12px;overflow:auto}
+.nb.min .nbbody{display:none}
+.nbadd{display:flex;gap:6px;margin-bottom:8px}
+.nbadd input{flex:1;min-width:0;border:1px solid var(--line);border-radius:8px;padding:6px 9px;font-size:12px;font-family:inherit}
+.nbadd button{border:none;background:var(--indigo);color:#fff;border-radius:8px;font-weight:800;font-size:12px;padding:0 11px;cursor:pointer}
+.nbi{display:flex;gap:7px;align-items:baseline;font-size:12.3px;padding:6px 4px;border-top:1px dashed var(--line)}
+.nbi:first-child{border-top:none}
+.nbi .x{margin-left:auto;color:var(--rose);cursor:pointer;font-weight:800}
+.nbempty{font-size:12px;color:var(--muted);padding:6px 2px}
+.nbf{padding:8px 12px;border-top:1px solid var(--line);display:flex;gap:8px}
+.nbf button{flex:1;border:1px solid var(--line);background:var(--surface);border-radius:8px;font-size:11.5px;font-weight:700;padding:6px;cursor:pointer;font-family:inherit}
+.nbf .clr{color:var(--rose)}
+.dltools{position:fixed;top:12px;right:14px;z-index:70}
+.dltools button{border:none;border-radius:9px;padding:8px 12px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;color:#fff;background:var(--indigo);box-shadow:0 4px 12px rgba(30,30,60,.18)}
+@media(max-width:720px){.vr{grid-template-columns:1fr auto}.vr .mean{grid-column:1/-1}.nb{width:calc(100vw - 28px)}.dltools{top:auto;bottom:auto;position:static;margin:8px 0}}
+@media print{.nb,.dltools,.back,.save,.tri{display:none}}
+</style></head><body>
+<div class="hero"><div class="hero-in"><a class="back" href="../index.html">← 学习中心 Hub</a>
+<h1>核心概念与术语 · Concepts & Key Terms</h1><div class="en">Starting point · what you know, what to remember</div>
+<p>先自查已学（学过的默认打勾）；再过一遍最容易混的概念（equation / function 到底啥区别）和几何三角<b>英文术语</b>。<b>遇到不会的点「✎ 记下来」，会存到右下角本地「待记本」。</b></p></div></div>
+<div class="dltools"><button onclick="window.print()">🖨 PDF</button></div>
+<div class="wrap">
+
+<h2 class="bh">一、起点自查 · 已学对照</h2>
+<p class="sub">学过的已默认勾「会」（描点法=会、代数基本功=会）；没学完的没勾（二次函数/相似=在学、集合逻辑=没学）。你可以改，改动本地保存。</p>
+<div class="ck"><div class="phz">Phase 0 · 语言与工具</div><div class="ckr"><div class="txt"><b>集合与逻辑符号</b><span class="en">Set & logic notation</span></div>
+        <div class="tri" data-id="cc0" data-def="n">
+          <button data-v="y" onclick="tri(this)">会</button>
+          <button data-v="m" onclick="tri(this)">在学</button>
+          <button data-v="n" onclick="tri(this)">没学</button></div></div><div class="phz">Phase 1 · 代数打底</div><div class="ckr"><div class="txt"><b>代数基本功：幂/乘法公式/因式分解</b><span class="en">Algebra basics: indices, identities, factorising</span></div>
+        <div class="tri" data-id="cc1" data-def="y">
+          <button data-v="y" onclick="tri(this)">会</button>
+          <button data-v="m" onclick="tri(this)">在学</button>
+          <button data-v="n" onclick="tri(this)">没学</button></div></div><div class="ckr"><div class="txt"><b>元与次·一元一次方程</b><span class="en">Unknowns, degree & linear equations</span></div>
+        <div class="tri" data-id="cc2" data-def="y">
+          <button data-v="y" onclick="tri(this)">会</button>
+          <button data-v="m" onclick="tri(this)">在学</button>
+          <button data-v="n" onclick="tri(this)">没学</button></div></div><div class="ckr"><div class="txt"><b>坐标与一次函数·描点法</b><span class="en">Coordinates, linear graphs & plotting</span></div>
+        <div class="tri" data-id="cc3" data-def="y">
+          <button data-v="y" onclick="tri(this)">会</button>
+          <button data-v="m" onclick="tri(this)">在学</button>
+          <button data-v="n" onclick="tri(this)">没学</button></div></div><div class="ckr"><div class="txt"><b>二次函数(初步)</b><span class="en">Quadratic functions (intro)</span></div>
+        <div class="tri" data-id="cc4" data-def="m">
+          <button data-v="y" onclick="tri(this)">会</button>
+          <button data-v="m" onclick="tri(this)">在学</button>
+          <button data-v="n" onclick="tri(this)">没学</button></div></div><div class="ckr"><div class="txt"><b>不等式(组)与阴影</b><span class="en">Inequalities & shading</span></div>
+        <div class="tri" data-id="cc5" data-def="y">
+          <button data-v="y" onclick="tri(this)">会</button>
+          <button data-v="m" onclick="tri(this)">在学</button>
+          <button data-v="n" onclick="tri(this)">没学</button></div></div><div class="phz">Phase 1 · 几何打底</div><div class="ckr"><div class="txt"><b>几何入门·点线角</b><span class="en">Geometry intro: points, lines, angles</span></div>
+        <div class="tri" data-id="cc6" data-def="y">
+          <button data-v="y" onclick="tri(this)">会</button>
+          <button data-v="m" onclick="tri(this)">在学</button>
+          <button data-v="n" onclick="tri(this)">没学</button></div></div><div class="ckr"><div class="txt"><b>相交线与平行线</b><span class="en">Intersecting & parallel lines</span></div>
+        <div class="tri" data-id="cc7" data-def="y">
+          <button data-v="y" onclick="tri(this)">会</button>
+          <button data-v="m" onclick="tri(this)">在学</button>
+          <button data-v="n" onclick="tri(this)">没学</button></div></div><div class="ckr"><div class="txt"><b>三角形(初步+全等)</b><span class="en">Triangles & congruence</span></div>
+        <div class="tri" data-id="cc8" data-def="y">
+          <button data-v="y" onclick="tri(this)">会</button>
+          <button data-v="m" onclick="tri(this)">在学</button>
+          <button data-v="n" onclick="tri(this)">没学</button></div></div><div class="ckr"><div class="txt"><b>相似·面积法(初步)</b><span class="en">Similarity & area method (intro)</span></div>
+        <div class="tri" data-id="cc9" data-def="m">
+          <button data-v="y" onclick="tri(this)">会</button>
+          <button data-v="m" onclick="tri(this)">在学</button>
+          <button data-v="n" onclick="tri(this)">没学</button></div></div><div class="phz">Phase 2+ · 后面学(加料)</div><div class="ckr"><div class="txt"><b>韦达/换元/绝对值方程/复合函数</b><span class="en">Vieta / substitution / |x| / composite</span></div>
+        <div class="tri" data-id="cc10" data-def="n">
+          <button data-v="y" onclick="tri(this)">会</button>
+          <button data-v="m" onclick="tri(this)">在学</button>
+          <button data-v="n" onclick="tri(this)">没学</button></div></div><div class="ckr"><div class="txt"><b>圆·四边形·三角比·坐标几何(深)</b><span class="en">Circles / quads / trig / coord-geometry</span></div>
+        <div class="tri" data-id="cc11" data-def="n">
+          <button data-v="y" onclick="tri(this)">会</button>
+          <button data-v="m" onclick="tri(this)">在学</button>
+          <button data-v="n" onclick="tri(this)">没学</button></div></div></div>
+
+<h2 class="bh">二、核心概念 · 别再混淆</h2>
+<p class="sub">代数其实是一层层叠上去的。先分清这几个「长得像」的东西：</p>
+<div class="def"><div class="h"><span class="en">Expression</span><span class="zh">代数式</span>
+      <button class="save" onclick="save(this,'Expression 代数式')">✎ 记下来</button></div>
+      <div class="body">一串数与字母，<b>没有等号</b>，只能化简/求值。</div><div class="mix">别混：例 3x+2。它不是要你解——是要你算或化简。</div></div><div class="def"><div class="h"><span class="en">Equation</span><span class="zh">方程</span>
+      <button class="save" onclick="save(this,'Equation 方程')">✎ 记下来</button></div>
+      <div class="body">含<b>等号 =</b>，只有<b>特定的值</b>使它成立，要你<b>解出未知数</b>。</div><div class="mix">别混：例 3x+2=8 ⇒ x=2。「解方程」=找那个 x。</div></div><div class="def"><div class="h"><span class="en">Identity</span><span class="zh">恒等式</span>
+      <button class="save" onclick="save(this,'Identity 恒等式')">✎ 记下来</button></div>
+      <div class="body">含等号，对<b>所有</b>值都成立，常用 ≡。</div><div class="mix">别混：例 (a+b)²≡a²+2ab+b²。它永远真，不用解。</div></div><div class="def"><div class="h"><span class="en">Inequality</span><span class="zh">不等式</span>
+      <button class="save" onclick="save(this,'Inequality 不等式')">✎ 记下来</button></div>
+      <div class="body">含 &lt; &gt; ≤ ≥，解出的是一个<b>范围</b>。</div><div class="mix">别混：例 3x+2&gt;8 ⇒ x&gt;2。注意乘除负数<b>变号</b>。</div></div><div class="def"><div class="h"><span class="en">Function</span><span class="zh">函数</span>
+      <button class="save" onclick="save(this,'Function 函数')">✎ 记下来</button></div>
+      <div class="body">一台「机器」：一个输入 x → 唯一一个输出 y，记 y=f(x)，能<b>画成图象</b>。</div><div class="mix">别混：例 f(x)=3x+2 是<b>整条直线</b>；每个 x 只配一个 y。</div></div>
+<div class="note"><b>最常问：equation 和 function 到底啥区别？</b></div>
+<div class="vs"><div class="card"><b class="t">Equation 方程</b> — 是一个<b>问题</b>：「哪个 x 让式子成立？」——答案是<b>几个数</b>。<div class="eg">2x+1=0 ⇒ x=−½</div></div><div class="card"><b class="t">Function 函数</b> — 是一种<b>关系/规则</b>：「y 随 x 怎么变？」——是<b>一整条图象</b>。<div class="eg">y=2x+1 是一条直线</div></div><div class="card link"><b class="t">桥梁 Link</b> — <b>解 f(x)=0 = 找函数图象与 x 轴的交点。</b>方程是函数图象上「y=0 那一刻」。<div class="eg">f(x)=2x+1，令 f(x)=0 ⇒ 交 x 轴于 x=−½</div></div></div>
+<div class="layers"><b>代数的分层逻辑：</b>数 Number → 代数式 Expression（用字母表示数）→ 方程 Equation（让两式相等、解 x）→ 函数 Function（把式子当规则、画成图）→ 图象 Graph。<b>它们是同一件事的不同视角</b>：方程 3x+2=8 就是函数 y=3x+2 在 y=8 那条水平线上的交点。</div>
+<h2 class="bh" style="font-size:14px;border:none;margin:16px 0 6px">常用词 Vocabulary</h2>
+<div class="vtbl"><div class="vr"><span class="en">Variable / Constant</span><span class="mean">会变的字母 x / 固定的数</span>
+    <button class="save" onclick="save(this,'Variable / Constant 变量 / 常数')">✎</button></div><div class="vr"><span class="en">Coefficient / Term</span><span class="mean">3x 里 3 是系数、3x 是一项</span>
+    <button class="save" onclick="save(this,'Coefficient / Term 系数 / 项')">✎</button></div><div class="vr"><span class="en">Degree</span><span class="mean">最高次幂；一次=linear，二次=quadratic</span>
+    <button class="save" onclick="save(this,'Degree 次数')">✎</button></div><div class="vr"><span class="en">Root / Solution</span><span class="mean">使方程成立的值</span>
+    <button class="save" onclick="save(this,'Root / Solution 根 / 解')">✎</button></div><div class="vr"><span class="en">Substitute</span><span class="mean">把值/式子替换进去</span>
+    <button class="save" onclick="save(this,'Substitute 代入')">✎</button></div></div>
+
+<h2 class="bh">三、几何 &amp; 三角 英文术语</h2>
+<p class="sub">这些概念中文你都会，缺的是<b>英文名</b>——英文卷全靠它读题。不熟的点「✎」记下来。</p>
+<div class="gtbl"><div class="gcat">角的关系 Angles</div><div class="vr"><span class="en">Complementary angles<br><span class="zh">余角</span></span><span class="mean">两角之和 = 90°</span>
+        <button class="save" onclick="save(this,'Complementary angles 余角')">✎</button></div><div class="vr"><span class="en">Supplementary angles<br><span class="zh">补角</span></span><span class="mean">两角之和 = 180°</span>
+        <button class="save" onclick="save(this,'Supplementary angles 补角')">✎</button></div><div class="vr"><span class="en">Adjacent angles<br><span class="zh">邻角</span></span><span class="mean">共顶点、共一边</span>
+        <button class="save" onclick="save(this,'Adjacent angles 邻角')">✎</button></div><div class="vr"><span class="en">Vertically opposite angles<br><span class="zh">对顶角</span></span><span class="mean">两直线相交，正对的一对，相等</span>
+        <button class="save" onclick="save(this,'Vertically opposite angles 对顶角')">✎</button></div><div class="vr"><span class="en">Corresponding angles<br><span class="zh">同位角</span></span><span class="mean">平行线+截线，同位置，相等（F 形）</span>
+        <button class="save" onclick="save(this,'Corresponding angles 同位角')">✎</button></div><div class="vr"><span class="en">Alternate angles<br><span class="zh">内错角</span></span><span class="mean">平行线之间交错，相等（Z 形）</span>
+        <button class="save" onclick="save(this,'Alternate angles 内错角')">✎</button></div><div class="vr"><span class="en">Co-interior angles<br><span class="zh">同旁内角</span></span><span class="mean">平行线同侧，互补（C/U 形）</span>
+        <button class="save" onclick="save(this,'Co-interior angles 同旁内角')">✎</button></div><div class="vr"><span class="en">Angle bisector<br><span class="zh">角平分线</span></span><span class="mean">把一个角平分的线</span>
+        <button class="save" onclick="save(this,'Angle bisector 角平分线')">✎</button></div><div class="gcat">三角形 Triangles</div><div class="vr"><span class="en">Interior angle sum<br><span class="zh">内角和</span></span><span class="mean">三角形三内角和 = 180°</span>
+        <button class="save" onclick="save(this,'Interior angle sum 内角和')">✎</button></div><div class="vr"><span class="en">Exterior angle<br><span class="zh">外角</span></span><span class="mean">= 不相邻两内角之和</span>
+        <button class="save" onclick="save(this,'Exterior angle 外角')">✎</button></div><div class="vr"><span class="en">Interior angle ratio<br><span class="zh">内角比</span></span><span class="mean">如内角比 2:3:4，配内角和求各角</span>
+        <button class="save" onclick="save(this,'Interior angle ratio 内角比')">✎</button></div><div class="vr"><span class="en">Isosceles / Equilateral<br><span class="zh">等腰 / 等边</span></span><span class="mean">两边相等 / 三边相等</span>
+        <button class="save" onclick="save(this,'Isosceles / Equilateral 等腰 / 等边')">✎</button></div><div class="vr"><span class="en">Scalene / Right-angled<br><span class="zh">不等边 / 直角</span></span><span class="mean">三边都不等 / 有一个直角</span>
+        <button class="save" onclick="save(this,'Scalene / Right-angled 不等边 / 直角')">✎</button></div><div class="vr"><span class="en">Hypotenuse<br><span class="zh">斜边</span></span><span class="mean">直角三角形对着直角的最长边</span>
+        <button class="save" onclick="save(this,'Hypotenuse 斜边')">✎</button></div><div class="vr"><span class="en">Median / Altitude<br><span class="zh">中线 / 高</span></span><span class="mean">顶点到对边中点 / 顶点到对边的垂线</span>
+        <button class="save" onclick="save(this,'Median / Altitude 中线 / 高')">✎</button></div><div class="vr"><span class="en">Perpendicular bisector<br><span class="zh">中垂线</span></span><span class="mean">垂直且平分一条边</span>
+        <button class="save" onclick="save(this,'Perpendicular bisector 中垂线')">✎</button></div><div class="vr"><span class="en">Congruent / Similar<br><span class="zh">全等 / 相似</span></span><span class="mean">形状大小都同 / 形状同、大小按比例</span>
+        <button class="save" onclick="save(this,'Congruent / Similar 全等 / 相似')">✎</button></div><div class="gcat">直线 Lines</div><div class="vr"><span class="en">Parallel / Perpendicular<br><span class="zh">平行 / 垂直</span></span><span class="mean">∥ 永不相交 / ⊥ 成 90°</span>
+        <button class="save" onclick="save(this,'Parallel / Perpendicular 平行 / 垂直')">✎</button></div><div class="vr"><span class="en">Transversal<br><span class="zh">截线</span></span><span class="mean">横穿两条平行线的那条</span>
+        <button class="save" onclick="save(this,'Transversal 截线')">✎</button></div><div class="gcat">三角比 Trigonometry</div><div class="vr"><span class="en">Sine / Cosine / Tangent<br><span class="zh">正弦/余弦/正切</span></span><span class="mean">sin / cos / tan</span>
+        <button class="save" onclick="save(this,'Sine / Cosine / Tangent 正弦/余弦/正切')">✎</button></div><div class="vr"><span class="en">Opposite / Adjacent / Hypotenuse<br><span class="zh">对边/邻边/斜边</span></span><span class="mean">相对某锐角的三条边</span>
+        <button class="save" onclick="save(this,'Opposite / Adjacent / Hypotenuse 对边/邻边/斜边')">✎</button></div><div class="vr"><span class="en">SOH-CAH-TOA<br><span class="zh">三角比口诀</span></span><span class="mean">sin=对/斜, cos=邻/斜, tan=对/邻</span>
+        <button class="save" onclick="save(this,'SOH-CAH-TOA 三角比口诀')">✎</button></div><div class="vr"><span class="en">Angle of elevation / depression<br><span class="zh">仰角 / 俯角</span></span><span class="mean">往上看 / 往下看的角</span>
+        <button class="save" onclick="save(this,'Angle of elevation / depression 仰角 / 俯角')">✎</button></div></div>
+
+</div>
+
+<div class="nb" id="nb">
+  <div class="nbh" onclick="togNB()"><span>📒 待记本 My list</span><span class="n" id="nbcount">0</span><span class="tog">▾</span></div>
+  <div class="nbbody">
+    <div class="nbadd"><input id="nbin" placeholder="自己也能加：任何不会的" onkeydown="if(event.key==='Enter')addOwn()"><button onclick="addOwn()">加</button></div>
+    <div id="nblist"></div>
+  </div>
+  <div class="nbf"><button id="nbcopy" onclick="copyNB()">复制</button><button class="clr" onclick="clrNB()">清空</button></div>
+</div>
+<script>
+var NB='nb_items';
+function load(k){try{return JSON.parse(localStorage.getItem(k)||'[]')}catch(e){return[]}}
+function store(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+function tri(btn){var g=btn.parentNode,id=g.dataset.id,v=btn.dataset.v;
+  [].forEach.call(g.children,function(b){b.classList.toggle('on',b===btn)});
+  try{localStorage.setItem('ct_'+id,v)}catch(e){}}
+function save(btn,label){
+  var items=load(NB);
+  if(items.indexOf(label)<0){items.push(label);store(NB,items);}
+  btn.classList.add('done');btn.textContent='已记 ✓';
+  renderNB();
+}
+function addOwn(){
+  var inp=document.getElementById('nbin');var t=inp.value.trim();if(!t)return;
+  var items=load(NB);items.push(t);store(NB,items);inp.value='';renderNB();
+}
+function delNB(i){var items=load(NB);items.splice(i,1);store(NB,items);renderNB();}
+function clrNB(){if(confirm('清空待记本？')){store(NB,[]);renderNB();
+  document.querySelectorAll('.save.done').forEach(function(b){b.classList.remove('done');b.textContent=b.textContent.indexOf('✎')<0?'✎':b.textContent;});}}
+function copyNB(){var items=load(NB);if(!items.length)return;
+  var t=items.map(function(x,i){return (i+1)+'. '+x}).join('\n');
+  navigator.clipboard&&navigator.clipboard.writeText(t);
+  var b=document.getElementById('nbcopy');b.textContent='已复制✓';setTimeout(function(){b.textContent='复制'},1200);}
+function renderNB(){
+  var items=load(NB);var box=document.getElementById('nblist');
+  document.getElementById('nbcount').textContent=items.length;
+  if(!items.length){box.innerHTML='<div class="nbempty">还没记下什么。遇到不会的点右边「✎ 记下来」。</div>';return;}
+  box.innerHTML=items.map(function(x,i){return '<div class="nbi"><span>'+x+'</span><span class="x" onclick="delNB('+i+')">✕</span></div>'}).join('');
+}
+function togNB(){document.getElementById('nb').classList.toggle('min')}
+document.addEventListener('DOMContentLoaded',function(){
+  // checklist：先按默认，再用本地覆盖
+  document.querySelectorAll('.tri').forEach(function(g){
+    var v;try{v=localStorage.getItem('ct_'+g.dataset.id)}catch(e){}
+    if(!v)v=g.dataset.def;
+    [].forEach.call(g.children,function(b){b.classList.toggle('on',b.dataset.v===v)});
+  });
+  renderNB();
+});
+</script>
+</body></html>

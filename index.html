@@ -74,6 +74,14 @@ footer{max-width:1040px;margin:0 auto 40px;padding:0 18px;color:var(--muted);fon
 .modal{background:#fff;border-radius:16px;max-width:480px;width:100%;padding:22px;box-shadow:0 20px 60px rgba(0,0,0,.3)}
 .modal h3{margin:0 0 10px;color:var(--indigo-deep);font-size:18px}.modal ol{margin:0;padding-left:20px}.modal li{margin:8px 0;font-size:14px}
 .modal .x{margin-top:16px;text-align:right}.modal .x button{background:var(--indigo);color:#fff;border:none;border-radius:10px;padding:9px 18px;font:800 14px var(--font);cursor:pointer}
+.phg{margin-bottom:16px}.phg h3{font-size:14px;color:var(--indigo);margin:0 0 2px;font-weight:800}.phg h3 .en{font-size:11px;color:var(--muted);font-weight:700;margin-left:6px}
+.phlist{background:var(--surface,#fff);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);margin-top:6px}
+.phrow{display:flex;align-items:center;gap:9px;padding:9px 13px;border-top:1px solid var(--line)}.phrow:first-child{border-top:none}
+.phrow .nm{font-weight:700;font-size:13.3px}.phrow .en2{color:var(--muted);font-size:11px;margin-left:6px;font-weight:600}
+.phrow .star{color:var(--amber);font-weight:800}
+.phtag{font-size:10px;font-weight:800;background:var(--amber-soft);color:var(--amber);border-radius:99px;padding:1px 7px}
+.phopen{margin-left:auto;font-size:12px;color:var(--indigo);text-decoration:none;font-weight:700}
+.phnote{font-size:12.3px;color:var(--muted);margin-bottom:10px}
 </style></head><body>
 <div class="hero"><div class="hero-in">
   <div class="eyebrow">数学大树 · Guangjian & beyond</div>
@@ -90,11 +98,12 @@ footer{max-width:1040px;margin:0 auto 40px;padding:0 18px;color:var(--muted);fon
 </div></div>
 <div class="wrap">
   <div class="viewbar"><span style="font-size:12.5px;color:var(--muted);font-weight:700">视图</span>
-    <span class="seg"><button id="segCard" class="active">卡片</button><button id="segBoard">看板</button><button id="segTree">大纲</button></span>
+    <span class="seg"><button id="segCard" class="active">卡片</button><button id="segBoard">看板</button><button id="segTree">大纲</button><button id="segPhase">阶段</button></span>
   </div>
   <div id="viewCards"></div>
   <div id="viewBoard" class="board" style="display:none"></div>
   <div id="viewTree" style="display:none"><div class="tree" id="treeInner"></div></div>
+  <div id="viewPhase" style="display:none"></div>
 
   <section class="grp" style="margin-top:26px"><h2>📊 考纲 · 参考 · 工具 <span class="en">Reference & Tools</span></h2>
   <div class="reflist" id="refs"></div></section>
@@ -128,6 +137,8 @@ const M={
  '02':{en:'Graphs',zh:'图像基础',lec:'lectures/02_graphs.html'},
  '03':{en:'Inequalities',zh:'不等式',lec:'lectures/03_inequalities.html',prac:[['不等式专练','practice/inequalities-drills.html']]},
  G1:{en:'Triangles & Similarity',zh:'三角形 · 相似',lec:'lectures/G1_triangles.html'},
+ B7:{en:'Similarity (hub)',zh:'相似 · 几何枢纽',lec:'lectures/B7_similarity.html'},
+ B5:{en:'Quadrilaterals',zh:'四边形（深）',lec:'lectures/B5_quadrilaterals.html'},
  A:{en:'Quadratics & Vieta',zh:'韦达 · 一元二次',lec:'lectures/A_quadratics-vieta.html',prac:[['进阶练习','practice/pA_module-a-advanced.html'],['变通50题','practice/pA_50-hard.html'],['代入求参专项','practice/pA_special-substitution.html']]},
  B:{en:'Functions',zh:'函数',lec:'lectures/B_functions.html',prac:[['练习','practice/pB_module-b.html']]},
  D:{en:'Substitution',zh:'换元变形',lec:'lectures/D_substitution.html'},
@@ -160,19 +171,45 @@ const CATS=[
  {emoji:'📖',name:'阅读',en:'Reading',bcls:'rd',desc:'当课外读物，读完能用',ids:['R1']},
  {emoji:'🧠',name:'解题思路篇',en:'Thinking',bcls:'rd',desc:'数感·易错点·方法，学任何一章前先建立感觉',ids:['F0a','F0c','F0b']},
  {emoji:'🏫',name:'学校教材内容',en:'School Textbook',bcls:'bi',desc:'浙教版从零：坐标·一次函数、二次、代数基本功、几何入门…',ids:['01','F1','F6','02','03','F2','F3','F4','F5','G1','F7','F8','G2','G3','G6']},
- {emoji:'🎯',name:'备考内容',en:'Exam Prep',bcls:'bi',desc:'光剑深化与英文卷「加料」：韦达、函数、换元、专项…',ids:['A','B','D','E','C1','C2','C3','C4','G4','G5']},
+ {emoji:'🎯',name:'备考内容',en:'Exam Prep',bcls:'bi',desc:'光剑深化与英文卷「加料」：韦达、函数、换元、专项…',ids:['A','B','D','E','C1','C2','C3','C4','G4','G5','B7','B5']},
  {emoji:'🎲',name:'计数 · 概率 · 数论',en:'Counting / Prob / NT',bcls:'bi',desc:'排列组合·概率·整除数论',ids:['N1','N2','N3']},
  {emoji:'🏆',name:'应用 · AMC',en:'Applications & AMC',bcls:'bi',desc:'应用题与竞赛拓展',ids:['P','AMC']}
 ];
 const REFS=[
  {em:'📋',zh:'主考纲',en:'Master Syllabus',href:'syllabus/syllabus.html'},{em:'🗺',zh:'知识图谱',en:'Knowledge Map',href:'map.html'},
  {em:'🌳',zh:'根知识表',en:'Root Base',href:'syllabus/root-base.html'},{em:'✅',zh:'考点自查',en:'Self-check',href:'syllabus/checkpoints.html'},
- {em:'📊',zh:'光剑考点全表',en:'Exam Analysis',href:'syllabus/guangjian-exam-analysis.html'},{em:'🎯',zh:'综合题',en:'Cross-Topic',href:'syllabus/cross-topic.html'},
+ {em:'📊',zh:'光剑考点全表',en:'Exam Analysis',href:'syllabus/guangjian-exam-analysis.html'},{em:'🔗',zh:'真题↔考点',en:'Q↔Topic',href:'syllabus/exam-map.html'},{em:'🧭',zh:'一阶整合测',en:'Phase-1 Test',href:'practice/phase1-assessment.html'},{em:'📖',zh:'概念术语',en:'Concepts',href:'syllabus/concepts-terms.html'},{em:'🔊',zh:'术语训练',en:'Vocab Trainer',href:'syllabus/vocab-trainer.html'},{em:'🗺',zh:'总逻辑图',en:'Logic Map',href:'syllabus/logic-map.html'},{em:'🚦',zh:'几何Checkpoint',en:'Geo Checkpoint',href:'practice/checkpoint-geometry.html'},{em:'🎯',zh:'综合题',en:'Cross-Topic',href:'syllabus/cross-topic.html'},
  {em:'🏃',zh:'阶段演练',en:'Stage Drills',href:'practice/stage-drills.html'},{em:'🧪',zh:'交互实验室',en:'Graphing Lab',href:'interactives/graphing-lab.html'},
  {em:'📚',zh:'背诵清单',en:'Glossary',href:'syllabus/glossary.html'},{em:'📝',zh:'词汇自测',en:'Vocab Quiz',href:'interactives/quiz.html'}
 ];
 function tk(id){return '<button class="tick'+(learned.has(id)?' on':'')+'" data-id="'+id+'" aria-label="已学"></button>';}
 function counts(c){var b=c.ids.filter(function(i){return M[i].built;}).length;return b+' / '+c.ids.length;}
+
+const HUBS=['C1','B7','F1'];
+const PARTIAL=['F6','03','C1','A'];
+const LEARNED_DEFAULT=['01','F1','F2','F3','F4','F5','G1','F7','02'];
+const PHASES=[
+ {t:'Phase 0 · 语言与工具',en:'Foundations & tools',ids:['F0a','F0b','F0c','R1']},
+ {t:'Phase 1 · 代数打底',en:'Algebra base',ids:['01','F2','C1','C2','F1','02','F6','03','F7']},
+ {t:'Phase 1 · 几何打底',en:'Geometry base',ids:['F3','F4','F5','G1','B7','B5','G2','G3','G6','G4','G5','F8']},
+ {t:'Phase 2 · 加料（代数·函数）',en:'Guangjian layer',ids:['A','B','C3','C4','D','E']},
+ {t:'Phase 2 · 计数·概率·数论',en:'Counting / Prob / NT',ids:['N1','N2','N3']},
+ {t:'Phase 3 · 应用 & 竞赛',en:'Applications & AMC',ids:['P','AMC']}
+];
+function renderPhase(){
+ var h='<div class="phnote">按 <b>Phase 0→3</b> 学习顺序排；学过的已默认打勾，<b class="star" style="color:var(--amber)">★</b>=枢纽，「在学」=讲了一点没学完。这是<b>新视图</b>，原来的「卡片/看板/大纲」都还在。</div>';
+ PHASES.forEach(function(p){
+  h+='<div class="phg"><h3>'+p.t+'<span class="en">'+p.en+'</span></h3><div class="phlist">';
+  p.ids.forEach(function(id){var m=M[id];if(!m)return;
+   var star=HUBS.indexOf(id)>=0?'<span class="star">★</span>':'';
+   var tag=PARTIAL.indexOf(id)>=0?'<span class="phtag">在学</span>':'';
+   var open=m.lec?'<a class="phopen" href="'+m.lec+'">打开 →</a>':'<span class="phopen" style="color:var(--muted)">待建</span>';
+   h+='<div class="phrow">'+tk(id)+star+'<span class="nm">'+m.zh+'<span class="en2">'+m.en+'</span></span>'+tag+open+'</div>';
+  });
+  h+='</div></div>';
+ });
+ document.getElementById('viewPhase').innerHTML=h;
+}
 function renderCards(){
  var h='';
  CATS.forEach(function(c){
@@ -220,15 +257,16 @@ function toggle(id){ if(learned.has(id))learned.delete(id); else learned.add(id)
 document.addEventListener('click',function(e){var t=e.target;if(t.classList&&t.classList.contains('tick')&&t.dataset.id){e.preventDefault();e.stopPropagation();toggle(t.dataset.id);}});
 // 视图切换
 var segCard=document.getElementById('segCard'),segBoard=document.getElementById('segBoard'),segTree=document.getElementById('segTree');
-var vC=document.getElementById('viewCards'),vB=document.getElementById('viewBoard'),vT=document.getElementById('viewTree');
-function setView(v){vC.style.display=v==='card'?'block':'none';vB.style.display=v==='board'?'flex':'none';vT.style.display=v==='tree'?'block':'none';
- segCard.classList.toggle('active',v==='card');segBoard.classList.toggle('active',v==='board');segTree.classList.toggle('active',v==='tree');try{localStorage.setItem('gj_view',v);}catch(e){}}
-segCard.onclick=function(){setView('card');};segBoard.onclick=function(){setView('board');};segTree.onclick=function(){setView('tree');};
+var vC=document.getElementById('viewCards'),vB=document.getElementById('viewBoard'),vT=document.getElementById('viewTree'),vP=document.getElementById('viewPhase');var segPhase=document.getElementById('segPhase');
+function setView(v){vC.style.display=v==='card'?'block':'none';vB.style.display=v==='board'?'flex':'none';vT.style.display=v==='tree'?'block':'none';vP.style.display=v==='phase'?'block':'none';
+ segCard.classList.toggle('active',v==='card');segBoard.classList.toggle('active',v==='board');segTree.classList.toggle('active',v==='tree');segPhase.classList.toggle('active',v==='phase');try{localStorage.setItem('gj_view',v);}catch(e){}}
+segCard.onclick=function(){setView('card');};segBoard.onclick=function(){setView('board');};segTree.onclick=function(){setView('tree');};segPhase.onclick=function(){setView('phase');};
 var gm=document.getElementById('guideMask');
 document.getElementById('guideBtn').onclick=function(e){e.preventDefault();gm.style.display='flex';};
 document.getElementById('guideClose').onclick=function(){gm.style.display='none';};
 gm.onclick=function(e){if(e.target===gm)gm.style.display='none';};
-renderCards();renderBoard();renderTree();renderRefs();meter();
+try{if(!localStorage.getItem('gj_seeded')){LEARNED_DEFAULT.forEach(function(id){learned.add(id);});save(learned);localStorage.setItem('gj_seeded','1');}}catch(e){}
+renderCards();renderBoard();renderTree();renderPhase();renderRefs();meter();
 var v='card';try{v=localStorage.getItem('gj_view')||'card';}catch(e){}setView(v);
 </script>
 </body></html>

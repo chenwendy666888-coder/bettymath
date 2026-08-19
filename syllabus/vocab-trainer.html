@@ -1,0 +1,226 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>术语训练器 · Vocab Trainer</title><style>
+:root{--bg:#F4F6FB;--surface:#fff;--ink:#1B1B2A;--muted:#6A6A82;--line:#E3E6F0;--indigo:#4A43C4;--indigo-deep:#2E2A6B;--indigo-soft:#EEF0FC;--amber:#C77A15;--amber-soft:#FCF2DF;--green:#1F8A5B;--green-soft:#E6F5EE;--rose:#C0453B;--rose-soft:#FBEDEC;--grey-soft:#EEF0F4;--shadow:0 1px 2px rgba(30,30,60,.05),0 6px 20px rgba(30,30,60,.06);--font:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Segoe UI",Roboto,sans-serif;}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.55}
+.hero{background:var(--surface);border-bottom:1px solid var(--line);padding:18px 22px}.hero-in{max-width:820px;margin:0 auto}
+.back{color:var(--indigo);text-decoration:none;font-size:13px;font-weight:700}
+.hero h1{margin:6px 0 2px;font-size:21px;color:var(--indigo-deep)}.hero .en{font-size:12.5px;color:var(--muted);font-weight:700}.hero p{margin:6px 0 0;color:var(--muted);font-size:13px}
+.wrap{max-width:820px;margin:14px auto 60px;padding:0 22px}
+.tabs{display:flex;gap:6px;background:var(--indigo-soft);border-radius:12px;padding:5px;margin-bottom:14px}
+.tab{flex:1;border:none;background:transparent;color:var(--indigo-deep);font-weight:800;font-size:13.5px;font-family:inherit;padding:9px;border-radius:9px;cursor:pointer}
+.tab.on{background:var(--indigo);color:#fff;box-shadow:0 3px 10px rgba(74,67,196,.28)}
+.voicebar{display:flex;gap:8px;align-items:center;font-size:12px;color:var(--muted);margin:-4px 0 12px;flex-wrap:wrap}
+.voicebar select{border:1px solid var(--line);border-radius:8px;padding:5px 8px;font-family:inherit;font-size:12px;max-width:230px}
+.spk{border:none;background:var(--indigo-soft);color:var(--indigo);border-radius:8px;width:30px;height:30px;font-size:15px;cursor:pointer;flex:none}
+.spk:hover{background:var(--indigo);color:#fff}
+/* list */
+.lst{background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);overflow:hidden}
+.lcat{background:var(--grey-soft);color:#4a4a5e;font-weight:800;font-size:12px;padding:7px 14px;border-top:1px solid var(--line)}
+.lr{display:grid;grid-template-columns:30px 1fr;gap:10px;padding:9px 14px;border-top:1px solid var(--line);align-items:center}
+.lr .en{font-weight:800;color:var(--indigo-deep);font-size:14px}.lr .zh{color:var(--muted);font-size:12px;margin-left:8px}
+.lr .mean{font-size:12px;color:#4a4a5e;margin-top:2px}
+/* cards */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);min-height:230px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center;cursor:pointer;position:relative}
+.card .front{font-size:26px;font-weight:800;color:var(--indigo-deep)}
+.card .back{margin-top:8px;display:none}.card.flip .back{display:block}.card.flip .hint{display:none}
+.card .zh{font-size:20px;font-weight:800;color:var(--amber)}.card .mean{font-size:13px;color:var(--muted);margin-top:6px}
+.card .hint{position:absolute;bottom:12px;font-size:11px;color:var(--muted)}
+.cbar{display:flex;gap:8px;margin-top:12px}
+.cbar button{flex:1;border:1px solid var(--line);background:var(--surface);color:var(--indigo);font-weight:800;font-family:inherit;font-size:13px;padding:10px;border-radius:10px;cursor:pointer}
+.cbar .idx{align-self:center;font-size:12px;color:var(--muted);flex:none;min-width:52px;text-align:center}
+/* test setup */
+.setup{background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:16px}
+.row{margin:10px 0}.row .lb{font-size:12.5px;font-weight:800;color:var(--indigo-deep);margin-bottom:6px}
+.opts{display:flex;gap:8px;flex-wrap:wrap}
+.opt{border:1px solid var(--line);background:var(--surface);color:var(--muted);font-weight:700;font-size:12.5px;font-family:inherit;padding:8px 13px;border-radius:9px;cursor:pointer}
+.opt.on{background:var(--indigo-soft);color:var(--indigo);border-color:#C9CCF3}
+.start{width:100%;border:none;background:var(--indigo);color:#fff;font-weight:800;font-size:15px;font-family:inherit;padding:13px;border-radius:11px;cursor:pointer;margin-top:8px}
+/* quiz */
+.quiz{background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:18px}
+.qprog{font-size:12px;color:var(--muted);font-weight:700;display:flex;justify-content:space-between}
+.pbar{height:6px;background:var(--grey-soft);border-radius:99px;margin:6px 0 14px;overflow:hidden}.pfill{height:100%;background:var(--indigo);border-radius:99px;transition:width .2s}
+.qprompt{text-align:center;padding:14px 0}
+.qprompt .big{font-size:24px;font-weight:800;color:var(--indigo-deep)}
+.qprompt .sm{font-size:14px;color:#4a4a5e}
+.qprompt .audio{font-size:15px;color:var(--indigo);cursor:pointer}
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:8px}
+.choice{border:1px solid var(--line);background:var(--surface);color:var(--ink);font-weight:700;font-size:14px;font-family:inherit;padding:13px;border-radius:10px;cursor:pointer;text-align:center}
+.choice.right{background:var(--green-soft);border-color:#B7E0C9;color:var(--green)}
+.choice.wrong{background:var(--rose-soft);border-color:#EFC3BE;color:var(--rose)}
+.typebox{display:flex;gap:8px;margin-top:10px}
+.typebox input{flex:1;border:1px solid var(--line);border-radius:10px;padding:12px;font-size:16px;font-family:inherit}
+.typebox button{border:none;background:var(--indigo);color:#fff;font-weight:800;font-family:inherit;padding:0 18px;border-radius:10px;cursor:pointer}
+.fb{margin-top:12px;padding:11px 14px;border-radius:10px;font-size:13.5px;display:none}
+.fb.show{display:block}.fb.ok{background:var(--green-soft);color:var(--green)}.fb.no{background:var(--rose-soft);color:var(--rose)}
+.fb b{color:inherit}.next{margin-top:10px;width:100%;border:none;background:var(--indigo);color:#fff;font-weight:800;font-family:inherit;padding:11px;border-radius:10px;cursor:pointer;display:none}
+.next.show{display:block}
+.result{text-align:center;padding:24px}.result .big{font-size:40px;font-weight:800;color:var(--indigo)}
+.result .again{margin-top:14px;border:none;background:var(--indigo);color:#fff;font-weight:800;font-family:inherit;padding:11px 20px;border-radius:10px;cursor:pointer}
+.hide{display:none}
+.warn{background:var(--amber-soft);color:#7a5210;border-radius:10px;padding:10px 14px;font-size:12.5px;margin:10px 0}
+.dltools{position:fixed;top:12px;right:14px;z-index:70}.dltools button{border:none;border-radius:9px;padding:8px 12px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;color:#fff;background:var(--indigo);box-shadow:0 4px 12px rgba(30,30,60,.18)}
+@media(max-width:640px){.choices{grid-template-columns:1fr}.dltools{top:auto;bottom:14px}}
+@media print{.dltools,.tabs,.voicebar{display:none}}
+</style></head><body>
+<div class="hero"><div class="hero-in"><a class="back" href="../index.html">← 学习中心 Hub</a>
+<h1>术语训练器 · Vocab Trainer</h1><div class="en">List · Flashcards · Test — all with female-voice pronunciation</div>
+<p>三种模式；测试可选「中文/英文释义/🔊听音」出题 ×「选择/拼写」作答，覆盖 中测英·英测英·记忆·听写·默写。所有词都能 🔊 女声朗读。</p></div></div>
+<div class="dltools"><button onclick="window.print()">🖨 PDF</button></div>
+<div class="wrap">
+<div class="tabs">
+ <button class="tab on" onclick="setTab('list',this)">📖 列表 List</button>
+ <button class="tab" onclick="setTab('cards',this)">🃏 卡片 Cards</button>
+ <button class="tab" onclick="setTab('test',this)">✍️ 测试 Test</button>
+</div>
+<div class="voicebar">🔊 发音音色（女声优先）：<select id="vsel" onchange="pickVoice(this.value)"></select>
+ <button class="spk" onclick="speak('Hello, this is your maths vocabulary.')">▶</button>
+ <span>· 首次点▶授权发音</span></div>
+<div id="view"></div>
+</div>
+<script>
+var T=[{"en": "Expression", "zh": "代数式", "ed": "letters and numbers with no equals sign — you simplify it", "zd": "没有等号，只化简", "cat": "概念"}, {"en": "Equation", "zh": "方程", "ed": "a statement with = , true for particular values — you solve it", "zd": "含等号，解出未知数", "cat": "概念"}, {"en": "Identity", "zh": "恒等式", "ed": "an equation that is true for all values", "zd": "对所有值都成立", "cat": "概念"}, {"en": "Inequality", "zh": "不等式", "ed": "compares with <, >, ≤, ≥ — the solution is a range", "zd": "解出一个范围", "cat": "概念"}, {"en": "Function", "zh": "函数", "ed": "a rule where each input x gives exactly one output y", "zd": "一个输入配一个输出", "cat": "概念"}, {"en": "Complementary angles", "zh": "余角", "ed": "two angles that add up to 90°", "zd": "和为 90°", "cat": "角"}, {"en": "Supplementary angles", "zh": "补角", "ed": "two angles that add up to 180°", "zd": "和为 180°", "cat": "角"}, {"en": "Adjacent angles", "zh": "邻角", "ed": "angles that share a vertex and a side", "zd": "共顶点、共一边", "cat": "角"}, {"en": "Vertically opposite angles", "zh": "对顶角", "ed": "equal angles opposite each other where two lines cross", "zd": "相交正对的一对，相等", "cat": "角"}, {"en": "Corresponding angles", "zh": "同位角", "ed": "equal angles in the same position (F-shape)", "zd": "同位置，相等", "cat": "角"}, {"en": "Alternate angles", "zh": "内错角", "ed": "equal angles on opposite sides (Z-shape)", "zd": "交错，相等", "cat": "角"}, {"en": "Co-interior angles", "zh": "同旁内角", "ed": "angles on the same side that add to 180° (C-shape)", "zd": "同侧互补", "cat": "角"}, {"en": "Angle bisector", "zh": "角平分线", "ed": "a line that cuts an angle into two equal halves", "zd": "平分一个角", "cat": "角"}, {"en": "Interior angle sum", "zh": "内角和", "ed": "the three angles of a triangle add up to 180°", "zd": "三内角和 180°", "cat": "三角形"}, {"en": "Exterior angle", "zh": "外角", "ed": "equals the sum of the two opposite interior angles", "zd": "等于不相邻两内角之和", "cat": "三角形"}, {"en": "Isosceles triangle", "zh": "等腰三角形", "ed": "a triangle with two equal sides", "zd": "两边相等", "cat": "三角形"}, {"en": "Equilateral triangle", "zh": "等边三角形", "ed": "a triangle with all three sides equal", "zd": "三边相等", "cat": "三角形"}, {"en": "Scalene triangle", "zh": "不等边三角形", "ed": "a triangle with all sides different", "zd": "三边都不等", "cat": "三角形"}, {"en": "Right-angled triangle", "zh": "直角三角形", "ed": "a triangle with a 90° angle", "zd": "有一个直角", "cat": "三角形"}, {"en": "Hypotenuse", "zh": "斜边", "ed": "the longest side, opposite the right angle", "zd": "直角对边、最长", "cat": "三角形"}, {"en": "Median", "zh": "中线", "ed": "a line from a vertex to the midpoint of the opposite side", "zd": "顶点到对边中点", "cat": "三角形"}, {"en": "Altitude", "zh": "高", "ed": "the perpendicular height from a vertex to the opposite side", "zd": "顶点到对边的垂线", "cat": "三角形"}, {"en": "Perpendicular bisector", "zh": "中垂线", "ed": "a line perpendicular to a segment through its midpoint", "zd": "垂直且平分一边", "cat": "三角形"}, {"en": "Congruent", "zh": "全等", "ed": "exactly the same shape and size", "zd": "形状大小都相同", "cat": "三角形"}, {"en": "Similar", "zh": "相似", "ed": "same shape, with sizes in proportion", "zd": "形状同、按比例", "cat": "三角形"}, {"en": "Parallel", "zh": "平行", "ed": "lines that never meet", "zd": "永不相交", "cat": "直线"}, {"en": "Perpendicular", "zh": "垂直", "ed": "lines that meet at 90°", "zd": "成 90°", "cat": "直线"}, {"en": "Transversal", "zh": "截线", "ed": "a line that crosses two other lines", "zd": "横穿两条线", "cat": "直线"}, {"en": "Sine", "zh": "正弦", "ed": "sin = opposite ÷ hypotenuse", "zd": "对 ÷ 斜", "cat": "三角比"}, {"en": "Cosine", "zh": "余弦", "ed": "cos = adjacent ÷ hypotenuse", "zd": "邻 ÷ 斜", "cat": "三角比"}, {"en": "Tangent", "zh": "正切", "ed": "tan = opposite ÷ adjacent", "zd": "对 ÷ 邻", "cat": "三角比"}, {"en": "Angle of elevation", "zh": "仰角", "ed": "the angle looking up from the horizontal", "zd": "往上看的角", "cat": "三角比"}, {"en": "Angle of depression", "zh": "俯角", "ed": "the angle looking down from the horizontal", "zd": "往下看的角", "cat": "三角比"}];
+var VOICE=null, VOICES=[];
+function loadVoices(){
+  if(!('speechSynthesis' in window))return;
+  VOICES=speechSynthesis.getVoices().filter(function(v){return /en/i.test(v.lang)});
+  var prefer=['Samantha','Google UK English Female','Microsoft Zira','Karen','Moira','Tessa','Victoria','Serena','Fiona','Google US English','Google UK English'];
+  VOICE = VOICES.find(function(v){return prefer.some(function(p){return v.name.indexOf(p)>=0})&&!/male/i.test(v.name)})
+       || VOICES.find(function(v){return /female/i.test(v.name)})
+       || VOICES.find(function(v){return /en-GB/i.test(v.lang)})
+       || VOICES[0] || null;
+  var sel=document.getElementById('vsel');
+  if(sel){sel.innerHTML=VOICES.map(function(v,i){return '<option value="'+i+'"'+(VOICE&&v.name===VOICE.name?' selected':'')+'>'+v.name+' ('+v.lang+')</option>'}).join('');}
+}
+function speak(t){
+  if(!('speechSynthesis' in window)){return;}
+  var u=new SpeechSynthesisUtterance(t);
+  if(VOICE){u.voice=VOICE;u.lang=VOICE.lang;}else{u.lang='en-GB';}
+  u.rate=0.9;u.pitch=1.05;
+  speechSynthesis.cancel();speechSynthesis.speak(u);
+}
+function pickVoice(i){VOICE=VOICES[i]||VOICE;}
+function esc(s){return (s||'').replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function norm(s){return (s||'').toLowerCase().replace(/\s+/g,' ').trim()}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+
+// ---------- 列表 ----------
+function renderList(){
+  var by={};T.forEach(function(t){(by[t.cat]=by[t.cat]||[]).push(t)});
+  var h='<div class="lst">';
+  Object.keys(by).forEach(function(c){
+    h+='<div class="lcat">'+c+'</div>';
+    by[c].forEach(function(t){
+      h+='<div class="lr"><button class="spk" onclick="speak(\''+esc(t.en).replace(/\x27/g,"")+'\')">🔊</button>'
+        +'<div><span class="en">'+esc(t.en)+'</span><span class="zh">'+esc(t.zh)+'</span>'
+        +'<div class="mean">'+esc(t.ed)+' · '+esc(t.zd)+'</div></div></div>';
+    });
+  });
+  document.getElementById('view').innerHTML=h+'</div>';
+}
+// ---------- 卡片 ----------
+var cOrder=[],cI=0;
+function renderCards(){
+  cOrder=shuffle(T.map(function(_,i){return i}));cI=0;showCard();
+}
+function showCard(){
+  var t=T[cOrder[cI]];
+  document.getElementById('view').innerHTML=
+   '<div class="card" id="card" onclick="flipCard()">'
+   +'<div class="front"><span onclick="event.stopPropagation();speak(\''+esc(t.en)+'\')">'+esc(t.en)+' 🔊</span></div>'
+   +'<div class="hint">点卡片翻面 · tap to flip</div>'
+   +'<div class="back"><div class="zh">'+esc(t.zh)+'</div><div class="mean">'+esc(t.ed)+'<br>'+esc(t.zd)+'</div></div></div>'
+   +'<div class="cbar"><button onclick="cPrev()">← 上一个</button>'
+   +'<span class="idx">'+(cI+1)+' / '+T.length+'</span>'
+   +'<button onclick="cNext()">下一个 →</button></div>';
+}
+function flipCard(){document.getElementById('card').classList.toggle('flip')}
+function cNext(){cI=(cI+1)%T.length;showCard()}
+function cPrev(){cI=(cI-1+T.length)%T.length;showCard()}
+
+// ---------- 测试 ----------
+var PROMPT='zh', ANSWER='choice';
+function renderSetup(){
+  var audioOK=('speechSynthesis' in window);
+  document.getElementById('view').innerHTML=
+   '<div class="setup">'
+   +'<div class="row"><div class="lb">① 出题方式 Prompt</div><div class="opts" id="pOpts">'
+     +'<button class="opt on" data-p="zh" onclick="setP(this)">中文 → 英</button>'
+     +'<button class="opt" data-p="endef" onclick="setP(this)">英文释义 → 英</button>'
+     +'<button class="opt" data-p="audio" onclick="setP(this)">🔊 听音 → 英</button></div></div>'
+   +'<div class="row"><div class="lb">② 作答方式 Answer</div><div class="opts" id="aOpts">'
+     +'<button class="opt on" data-a="choice" onclick="setA(this)">选择（记忆）</button>'
+     +'<button class="opt" data-a="type" onclick="setA(this)">拼写（听写/默写）</button></div></div>'
+   +(audioOK?'':'<div class="warn">这台设备/浏览器不支持语音，「听音」和发音会失效；换 Chrome/Safari 即可。</div>')
+   +'<button class="start" onclick="startQuiz()">开始测试 Start</button>'
+   +'<div class="warn" style="background:var(--indigo-soft);color:var(--indigo-deep)">组合示例：中文→选择＝中测英记忆；中文→拼写＝默写；🔊听音→拼写＝听写；英文释义→选择＝英测英。</div>'
+   +'</div>';
+}
+function setP(b){PROMPT=b.dataset.p;[].forEach.call(b.parentNode.children,function(x){x.classList.toggle('on',x===b)})}
+function setA(b){ANSWER=b.dataset.a;[].forEach.call(b.parentNode.children,function(x){x.classList.toggle('on',x===b)})}
+var Q=[],qi=0,score=0;
+function startQuiz(){Q=shuffle(T.map(function(_,i){return i}));qi=0;score=0;showQ();}
+function showQ(){
+  if(qi>=Q.length)return showResult();
+  var t=T[Q[qi]];
+  var promptHTML;
+  if(PROMPT==='zh') promptHTML='<div class="big">'+esc(t.zh)+'</div><div class="sm">'+esc(t.zd)+'</div>';
+  else if(PROMPT==='endef') promptHTML='<div class="sm" style="font-size:16px">'+esc(t.ed)+'</div>';
+  else promptHTML='<div class="audio" onclick="speak(\''+esc(t.en)+'\')">🔊 点这里再听一遍 · tap to hear again</div>';
+  var body='';
+  if(ANSWER==='choice'){
+    var wrong=shuffle(T.filter(function(x){return x.en!==t.en})).slice(0,3).map(function(x){return x.en});
+    var opts=shuffle([t.en].concat(wrong));
+    body='<div class="choices">'+opts.map(function(o){return '<button class="choice" onclick="pick(this,\''+esc(o)+'\')">'+esc(o)+'</button>'}).join('')+'</div>';
+  }else{
+    body='<div class="typebox"><input id="ans" autocomplete="off" autocapitalize="off" placeholder="type the English word" onkeydown="if(event.key===\'Enter\')submitType()"><button onclick="submitType()">✓</button></div>';
+  }
+  document.getElementById('view').innerHTML=
+    '<div class="quiz"><div class="qprog"><span>第 '+(qi+1)+' / '+Q.length+' 题</span><span>✓ '+score+'</span></div>'
+    +'<div class="pbar"><div class="pfill" style="width:'+(qi/Q.length*100)+'%"></div></div>'
+    +'<div class="qprompt">'+promptHTML+'</div>'+body
+    +'<div class="fb" id="fb"></div><button class="next" id="next" onclick="qi++;showQ()">下一题 →</button></div>';
+  if(PROMPT==='audio') setTimeout(function(){speak(t.en)},250);
+  var ip=document.getElementById('ans'); if(ip) ip.focus();
+}
+function judge(okay){
+  var t=T[Q[qi]];
+  if(okay)score++;
+  var fb=document.getElementById('fb');
+  fb.className='fb show '+(okay?'ok':'no');
+  fb.innerHTML=(okay?'✅ 对了！':'❌ 正确答案：')+' <b>'+esc(t.en)+'</b> · '+esc(t.zh)
+    +' <button class="spk" style="vertical-align:middle" onclick="speak(\''+esc(t.en)+'\')">🔊</button><br><span style="font-size:12px;color:var(--muted)">'+esc(t.ed)+'</span>';
+  document.getElementById('next').classList.add('show');
+  speak(t.en);
+}
+function pick(btn,val){
+  var t=T[Q[qi]];var okay=(val===t.en);
+  document.querySelectorAll('.choice').forEach(function(c){
+    c.style.pointerEvents='none';
+    if(c.textContent===t.en)c.classList.add('right');
+    else if(c===btn)c.classList.add('wrong');
+  });
+  judge(okay);
+}
+function submitType(){
+  var t=T[Q[qi]];var v=document.getElementById('ans').value;
+  document.getElementById('ans').disabled=true;
+  judge(norm(v)===norm(t.en));
+}
+function showResult(){
+  var pct=Math.round(score/Q.length*100);
+  document.getElementById('view').innerHTML='<div class="quiz"><div class="result">'
+   +'<div class="big">'+score+' / '+Q.length+'</div><div style="color:var(--muted);margin-top:4px">正确率 '+pct+'%</div>'
+   +'<button class="again" onclick="renderSetup()">再测一次 / 换模式</button></div></div>';
+}
+
+// ---------- tabs ----------
+function setTab(name,btn){
+  document.querySelectorAll('.tab').forEach(function(b){b.classList.toggle('on',b===btn)});
+  if(name==='list')renderList();
+  else if(name==='cards')renderCards();
+  else renderSetup();
+}
+if('speechSynthesis' in window){ speechSynthesis.onvoiceschanged=loadVoices; }
+document.addEventListener('DOMContentLoaded',function(){loadVoices();renderList();});
+</script>
+</body></html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Phase 1 整合测评 · Integrated Checkpoint</title><style>
+:root{--bg:#F4F6FB;--surface:#fff;--ink:#1B1B2A;--muted:#6A6A82;--line:#E3E6F0;--indigo:#4A43C4;--indigo-deep:#2E2A6B;--indigo-soft:#EEF0FC;--amber:#C77A15;--amber-soft:#FCF2DF;--green:#1F8A5B;--green-soft:#E6F5EE;--rose:#C0453B;--rose-soft:#FBEDEC;--grey-soft:#EEF0F4;--shadow:0 1px 2px rgba(30,30,60,.05),0 6px 20px rgba(30,30,60,.05);--font:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Segoe UI",Roboto,sans-serif;}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.6}
+.hero{background:var(--surface);border-bottom:1px solid var(--line);padding:20px 22px}.hero-in{max-width:900px;margin:0 auto}
+.back{color:var(--indigo);text-decoration:none;font-size:13px;font-weight:700}
+.hero h1{margin:6px 0 2px;font-size:22px;color:var(--indigo-deep)}
+.hero .en{font-size:13px;color:var(--muted);font-weight:700}.hero p{margin:7px 0 0;color:var(--muted);font-size:13.5px}
+.wrap{max-width:900px;margin:16px auto 70px;padding:0 22px}
+h2.bh{font-size:16px;color:var(--indigo);border-bottom:2px solid var(--indigo-soft);padding-bottom:5px;margin:26px 0 12px}
+.legend{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:6px 0 4px}
+.lg{border:1px solid var(--line);border-radius:11px;padding:9px 11px;background:var(--surface);box-shadow:var(--shadow)}
+.lg .t{font-weight:800;font-size:13px}.lg .z{font-size:11px;color:var(--muted);font-weight:700}.lg .d{font-size:11px;color:var(--muted);margin-top:3px}
+.lg.tc{border-top:3px solid #6A6A82}.lg.tf{border-top:3px solid var(--green)}.lg.ta{border-top:3px solid var(--amber)}.lg.te{border-top:3px solid var(--rose)}
+.lg.tc .t{color:#4a4a5e}.lg.tf .t{color:var(--green)}.lg.ta .t{color:var(--amber)}.lg.te .t{color:var(--rose)}
+.note{background:var(--amber-soft);color:#7a5210;border-radius:10px;padding:11px 15px;font-size:12.8px;margin:10px 0}
+/* checklist */
+.ck{background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);overflow:hidden}
+.ckr{display:grid;grid-template-columns:1fr auto;gap:10px;padding:11px 14px;border-top:1px solid var(--line);align-items:center}
+.ckr:first-child{border-top:none}
+.ckr .txt b{font-size:13.5px}.ckr .txt .en{display:block;font-size:11.5px;color:var(--muted);font-weight:600}
+.tri{display:flex;gap:5px}
+.tri button{border:1px solid var(--line);background:var(--surface);color:var(--muted);font-family:inherit;font-weight:800;font-size:11.5px;padding:5px 10px;border-radius:8px;cursor:pointer}
+.tri button.on[data-v=y]{background:var(--green-soft);color:var(--green);border-color:#B7E0C9}
+.tri button.on[data-v=m]{background:var(--amber-soft);color:var(--amber);border-color:#EAD3A3}
+.tri button.on[data-v=n]{background:var(--rose-soft);color:var(--rose);border-color:#EFC3BE}
+/* test */
+.tgrp{margin:0 0 10px}
+.tgh{display:flex;gap:9px;align-items:baseline;color:#fff;border-radius:11px 11px 0 0;padding:9px 14px;font-weight:800;font-size:13.5px}
+.tgh.tc{background:#6A6A82}.tgh.tf{background:var(--green)}.tgh.ta{background:var(--amber)}.tgh.te{background:var(--rose)}
+.tgh .en{font-weight:600;font-size:11.5px;opacity:.92}
+.tbl{background:var(--surface);border:1px solid var(--line);border-top:none;border-radius:0 0 12px 12px;overflow:hidden;box-shadow:var(--shadow)}
+.qq{padding:13px 15px;border-top:1px solid var(--line)}.qq:first-child{border-top:none}
+.qhead{display:flex;gap:9px;align-items:baseline}
+.qno{font-weight:800;color:var(--indigo);min-width:26px;font-variant-numeric:tabular-nums}
+.qen{font-size:14px;font-weight:600}
+.qzh{margin:5px 0 6px 35px;font-size:12.5px;color:var(--muted);display:none}
+.qq.show .qzh{display:block}
+.qtags{margin:2px 0 8px 35px;display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-size:10.5px;font-weight:800;border-radius:99px;padding:1px 9px;background:var(--indigo-soft);color:var(--indigo)}
+.qbtns{margin-left:35px;display:flex;gap:8px}
+.mini{border:1px solid var(--line);background:var(--surface);color:var(--indigo);font-family:inherit;font-weight:700;font-size:12px;padding:6px 11px;border-radius:8px;cursor:pointer}
+.answer{margin:8px 0 0 35px;background:var(--green-soft);border:1px solid #C7E7D5;border-radius:9px;padding:10px 13px;font-size:13px;display:none}
+.qq.ans .answer{display:block}
+.fr{display:inline-flex;flex-direction:column;text-align:center;vertical-align:middle;margin:0 2px;line-height:1.05}
+.fr .nu{border-bottom:1.4px solid currentColor;padding:0 3px}.fr .de{padding:0 3px}
+.dltools{position:fixed;top:12px;right:14px;z-index:70}
+.dltools button{border:none;border-radius:9px;padding:8px 12px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;color:#fff;background:var(--indigo);box-shadow:0 4px 12px rgba(30,30,60,.18)}
+@media(max-width:720px){.legend{grid-template-columns:repeat(2,1fr)}.dltools{top:auto;bottom:14px}}
+@media print{.dltools,.back,.qbtns,.tri{display:none}.answer,.qzh{display:block!important}}
+</style></head><body>
+<div class="hero"><div class="hero-in"><a class="back" href="../index.html">← 学习中心 Hub</a>
+<h1>Phase 1 · 整合测评</h1><div class="en">Integrated Checkpoint — everything you've learned so far, combined</div>
+<p>覆盖已学：代数基本功 · 元与次 · 坐标一次函数 · 二次函数初步 · 不等式 · 几何入门 · 平行线 · 三角形。<b>四级难度按真实例题难度分</b>，Applied/Elite 刻意把多个知识点叠在一起。</p></div></div>
+<div class="dltools"><button onclick="window.print()">🖨 PDF</button></div>
+<div class="wrap">
+<h2 class="bh">难度四级 · How the tiers are graded</h2>
+<div class="legend"><div class="lg tc"><div class="t">Concept</div><div class="z">理解概念</div><div class="d">建立「这是什么/为什么」，几乎不用算</div></div><div class="lg tf"><div class="t">Fluency</div><div class="z">熟练计算</div><div class="d">课本级标准题，会算会用</div></div><div class="lg ta"><div class="t">Applied</div><div class="z">综合应用</div><div class="d">多步、叠加 2 个已学点（浙教压轴级）</div></div><div class="lg te"><div class="t">Elite</div><div class="z">压轴/竞赛</div><div class="d">光剑级，叠加多点、需技巧</div></div></div>
+<div class="note"><b>定级依据：</b>每级都锚在真实例题难度上——Concept 只考"懂不懂"，Fluency 是课本标准题，Applied 是浙教压轴级(叠2点)，Elite 是光剑真题级(叠多点+技巧)。</div>
+
+<h2 class="bh">一、学过了吗？· 先自查 Self-check</h2>
+<p style="font-size:12.8px;color:var(--muted);margin:0 0 8px">对每个已学点点「会 / 不确定 / 不会」，会自动记住。先照着测下面的题验证。</p>
+<div class="ck"><div class="ckr"><div class="txt"><b>整式运算：幂、去括号、乘法公式、基础因式分解</b><span class="en">Indices, expansion, identities & basic factorising</span></div>
+    <div class="tri" data-id="ck0">
+      <button data-v="y" onclick="tri(this)">会</button>
+      <button data-v="m" onclick="tri(this)">不确定</button>
+      <button data-v="n" onclick="tri(this)">不会</button></div></div><div class="ckr"><div class="txt"><b>元与次·一元一次方程</b><span class="en">Unknowns, degree & linear equations</span></div>
+    <div class="tri" data-id="ck1">
+      <button data-v="y" onclick="tri(this)">会</button>
+      <button data-v="m" onclick="tri(this)">不确定</button>
+      <button data-v="n" onclick="tri(this)">不会</button></div></div><div class="ckr"><div class="txt"><b>坐标与一次函数：k,b 意义、描点、看图</b><span class="en">Coordinates & linear graphs: meaning of k,b, plotting, reading</span></div>
+    <div class="tri" data-id="ck2">
+      <button data-v="y" onclick="tri(this)">会</button>
+      <button data-v="m" onclick="tri(this)">不确定</button>
+      <button data-v="n" onclick="tri(this)">不会</button></div></div><div class="ckr"><div class="txt"><b>二次函数初步：顶点、对称轴、开口</b><span class="en">Quadratic functions: vertex, axis, opening</span></div>
+    <div class="tri" data-id="ck3">
+      <button data-v="y" onclick="tri(this)">会</button>
+      <button data-v="m" onclick="tri(this)">不确定</button>
+      <button data-v="n" onclick="tri(this)">不会</button></div></div><div class="ckr"><div class="txt"><b>不等式(组)与阴影：解、数轴、区域</b><span class="en">Inequalities & shading: solving, number line, regions</span></div>
+    <div class="tri" data-id="ck4">
+      <button data-v="y" onclick="tri(this)">会</button>
+      <button data-v="m" onclick="tri(this)">不确定</button>
+      <button data-v="n" onclick="tri(this)">不会</button></div></div><div class="ckr"><div class="txt"><b>几何入门：点、线、角、余补角</b><span class="en">Points, lines & angles</span></div>
+    <div class="tri" data-id="ck5">
+      <button data-v="y" onclick="tri(this)">会</button>
+      <button data-v="m" onclick="tri(this)">不确定</button>
+      <button data-v="n" onclick="tri(this)">不会</button></div></div><div class="ckr"><div class="txt"><b>相交线与平行线：同位/内错/同旁内角</b><span class="en">Intersecting & parallel lines: angle relations</span></div>
+    <div class="tri" data-id="ck6">
+      <button data-v="y" onclick="tri(this)">会</button>
+      <button data-v="m" onclick="tri(this)">不确定</button>
+      <button data-v="n" onclick="tri(this)">不会</button></div></div><div class="ckr"><div class="txt"><b>三角形：内角和、全等、等腰</b><span class="en">Triangles: angle sum, congruence, isosceles</span></div>
+    <div class="tri" data-id="ck7">
+      <button data-v="y" onclick="tri(this)">会</button>
+      <button data-v="m" onclick="tri(this)">不确定</button>
+      <button data-v="n" onclick="tri(this)">不会</button></div></div><div class="ckr"><div class="txt"><b>相似与面积法(初步)</b><span class="en">Similarity & area method (intro)</span></div>
+    <div class="tri" data-id="ck8">
+      <button data-v="y" onclick="tri(this)">会</button>
+      <button data-v="m" onclick="tri(this)">不确定</button>
+      <button data-v="n" onclick="tri(this)">不会</button></div></div></div>
+
+<h2 class="bh">二、整合测 · Cross-topic test（纯题·先做完再看答案）</h2>
+<p style="font-size:12.8px;color:var(--muted);margin:0 0 10px">题目英文为主、点「中文」看注解；做完点「答案」核对。不给提示，就是要考真本事。</p>
+<div class="tgrp"><div class="tgh tc"><span>Concept · 理解概念</span><span class="en">建立「这是什么/为什么」，几乎不用算</span></div>
+      <div class="tbl"><div class="qq" id="q1">
+        <div class="qhead"><span class="qno">1</span><span class="qen">Which of these are linear equations in one unknown?  (a) 2x+1=5  (b) x²−1=0  (c) 3x−2y=6  (d) 5−x=x⁄2</span></div>
+        <div class="qtags"><span class="tag">元与次</span></div>
+        <div class="qzh">判断哪些是「一元一次」方程（一个未知数、最高次为1）</div>
+        <div class="qbtns"><button class="mini" onclick="tzh('q1')">中文 CN</button>
+          <button class="mini" onclick="tans('q1')">答案 Answer</button></div>
+        <div class="answer"><b>(a) 和 (d)</b>。(b) 最高次为 2（二次）；(c) 有两个未知数（二元）。</div></div><div class="qq" id="q2">
+        <div class="qhead"><span class="qno">2</span><span class="qen">Solve −2x < 6 and state what happens to the inequality sign.</span></div>
+        <div class="qtags"><span class="tag">不等式</span></div>
+        <div class="qzh">解不等式，并说明不等号发生了什么</div>
+        <div class="qbtns"><button class="mini" onclick="tzh('q2')">中文 CN</button>
+          <button class="mini" onclick="tans('q2')">答案 Answer</button></div>
+        <div class="answer">两边同除以 −2，<b>不等号方向反转</b>：<b>x > −3</b>。</div></div><div class="qq" id="q3">
+        <div class="qhead"><span class="qno">3</span><span class="qen">A line y=kx+b has k&lt;0 and b&gt;0. Which quadrants does it pass through?</span></div>
+        <div class="qtags"><span class="tag">一次函数图象</span></div>
+        <div class="qzh">直线 y=kx+b 中 k&lt;0、b&gt;0，它经过哪几个象限？</div>
+        <div class="qbtns"><button class="mini" onclick="tzh('q3')">中文 CN</button>
+          <button class="mini" onclick="tans('q3')">答案 Answer</button></div>
+        <div class="answer">经过 <b>第 I、II、IV 象限</b>，不经过第 III 象限。（b&gt;0 交 y 轴上方；k&lt;0 向右下降）</div></div><div class="qq" id="q4">
+        <div class="qhead"><span class="qno">4</span><span class="qen">In △ABC, AB=AC and ∠A=40°. Find ∠B and ∠C.</span></div>
+        <div class="qtags"><span class="tag">三角形·等腰</span></div>
+        <div class="qzh">等腰三角形，顶角 ∠A=40°，求两底角</div>
+        <div class="qbtns"><button class="mini" onclick="tzh('q4')">中文 CN</button>
+          <button class="mini" onclick="tans('q4')">答案 Answer</button></div>
+        <div class="answer">∠B=∠C=<b>70°</b>。（底角相等，(180−40)÷2）</div></div></div></div><div class="tgrp"><div class="tgh tf"><span>Fluency · 熟练计算</span><span class="en">课本级标准题，会算会用</span></div>
+      <div class="tbl"><div class="qq" id="q5">
+        <div class="qhead"><span class="qno">5</span><span class="qen">Factorise fully:  (a) 2x²−8   (b) x²−7x+12</span></div>
+        <div class="qtags"><span class="tag">整式·因式分解</span></div>
+        <div class="qzh">彻底因式分解</div>
+        <div class="qbtns"><button class="mini" onclick="tzh('q5')">中文 CN</button>
+          <button class="mini" onclick="tans('q5')">答案 Answer</button></div>
+        <div class="answer">(a) <b>2(x+2)(x−2)</b>　(b) <b>(x−3)(x−4)</b></div></div><div class="qq" id="q6">
+        <div class="qhead"><span class="qno">6</span><span class="qen">Solve the system:  x − y = 1,  3x + 2y = 13</span></div>
+        <div class="qtags"><span class="tag">一元一次·方程组</span></div>
+        <div class="qzh">解二元一次方程组</div>
+        <div class="qbtns"><button class="mini" onclick="tzh('q6')">中文 CN</button>
+          <button class="mini" onclick="tans('q6')">答案 Answer</button></div>
+        <div class="answer"><b>x = 3, y = 2</b>。（由 x=y+1 代入：5y+3=13 → y=2）</div></div><div class="qq" id="q7">
+        <div class="qhead"><span class="qno">7</span><span class="qen">For y = x² − 4x + 1, find the vertex and the axis of symmetry.</span></div>
+        <div class="qtags"><span class="tag">二次函数</span></div>
+        <div class="qzh">求二次函数的顶点与对称轴</div>
+        <div class="qbtns"><button class="mini" onclick="tzh('q7')">中文 CN</button>
+          <button class="mini" onclick="tans('q7')">答案 Answer</button></div>
+        <div class="answer">对称轴 <b>x = 2</b>，顶点 <b>(2, −3)</b>。</div></div><div class="qq" id="q8">
+        <div class="qhead"><span class="qno">8</span><span class="qen">Solve and show on a number line:  3x − 1 ≥ 5  and  2 − x &gt; −3</span></div>
+        <div class="qtags"><span class="tag">不等式组</span></div>
+        <div class="qzh">解不等式组并在数轴上表示</div>
+        <div class="qbtns"><button class="mini" onclick="tzh('q8')">中文 CN</button>
+          <button class="mini" onclick="tans('q8')">答案 Answer</button></div>
+        <div class="answer"><b>2 ≤ x &lt; 5</b>。（3x≥6→x≥2；2−x&gt;−3→x&lt;5）</div></div></div></div><div class="tgrp"><div class="tgh ta"><span>Applied · 综合应用</span><span class="en">多步、叠加 2 个已学点（浙教压轴级）</span></div>
+      <div class="tbl"><div class="qq" id="q9">
+        <div class="qhead"><span class="qno">9</span><span class="qen">A line passes through A(0,3) and B(4,0). Find its equation, then the area of the triangle it forms with the two axes.</span></div>
+        <div class="qtags"><span class="tag">坐标·一次函数</span><span class="tag">三角形面积</span></div>
+        <div class="qzh">直线过 A(0,3)、B(4,0)，求解析式，再求它与两坐标轴围成的三角形面积</div>
+        <div class="qbtns"><button class="mini" onclick="tzh('q9')">中文 CN</button>
+          <button class="mini" onclick="tans('q9')">答案 Answer</button></div>
+        <div class="answer">解析式 <b>y = −<span class="fr"><span class="nu">3</span><span class="de">4</span></span>x + 3</b>；与两轴交于 (0,3)、(4,0)，面积 = <span class="fr"><span class="nu">1</span><span class="de">2</span></span>·4·3 = <b>6</b>。</div></div><div class="qq" id="q10">
+        <div class="qhead"><span class="qno">10</span><span class="qen">DE∥BC in △ABC. ∠A=50° and ∠ADE=60°. Find ∠C.</span></div>
+        <div class="qtags"><span class="tag">平行线</span><span class="tag">三角形内角和</span></div>
+        <div class="qzh">△ABC 中 DE∥BC，∠A=50°、∠ADE=60°，求 ∠C</div>
+        <div class="qbtns"><button class="mini" onclick="tzh('q10')">中文 CN</button>
+          <button class="mini" onclick="tans('q10')">答案 Answer</button></div>
+        <div class="answer">DE∥BC ⇒ ∠B=∠ADE=60°（同位角）；∠C=180−50−60=<b>70°</b>。</div></div><div class="qq" id="q11">
+        <div class="qhead"><span class="qno">11</span><span class="qen">The parabola y = x² + bx + c passes through (1,0) and (3,0). Find b, c, the vertex, and all x with y &lt; 0.</span></div>
+        <div class="qtags"><span class="tag">二次函数</span><span class="tag">因式分解</span><span class="tag">不等式</span></div>
+        <div class="qzh">抛物线过 (1,0)、(3,0)，求 b、c、顶点，以及使 y&lt;0 的 x 范围</div>
+        <div class="qbtns"><button class="mini" onclick="tzh('q11')">中文 CN</button>
+          <button class="mini" onclick="tans('q11')">答案 Answer</button></div>
+        <div class="answer">y=(x−1)(x−3)=x²−4x+3 ⇒ <b>b=−4, c=3</b>；顶点 <b>(2, −1)</b>；y&lt;0 当 <b>1 &lt; x &lt; 3</b>。</div></div></div></div><div class="tgrp"><div class="tgh te"><span>Elite · 压轴/竞赛</span><span class="en">光剑级，叠加多点、需技巧</span></div>
+      <div class="tbl"><div class="qq" id="q12">
+        <div class="qhead"><span class="qno">12</span><span class="qen">The system  x − 1 ≥ 0,  x &lt; 2a  has solutions.  (a) Find the range of a.  (b) If it has exactly 3 integer solutions, find the range of a.</span></div>
+        <div class="qtags"><span class="tag">不等式</span><span class="tag">分类讨论(参数)</span></div>
+        <div class="qzh">含参不等式组：(a) 有解求 a 范围；(b) 恰有 3 个整数解求 a 范围</div>
+        <div class="qbtns"><button class="mini" onclick="tzh('q12')">中文 CN</button>
+          <button class="mini" onclick="tans('q12')">答案 Answer</button></div>
+        <div class="answer">解集为 1 ≤ x &lt; 2a。(a) 有解需 2a&gt;1，即 <b>a &gt; <span class="fr"><span class="nu">1</span><span class="de">2</span></span></b>。(b) 整数解从 1 起：要恰好 {1,2,3} 需 3 &lt; 2a ≤ 4，即 <b><span class="fr"><span class="nu">3</span><span class="de">2</span></span> &lt; a ≤ 2</b>。</div></div><div class="qq" id="q13">
+        <div class="qhead"><span class="qno">13</span><span class="qen">In △ABC, D on AB and E on AC with DE∥BC and AD:DB = 2:3. Find (a) DE:BC, (b) area△ADE : area of trapezium DBCE.</span></div>
+        <div class="qtags"><span class="tag">相似</span><span class="tag">面积比=相似比²</span></div>
+        <div class="qzh">DE∥BC，AD:DB=2:3，求 (a) DE:BC (b) △ADE 与梯形 DBCE 的面积比</div>
+        <div class="qbtns"><button class="mini" onclick="tzh('q13')">中文 CN</button>
+          <button class="mini" onclick="tans('q13')">答案 Answer</button></div>
+        <div class="answer">AD:AB=2:5 ⇒ (a) <b>DE:BC = 2:5</b>；(b) △ADE:△ABC=(2/5)²=4:25 ⇒ △ADE:梯形 = <b>4 : 21</b>。</div></div><div class="qq" id="q14">
+        <div class="qhead"><span class="qno">14</span><span class="qen">The line y = x + 1 meets the parabola y = x² − 1.  (a) Find the intersection points.  (b) For which x is the parabola below the line?</span></div>
+        <div class="qtags"><span class="tag">一次×二次</span><span class="tag">联立</span><span class="tag">不等式</span><span class="tag">坐标</span></div>
+        <div class="qzh">直线 y=x+1 与抛物线 y=x²−1：(a) 求交点 (b) 抛物线在直线下方时 x 的范围</div>
+        <div class="qbtns"><button class="mini" onclick="tzh('q14')">中文 CN</button>
+          <button class="mini" onclick="tans('q14')">答案 Answer</button></div>
+        <div class="answer">联立 x²−1=x+1 ⇒ x²−x−2=0 ⇒ (x−2)(x+1)=0 ⇒ 交点 <b>(2,3)、(−1,0)</b>；下方即 x²−x−2&lt;0 ⇒ <b>−1 &lt; x &lt; 2</b>。</div></div></div></div>
+<div class="note" style="margin-top:16px"><b>怎么用：</b>Concept 全对 → 概念通了；Fluency 卡壳 → 回去练课本题；Applied/Elite 卡壳 → 不是不会单点，而是<b>点与点之间没连起来</b>，这正是接下来"知识点叠加训练"要补的。</div>
+</div>
+<script>
+function tri(btn){var g=btn.parentNode,id=g.dataset.id,v=btn.dataset.v;
+  [].forEach.call(g.children,function(b){b.classList.toggle('on',b===btn);});
+  try{localStorage.setItem('p1_'+id,v);}catch(e){}}
+function tzh(id){document.getElementById(id).classList.toggle('show');}
+function tans(id){document.getElementById(id).classList.toggle('ans');}
+document.addEventListener('DOMContentLoaded',function(){
+  document.querySelectorAll('.tri').forEach(function(g){
+    var v;try{v=localStorage.getItem('p1_'+g.dataset.id);}catch(e){}
+    if(v){[].forEach.call(g.children,function(b){b.classList.toggle('on',b.dataset.v===v);});}
+  });
+});
+</script>
+</body></html>
