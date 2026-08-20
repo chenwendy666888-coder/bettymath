@@ -1,0 +1,66 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>项目进度 & 待做 · Progress & Backlog</title><style>
+:root{--bg:#F4F6FB;--surface:#fff;--ink:#1B1B2A;--muted:#6A6A82;--line:#E3E6F0;--indigo:#4A43C4;--indigo-deep:#2E2A6B;--indigo-soft:#EEF0FC;--amber:#C77A15;--amber-soft:#FCF2DF;--green:#1F8A5B;--green-soft:#E6F5EE;--rose:#C0453B;--rose-soft:#FBEDEC;--grey-soft:#EEF0F4;--shadow:0 1px 2px rgba(30,30,60,.05),0 6px 20px rgba(30,30,60,.06);--font:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Segoe UI",Roboto,sans-serif;}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.55}
+.hero{background:var(--surface);border-bottom:1px solid var(--line);padding:18px 22px}.hero-in{max-width:900px;margin:0 auto}
+.back{color:var(--indigo);text-decoration:none;font-size:13px;font-weight:700}
+.hero h1{margin:6px 0 2px;font-size:21px;color:var(--indigo-deep)}.hero p{margin:6px 0 0;color:var(--muted);font-size:13px}
+.wrap{max-width:900px;margin:16px auto 60px;padding:0 22px}
+h2.bh{font-size:16px;color:var(--indigo);border-bottom:2px solid var(--indigo-soft);padding-bottom:5px;margin:22px 0 12px;display:flex;gap:8px;align-items:baseline}
+h2 .n{font-size:12px;color:var(--muted);font-weight:700}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:12px 14px;text-decoration:none;color:inherit;display:block;position:relative}
+.card:hover{border-color:#C9CCF3}
+.card .cat{position:absolute;top:12px;right:12px;font-size:10px;font-weight:800;border-radius:99px;padding:1px 8px;color:#fff}
+.card .tt{font-weight:800;font-size:14px;color:var(--indigo-deep);margin-right:44px}
+.card .ds{font-size:12px;color:var(--muted);margin-top:4px}
+.card .go{font-size:11.5px;color:var(--indigo);font-weight:700;margin-top:8px}
+.tlist{background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);overflow:hidden}
+.tr{display:grid;grid-template-columns:42px 1fr;gap:10px;padding:11px 14px;border-top:1px solid var(--line);align-items:start}.tr:first-child{border-top:none}
+.pri{font-size:11px;font-weight:800;border-radius:8px;padding:2px 0;text-align:center;color:#fff}
+.tr .tt{font-weight:700;font-size:13.5px}.tr .ds{font-size:12px;color:var(--muted);margin-top:2px}
+.stat{display:flex;gap:10px;margin:6px 0 14px;flex-wrap:wrap}
+.pill{background:var(--surface);border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow);padding:9px 14px;font-size:12.5px;font-weight:700}
+.pill b{font-size:17px;color:var(--indigo)}
+.dltools{position:fixed;top:12px;right:14px;z-index:70}.dltools button{border:none;border-radius:9px;padding:8px 12px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;color:#fff;background:var(--indigo);box-shadow:0 4px 12px rgba(30,30,60,.18)}
+@media(max-width:640px){.grid{grid-template-columns:1fr}.dltools{top:auto;bottom:14px}}
+</style></head><body>
+<div class="hero"><div class="hero-in"><a class="back" href="../index.html">← 学习中心 Hub</a>
+<h1>项目进度 & 待做 · Progress & Backlog</h1>
+<p>这里一眼看清：<b>新做了什么</b>（可点开）＋ <b>backlog 还剩什么</b>（带优先级）。每完成一块我就更新这页。</p></div></div>
+<div class="dltools"><button onclick="window.print()">🖨 PDF</button></div>
+<div class="wrap">
+<div class="stat"><span class="pill">✅ 已完成 <b>15</b></span><span class="pill">⏳ 待做 <b>9</b></span><span class="pill">🎯 下一块：<b>坐标几何 B9</b></span></div>
+
+<h2 class="bh">✅ 最近新增（可点开）<span class="n">newly built</span></h2>
+<div class="grid"><a class="card" href="../lectures/B7_similarity.html"><span class="cat" style="background:#4A43C4">讲义</span>
+ <div class="tt">✅ 相似 · 几何枢纽讲义</div><div class="ds">B7 Similarity — 光剑×10 枢纽，8节四级</div><div class="go">打开 →</div></a><a class="card" href="../lectures/B5_quadrilaterals.html"><span class="cat" style="background:#4A43C4">讲义</span>
+ <div class="tt">✅ 四边形讲义</div><div class="ds">B5 Quadrilaterals — 光剑×8，6节四级</div><div class="go">打开 →</div></a><a class="card" href="../lectures/B6_circles.html"><span class="cat" style="background:#4A43C4">讲义</span>
+ <div class="tt">✅ 圆讲义</div><div class="ds">B6 Circles — 圆周角/垂径/切线/内接四边形+圆综合</div><div class="go">打开 →</div></a><a class="card" href="../lectures/C4_quadratic-functions.html"><span class="cat" style="background:#4A43C4">讲义</span>
+ <div class="tt">✅ 二次函数（深·含最值）</div><div class="ds">配方/顶点/最大最小值/区间最值/最值应用</div><div class="go">打开 →</div></a><a class="card" href="../lectures/C3_reciprocal-functions.html"><span class="cat" style="background:#4A43C4">讲义</span>
+ <div class="tt">✅ 反比例函数与渐近线</div><div class="ds">双曲线/渐近线/矩形面积=|k|/平移</div><div class="go">打开 →</div></a><a class="card" href="../syllabus/checklist-current.html"><span class="cat" style="background:#1F8A5B">工具</span>
+ <div class="tt">✅ 当前知识 Checklist（多版式）</div><div class="ds">三态/知识树/卡片/看板 四版式共享状态</div><div class="go">打开 →</div></a><a class="card" href="../practice/midterm-hard.html"><span class="cat" style="background:#C0453B">测评</span>
+ <div class="tt">✅ 中期试卷·中/高/超难</div><div class="ds">12题跨点、计时60分、纯题折叠答案</div><div class="go">打开 →</div></a><a class="card" href="../syllabus/logic-map.html"><span class="cat" style="background:#1F8A5B">工具</span>
+ <div class="tt">✅ 总逻辑图（交互）</div><div class="ds">点节点看↑依赖↓解锁，可拖拽缩放</div><div class="go">打开 →</div></a><a class="card" href="../syllabus/vocab-trainer.html"><span class="cat" style="background:#1F8A5B">工具</span>
+ <div class="tt">✅ 术语训练器</div><div class="ds">列表/卡片/测试 + 女声，中测英·听写·默写</div><div class="go">打开 →</div></a><a class="card" href="../syllabus/concepts-terms.html"><span class="cat" style="background:#1F8A5B">工具</span>
+ <div class="tt">✅ 核心概念与术语 + 待记本</div><div class="ds">equation/function 区别、几何英文术语、本地记事</div><div class="go">打开 →</div></a><a class="card" href="../syllabus/exam-map.html"><span class="cat" style="background:#C77A15">分析</span>
+ <div class="tt">✅ 真题 ↔ 考点 双向对应</div><div class="ds">5卷56题，点考点看真题/点题看考点</div><div class="go">打开 →</div></a><a class="card" href="../practice/phase1-assessment.html"><span class="cat" style="background:#C0453B">测评</span>
+ <div class="tt">✅ 一阶整合测评</div><div class="ds">四级·跨点整合测（已学代数+几何）</div><div class="go">打开 →</div></a><a class="card" href="../practice/checkpoint-geometry.html"><span class="cat" style="background:#C0453B">测评</span>
+ <div class="tt">✅ 几何 Checkpoint 中期闸门</div><div class="ds">计时+四级+术语关+判分决策 模板</div><div class="go">打开 →</div></a><a class="card" href="../index.html"><span class="cat" style="background:#2E2A6B">站点</span>
+ <div class="tt">✅ index 阶段视图</div><div class="ds">原视图保留 + 新视图(Phase分组·已学预勾·★枢纽)</div><div class="go">打开 →</div></a><a class="card" href="../syllabus/master-syllabus-v3-draft.md"><span class="cat" style="background:#6A6A82">考纲</span>
+ <div class="tt">✅ 主考纲 v3.1 草案</div><div class="ds">从零主脊+依赖逻辑+四级定级（待你定稿）</div><div class="go">打开 →</div></a></div>
+
+<h2 class="bh">⏳ 待做 Backlog<span class="n">P0 最高 → P2 最低</span></h2>
+<div class="tlist"></div><div class="tr"><span class="pri" style="background:#C0453B">P0</span>
+ <div><div class="tt">坐标几何 B9 讲义</div><div class="ds">光剑×9，仅次于相似；先插一节反比例函数</div></div></div><div class="tr"><span class="pri" style="background:#C77A15">P1</span>
+ <div><div class="tt">三角比 / 翻折旋转 讲义</div><div class="ds">解直角三角形、翻折+相似压轴</div></div></div><div class="tr"><span class="pri" style="background:#C77A15">P1</span>
+ <div><div class="tt">其他学校卷逐页视觉扫描</div><div class="ds">11校：阿德科特/赫贤/华二/包玉刚/世外/领科/平和/星河湾/协和/上实/WLSA → 校准难度</div></div></div><div class="tr"><span class="pri" style="background:#C77A15">P1</span>
+ <div><div class="tt">主考纲 v3.1 定稿 + 人教→浙教基准</div><div class="ds">你改定架构后落地，root-base 换浙教版</div></div></div><div class="tr"><span class="pri" style="background:#C77A15">P1</span>
+ <div><div class="tt">光剑每套卷 逐题解析版 HTML</div><div class="ds">放新板块「真题解析 Papers/」</div></div></div><div class="tr"><span class="pri" style="background:#C77A15">P1</span>
+ <div><div class="tt">术语训练器扩词库</div><div class="ds">汇入全 glossary 286 词 + 各讲义 Key terms</div></div></div><div class="tr"><span class="pri" style="background:#6A6A82">P2</span>
+ <div><div class="tt">新建4处</div><div class="ds">集合与逻辑 / 反比例独立 / 绝对值从零入门 / 统计</div></div></div><div class="tr"><span class="pri" style="background:#6A6A82">P2</span>
+ <div><div class="tt">各簇 Checkpoint</div><div class="ds">代数簇 / 加料簇 / 计数应用簇（照几何 checkpoint 模板）</div></div></div><div class="tr"><span class="pri" style="background:#6A6A82">P2</span>
+ <div><div class="tt">checkpoints 升级课堂笔记</div><div class="ds">每个自查点配 1–2 例题</div></div></div></div>
+
+<p style="font-size:12px;color:var(--muted);margin-top:14px">完整逐项清单见 <a href="../未完成清单-backlog.md" style="color:var(--indigo)">未完成清单-backlog.md</a>。</p>
+</div></body></html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>当前知识 Checklist · 多版式</title><style>
+:root{--bg:#F4F6FB;--surface:#fff;--ink:#1B1B2A;--muted:#6A6A82;--line:#E3E6F0;--indigo:#4A43C4;--indigo-deep:#2E2A6B;--indigo-soft:#EEF0FC;--amber:#C77A15;--amber-soft:#FCF2DF;--green:#1F8A5B;--green-soft:#E6F5EE;--rose:#C0453B;--rose-soft:#FBEDEC;--grey-soft:#EEF0F4;--shadow:0 1px 2px rgba(30,30,60,.05),0 6px 20px rgba(30,30,60,.06);--font:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Segoe UI",Roboto,sans-serif;}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.55}
+.hero{background:var(--surface);border-bottom:1px solid var(--line);padding:18px 22px}.hero-in{max-width:900px;margin:0 auto}
+.back{color:var(--indigo);text-decoration:none;font-size:13px;font-weight:700}
+.hero h1{margin:6px 0 2px;font-size:21px;color:var(--indigo-deep)}.hero .en{font-size:12.5px;color:var(--muted);font-weight:700}.hero p{margin:6px 0 0;color:var(--muted);font-size:13px}
+.wrap{max-width:900px;margin:14px auto 60px;padding:0 22px}
+.fmtbar{display:flex;gap:6px;background:var(--indigo-soft);border-radius:12px;padding:5px;margin-bottom:8px;flex-wrap:wrap}
+.fmt{flex:1;min-width:110px;border:none;background:transparent;color:var(--indigo-deep);font-weight:800;font-size:13px;font-family:inherit;padding:9px;border-radius:9px;cursor:pointer}
+.fmt.on{background:var(--indigo);color:#fff;box-shadow:0 3px 10px rgba(74,67,196,.28)}
+.legend{font-size:11.5px;color:var(--muted);margin:2px 2px 14px}
+.legend b.y{color:var(--green)}.legend b.m{color:var(--amber)}.legend b.n{color:var(--rose)}
+/* format1 三态 */
+.grp h3{font-size:14px;color:var(--indigo);margin:14px 0 4px;font-weight:800}
+.ck{background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);overflow:hidden}
+.ckr{display:grid;grid-template-columns:1fr auto;gap:10px;padding:10px 14px;border-top:1px solid var(--line);align-items:center}.ckr:first-child{border-top:none}
+.ckr .nm{font-weight:700;font-size:13.3px}.ckr .en{display:block;font-size:11px;color:var(--muted);font-weight:600}
+.tri{display:flex;gap:5px}.tri button{border:1px solid var(--line);background:var(--surface);color:var(--muted);font-family:inherit;font-weight:800;font-size:11.3px;padding:5px 10px;border-radius:8px;cursor:pointer}
+.tri button.on[data-v="2"]{background:var(--green-soft);color:var(--green);border-color:#B7E0C9}
+.tri button.on[data-v="1"]{background:var(--amber-soft);color:var(--amber);border-color:#EAD3A3}
+.tri button.on[data-v="0"]{background:var(--rose-soft);color:var(--rose);border-color:#EFC3BE}
+/* format2 树 */
+.tree{background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:14px 18px}
+.tnode{font-weight:800;color:var(--indigo-deep);margin:10px 0 4px;font-size:14px}
+.tleaf{display:flex;align-items:center;gap:9px;padding:6px 0 6px 18px;cursor:pointer;border-left:2px solid var(--indigo-soft);margin-left:6px}
+.tbox{width:18px;height:18px;border:2px solid var(--line);border-radius:5px;flex:none;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800}
+.tleaf[data-s="2"] .tbox{background:var(--green);border-color:var(--green);color:#fff}
+.tleaf[data-s="1"] .tbox{background:var(--amber);border-color:var(--amber);color:#fff}
+.tleaf .tnm{font-size:13px}.tleaf[data-s="2"] .tnm{color:var(--muted)}
+/* format3 卡片 */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.qc{background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:12px;cursor:pointer;min-height:78px}
+.qc[data-s="0"]{border-top-color:var(--rose)}.qc[data-s="1"]{border-top-color:var(--amber)}.qc[data-s="2"]{border-top-color:var(--green)}
+.qc .nm{font-weight:800;font-size:13px;color:var(--indigo-deep)}.qc .st{font-size:11px;font-weight:800;margin-top:6px}
+.qc[data-s="0"] .st{color:var(--rose)}.qc[data-s="1"] .st{color:var(--amber)}.qc[data-s="2"] .st{color:var(--green)}
+.qc .en{font-size:10px;color:var(--muted);margin-top:2px}
+/* format4 看板 */
+.kb{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.kcol{background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:10px;min-height:120px}
+.kh{font-weight:800;font-size:12.5px;padding:5px 8px;border-radius:8px;margin-bottom:8px;text-align:center}
+.kh0{background:var(--rose-soft);color:var(--rose)}.kh1{background:var(--amber-soft);color:var(--amber)}.kh2{background:var(--green-soft);color:var(--green)}
+.kchip{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:7px 9px;font-size:12px;font-weight:700;margin:6px 0;cursor:pointer}
+.kchip:hover{border-color:var(--indigo)}
+.kchip .hint{font-size:10px;color:var(--muted);font-weight:600;display:block}
+.meter{background:var(--indigo-soft);border-radius:10px;padding:9px 13px;font-size:12.5px;font-weight:700;color:var(--indigo-deep);margin-bottom:12px}
+.dltools{position:fixed;top:12px;right:14px;z-index:70}.dltools button{border:none;border-radius:9px;padding:8px 12px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;color:#fff;background:var(--indigo);box-shadow:0 4px 12px rgba(30,30,60,.18)}
+@media(max-width:640px){.kb{grid-template-columns:1fr}.dltools{top:auto;bottom:14px}}
+</style></head><body>
+<div class="hero"><div class="hero-in"><a class="back" href="../index.html">← 学习中心 Hub</a>
+<h1>当前掌握 · Checklist（多版式）</h1><div class="en">What she can do now — pick the layout you like</div>
+<p>覆盖她现在学过的：代数（基本功/一元一次/因式/坐标一次/二次/不等式/韦达）＋几何（点线角/平行/三角形/相似/四边形/圆）。<b>四种版式共享同一状态</b>，随便切、随便标，本地保存。</p></div></div>
+<div class="dltools"><button onclick="window.print()">🖨 PDF</button></div>
+<div class="wrap">
+<div class="fmtbar">
+ <button class="fmt" onclick="setFmt('tri',this)">① 三态清单</button>
+ <button class="fmt" onclick="setFmt('tree',this)">② 知识树</button>
+ <button class="fmt" onclick="setFmt('card',this)">③ 卡片</button>
+ <button class="fmt" onclick="setFmt('kanban',this)">④ 看板</button>
+</div>
+<div class="legend"><b class="y">会</b>/绿 · <b class="m">在学/不确定</b>/琥珀 · <b class="n">没学/不会</b>/红。三态清单三个按钮选；树/卡片/看板<b>点一下循环</b>状态。</div>
+<div id="view"></div>
+</div>
+<script>
+var TOPICS=[["alg", "代数 Algebra", [["t1", "代数基本功", "Indices, formulas & basic factorising"], ["t2", "一元一次方程", "Linear equations"], ["t3", "因式分解与恒等式", "Factorising & identities"], ["t4", "坐标与一次函数", "Coordinates & linear graphs"], ["t5", "二次函数（初步）", "Quadratic functions (intro)"], ["t6", "不等式（组）", "Inequalities"], ["t7", "一元二次与韦达", "Quadratics & Vieta"]]], ["geo", "几何 Geometry", [["t8", "几何入门·点线角", "Points, lines & angles"], ["t9", "相交线与平行线", "Intersecting & parallel lines"], ["t10", "三角形（全等/等腰/勾股）", "Triangles (congruence/isosceles/Pythagoras)"], ["t11", "相似（面积比=相似比²）", "Similarity"], ["t12", "四边形（含中位线）", "Quadrilaterals"], ["t13", "圆（圆周角/垂径/切线/内接）", "Circles"]]]];
+var K='cl_status'; // {id:0/1/2}
+function load(){try{return JSON.parse(localStorage.getItem(K)||'{}')}catch(e){return {}}}
+function save(o){try{localStorage.setItem(K,JSON.stringify(o))}catch(e){}}
+var ST=load();
+function get(id){return (id in ST)?ST[id]:0;}
+function set(id,v){ST[id]=v;save(ST);render();}
+function cycle(id){set(id,(get(id)+1)%3);}
+var FMT='tri';
+function allItems(){var a=[];TOPICS.forEach(function(g){g[2].forEach(function(it){a.push(it)})});return a;}
+function meterHTML(){var a=allItems();var y=a.filter(function(it){return get(it[0])===2}).length;return '<div class="meter">已会 '+y+' / '+a.length+'（会 = 通过自查）</div>';}
+function render(){
+ var v=document.getElementById('view');var h=meterHTML();
+ if(FMT==='tri'){
+  TOPICS.forEach(function(g){h+='<div class="grp"><h3>'+g[1]+'</h3><div class="ck">';
+   g[2].forEach(function(it){var s=get(it[0]);
+    h+='<div class="ckr"><div><span class="nm">'+it[1]+'</span><span class="en">'+it[2]+'</span></div>'
+      +'<div class="tri">'+[["2","会"],["1","不确定"],["0","不会"]].map(function(o){return '<button data-v="'+o[0]+'" class="'+(String(s)===o[0]?'on':'')+'" onclick="set(\''+it[0]+'\','+o[0]+')">'+o[1]+'</button>'}).join('')+'</div></div>';
+   });h+='</div></div>';});
+ } else if(FMT==='tree'){
+  h+='<div class="tree">';TOPICS.forEach(function(g){h+='<div class="tnode">'+g[1]+'</div>';
+   g[2].forEach(function(it){var s=get(it[0]);
+    h+='<div class="tleaf" data-s="'+s+'" onclick="cycle(\''+it[0]+'\')"><span class="tbox">'+(s==2?'✓':s==1?'~':'')+'</span><span class="tnm">'+it[1]+'</span></div>';
+   });});h+='</div>';
+ } else if(FMT==='card'){
+  h+='<div class="cards">';allItems().forEach(function(it){var s=get(it[0]);var lb=s==2?'✅ 会了':s==1?'🟡 在学':'⬜ 没学';
+   h+='<div class="qc" data-s="'+s+'" onclick="cycle(\''+it[0]+'\')"><div class="nm">'+it[1]+'</div><div class="en">'+it[2]+'</div><div class="st">'+lb+'</div></div>';
+  });h+='</div>';
+ } else { // kanban
+  h+='<div class="kb">';[["0","没学","kh0"],["1","在学","kh1"],["2","会了","kh2"]].forEach(function(col){
+   h+='<div class="kcol"><div class="kh '+col[2]+'">'+col[1]+'</div>';
+   allItems().forEach(function(it){if(String(get(it[0]))===col[0]){h+='<div class="kchip" onclick="cycle(\''+it[0]+'\')">'+it[1]+'<span class="hint">点一下 →右移</span></div>';}});
+   h+='</div>';});h+='</div>';
+ }
+ v.innerHTML=h;
+}
+function setFmt(f,btn){FMT=f;document.querySelectorAll('.fmt').forEach(function(b){b.classList.toggle('on',b===btn)});try{localStorage.setItem('cl_fmt',f)}catch(e){};render();}
+document.addEventListener('DOMContentLoaded',function(){
+ var f='tri';try{f=localStorage.getItem('cl_fmt')||'tri'}catch(e){};
+ var map={tri:0,tree:1,card:2,kanban:3};FMT=f;
+ document.querySelectorAll('.fmt')[map[f]||0].classList.add('on');
+ document.querySelectorAll('.fmt').forEach(function(b,i){if(i!==(map[f]||0))b.classList.remove('on')});
+ render();
+});
+</script>
+</body></html>

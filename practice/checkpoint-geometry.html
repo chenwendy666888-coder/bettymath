@@ -58,7 +58,7 @@ h2.bh{font-size:16px;color:var(--indigo);border-bottom:2px solid var(--indigo-so
 <p>学完一"簇"设一道闸门：<b>限时做完 → 术语关 → 自评判分 → 决定过不过</b>。这是<b>模板</b>，以后每簇照这个套（下次加进圆/坐标几何）。</p></div></div>
 <div class="dltools"><button onclick="window.print()">🖨 PDF</button></div>
 <div class="wrap">
-<div class="legend"><div class="lg tc"><b>Concept</b> 理解概念 · 4题</div><div class="lg tf"><b>Fluency</b> 熟练计算 · 4题</div><div class="lg ta"><b>Applied</b> 综合(叠2点) · 3题</div><div class="lg te"><b>Elite</b> 压轴(叠多点) · 3题</div></div>
+<div class="legend"><div class="lg tc"><b>Concept</b> 理解概念 · 4题</div><div class="lg tf"><b>Fluency</b> 熟练计算 · 5题</div><div class="lg ta"><b>Applied</b> 综合(叠2点) · 3题</div><div class="lg te"><b>Elite</b> 压轴(叠多点) · 4题</div></div>
 <div class="note"><b>怎么用：</b>① 点「开始计时」，全程<b>不看答案、不给提示</b>；② 做完对答案；③ 到最下面填每级对了几道，工具会告诉你过不过、该补什么。定级都锚在真实例题难度上，Applied/Elite 刻意<b>叠多个点</b>。</div>
 
 <h2 class="bh">一、先自查 Self-check</h2>
@@ -68,7 +68,8 @@ h2.bh{font-size:16px;color:var(--indigo);border-bottom:2px solid var(--indigo-so
  <div class="tri" data-id="gk2"><button data-v="y" onclick="tri(this)">会</button><button data-v="m" onclick="tri(this)">不确定</button><button data-v="n" onclick="tri(this)">不会</button></div></div><div class="ckr"><div class="txt"><b>面积法：同高⇒面积比=底之比、梯形分割</b><span class="en">Area method: equal height, trapezium splits</span></div>
  <div class="tri" data-id="gk3"><button data-v="y" onclick="tri(this)">会</button><button data-v="m" onclick="tri(this)">不确定</button><button data-v="n" onclick="tri(this)">不会</button></div></div><div class="ckr"><div class="txt"><b>中位线、Varignon 中点四边形</b><span class="en">Midsegments & Varignon</span></div>
  <div class="tri" data-id="gk4"><button data-v="y" onclick="tri(this)">会</button><button data-v="m" onclick="tri(this)">不确定</button><button data-v="n" onclick="tri(this)">不会</button></div></div><div class="ckr"><div class="txt"><b>坐标判定图形、矩形+相似、将军饮马</b><span class="en">Coordinates, rectangle+similar, reflection</span></div>
- <div class="tri" data-id="gk5"><button data-v="y" onclick="tri(this)">会</button><button data-v="m" onclick="tri(this)">不确定</button><button data-v="n" onclick="tri(this)">不会</button></div></div></div>
+ <div class="tri" data-id="gk5"><button data-v="y" onclick="tri(this)">会</button><button data-v="m" onclick="tri(this)">不确定</button><button data-v="n" onclick="tri(this)">不会</button></div></div><div class="ckr"><div class="txt"><b>圆：圆周角/垂径/切线/内接四边形</b><span class="en">Circles: angles, perpendicular chord, tangent, cyclic quad</span></div>
+ <div class="tri" data-id="gk6"><button data-v="y" onclick="tri(this)">会</button><button data-v="m" onclick="tri(this)">不确定</button><button data-v="n" onclick="tri(this)">不会</button></div></div></div>
 
 <h2 class="bh">二、限时整合测（纯题·跨点）</h2>
 <div class="tgrp"><div class="tgh tc"><span>Concept · 理解概念</span><span class="en">4 题</span></div><div class="tbl"><div class="qq" id="q1"><div class="qhead"><span class="qno">1</span><span class="qen">Two angles add up to 180°. What are they called (English)?</span></div>
@@ -83,7 +84,7 @@ h2.bh{font-size:16px;color:var(--indigo);border-bottom:2px solid var(--indigo-so
         <div class="answer"><b>9 : 1</b>（面积比 = 相似比²）。</div></div><div class="qq" id="q4"><div class="qhead"><span class="qno">4</span><span class="qen">A triangle's angles are in ratio 1 : 2 : 3. Find the three angles.</span></div>
         <div class="qtags"><span class="tag">三角形</span></div><div class="qzh">三角形三内角比 1:2:3，求各角。</div>
         <div class="qbtns"><button class="mini" onclick="tzh('q4')">中文 CN</button><button class="mini" onclick="tans('q4')">答案</button></div>
-        <div class="answer"><b>30°, 60°, 90°</b>（和为180，分成6份）。</div></div></div></div><div class="tgrp"><div class="tgh tf"><span>Fluency · 熟练计算</span><span class="en">4 题</span></div><div class="tbl"><div class="qq" id="q5"><div class="qhead"><span class="qno">5</span><span class="qen">A rhombus has diagonals 10 and 24. Find its area and side length.</span></div>
+        <div class="answer"><b>30°, 60°, 90°</b>（和为180，分成6份）。</div></div></div></div><div class="tgrp"><div class="tgh tf"><span>Fluency · 熟练计算</span><span class="en">5 题</span></div><div class="tbl"><div class="qq" id="q5"><div class="qhead"><span class="qno">5</span><span class="qen">A rhombus has diagonals 10 and 24. Find its area and side length.</span></div>
         <div class="qtags"><span class="tag">菱形</span></div><div class="qzh">菱形对角线10、24，求面积与边长。</div>
         <div class="qbtns"><button class="mini" onclick="tzh('q5')">中文 CN</button><button class="mini" onclick="tans('q5')">答案</button></div>
         <div class="answer">area = ½·10·24 = <b>120</b>；side = √(5²+12²) = <b>13</b>。</div></div><div class="qq" id="q6"><div class="qhead"><span class="qno">6</span><span class="qen">△ABC ~ △DEF with AB = 8, DE = 12, BC = 10. Find EF.</span></div>
@@ -95,7 +96,10 @@ h2.bh{font-size:16px;color:var(--indigo);border-bottom:2px solid var(--indigo-so
         <div class="answer">½·(7+11)·6 = <b>54</b>。</div></div><div class="qq" id="q8"><div class="qhead"><span class="qno">8</span><span class="qen">Isosceles triangle with apex angle 40°. Find the base angles.</span></div>
         <div class="qtags"><span class="tag">三角形</span></div><div class="qzh">等腰三角形顶角40°，求底角。</div>
         <div class="qbtns"><button class="mini" onclick="tzh('q8')">中文 CN</button><button class="mini" onclick="tans('q8')">答案</button></div>
-        <div class="answer">(180−40)/2 = <b>70°</b> each。</div></div></div></div><div class="tgrp"><div class="tgh ta"><span>Applied · 综合(叠2点)</span><span class="en">3 题</span></div><div class="tbl"><div class="qq" id="q9"><div class="qhead"><span class="qno">9</span><span class="qen">DE ∥ BC, AD : DB = 1 : 3, area△ADE = 5. Find the area of trapezium DBCE.</span></div>
+        <div class="answer">(180−40)/2 = <b>70°</b> each。</div></div><div class="qq" id="q15"><div class="qhead"><span class="qno">15</span><span class="qen">A circle of radius 13 has a chord of length 24. Find the distance from the centre to the chord.</span></div>
+        <div class="qtags"><span class="tag">圆</span><span class="tag">垂径</span><span class="tag">勾股</span></div><div class="qzh">半径13、弦24，求弦心距。</div>
+        <div class="qbtns"><button class="mini" onclick="tzh('q15')">中文 CN</button><button class="mini" onclick="tans('q15')">答案</button></div>
+        <div class="answer">半弦=12 ⇒ d = √(13²−12²) = <b>5</b>。</div></div></div></div><div class="tgrp"><div class="tgh ta"><span>Applied · 综合(叠2点)</span><span class="en">3 题</span></div><div class="tbl"><div class="qq" id="q9"><div class="qhead"><span class="qno">9</span><span class="qen">DE ∥ BC, AD : DB = 1 : 3, area△ADE = 5. Find the area of trapezium DBCE.</span></div>
         <div class="qtags"><span class="tag">相似</span><span class="tag">面积法</span></div><div class="qzh">DE∥BC，AD:DB=1:3，△ADE=5，求梯形DBCE。</div>
         <div class="qbtns"><button class="mini" onclick="tzh('q9')">中文 CN</button><button class="mini" onclick="tans('q9')">答案</button></div>
         <div class="answer">AD:AB=1:4 ⇒ ADE:ABC=1:16 ⇒ ADE:trap=1:15 ⇒ trap = 5·15 = <b>75</b>。</div></div><div class="qq" id="q10"><div class="qhead"><span class="qno">10</span><span class="qen">Rectangle 9 by 12. Find the diagonal, then the perpendicular distance from a corner to that diagonal.</span></div>
@@ -104,13 +108,16 @@ h2.bh{font-size:16px;color:var(--indigo);border-bottom:2px solid var(--indigo-so
         <div class="answer">diagonal = √(9²+12²) = 15；垂线 = <span class="fr"><span class="nu">9×12</span><span class="de">15</span></span> = <b>7.2</b>（△相似或面积法）。</div></div><div class="qq" id="q11"><div class="qhead"><span class="qno">11</span><span class="qen">Square ABCD of side 8. E, F are midpoints of BC, CD. Find the area of △AEF.</span></div>
         <div class="qtags"><span class="tag">正方形</span><span class="tag">坐标/面积</span></div><div class="qzh">正方形边8，E、F是BC、CD中点，求△AEF面积。</div>
         <div class="qbtns"><button class="mini" onclick="tzh('q11')">中文 CN</button><button class="mini" onclick="tans('q11')">答案</button></div>
-        <div class="answer">用坐标 A(0,8),E(8,4),F(4,0) ⇒ area = <b>24</b>（正方形64的3/8）。</div></div></div></div><div class="tgrp"><div class="tgh te"><span>Elite · 压轴(叠多点)</span><span class="en">3 题</span></div><div class="tbl"><div class="qq" id="q12"><div class="qhead"><span class="qno">12</span><span class="qen">DE ∥ BC, AD : AB = 2 : 5, area of trapezium DBCE = 42. Find area△ADE.</span></div>
+        <div class="answer">用坐标 A(0,8),E(8,4),F(4,0) ⇒ area = <b>24</b>（正方形64的3/8）。</div></div></div></div><div class="tgrp"><div class="tgh te"><span>Elite · 压轴(叠多点)</span><span class="en">4 题</span></div><div class="tbl"><div class="qq" id="q12"><div class="qhead"><span class="qno">12</span><span class="qen">DE ∥ BC, AD : AB = 2 : 5, area of trapezium DBCE = 42. Find area△ADE.</span></div>
         <div class="qtags"><span class="tag">相似</span><span class="tag">面积法</span><span class="tag">逆推</span></div><div class="qzh">DE∥BC，AD:AB=2:5，梯形DBCE=42，求△ADE。</div>
         <div class="qbtns"><button class="mini" onclick="tzh('q12')">中文 CN</button><button class="mini" onclick="tans('q12')">答案</button></div>
         <div class="answer">ADE:ABC=(2:5)²=4:25 ⇒ ADE:trap=4:21 ⇒ ADE = 42·4/21 = <b>8</b>。</div></div><div class="qq" id="q13"><div class="qhead"><span class="qno">13</span><span class="qen">A rhombus has diagonals 6 and 8. Find its side and its height (distance between two opposite sides).</span></div>
         <div class="qtags"><span class="tag">菱形</span><span class="tag">面积</span><span class="tag">勾股</span></div><div class="qzh">菱形对角线6、8，求边长与高（两对边间距）。</div>
         <div class="qbtns"><button class="mini" onclick="tzh('q13')">中文 CN</button><button class="mini" onclick="tans('q13')">答案</button></div>
-        <div class="answer">side = √(3²+4²) = 5；area = ½·6·8 = 24；height = area/side = <span class="fr"><span class="nu">24</span><span class="de">5</span></span> = <b>4.8</b>。</div></div><div class="qq" id="q14"><div class="qhead"><span class="qno">14</span><span class="qen">The diagonals of a trapezium split it into 4 triangles. The two triangles on the parallel sides have areas 4 and 9. Find the total area.</span></div>
+        <div class="answer">side = √(3²+4²) = 5；area = ½·6·8 = 24；height = area/side = <span class="fr"><span class="nu">24</span><span class="de">5</span></span> = <b>4.8</b>。</div></div><div class="qq" id="q16"><div class="qhead"><span class="qno">16</span><span class="qen">P is 10 from the centre O of a circle of radius 6. PT is a tangent (T the point of contact). Find PT, then the area of △OPT.</span></div>
+        <div class="qtags"><span class="tag">圆</span><span class="tag">切线</span><span class="tag">勾股</span></div><div class="qzh">P到圆心O距离10，半径6，PT切线，求PT与△OPT面积。</div>
+        <div class="qbtns"><button class="mini" onclick="tzh('q16')">中文 CN</button><button class="mini" onclick="tans('q16')">答案</button></div>
+        <div class="answer">OT⊥PT ⇒ PT = √(10²−6²) = <b>8</b>；area△OPT = ½·6·8 = <b>24</b>。</div></div><div class="qq" id="q14"><div class="qhead"><span class="qno">14</span><span class="qen">The diagonals of a trapezium split it into 4 triangles. The two triangles on the parallel sides have areas 4 and 9. Find the total area.</span></div>
         <div class="qtags"><span class="tag">相似</span><span class="tag">面积法</span><span class="tag">梯形</span></div><div class="qzh">梯形对角线分成4个三角形，两条平行边上的两块面积为4、9，求梯形总面积。</div>
         <div class="qbtns"><button class="mini" onclick="tzh('q14')">中文 CN</button><button class="mini" onclick="tans('q14')">答案</button></div>
         <div class="answer">两块相似；两腰上的三角形各 = √(4·9) = 6；总 = 4+9+6+6 = <b>25</b> = (√4+√9)²。</div></div></div></div>
@@ -121,9 +128,9 @@ h2.bh{font-size:16px;color:var(--indigo);border-bottom:2px solid var(--indigo-so
 <h2 class="bh">四、判分与决策 Score & decide</h2>
 <div class="scorer">
  <div class="scr"><span class="cap"><b>Concept</b> 我对了几道（共 4）</span><input id="sco" type="number" min="0" max="4" value="0"></div>
- <div class="scr"><span class="cap"><b>Fluency</b>（共 4）</span><input id="sfl" type="number" min="0" max="4" value="0"></div>
+ <div class="scr"><span class="cap"><b>Fluency</b>（共 5）</span><input id="sfl" type="number" min="0" max="5" value="0"></div>
  <div class="scr"><span class="cap"><b>Applied</b>（共 3）</span><input id="sap" type="number" min="0" max="3" value="0"></div>
- <div class="scr"><span class="cap"><b>Elite</b>（共 3）</span><input id="sel" type="number" min="0" max="3" value="0"></div>
+ <div class="scr"><span class="cap"><b>Elite</b>（共 4）</span><input id="sel" type="number" min="0" max="4" value="0"></div>
  <button class="scbtn" onclick="grade()">看结果 & 建议</button>
  <div class="verdict" id="verdict"></div>
  <div class="sub" style="margin-top:10px">过关线：Concept ≥ 3/4、Fluency ≥ 3/4、Applied+Elite ≥ 3/6。规则：Concept错→回讲义；Fluency错→刷题；Applied/Elite错→叠加训练。</div>
