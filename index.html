@@ -91,6 +91,9 @@ footer{max-width:1040px;margin:0 auto 40px;padding:0 18px;color:var(--muted);fon
 .sttag{font-size:10px;font-weight:800;color:var(--amber);background:var(--amber-soft);border-radius:99px;padding:1px 8px;margin-top:4px;display:inline-block}
 .stadd{grid-column:1/-1;font-size:11px;color:var(--muted);border-top:1px dashed var(--line);padding-top:9px;margin-top:2px}
 .stadd code{background:var(--grey-soft);border-radius:4px;padding:1px 5px;font-size:10.5px}
+.rcard{text-decoration:none;color:inherit}.rcard:hover{border-color:#C9CCF3}
+.rem{font-size:26px;line-height:1;margin-bottom:6px}
+.badge.rtag{background:var(--amber-soft);color:var(--amber)}
 </style></head><body>
 <div class="hero"><div class="hero-in">
   <div class="eyebrow">数学大树 · Guangjian & beyond</div>
@@ -198,11 +201,10 @@ const CATS=[
  {emoji:'📖',name:'阅读',en:'Reading',bcls:'rd',desc:'当课外读物，读完能用',ids:['R1']},
  {emoji:'🧠',name:'解题思路篇',en:'Thinking',bcls:'rd',desc:'数感·易错点·方法，学任何一章前先建立感觉',ids:['F0a','F0c','F0b']},
  {emoji:'🏫',name:'学校教材内容',en:'School Textbook',bcls:'bi',desc:'浙教版从零：坐标·一次函数、二次、代数基本功、几何入门…',ids:['01','F1','F6','02','03','F2','F3','F4','F5','G1','F7','F8','G2','G3','G6']},
- {emoji:'🔷',name:'几何·深化',en:'Geometry (deep)',bcls:'bi',desc:'相似/四边形/圆 — 光剑高频，四级难度深讲（新）',ids:['B7','B5','B6']},
- {emoji:'📈',name:'函数·深化',en:'Functions (deep)',bcls:'bi',desc:'二次函数(含最值·区间最值) / 反比例与渐近线（新）',ids:['C4b','C3r']},
- {emoji:'🎯',name:'备考内容',en:'Exam Prep',bcls:'bi',desc:'光剑深化与英文卷「加料」：韦达、函数、换元、专项…',ids:['A','B','D','E','C1','C2','C3','C4','G4','G5']},
- {emoji:'🎲',name:'计数 · 概率 · 数论',en:'Counting / Prob / NT',bcls:'bi',desc:'排列组合·概率·整除数论',ids:['N1','N2','N3']},
- {emoji:'🏆',name:'应用 · AMC',en:'Applications & AMC',bcls:'bi',desc:'应用题与竞赛拓展',ids:['P','AMC']}
+ {emoji:'🔢',name:'代数',en:'Algebra',bcls:'bi',desc:'因式/分式/绝对值/韦达/换元/根式数列 + 函数(二次·反比例·复合)，含加料与最值',ids:['C1','C2','C3','A','D','E','C4b','C4','B','C3r']},
+ {emoji:'📐',name:'几何',en:'Geometry',bcls:'bi',desc:'相似/四边形/圆(深) + 坐标几何/翻折旋转，光剑高频',ids:['B7','B5','B6','G4','G5']},
+ {emoji:'🧩',name:'应用',en:'Applications',bcls:'bi',desc:'应用题·建模（最优化、行程、方位角）',ids:['P']},
+ {emoji:'📦',name:'其他 · 计数竞赛',en:'Other',bcls:'bi',desc:'排列组合·概率·数论·AMC 竞赛拓展',ids:['N1','N2','N3','AMC']}
 ];
 const REFS=[
  {em:'🗒',zh:'进度 & 待做',en:'Progress',href:'syllabus/backlog.html'},
@@ -265,6 +267,18 @@ function renderCards(){
   });
   h+='</div></section>';
  });
+ // —— 练习·测试 区（复用 STAGETESTS）——
+ h+='<section class="grp"><h2>🧪 练习 · 测试 <span class="en">Practice & Tests</span><span class="cnt">· '+STAGETESTS.length+' 项</span></h2><p class="desc">限时卷 / Checkpoint / PDF 作答卷，都在这。</p><div class="grid">';
+ STAGETESTS.forEach(function(t){
+  h+='<a class="card rcard" href="'+t.href+'"><div class="rem">'+t.em+'</div><div class="cen">'+t.en+'</div><div class="czh">'+t.zh+'</div><span class="badge rtag">'+t.tag+'</span><div class="cfoot"><span class="open2">打开 →</span></div></a>';
+ });
+ h+='</div></section>';
+ // —— 工具·参考 区（复用 REFS）——
+ h+='<section class="grp"><h2>🧰 工具 · 参考 <span class="en">Tools & Reference</span><span class="cnt">· '+REFS.length+' 项</span></h2><p class="desc">考纲 / 逻辑图 / 真题对应 / 术语训练 / 进度…全部工具页。</p><div class="grid">';
+ REFS.forEach(function(t){
+  h+='<a class="card rcard" href="'+t.href+'"><div class="rem">'+t.em+'</div><div class="cen">'+t.en+'</div><div class="czh">'+t.zh+'</div><span class="badge bi">工具 Tool</span><div class="cfoot"><span class="open2">打开 →</span></div></a>';
+ });
+ h+='</div></section>';
  document.getElementById('viewCards').innerHTML=h;
 }
 function renderBoard(){
