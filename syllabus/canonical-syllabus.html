@@ -1,0 +1,69 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>光剑 Canonical 考纲 + 迁移映射</title><style>
+:root{--bg:#F4F6FB;--surface:#fff;--ink:#1B1B2A;--muted:#6A6A82;--line:#E3E6F0;--indigo:#4A43C4;--indigo-deep:#2E2A6B;--indigo-soft:#EEF0FC;--amber:#C77A15;--amber-soft:#FCF2DF;--green:#1F8A5B;--green-soft:#E6F5EE;--rose:#C0453B;--rose-soft:#FBEDEC;--grey-soft:#EEF0F4;--shadow:0 1px 2px rgba(30,30,60,.05),0 6px 20px rgba(30,30,60,.06);--font:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Segoe UI",Roboto,sans-serif;}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.6}
+.hero{background:var(--surface);border-bottom:1px solid var(--line);padding:18px 22px}.hero-in{max-width:940px;margin:0 auto}
+.back{color:var(--indigo);text-decoration:none;font-size:13px;font-weight:700}
+.hero h1{margin:6px 0 2px;font-size:22px;color:var(--indigo-deep)}.hero .en{font-size:12.5px;color:var(--muted);font-weight:700}.hero p{margin:6px 0 0;color:var(--muted);font-size:13px}
+.wrap{max-width:940px;margin:16px auto 60px;padding:0 22px}
+h2.bh{font-size:16.5px;color:var(--indigo);border-bottom:2px solid var(--indigo-soft);padding-bottom:5px;margin:26px 0 10px;display:flex;gap:8px;align-items:baseline}
+h2 .n{font-size:11.5px;color:var(--muted);font-weight:700}
+.sub{font-size:12.5px;color:var(--muted);margin:-4px 0 12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:14px 16px}
+/* 频次条 */
+.fr{display:flex;align-items:center;gap:10px;margin:6px 0}
+.fr .lb{width:88px;font-size:12.5px;font-weight:700;text-align:right;flex:none}
+.fr .bar{height:16px;border-radius:5px}
+.fr .v{font-size:11.5px;font-weight:800;color:var(--muted)}
+/* 表 */
+table{width:100%;border-collapse:collapse;font-size:12.5px;background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
+th,td{text-align:left;padding:8px 11px;border-top:1px solid var(--line);vertical-align:top}
+th{background:var(--grey-soft);color:#3a3a52;font-size:11.5px;border-top:none}
+tr td:first-child{font-weight:700}
+.pill{display:inline-block;font-size:10px;font-weight:800;border-radius:99px;padding:1px 8px;color:#fff}
+.tc{background:#6A6A82}.tf{background:var(--green)}.ta{background:var(--amber)}.te{background:var(--rose)}
+.canon{color:var(--green);font-weight:800}.demote{color:var(--rose)}
+/* 主线 */
+.linegrp{background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:12px 14px;margin-bottom:10px}
+.linehd{font-weight:800;font-size:14px;margin-bottom:8px}
+.steps{display:flex;flex-wrap:wrap;gap:7px;align-items:center}
+.step{border:1px solid var(--line);border-radius:9px;padding:6px 10px;font-size:12px;font-weight:700;background:#FBFBFE;position:relative}
+.step .fq{font-size:9.5px;font-weight:800;color:var(--amber);display:block}
+.step.hub{border-color:var(--amber);background:var(--amber-soft)}
+.arrow{color:var(--muted);font-weight:800}
+/* action */
+.act{display:grid;grid-template-columns:44px 150px 1fr;gap:10px;padding:9px 0;border-top:1px dashed var(--line);align-items:start}.act:first-child{border-top:none}
+.pri{font-size:11px;font-weight:800;border-radius:8px;padding:2px 0;text-align:center;color:#fff}.p0{background:var(--rose)}.p1{background:var(--amber)}.p2{background:var(--muted)}
+.act .t{font-weight:800;font-size:13px}.act .d{font-size:12px;color:var(--muted)}
+.note{background:var(--amber-soft);color:#7a5210;border-radius:10px;padding:11px 15px;font-size:12.6px;margin:10px 0}
+.dltools{position:fixed;top:12px;right:14px;z-index:70}.dltools button{border:none;border-radius:9px;padding:8px 12px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;color:#fff;background:var(--indigo);box-shadow:0 4px 12px rgba(30,30,60,.18)}
+@media(max-width:640px){.act{grid-template-columns:40px 1fr}.act .d{grid-column:1/-1}.dltools{top:auto;bottom:14px}}
+@media print{.dltools,.back{display:none}}
+</style></head><body>
+<div class="hero"><div class="hero-in"><a class="back" href="../index.html">← 学习中心 Hub</a>
+<h1>光剑 Canonical 考纲 + 迁移映射</h1><div class="en">One canonical syllabus · one difficulty scale · one spine</div>
+<p>解决"两套并存、重复没逻辑"：这页定死①光剑到底考什么②难度只用一套③一考点只认一份讲义④学习主线，最后给清理清单。审完这张总图，再逐个清理。</p></div></div>
+<div class="dltools"><button onclick="window.print()">🖨 PDF</button></div>
+<div class="wrap">
+
+<h2 class="bh">一、光剑考什么 <span class="n">从 5 套真题 56 题反推</span></h2>
+<p class="sub">光剑无公开考纲，权重＝真题出现次数。代数≈28 / 几何≈23 / 计数概率数论≈5；英文卷约 <b>50–64% 是"加料"</b>（超初中）。<b>不考</b>：立体几何、复数。<b>工具不单考</b>：集合逻辑。<b>低优先</b>：锐角三角比、统计、方位角。</p>
+<div class="card"><div class="fr"><span class="lb">相似</span><div class="bar" style="width:72.0%;background:#1F8A5B"></div><span class="v">×10</span></div><div class="fr"><span class="lb">坐标几何</span><div class="bar" style="width:64.8%;background:#1F8A5B"></div><span class="v">×9</span></div><div class="fr"><span class="lb">一元二次</span><div class="bar" style="width:64.8%;background:#4A43C4"></div><span class="v">×9</span></div><div class="fr"><span class="lb">四边形</span><div class="bar" style="width:57.6%;background:#1F8A5B"></div><span class="v">×8</span></div><div class="fr"><span class="lb">二次根式</span><div class="bar" style="width:43.199999999999996%;background:#4A43C4"></div><span class="v">×6</span></div><div class="fr"><span class="lb">三角形</span><div class="bar" style="width:36.0%;background:#1F8A5B"></div><span class="v">×5</span></div><div class="fr"><span class="lb">勾股</span><div class="bar" style="width:36.0%;background:#1F8A5B"></div><span class="v">×5</span></div><div class="fr"><span class="lb">圆</span><div class="bar" style="width:28.8%;background:#1F8A5B"></div><span class="v">×4</span></div><div class="fr"><span class="lb">二次函数</span><div class="bar" style="width:28.8%;background:#4A43C4"></div><span class="v">×4</span></div><div class="sub" style="margin:8px 0 0"><span style="color:#4A43C4">■代数</span> · <span style="color:#1F8A5B">■几何</span>——前四高频（相似/坐标几何/一元二次/四边形）＝重心，先学多练。</div></div>
+
+<h2 class="bh">二、难度只用一套 <span class="n">退掉「基础/进阶/挑战」</span></h2>
+<p class="sub">老讲义那套三档跟新四级重叠，是"感觉重复"的主因之一。统一映射如下，定级一律锚真实考题。</p>
+<table><tr><th>老（旧三档）</th><th>新（统一四级）</th><th>说明</th></tr><tr><td>基础 Basic</td><td><span class="pill tc">Concept + Fluency</span></td><td>概念理解 + 基本熟练</td></tr><tr><td>进阶 Intermediate</td><td><span class="pill ta">Applied</span></td><td>综合运用(叠2点)</td></tr><tr><td>挑战 Challenge</td><td><span class="pill te">Elite</span></td><td>压轴(叠多点)</td></tr><tr><td>挑战·同型</td><td><span class="pill te">Elite</span></td><td>来自光剑/他校真题的同型题</td></tr></table>
+
+<h2 class="bh">三、一考点一讲义 <span class="n">canonical 为准 · 老版降级</span></h2>
+<p class="sub">同考点两份（老中文薄版 + 新双语深讲）是重复的根源。以<b class="canon">新双语深讲</b>为准，老版降为"旧版/预习"或合并去重。</p>
+<table><tr><th>考点</th><th>以此为准 canonical</th><th>老/重复</th><th>怎么处理</th></tr><tr><td>二次函数 Quadratic fn</td><td class="canon">C4b 二次函数(深·含最值)</td><td>F6 二次函数初步</td><td class="demote">降为『旧版/预习』</td></tr><tr><td>相似 Similarity</td><td class="canon">B7 相似(独立)</td><td>G1 里的相似部分</td><td class="demote">从 G1 移除，G1 只留三角形</td></tr><tr><td>四边形 Quadrilaterals</td><td class="canon">B5 四边形(深)</td><td>G2 四边形</td><td class="demote">降为『旧版/预习』</td></tr><tr><td>圆 Circles</td><td class="canon">B6 圆(深)</td><td>G3 圆</td><td class="demote">降为『旧版/预习』</td></tr><tr><td>反比例·渐近线 Reciprocal</td><td class="canon">C3r 反比例与渐近线</td><td>（无老版）</td><td class="">新建，直接为准</td></tr><tr><td>不等式 Inequalities</td><td class="canon">待合并成一份</td><td>03 不等式 + F7 不等式阴影</td><td class="demote">两份合并去重</td></tr><tr><td>画图·坐标 Graphing</td><td class="canon">待合并成一份</td><td>02 图像 + F1 坐标一次</td><td class="demote">两份合并去重</td></tr><tr><td>因式分解 Factorising</td><td class="canon">C1 因式分解</td><td>—</td><td class="">已为准（枢纽）</td></tr><tr><td>分式 Fractions</td><td class="canon">C2 分式</td><td>—</td><td class="">已为准</td></tr><tr><td>绝对值 Absolute value</td><td class="canon">C3 绝对值</td><td>—</td><td class="">已为准（需从零补入门）</td></tr><tr><td>韦达 Vieta</td><td class="canon">A 韦达</td><td>—</td><td class="">已为准（她已不错）</td></tr><tr><td>换元·对称 Substitution</td><td class="canon">D 换元</td><td>—</td><td class="">已为准</td></tr><tr><td>根式·数列 Surds/Seq</td><td class="canon">E 根式数列</td><td>—</td><td class="">已为准</td></tr><tr><td>坐标几何 Coord geom</td><td class="canon">G4 坐标几何</td><td>—</td><td class="">已为准（待深化，×9 高频）</td></tr><tr><td>翻折·旋转 Transform</td><td class="canon">G5 翻折旋转</td><td>—</td><td class="">已为准</td></tr><tr><td>三角形 Triangles</td><td class="canon">G1 三角形(去相似)</td><td>—</td><td class="">已为准</td></tr><tr><td>三角比 Trig ratios</td><td class="canon">G6 解直角三角形</td><td>—</td><td class="">低优先（留 A-Level）</td></tr></table>
+
+<h2 class="bh">四、学习主线 <span class="n">依赖顺序 × 频次加权</span></h2>
+<p class="sub">按"先枢纽、先高频、依赖在前"排，落进你定的四类。★ 底色＝枢纽（断了后面学不动）。</p>
+<div class="linegrp"><div class="linehd" style="color:#4A43C4">🔢 代数打底 <span style="color:var(--muted);font-size:11px;font-weight:600">Algebra base</span></div><div class="steps"><span class="step hub">因式分解 C1<span class="fq">枢纽·先学</span></span><span class="arrow">→</span><span class="step ">一元二次 A6<span class="fq">×9</span></span><span class="arrow">→</span><span class="step ">二次根式 E<span class="fq">×6</span></span><span class="arrow">→</span><span class="step ">分式 C2</span><span class="arrow">→</span><span class="step ">韦达 A<span class="fq">她已不错</span></span><span class="arrow">→</span><span class="step ">二次函数 C4b<span class="fq">×4·含最值</span></span></div></div><div class="linegrp"><div class="linehd" style="color:#1F8A5B">📐 几何打底 <span style="color:var(--muted);font-size:11px;font-weight:600">Geometry base</span></div><div class="steps"><span class="step ">三角形 G1<span class="fq">×5</span></span><span class="arrow">→</span><span class="step ">勾股<span class="fq">×5·接坐标/圆</span></span><span class="arrow">→</span><span class="step hub">相似 B7<span class="fq">×10·枢纽</span></span><span class="arrow">→</span><span class="step ">四边形 B5<span class="fq">×8</span></span><span class="arrow">→</span><span class="step ">圆 B6<span class="fq">×4</span></span><span class="arrow">→</span><span class="step ">坐标几何 G4<span class="fq">×9·几何↔函数</span></span></div></div><div class="linegrp"><div class="linehd" style="color:#C77A15">🧪 加料层 <span style="color:var(--muted);font-size:11px;font-weight:600">Enrichment</span></div><div class="steps"><span class="step ">绝对值分类 C3<span class="fq">加料</span></span><span class="arrow">→</span><span class="step ">换元·对称 D<span class="fq">加料</span></span><span class="arrow">→</span><span class="step ">复合/函数方程<span class="fq">加料</span></span><span class="arrow">→</span><span class="step ">反比例·渐近线 C3r<span class="fq">反比例+相似高频</span></span><span class="arrow">→</span><span class="step ">不等式深化<span class="fq">均值/恒成立</span></span></div></div><div class="linegrp"><div class="linehd" style="color:#C0453B">📦 计数·应用·竞赛 <span style="color:var(--muted);font-size:11px;font-weight:600">Other</span></div><div class="steps"><span class="step ">排列组合 N2</span><span class="arrow">→</span><span class="step ">概率 N3</span><span class="arrow">→</span><span class="step ">数论 N1</span><span class="arrow">→</span><span class="step ">应用建模 P</span><span class="arrow">→</span><span class="step ">AMC 竞赛<span class="fq">拓展</span></span><span class="arrow">→</span><span class="step hub">两套全真限时模考<span class="fq">收口</span></span></div></div>
+
+<h2 class="bh">五、处理清单 <span class="n">审完这张图后逐个做</span></h2>
+<div class="card"><div class="act"><span class="pri p0">P0</span><div class="t">难度标签统一</div><div class="d">把老讲义的『基础/进阶/挑战』按映射改成 Concept/Fluency/Applied/Elite（老文件不改内容，新建统一版或在 index 只展示新版）</div></div><div class="act"><span class="pri p0">P0</span><div class="t">一考点一讲义</div><div class="d">index 里同考点只展示 canonical 版；老薄版归到『旧版/预习』折叠区，不再并排</div></div><div class="act"><span class="pri p1">P1</span><div class="t">合并去重</div><div class="d">不等式(03+F7)、画图坐标(02+F1) 各合并成一份</div></div><div class="act"><span class="pri p1">P1</span><div class="t">G1 拆分</div><div class="d">G1 只留三角形，相似统一指向 B7</div></div><div class="act"><span class="pri p1">P1</span><div class="t">坐标几何深化</div><div class="d">G4 是 ×9 高频却还薄，按 B7 那种四级深讲重做</div></div><div class="act"><span class="pri p2">P2</span><div class="t">补断层</div><div class="d">绝对值从零入门、集合逻辑(工具)</div></div></div>
+<div class="note"><b>原则不变：</b>已成型/她学过的讲义<b>不改内容</b>——"降级/合并"只动 index 的展示与新建合并版，老文件留着。定级锚真题、练习纯题、真题改编标【同型】。</div>
+
+</div></body></html>

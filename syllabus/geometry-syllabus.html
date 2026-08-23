@@ -1,0 +1,42 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>几何大纲 · Geometry Syllabus</title><style>
+:root{--bg:#F4F6FB;--surface:#fff;--ink:#1B1B2A;--muted:#6A6A82;--line:#E3E6F0;--indigo:#4A43C4;--indigo-deep:#2E2A6B;--indigo-soft:#EEF0FC;--green:#1F8A5B;--green-soft:#E6F5EE;--amber:#C77A15;--amber-soft:#FCF2DF;--grey-soft:#EEF0F4;--shadow:0 1px 2px rgba(30,30,60,.05),0 6px 20px rgba(30,30,60,.06);--font:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Segoe UI",Roboto,sans-serif;}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.55}
+.hero{background:var(--surface);border-bottom:1px solid var(--line);padding:18px 22px}.hero-in{max-width:900px;margin:0 auto}
+.back{color:var(--indigo);text-decoration:none;font-size:13px;font-weight:700}
+.hero h1{margin:6px 0 2px;font-size:21px;color:var(--indigo-deep)}.hero .en{font-size:12.5px;color:var(--muted);font-weight:700}.hero p{margin:6px 0 0;color:var(--muted);font-size:13px}
+.wrap{max-width:900px;margin:16px auto 60px;padding:0 22px}
+.stat{display:flex;gap:10px;margin:2px 0 16px;flex-wrap:wrap}
+.pill{background:var(--surface);border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow);padding:9px 14px;font-size:12.5px;font-weight:700}.pill b{font-size:16px;color:var(--indigo)}
+.ph{margin:22px 0 8px;font-weight:800;color:var(--indigo);font-size:15px;border-bottom:2px solid var(--indigo-soft);padding-bottom:5px}
+.chain{display:flex;flex-direction:column;gap:0}
+.node{display:flex;gap:12px;align-items:stretch;text-decoration:none;color:inherit}
+.rail{width:26px;flex:none;display:flex;flex-direction:column;align-items:center}
+.dot{width:14px;height:14px;border-radius:99px;margin-top:16px;flex:none}
+.vline{width:2px;flex:1;background:var(--line)}
+.cardc{flex:1;background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:11px 14px;margin:6px 0;display:flex;align-items:center;gap:10px}
+.cardc:hover{border-color:#C9CCF3}
+.cardc .nm{font-weight:800;font-size:13.5px;color:var(--indigo-deep)}
+.cardc .fq{font-size:11px;font-weight:800;color:var(--amber);background:var(--amber-soft);border-radius:99px;padding:1px 9px;margin-left:auto;white-space:nowrap}
+.cardc .st{font-size:10.5px;font-weight:800;border-radius:99px;padding:2px 9px;white-space:nowrap}
+.cardc .go{font-size:11px;color:var(--indigo);font-weight:700;white-space:nowrap}
+.note{background:var(--amber-soft);color:#7a5210;border-radius:10px;padding:11px 15px;font-size:12.6px;margin:14px 0}
+.dltools{position:fixed;top:12px;right:14px;z-index:70}.dltools button{border:none;border-radius:9px;padding:8px 12px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;color:#fff;background:var(--indigo);box-shadow:0 4px 12px rgba(30,30,60,.18)}
+@media print{.dltools,.back{display:none}}
+</style></head><body>
+<div class="hero"><div class="hero-in"><a class="back" href="../index.html">← 学习中心 Hub</a>
+<h1>几何大纲 · Geometry Syllabus</h1><div class="en">The whole geometry track, in learning order</div>
+<p>按依赖顺序排的完整几何线：基础(点线角/平行线) → 核心(三角形全等/相似/四边形/圆) → 汇合(坐标几何) → 变换(翻折旋转) → 拓展(三角比)。频次来自真题，★高频先学多练。</p></div></div>
+<div class="dltools"><button onclick="window.print()">🖨 PDF</button></div>
+<div class="wrap"><div class="stat"><span class="pill">章节 <b>9</b></span><span class="pill">✅ 已完成 <b>5</b></span><span class="pill">🆕 本轮新增 <b>3</b></span><span class="pill">⏳ 低优先 <b>1</b></span></div><div class="ph">基础 Foundation</div><div class="chain"><a class="node" href="lectures/B1_points-lines-angles.html"><div class="rail"><div class="dot" style="background:#4A43C4"></div><div class="vline"></div></div>
+        <div class="cardc"><span class="nm">点·线·角 Points, lines & angles</span><span class="st" style="color:#4A43C4;background:#EEF0FC">🆕 本轮新增</span><span class="go">打开 →</span></div></a><a class="node" href="lectures/B2_parallel-lines.html"><div class="rail"><div class="dot" style="background:#4A43C4"></div><div class="vline"></div></div>
+        <div class="cardc"><span class="nm">平行线 Parallel lines</span><span class="st" style="color:#4A43C4;background:#EEF0FC">🆕 本轮新增</span><span class="go">打开 →</span></div></a></div><div class="ph">核心 Core</div><div class="chain"><a class="node" href="lectures/B3_triangles.html"><div class="rail"><div class="dot" style="background:#1F8A5B"></div><div class="vline"></div></div>
+        <div class="cardc"><span class="nm">三角形与全等 Triangles & congruence</span><span class="fq">×5·勾股×5</span><span class="st" style="color:#1F8A5B;background:#E6F5EE">✅ 已完成</span><span class="go">打开 →</span></div></a><a class="node" href="lectures/B7_similarity.html"><div class="rail"><div class="dot" style="background:#1F8A5B"></div><div class="vline"></div></div>
+        <div class="cardc"><span class="nm">相似 Similarity</span><span class="fq">×10 枢纽</span><span class="st" style="color:#1F8A5B;background:#E6F5EE">✅ 已完成</span><span class="go">打开 →</span></div></a><a class="node" href="lectures/B5_quadrilaterals.html"><div class="rail"><div class="dot" style="background:#1F8A5B"></div><div class="vline"></div></div>
+        <div class="cardc"><span class="nm">四边形 Quadrilaterals</span><span class="fq">×8</span><span class="st" style="color:#1F8A5B;background:#E6F5EE">✅ 已完成</span><span class="go">打开 →</span></div></a><a class="node" href="lectures/B6_circles.html"><div class="rail"><div class="dot" style="background:#1F8A5B"></div><div class="vline"></div></div>
+        <div class="cardc"><span class="nm">圆 Circles</span><span class="fq">×4</span><span class="st" style="color:#1F8A5B;background:#E6F5EE">✅ 已完成</span><span class="go">打开 →</span></div></a></div><div class="ph">汇合 Bridge</div><div class="chain"><a class="node" href="lectures/G4_coordinate-geometry.html"><div class="rail"><div class="dot" style="background:#1F8A5B"></div><div class="vline"></div></div>
+        <div class="cardc"><span class="nm">坐标几何 Coordinate geometry</span><span class="fq">×9</span><span class="st" style="color:#1F8A5B;background:#E6F5EE">✅ 已完成</span><span class="go">打开 →</span></div></a></div><div class="ph">变换 Transform</div><div class="chain"><a class="node" href="lectures/G5_transformations.html"><div class="rail"><div class="dot" style="background:#4A43C4"></div><div class="vline"></div></div>
+        <div class="cardc"><span class="nm">图形变换·翻折旋转 Transformations</span><span class="fq">翻折常考</span><span class="st" style="color:#4A43C4;background:#EEF0FC">🆕 本轮新增</span><span class="go">打开 →</span></div></a></div><div class="ph">拓展 A-Level</div><div class="chain"><a class="node" href="lectures/G6_trigonometry.html"><div class="rail"><div class="dot" style="background:#6A6A82"></div><div class="vline"></div></div>
+        <div class="cardc"><span class="nm">三角比·解直角三角形 Trig ratios</span><span class="fq">低优先·留A-Level</span><span class="st" style="color:#6A6A82;background:#EEF0F4">⏳ 低优先</span><span class="go">打开 →</span></div></a></div>
+<div class="note"><b>一考点一讲义：</b>每个几何考点只有一份 canonical 深讲（旧的 F5/G1/G2/G3 已降"旧版·预习"）。相似只在相似、全等只在三角形、坐标方法只在坐标几何——不重叠。三角比低优先（留 A-Level），待建。</div>
+</div></body></html>

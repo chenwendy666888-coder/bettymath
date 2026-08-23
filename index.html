@@ -164,6 +164,9 @@ const M={
  '02':{en:'Graphs',zh:'图像基础',lec:'lectures/02_graphs.html'},
  '03':{en:'Inequalities',zh:'不等式',lec:'lectures/03_inequalities.html',prac:[['不等式专练','practice/inequalities-drills.html']]},
  G1:{en:'Triangles & Similarity',zh:'三角形 · 相似',lec:'lectures/G1_triangles.html'},
+ B1:{en:'Points, lines & angles',zh:'点·线·角',lec:'lectures/B1_points-lines-angles.html'},
+ B2:{en:'Parallel lines',zh:'平行线',lec:'lectures/B2_parallel-lines.html'},
+ B3:{en:'Triangles & congruence',zh:'三角形与全等（深）',lec:'lectures/B3_triangles.html'},
  B7:{en:'Similarity (hub)',zh:'相似 · 几何枢纽',lec:'lectures/B7_similarity.html'},
  B5:{en:'Quadrilaterals',zh:'四边形（深）',lec:'lectures/B5_quadrilaterals.html'},
  B6:{en:'Circles (deep)',zh:'圆（深）',lec:'lectures/B6_circles.html'},
@@ -187,8 +190,8 @@ const M={
  C4:{en:'Composite & Functional Eqns',zh:'复合函数 · 函数方程',lec:'lectures/C4_composite-functions.html',md:'lectures/C4_composite-functions.md'},
  G2:{en:'Quadrilaterals',zh:'四边形',lec:'lectures/G2_quadrilaterals.html',md:'lectures/G2_quadrilaterals.md'},
  G3:{en:'Circles',zh:'圆',lec:'lectures/G3_circles.html',md:'lectures/G3_circles.md'},
- G4:{en:'Coordinate Geometry',zh:'坐标几何',lec:'lectures/G4_coordinate-geometry.html',md:'lectures/G4_coordinate-geometry.md'},
- G5:{en:'Fold & Rotate',zh:'翻折 · 旋转',lec:'lectures/G5_transformations.html',md:'lectures/G5_transformations.md'},
+ G4:{en:'Coordinate geometry (deep)',zh:'坐标几何（深）',lec:'lectures/G4_coordinate-geometry.html'},
+ G5:{en:'Transformations (deep)',zh:'图形变换·翻折旋转（深）',lec:'lectures/G5_transformations.html'},
  G6:{en:'Acute Trigonometry',zh:'锐角三角比',lec:'lectures/G6_solve-right-triangle.html',md:'lectures/G6_solve-right-triangle.md'},
  N1:{en:'Divisibility & NT',zh:'整除 · 数论',lec:'lectures/N1_number-theory.html',md:'lectures/N1_number-theory.md'},
  N2:{en:'Permutations & Combinations',zh:'排列组合',lec:'lectures/N2_counting.html',md:'lectures/N2_counting.md'},
@@ -200,14 +203,15 @@ Object.keys(M).forEach(function(k){M[k].built=!!M[k].lec;M[k].id=k;});
 const CATS=[
  {emoji:'📖',name:'阅读',en:'Reading',bcls:'rd',desc:'当课外读物，读完能用',ids:['R1']},
  {emoji:'🧠',name:'解题思路篇',en:'Thinking',bcls:'rd',desc:'数感·易错点·方法，学任何一章前先建立感觉',ids:['F0a','F0c','F0b']},
- {emoji:'🏫',name:'学校教材内容',en:'School Textbook',bcls:'bi',desc:'浙教版从零：坐标·一次函数、二次、代数基本功、几何入门…',ids:['01','F1','F6','02','03','F2','F3','F4','F5','G1','F7','F8','G2','G3','G6']},
+ {emoji:'🏫',name:'学校教材内容',en:'School Textbook',bcls:'bi',desc:'浙教版从零：坐标·一次函数、二次、代数基本功、几何入门…',ids:['01','F1','02','03','F2','F3','F4','F7','F8']},
  {emoji:'🔢',name:'代数',en:'Algebra',bcls:'bi',desc:'因式/分式/绝对值/韦达/换元/根式数列 + 函数(二次·反比例·复合)，含加料与最值',ids:['C1','C2','C3','A','D','E','C4b','C4','B','C3r']},
- {emoji:'📐',name:'几何',en:'Geometry',bcls:'bi',desc:'相似/四边形/圆(深) + 坐标几何/翻折旋转，光剑高频',ids:['B7','B5','B6','G4','G5']},
+ {emoji:'📐',name:'几何',en:'Geometry',bcls:'bi',desc:'相似/四边形/圆(深) + 坐标几何/翻折旋转，光剑高频',ids:['B1','B2','B3','B7','B5','B6','G4','G5']},
  {emoji:'🧩',name:'应用',en:'Applications',bcls:'bi',desc:'应用题·建模（最优化、行程、方位角）',ids:['P']},
- {emoji:'📦',name:'其他 · 计数竞赛',en:'Other',bcls:'bi',desc:'排列组合·概率·数论·AMC 竞赛拓展',ids:['N1','N2','N3','AMC']}
+ {emoji:'📦',name:'其他 · 计数竞赛',en:'Other',bcls:'bi',desc:'排列组合·概率·数论·AMC 竞赛拓展',ids:['N1','N2','N3','AMC']},
+ {emoji:'🗄',name:'旧版 · 预习',en:'Old / Preview',bcls:'rd',desc:'已被深讲版取代（三角形→B3、相似→B7、四边形→B5、圆→B6、二次函数→C4b）；保留作预习，不与新版并排',ids:['F5','G1','F6','G2','G3','G6']}
 ];
 const REFS=[
- {em:'🗒',zh:'进度 & 待做',en:'Progress',href:'syllabus/backlog.html'},
+ {em:'🗒',zh:'进度 & 待做',en:'Progress',href:'syllabus/backlog.html'}, {em:'🧭',zh:'Canonical考纲',en:'Canonical Syllabus',href:'syllabus/canonical-syllabus.html'}, {em:'🔍',zh:'讲义审计表',en:'Lecture Audit',href:'syllabus/lecture-audit.html'}, {em:'📐',zh:'几何大纲',en:'Geometry Syllabus',href:'syllabus/geometry-syllabus.html'},
  {em:'📋',zh:'主考纲',en:'Master Syllabus',href:'syllabus/syllabus.html'},{em:'🗺',zh:'知识图谱',en:'Knowledge Map',href:'map.html'},
  {em:'🌳',zh:'根知识表',en:'Root Base',href:'syllabus/root-base.html'},{em:'✅',zh:'考点自查',en:'Self-check',href:'syllabus/checkpoints.html'},
  {em:'📊',zh:'光剑考点全表',en:'Exam Analysis',href:'syllabus/guangjian-exam-analysis.html'},{em:'🔗',zh:'真题↔考点',en:'Q↔Topic',href:'syllabus/exam-map.html'},{em:'🧭',zh:'一阶整合测',en:'Phase-1 Test',href:'practice/phase1-assessment.html'},{em:'📖',zh:'概念术语',en:'Concepts',href:'syllabus/concepts-terms.html'},{em:'🔊',zh:'术语训练',en:'Vocab Trainer',href:'syllabus/vocab-trainer.html'},{em:'🗺',zh:'总逻辑图',en:'Logic Map',href:'syllabus/logic-map.html'},{em:'🚦',zh:'几何Checkpoint',en:'Geo Checkpoint',href:'practice/checkpoint-geometry.html'},{em:'🗂',zh:'当前Checklist',en:'Checklist',href:'syllabus/checklist-current.html'},{em:'🧾',zh:'中期试卷·中高超难',en:'Mid-term Paper',href:'practice/midterm-hard.html'},{em:'📄',zh:'20题作答卷',en:'20-Q Worksheet',href:'practice/worksheet-20-mixed.md'},{em:'📕',zh:'代数难题卷PDF',en:'Algebra Hard (PDF)',href:'practice/algebra-hard-worksheet.pdf'},{em:'🎯',zh:'综合题',en:'Cross-Topic',href:'syllabus/cross-topic.html'},
