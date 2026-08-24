@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guangjian Maths · Tool · Sets & Logic 集合与逻辑</title>
+<style>
+  :root{
+    --bg:#F4F6FB;--surface:#FFFFFF;--ink:#1B1B2A;--muted:#6A6A82;--line:#E3E6F0;
+    --indigo:#4A43C4;--indigo-deep:#2E2A6B;--indigo-soft:#EEF0FC;
+    --amber:#C77A15;--amber-soft:#FCF2DF;--green:#1F8A5B;--green-soft:#E6F5EE;
+    --rose:#C0453B;--rose-soft:#FBEDEC;--radius:14px;
+    --shadow:0 1px 2px rgba(30,30,60,.05), 0 8px 24px rgba(30,30,60,.06);
+    --font:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Segoe UI",Roboto,"Helvetica Neue",sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.75;font-size:16px;-webkit-font-smoothing:antialiased;}
+  header.top{position:sticky;top:0;z-index:30;background:rgba(244,246,251,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:14px 22px;}
+  .top-row{display:flex;align-items:center;gap:14px;max-width:1180px;margin:0 auto;}
+  .brand{display:flex;flex-direction:column;gap:2px;min-width:0;}
+  .brand .eyebrow{font-size:12px;letter-spacing:.14em;color:var(--indigo);font-weight:700;text-transform:uppercase;}
+  .brand h1{margin:0;font-size:16px;font-weight:800;color:var(--indigo-deep);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .prog-wrap{margin-left:auto;display:flex;align-items:center;gap:10px;min-width:170px;}
+  .prog-label{font-size:12.5px;color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums;}
+  .prog-track{flex:1;height:8px;background:#DDE1EE;border-radius:99px;overflow:hidden;min-width:80px;}
+  .prog-fill{height:100%;width:0;background:linear-gradient(90deg,var(--indigo),#7A73E6);border-radius:99px;transition:width .5s cubic-bezier(.2,.8,.2,1);}
+  .menu-btn{display:none;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:8px 10px;font-size:15px;cursor:pointer;color:var(--indigo-deep);}
+  .layout{display:grid;grid-template-columns:262px 1fr;gap:30px;max-width:1180px;margin:26px auto;padding:0 22px;align-items:start;}
+  nav.toc{position:sticky;top:88px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:12px;box-shadow:var(--shadow);}
+  .toc h2{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:6px 8px 10px;font-weight:700;}
+  .toc a{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:10px;text-decoration:none;color:var(--ink);font-size:14px;cursor:pointer;border:1px solid transparent;transition:background .15s,border-color .15s;}
+  .toc a:hover{background:var(--indigo-soft);}
+  .toc a.active{background:var(--indigo-soft);border-color:#D5D8F5;font-weight:700;color:var(--indigo-deep);}
+  .toc .n{font-variant-numeric:tabular-nums;font-weight:700;color:var(--indigo);font-size:13px;width:22px;flex:none;}
+  .toc a.active .n{color:var(--indigo-deep);}
+  .toc .lbl{flex:1;min-width:0;}
+  .toc .tick{width:16px;height:16px;flex:none;border-radius:50%;border:2px solid #CBD0E4;display:grid;place-items:center;font-size:10px;color:#fff;}
+  .toc a.done .tick{background:var(--green);border-color:var(--green);}
+  .toc a.done .tick::after{content:"✓";}
+  main{min-width:0;}
+  section.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:32px 34px 30px;animation:rise .4s ease both;}
+  @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .sec-head{display:flex;align-items:flex-start;gap:16px;margin-bottom:6px;}
+  .sec-num{font-size:34px;font-weight:800;color:var(--indigo);line-height:1;font-variant-numeric:tabular-nums;flex:none;padding-top:2px;}
+  .sec-titles{flex:1;min-width:0;}
+  .sec-titles h2{margin:0;font-size:22px;font-weight:800;color:var(--indigo-deep);}
+  .sec-titles .zh-title{font-size:15px;color:var(--muted);font-weight:700;margin-top:2px;}
+  .badge{display:inline-flex;align-items:center;gap:5px;margin-top:8px;font-size:12.5px;font-weight:700;padding:3px 10px;border-radius:99px;}
+  .badge.gk{background:var(--amber-soft);color:var(--amber);}
+  .badge.core{background:var(--indigo-soft);color:var(--indigo);}
+  .badge.hard,.badge.warn{background:var(--rose-soft);color:var(--rose);}
+  .badge.Concept{background:var(--grey-soft,#EEF0F4);color:#4a4a5e;}
+  .badge.Fluency{background:var(--green-soft);color:var(--green);}
+  .badge.Applied{background:var(--amber-soft);color:var(--amber);}
+  .badge.Elite{background:var(--rose-soft);color:var(--rose);}
+  .blk{font-size:15px;color:var(--indigo-deep);margin:14px 0 6px;font-weight:800;}
+  .divider{height:1px;background:var(--line);margin:20px 0;}
+  h3.blk{font-size:15px;font-weight:800;color:var(--indigo);margin:22px 0 10px;display:flex;align-items:center;gap:8px;}
+  h3.blk::before{content:"";width:5px;height:16px;border-radius:3px;background:var(--indigo);display:inline-block;}
+  p{margin:9px 0;}
+  .content b{color:var(--indigo-deep);}
+  .content ul,.content ol{margin:10px 0;padding-left:22px;}
+  .content li{margin:6px 0;}
+  .zh{color:#4a4a5e;font-size:14.5px;}
+  .zh::before{content:"中  ";color:var(--green);font-weight:800;font-size:11px;letter-spacing:.05em;}
+  .enh::before{content:"EN  ";color:var(--indigo);font-weight:800;font-size:11px;letter-spacing:.05em;}
+  .terms{background:#F1F7F4;border:1px solid #CFE6DA;border-radius:10px;padding:11px 15px;margin:12px 0;font-size:14px;color:#14653f;line-height:1.9;}
+  .terms b{color:#14653f;}
+  .terms .t{white-space:nowrap;}
+  .kbd-formula{display:block;background:var(--indigo-soft);border:1px solid #D9DCF6;border-radius:10px;padding:14px 18px;margin:14px 0;font-size:18px;text-align:center;color:var(--indigo-deep);font-weight:700;}
+  .example{background:#FBFBFE;border:1px solid var(--line);border-left:4px solid var(--indigo);border-radius:12px;padding:16px 18px;margin:16px 0;}
+  .ex-title{font-weight:800;color:var(--indigo-deep);font-size:15px;margin-bottom:6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .ex-tag{font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:99px;background:var(--amber-soft);color:var(--amber);}
+  .steps{margin:8px 0;}
+  .step{position:relative;padding:5px 0 5px 20px;}
+  .step::before{content:"";position:absolute;left:5px;top:14px;width:6px;height:6px;border-radius:50%;background:var(--indigo);}
+  .ex-ans{margin-top:10px;background:var(--green-soft);border-radius:8px;padding:8px 12px;font-weight:800;color:var(--green);}
+  .note{background:var(--amber-soft);border-radius:10px;padding:12px 16px;margin:14px 0;font-size:14.5px;color:#7a5210;}
+  .note.warn{background:var(--rose-soft);color:#8c2f28;}
+  .note strong{color:inherit;}
+  .practice{background:#FFFFFF;border:1.5px dashed #C9CEE6;border-radius:12px;padding:16px 18px;margin:18px 0;}
+  .practice-head{font-weight:800;color:var(--indigo-deep);margin-bottom:6px;display:flex;align-items:center;gap:8px;}
+  .practice-head::before{content:"✎";color:var(--indigo);}
+  .reveal{margin-top:10px;background:var(--indigo);color:#fff;border:none;border-radius:9px;padding:9px 16px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;}
+  .reveal:hover{background:#3a34a8;}
+  .answer{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+  .answer.open{max-height:1400px;margin-top:12px;}
+  .answer-inner{background:var(--green-soft);border-radius:10px;padding:12px 16px;font-size:14.5px;}
+  .answer-inner b{color:var(--green);}
+  .pascal{display:flex;flex-direction:column;align-items:center;gap:9px;margin:18px 0 10px;}
+  .prow{display:flex;gap:9px;cursor:pointer;padding:5px 9px;border-radius:12px;border:1.5px solid transparent;transition:background .15s,border-color .15s;}
+  .prow:hover{background:var(--indigo-soft);}
+  .prow.sel{background:var(--amber-soft);border-color:#EEDBB0;}
+  .pcell{display:grid;place-items:center;min-width:40px;height:40px;padding:0 7px;background:var(--surface);border:1.5px solid var(--line);border-radius:10px;font-weight:800;color:var(--indigo-deep);font-variant-numeric:tabular-nums;}
+  .prow.sel .pcell{border-color:var(--amber);color:var(--amber);}
+  .pascal-out{text-align:center;background:var(--indigo-soft);border:1px solid #D9DCF6;border-radius:10px;padding:12px 16px;font-size:15px;color:var(--indigo-deep);margin:6px 0;min-height:22px;}
+  .lore{background:#F2F3FC;border:1px solid #E0E3F5;border-left:4px solid #8983E0;border-radius:12px;padding:14px 18px;margin:16px 0;font-size:14.5px;color:#3b3b54;}
+  .lore h5{margin:0 0 8px;color:var(--indigo-deep);font-size:14.5px;font-weight:800;}
+  .check-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line);cursor:pointer;}
+  .check-item:last-child{border-bottom:none;}
+  .check-box{width:20px;height:20px;border:2px solid #C4C9E0;border-radius:6px;flex:none;margin-top:3px;display:grid;place-items:center;color:#fff;font-size:13px;}
+  .check-item.on .check-box{background:var(--green);border-color:var(--green);}
+  .check-item.on .check-box::after{content:"✓";}
+  .check-item.on .check-txt{color:var(--muted);text-decoration:line-through;}
+  .parent{background:var(--indigo-soft);border-radius:12px;padding:16px 18px;margin-top:22px;}
+  .parent h4{margin:0 0 6px;color:var(--indigo-deep);}
+  .pager{display:flex;align-items:center;gap:12px;margin-top:26px;}
+  .pager button{flex:1;border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:13px 16px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;color:var(--indigo-deep);}
+  .pager button:hover:not(:disabled){background:var(--indigo-soft);}
+  .pager button:disabled{opacity:.4;cursor:not-allowed;}
+  .pager .done-btn{flex:1.3;background:var(--indigo);color:#fff;border-color:var(--indigo);}
+  .pager .done-btn.is-done{background:var(--green);border-color:var(--green);}
+  .scrim{display:none;}
+  @media (max-width:860px){
+    .layout{grid-template-columns:1fr;padding:0 16px;margin-top:16px;}
+    .menu-btn{display:block;}
+    nav.toc{position:fixed;top:0;left:0;bottom:0;width:280px;z-index:50;border-radius:0 16px 16px 0;transform:translateX(-102%);transition:transform .28s ease;overflow-y:auto;padding-top:18px;}
+    nav.toc.open{transform:none;}
+    .scrim.show{display:block;position:fixed;inset:0;background:rgba(20,20,40,.4);z-index:40;}
+    .brand h1{font-size:14px;white-space:normal;}.prog-wrap{min-width:110px;}
+    section.card{padding:24px 20px;}.sec-num{font-size:28px;}.sec-titles h2{font-size:19px;}
+    .pager{flex-wrap:wrap;}.pager .done-btn{order:-1;flex-basis:100%;}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important;}}
+  :focus-visible{outline:3px solid #A9A4F0;outline-offset:2px;border-radius:6px;}
+
+.dltools{position:fixed;top:12px;right:14px;z-index:70;display:flex;gap:8px}
+.dltools button{border:none;border-radius:9px;padding:8px 12px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;color:#fff;box-shadow:0 4px 12px rgba(30,30,60,.18)}
+.dltools .b-md{background:#1F8A5B}.dltools .b-pdf{background:#4A43C4}
+@media(max-width:860px){.dltools{top:auto;bottom:14px;right:12px}}
+@media print{.top,nav.toc,.pager,.scrim,.dltools,.menu-btn,.prog-wrap,.hero,.sumbar,.back,.reset{display:none!important}
+ .layout{display:block!important;margin:0!important;padding:0!important;grid-template-columns:1fr!important}
+ main,.wrap{max-width:100%!important;margin:0!important}
+ section.card{box-shadow:none!important;border:none!important;padding:0!important;animation:none!important}
+ .answer{max-height:none!important;overflow:visible!important}
+ .psec{page-break-after:always}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-row">
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+    <div class="brand"><span class="eyebrow">Guangjian Maths · Tool</span><h1>Sets &amp; Logic · 集合与逻辑</h1></div>
+    <div class="prog-wrap" aria-label="Progress"><span class="prog-label" id="progLabel">0 / 5</span><div class="prog-track"><div class="prog-fill" id="progFill"></div></div></div>
+  </div>
+</header>
+<div class="scrim" id="scrim"></div>
+<div class="layout">
+  <nav class="toc" id="toc" aria-label="Contents"><h2>Contents 目录</h2><div id="tocList"></div></nav>
+  <main>
+    <section class="card content" id="content" tabindex="-1"></section>
+    <div class="pager">
+      <button id="prevBtn">← Prev 上一节</button>
+      <button class="done-btn" id="doneBtn">Done 学完了 ✓</button>
+      <button id="nextBtn">Next 下一节 →</button>
+    </div>
+  </main>
+</div>
+<script>
+const S = [{"key": "intro", "nav": "Intro 导读", "num": "", "track": false, "title": "Sets & logic — symbols for reading the paper", "zh": "集合与逻辑——读懂英文卷的符号", "body": "<p class=\"enh\">Guangjian's English paper uses set and logic <b>symbols</b> to state problems compactly: ∈, ⊂, ∪, ∩, and ⇒. You are not tested on set theory itself, but you must <b>read</b> these fluently.</p><p class=\"zh\">光剑英文卷常用集合与逻辑<b>符号</b>把题目写得很简洁：∈、⊂、∪、∩、⇒。集合论本身不单独考，但你必须能<b>读懂</b>这些符号。这份是\"读题工具课\"。</p><div class=\"note\"><b>定位：</b>工具课（她之前没学过）。目标：看到符号能翻译成中文、能判断真假。</div>"}, {"key": "set", "nav": "Sets 集合", "num": "01", "track": true, "tier": "Concept", "badge": "core", "title": "Sets & membership", "zh": "集合与属于", "body": "<div class=\"terms\"><b>Key terms 关键词</b>：<span class=\"t\">set 集合</span> · <span class=\"t\">element 元素</span> · <span class=\"t\">∈ belongs to 属于</span> · <span class=\"t\">∉ not in 不属于</span> · <span class=\"t\">∅ empty set 空集</span></div><h3 class=\"blk\">Explanation 讲解</h3><p class=\"enh\">A <b>set</b> is a collection of things (elements), written in braces: A = {1, 2, 3}. \"3 ∈ A\" means <b>3 is in A</b>; \"5 ∉ A\" means 5 is not. The <b>empty set</b> ∅ has no elements.</p><p class=\"zh\"><b>集合</b>是一堆东西（元素），用花括号写：A = {1, 2, 3}。\"3 ∈ A\"读作<b>3 属于 A</b>；\"5 ∉ A\"即不属于。<b>空集</b> ∅ 没有元素。</p><span class=\"kbd-formula\">∈ 属于　·　∉ 不属于　·　∅ 空集　·　{ } 列举</span><div class=\"practice\"><div class=\"practice-head\">Practice 练习</div><ol><li>A = {2, 4, 6, 8}. True or false: 4 ∈ A, 5 ∈ A, 6 ∉ A.</li></ol><button class=\"reveal\" onclick=\"ans(this)\">Show answer 显示答案</button><div class=\"answer\"><div class=\"answer-inner\">4 ∈ A <b>真</b>；5 ∈ A <b>假</b>；6 ∉ A <b>假</b></div></div></div>"}, {"key": "sub", "nav": "Subset 子集", "num": "02", "track": true, "tier": "Fluency", "title": "Subsets", "zh": "子集", "body": "<div class=\"terms\"><b>Key terms 关键词</b>：<span class=\"t\">subset ⊂ 子集</span> · <span class=\"t\">contained in 包含于</span></div><h3 class=\"blk\">Explanation 讲解</h3><p class=\"enh\">\"B ⊂ A\" means <b>every element of B is also in A</b> (B is a subset of A). Example: {2, 4} ⊂ {2, 4, 6}.</p><p class=\"zh\">\"B ⊂ A\"表示 <b>B 的每个元素都在 A 里</b>（B 是 A 的子集）。例：{2, 4} ⊂ {2, 4, 6}。空集是任何集合的子集。</p><div class=\"practice\"><div class=\"practice-head\">Practice 练习</div><ol><li>Is {1, 3} ⊂ {1, 2, 3, 4}? Is {1, 5} ⊂ {1, 2, 3, 4}?</li></ol><button class=\"reveal\" onclick=\"ans(this)\">Show answer 显示答案</button><div class=\"answer\"><div class=\"answer-inner\">{1,3} ⊂ … <b>是</b>；{1,5} ⊂ … <b>否</b>（5 不在里面）</div></div></div>"}, {"key": "union", "nav": "Union/Intersect 并交", "num": "03", "track": true, "tier": "Applied", "badge": "core", "title": "Union ∪ and intersection ∩", "zh": "并集 ∪ 与交集 ∩", "body": "<div class=\"terms\"><b>Key terms 关键词</b>：<span class=\"t\">union ∪ 并集</span> · <span class=\"t\">intersection ∩ 交集</span> · <span class=\"t\">or / and 或 / 且</span></div><h3 class=\"blk\">Explanation 讲解</h3><p class=\"enh\"><b>A ∪ B</b> (union) = everything in A <b>or</b> B. <b>A ∩ B</b> (intersection) = everything in <b>both</b> A and B. Memory hook: ∪ looks like a cup that holds all; ∩ is the overlap.</p><p class=\"zh\"><b>A ∪ B</b>（并集）＝在 A <b>或</b> B 里的所有元素；<b>A ∩ B</b>（交集）＝<b>同时</b>在 A 和 B 里的元素。记忆：∪ 像杯子装下全部；∩ 是重叠部分。</p><span class=\"kbd-formula\">∪ 并集 = \"或\" or　·　∩ 交集 = \"且\" and</span><div class=\"example\"><div class=\"ex-title\">Example 例题</div><div class=\"steps\"><div class=\"step\">A = {1, 2, 3, 4}, B = {3, 4, 5}. Find A ∪ B and A ∩ B.</div></div><div class=\"ex-ans\">A ∪ B = <b>{1, 2, 3, 4, 5}</b>　·　A ∩ B = <b>{3, 4}</b></div></div><div class=\"practice\"><div class=\"practice-head\">Practice 练习</div><ol><li>A = {2, 4, 6}, B = {1, 2, 3}. Find A ∪ B and A ∩ B.</li><li>If A ∩ B = ∅, what does that mean in words?</li></ol><button class=\"reveal\" onclick=\"ans(this)\">Show answer 显示答案</button><div class=\"answer\"><div class=\"answer-inner\">1) A ∪ B = <b>{1,2,3,4,6}</b>, A ∩ B = <b>{2}</b>　2) 两集合<b>没有公共元素</b>（不相交）</div></div></div>"}, {"key": "logic", "nav": "Logic 逻辑符号", "num": "04", "track": true, "tier": "Applied", "title": "Logic: implies ⇒, iff ⇔", "zh": "逻辑：⇒ 推出、⇔ 当且仅当", "body": "<div class=\"terms\"><b>Key terms 关键词</b>：<span class=\"t\">⇒ implies 推出</span> · <span class=\"t\">⇔ if and only if 当且仅当</span> · <span class=\"t\">condition 条件</span></div><h3 class=\"blk\">Explanation 讲解</h3><p class=\"enh\">\"P ⇒ Q\" means <b>if P then Q</b> (P is enough for Q). \"P ⇔ Q\" means <b>P and Q always go together</b> (each implies the other). These state theorems compactly.</p><p class=\"zh\">\"P ⇒ Q\"读作<b>由 P 能推出 Q</b>（P 是 Q 的充分条件）；\"P ⇔ Q\"读作<b>P 与 Q 等价</b>（互相推出，当且仅当）。定理常用它们简写。</p><span class=\"kbd-formula\">⇒ 推出（充分）　·　⇔ 当且仅当（等价）</span><div class=\"example\"><div class=\"ex-title\">Example 例题 · 读符号</div><div class=\"steps\"><div class=\"step\">Translate: \"x = 3 ⇒ x² = 9\". Is the reverse also true?</div><div class=\"step\">Reads: \"if x = 3 then x² = 9\" — true. Reverse \"x² = 9 ⇒ x = 3\" is <b>false</b> (x could be −3).</div></div><div class=\"ex-ans\">正向真；反向假（x 可能 = −3），所以这里是 ⇒ 不是 ⇔</div></div><div class=\"practice\"><div class=\"practice-head\">Practice 练习</div><ol><li>Translate \"n is even ⇒ n² is even\" into words. True or false?</li><li>Does \"a triangle is equilateral ⇔ all its angles are 60°\" hold?</li></ol><button class=\"reveal\" onclick=\"ans(this)\">Show answer 显示答案</button><div class=\"answer\"><div class=\"answer-inner\">1) \"若 n 是偶数，则 n² 是偶数\"——<b>真</b>　2) <b>成立（⇔）</b>，两边互相推出</div></div></div>"}, {"key": "end", "nav": "Summary 小结", "num": "", "track": false, "title": "Summary", "zh": "小结", "body": "<div class=\"terms\" style=\"background:#EEF0FC;border-color:#D9DCF6;color:#2E2A6B\"><b>One-line：</b>∈ in, ⊂ subset, ∪ union(or), ∩ intersection(and), ⇒ implies, ⇔ iff. 属于/子集/并(或)/交(且)/推出/等价——会读就够。</div><div class=\"note warn\"><b>用法：</b>这些只是\"读题符号\"。看到 A ∩ B 就想\"两者都要\"、A ∪ B 想\"其一即可\"、⇒ 想\"由左推右\"。集合论本身光剑不深考。</div><div class=\"check-list\"><div class=\"check-item\" onclick=\"tick(this)\"><div class=\"check-box\"></div><div class=\"check-txt\">会读 ∈ / ∉ / ∅ / { }</div></div><div class=\"check-item\" onclick=\"tick(this)\"><div class=\"check-box\"></div><div class=\"check-txt\">会子集 ⊂、并集 ∪(或)、交集 ∩(且)</div></div><div class=\"check-item\" onclick=\"tick(this)\"><div class=\"check-box\"></div><div class=\"check-txt\">会读 ⇒ 推出、⇔ 当且仅当，并判断反向真假</div></div></div><div class=\"parent\"><h4>给家长的话</h4><p style=\"margin:0;font-size:14px;color:#4a4a5e\">这是\"读题工具课\"——她以前没学过这些符号，补上后能读懂更多英文卷题干。不用深究集合论，会翻译、会判断真假即可。</p></div>"}];
+const tocList=document.getElementById('tocList'),content=document.getElementById('content'),progFill=document.getElementById('progFill'),progLabel=document.getElementById('progLabel'),prevBtn=document.getElementById('prevBtn'),nextBtn=document.getElementById('nextBtn'),doneBtn=document.getElementById('doneBtn');
+let cur=0;const done=new Set();const trackedTotal=S.filter(s=>s.track).length;
+S.forEach((s,i)=>{const a=document.createElement('a');a.dataset.i=i;a.innerHTML=`<span class="n">${s.num||'·'}</span><span class="lbl">${s.nav}</span><span class="tick"></span>`;a.onclick=()=>go(i);tocList.appendChild(a);});
+const tocLinks=[...tocList.children];
+function render(){
+  const s=S[cur];
+  const tierHtml = s.tier?`<span class="badge ${s.tier}">${s.tier}</span>`:'';const gkHtml = s.badge==='gk'?'<span class="badge gk">★ Often tested 常考</span>':s.badge==='hard'?'<span class="badge hard">★ Harder 难题</span>':s.badge==='core'?'<span class="badge core">★ Must-know 必背</span>':'';const badgeHtml = tierHtml+gkHtml;
+  const zt = s.zh?`<div class="zh-title">${s.zh}</div>`:'';
+  content.innerHTML=`<div class="sec-head">${s.num?`<div class="sec-num">${s.num}</div>`:''}<div class="sec-titles"><h2>${s.title}</h2>${zt}${badgeHtml}</div></div><div class="divider"></div>${s.body}`;
+  tocLinks.forEach((a,i)=>a.classList.toggle('active',i===cur));
+  prevBtn.disabled=cur===0;nextBtn.disabled=cur===S.length-1;
+  if(s.track){doneBtn.style.display='';const d=done.has(cur);doneBtn.textContent=d?'Done 已学完 ✓':'Done 学完了 ✓';doneBtn.classList.toggle('is-done',d);}else{doneBtn.style.display='none';}
+  content.focus({preventScroll:true});window.scrollTo({top:0,behavior:'smooth'});
+}
+function go(i){cur=Math.max(0,Math.min(S.length-1,i));render();closeMenu();}
+prevBtn.onclick=()=>go(cur-1);nextBtn.onclick=()=>go(cur+1);
+doneBtn.onclick=()=>{if(!S[cur].track)return;if(done.has(cur))done.delete(cur);else done.add(cur);updateProgress();render();if(done.has(cur)&&cur<S.length-1)setTimeout(()=>go(cur+1),260);};
+function updateProgress(){const n=[...done].filter(i=>S[i].track).length;progFill.style.width=(n/trackedTotal*100)+'%';progLabel.textContent=`${n} / ${trackedTotal}`;tocLinks.forEach((a,i)=>a.classList.toggle('done',done.has(i)&&S[i].track));}
+function ans(btn){const box=btn.nextElementSibling;const open=box.classList.toggle('open');btn.textContent=open?btn.textContent.replace('Show','Hide').replace('显示','隐藏'):btn.textContent.replace('Hide','Show').replace('隐藏','显示');}
+function tick(el){el.classList.toggle('on');}
+const PASCAL_EXP={0:'(a+b)⁰ = 1',1:'(a+b)¹ = a + b',2:'(a+b)² = a² + 2ab + b²',3:'(a+b)³ = a³ + 3a²b + 3ab² + b³',4:'(a+b)⁴ = a⁴ + 4a³b + 6a²b² + 4ab³ + b⁴',5:'(a+b)⁵ = a⁵ + 5a⁴b + 10a³b² + 10a²b³ + 5ab⁴ + b⁵',6:'(a+b)⁶ = a⁶ + 6a⁵b + 15a⁴b² + 20a³b³ + 15a²b⁴ + 6ab⁵ + b⁶'};
+function pascalPick(r){document.querySelectorAll('#pascalTri .prow').forEach(el=>el.classList.toggle('sel',+el.dataset.r===r));const out=document.getElementById('pascalOut');if(out)out.innerHTML='Row 第 '+r+' 行 → <b>'+PASCAL_EXP[r]+'</b>';}
+const toc=document.getElementById('toc'),scrim=document.getElementById('scrim');
+document.getElementById('menuBtn').onclick=()=>{toc.classList.add('open');scrim.classList.add('show');};
+function closeMenu(){toc.classList.remove('open');scrim.classList.remove('show');}
+scrim.onclick=closeMenu;
+document.addEventListener('keydown',e=>{if(e.target.tagName==='BUTTON')return;if(e.key==='ArrowRight'&&cur<S.length-1)go(cur+1);if(e.key==='ArrowLeft'&&cur>0)go(cur-1);});
+render();updateProgress();
+</script>
+<div class="dltools no-print"><button class="b-md" onclick="downloadMD()">⬇ MD</button><button class="b-pdf" onclick="printAll()">🖨 PDF</button></div><script>
+const _MDB64="IyBHdWFuZ2ppYW4gTWF0aHMgwrcgTm90ZSAwMSDCtyBBbGdlYnJhIEJhc2ljcyDku6PmlbDln7rmnKzlip8KCgojIyBIb3cgdG8gdXNlIHRoaXMgbm90ZSAgwrcgIOaAjuS5iOeUqOi/meS7veiusuS5iQoKWW91ciBleGFtIGlzIHRoZSBFbmdsaXNoIG1hdGhzIHBhcGVyICwgc28gZXZlcnkgbm90ZSBpcyB3cml0dGVuIEVuZ2xpc2ggZmlyc3QsIHRoZW4gQ2hpbmVzZSAuIFJlYWQgdGhlIEVuZ2xpc2ggdG8gZ2V0IHVzZWQgdG8gZXhhbSB3b3JkaW5nOyB1c2UgdGhlIENoaW5lc2UgdG8gbWFrZSBzdXJlIHlvdSB1bmRlcnN0YW5kLgog5L2g6ICD55qE5pivIOiLseaWh+aVsOWtpuWNtyDvvIzmiYDku6Xmr4/ku73orrLkuYnpg70g5YWI6Iux5paH44CB5ZCO5Lit5paHIOOAguWFiOivu+iLseaWh+eGn+aCieiAg+ivleivtOazle+8jOWGjeeUqOS4reaWh+ehruiupOiHquW3seecn+eahOaHguS6huOAggogVGhlc2UgZml2ZSB0b3BpY3Mg4oCUIHBvd2VycywgbXVsdGlwbGljYXRpb24gZm9ybXVsYXMsIGZhY3RvcmlzaW5nLCBzdXJkcywgZnJhY3Rpb25zIOKAlCBhcmUgdGhlIGZvdW5kYXRpb24gb2YgZXZlcnkgaGFyZCBwcm9ibGVtIGxhdGVyLiBHbyBzbG93bHkgYW5kIGdldCB0aGVtIHNvbGlkLgog5bmC6L+Q566X44CB5LmY5rOV5YWs5byP44CB5Zug5byP5YiG6Kej44CB5qC55byP44CB5YiG5byP6L+Z5LqU5qC377yM5piv5ZCO6Z2i5omA5pyJ6Zq+6aKY55qEIOWcsOWfuiDjgILmhaLkuIDngrnjgIHmiY7lrp7kuIDngrnjgIIKIEVhY2ggc2VjdGlvbjogS2V5IHRlcm1zIOKGkiBFeHBsYW5hdGlvbiDihpIgRXhhbXBsZXMg4oaSIFByYWN0aWNlICh0cnkgZmlyc3QsIHRoZW4gcmV2ZWFsKS4g5q+P6IqC77ya5pyv6K+tIOKGkiDorrLop6Mg4oaSIOS+i+mimCDihpIg57uD5Lmg77yI5YWI6Ieq5bex5YGa5YaN55yL562U5qGI77yJ44CCVGFwICJEb25lIOWtpuWujOS6hiIgdG8gZmlsbCB0aGUgcHJvZ3Jlc3MgYmFyLgoKIyMgMDEgUG93ZXJzICYgSW5kaWNlcyAgwrcgIOW5gueahOi/kOeulwoKXyBLZXkgdGVybXMg5YWz6ZSu6K+NIO+8miBwb3dlciAvIGluZGV4IChwbC4gaW5kaWNlcykg5bmCIC8g5oyH5pWwIMK3IGJhc2Ug5bqV5pWwIMK3IHNxdWFyZWQg5bmz5pa5IMK3IGN1YmVkIOeri+aWuSDCtyByZWNpcHJvY2FsIOWAkuaVsCBfCgojIyMjIEV4cGxhbmF0aW9uIOiusuinowoKIEEgcG93ZXIgbWVhbnMgbXVsdGlwbHlpbmcgdGhlIHNhbWUgbnVtYmVyIHNldmVyYWwgdGltZXMuIEluIDLCsywgdGhlIGJhc2UgaXMgMiBhbmQgdGhlIGluZGV4IGlzIDMuCiDluYIg5bCx5piv5oqK5ZCM5LiA5Liq5pWw5LmY5Yeg5qyh44CCMsKzIOmHjO+8jDIg5pivIOW6leaVsCDvvIwzIOaYryDmjIfmlbAg44CCCiBUaHJlZSBjb3JlIHJ1bGVzIChzYW1lIGJhc2UpOgog5LiJ5p2h5qC45b+D6KeE5YiZ77yI5bqV5pWw55u45ZCM5pe277yJ77yaCgogLSBNdWx0aXBseSDihpIgYWRkIGluZGljZXMg55u45LmY5oyH5pWw55u45Yqg77yaYeG1kCDDlyBh4oG/ID0gYeG1kOKBuuKBvwoKIC0gRGl2aWRlIOKGkiBzdWJ0cmFjdCBpbmRpY2VzIOebuOmZpOaMh+aVsOebuOWHj++8mmHhtZAgw7cgYeKBvyA9IGHhtZDigbvigb8KCiAtIFBvd2VyIG9mIGEgcG93ZXIg4oaSIG11bHRpcGx5IOW5gueahOW5guaMh+aVsOebuOS5mO+8mihh4bWQKeKBvyA9IGHhtZDigb8KCiBUd28gc3BlY2lhbCBjYXNlcyDkuKTkuKrnibnmrornuqblrprvvJogYeKBsCA9IDEg77ybIGHigbvigb8gPSAxL2Higb8gKG5lZ2F0aXZlIGluZGV4IOKGkiByZWNpcHJvY2FsIOi0n+aMh+aVsOWPluWAkuaVsCkuCgoqKkV4YW1wbGUgMSDkvosxKioKCiBTaW1wbGlmeSDljJbnroDjgIB4wrMgwrcgeOKBtCDDtyB4wrIKIHjCs8K3eOKBtCA9IHjigbcg4oaSIHjigbcgw7cgeMKyID0geOKBtQoK4oaSICoqeOKBtSoqCgoqKkV4YW1wbGUgMiDkvosyKioKCiBFdmFsdWF0ZSDmsYLlgLzjgIAy4oG7wrIKIDLigbvCsiA9IDEvMsKyCgrihpIgKioxLzQqKgoKKipQcmFjdGljZSAxIOe7g+S5oDEqKgoKIO+8iCJTaW1wbGlmeSIgPSDljJbnroDvvIwiRXZhbHVhdGUiID0g5rGC5YC877yJCgogLSBTaW1wbGlmeeOAgGHigbUgwrcgYcKzCgogLSBTaW1wbGlmeeOAgHjigbggw7cgeMKzCgogLSBTaW1wbGlmeeOAgCh5wrMp4oG0CgogLSBFdmFsdWF0ZeOAgDPigbvCsgoKIC0gU2ltcGxpZnnjgIAoMnjCsynCsgoKPiDnrZTmoYggQW5zd2VyOiAxLiBh4oG444CAMi4geOKBteOAgDMuIHnCucKy44CANC4gMS8544CANS4gNHjigbYKCiMjIDAyIE11bHRpcGxpY2F0aW9uIEZvcm11bGFzIChpbmNsLiBQYXNjYWwncyBUcmlhbmdsZSkgIMK3ICDkuZjms5XlhazlvI/vvIjlkKvmnajovonkuInop5LvvIkKCl8gS2V5IHRlcm1zIOWFs+mUruivjSDvvJogZXhwYW5kIOWxleW8gCDCtyBkaWZmZXJlbmNlIG9mIHR3byBzcXVhcmVzIOW5s+aWueW3riDCtyBwZXJmZWN0IHNxdWFyZSDlrozlhajlubPmlrkgwrcgYmlub21pYWwg5LqM6aG55byPIMK3IGNvZWZmaWNpZW50IOezu+aVsCDCtyBQYXNjYWwncyAvIFlhbmcgSHVpJ3MgdHJpYW5nbGUg5p2o6L6J5LiJ6KeSIF8KCiMjIyMgRXhwbGFuYXRpb24g6K6y6KejCgogTGVhcm4gdGhlc2UgYnkgaGVhcnQg4oCUIHlvdSB1c2UgdGhlbSB0byBleHBhbmQgYW5kIHRvIGZhY3RvcmlzZSA6CiDov5nlh6DkuKrlv4Xpobvog4znhp/igJTigJTlsZXlvIDlkozlm6DlvI/liIbop6PkuKTlpLTpg73nlKjvvJoKCmAKIChhICsgYinCsiA9IGHCsiArIDJhYiArIGLCsgoKIChhIOKIkiBiKcKyID0gYcKyIOKIkiAyYWIgKyBiwrIKCiAoYSArIGIpKGEg4oiSIGIpID0gYcKyIOKIkiBiwrIKCiBhwrMgKyBiwrMgPSAoYSArIGIpKGHCsiDiiJIgYWIgKyBiwrIpCgogYcKzIOKIkiBiwrMgPSAoYSDiiJIgYikoYcKyICsgYWIgKyBiwrIpCiBgCgogV2F0Y2ggb3V0IOazqOaEj++8miB0aGUgbWlkZGxlIHRlcm0gMmFiIGlzIHRoZSBvbmUgcGVvcGxlIGZvcmdldC4gKGErYinCsiDiiaAgYcKyK2LCsiAhIOWujOWFqOW5s+aWuemHjOeahCAyYWIg5pyA5a655piT5ryP44CCCgoqKkV4YW1wbGUgMSDkvosxKioKCiBFeHBhbmQg5bGV5byA44CAKDJ4IOKIkiAzKcKyCiAoMngpwrIg4oiSIDLCtygyeCnCtzMgKyAzwrIKCuKGkiAqKjR4wrIg4oiSIDEyeCArIDkqKgoKKipFeGFtcGxlIDIg5L6LMioqCgogR2l2ZW4g5bey55+lIGEgKyBiID0gNSwgYWIgPSA2LCBmaW5kIOaxgiBhwrIgKyBiwrIuCiBhwrIrYsKyID0gKGErYinCsiDiiJIgMmFiID0gMjUg4oiSIDEyCgrihpIgKioxMyoqCgojIyMjIEN1YmVzIOeri+aWueWFrOW8j++8mihhICsgYinCsyAmIChhIOKIkiBiKcKzCgogUHVzaCBvbmUgcG93ZXIgaGlnaGVyIOWGjeW+gOS4iuaOqOS4gOWxgu+8mgoKYChhICsgYinCsyA9IGHCsyArIDNhwrJiICsgM2FiwrIgKyBiwrMKKGEg4oiSIGIpwrMgPSBhwrMg4oiSIDNhwrJiICsgM2FiwrIg4oiSIGLCs2AKCiBZb3UgZG9uJ3QgbWVtb3Jpc2UgKGHiiJJiKcKzIHNlcGFyYXRlbHkg4oCUIGp1c3QgcmVwbGFjZSBiIHdpdGgg4oiSYiwgYW5kIHRoZSBzaWducyBhbHRlcm5hdGUgKyDiiJIgKyDiiJIuCiAoYeKIkmIpwrMg5LiN55So5Y+m6IOM77ya5oqKIGIg5o2i5oiQIOKIkmLvvIznrKblj7flj5jmiJAgKyDiiJIgKyDiiJIg5Lqk5pu/5Y2z5Y+v44CCCgojIyMjIFBhc2NhbCdzIFRyaWFuZ2xlIOadqOi+ieS4ieinkgoKIPCfk5wgQSBsaXR0bGUgaGlzdG9yeSDkuIDngrnljoblj7IKIEluIENoaW5hIGl0IGlzIFlhbmcgSHVpJ3MgdHJpYW5nbGUgKHJlY29yZGVkIDEyNjE7IGVhcmxpZXIgYnkgSmlhIFhpYW4gfjEwNTApLiBJbiB0aGUgV2VzdCBpdCBpcyBQYXNjYWwncyB0cmlhbmdsZSAoMTY1NCkg4oCUIGFib3V0IDQwMCB5ZWFycyBsYXRlci4gUGVyc2lhbiBhbmQgSW5kaWFuIHNjaG9sYXJzIGZvdW5kIGl0IGluZGVwZW5kZW50bHkgdG9vLgog5Lit5Zu95Y+rIOadqOi+ieS4ieinkiDvvIgxMjYxIOW5tOadqOi+ieiusOW9le+8jOabtOaXqei0vuWuque6piAxMDUwIOW5tOeUqOi/h++8ie+8m+ilv+aWueWPqyDluJXmlq/ljaHkuInop5Ig77yIMTY1NCDlubTvvInvvIzmmZrnuqYgNDAwIOW5tO+8m+azouaWr+OAgeWNsOW6puWtpuiAheS5n+WQhOiHqueLrOeri+WPkeeOsOi/h+OAggoKIEhvdyB0byBidWlsZCBpdCDmgI7kuYjmkK3vvJogZWRnZXMgYXJlIGFsbCAxOyBlYWNoIGluc2lkZSBudW1iZXIgPSBzdW0gb2YgdGhlIHR3byBhYm92ZSBpdC4gRWFjaCByb3cgZ2l2ZXMgdGhlIGNvZWZmaWNpZW50cyBvZiAoYStiKeKBvy4gVGFwIGEgcm93IOeCueafkOS4gOihjO+8mgoKIDEKIDEgMQogMSAyIDEKIDEgMyAzIDEKIDEgNCA2IDQgMQogMSA1IDEwIDEwIDUgMQogMSA2IDE1IDIwIDE1IDYgMQoKIFRhcCBhIHJvdyDngrnkuIDooYwg4oaSIChhK2Ip4oG/CgoqKkV4YW1wbGUgMyDkvoszKioKCiBFeHBhbmQg5bGV5byA44CAKHggKyAyKcKzCiBSb3cgMyBjb2VmZmljaWVudHMg56ysM+ihjOezu+aVsO+8mjEsIDMsIDMsIDEgeMKzICsgM8K3eMKywrcyICsgM8K3eMK3MsKyICsgMsKzCgrihpIgKip4wrMgKyA2eMKyICsgMTJ4ICsgOCoqCgogTGF0ZXIgdXNlIOS7peWQjueUqOmAlO+8miByb3cgbiwgcG9zaXRpb24gayBnaXZlcyB0aGUgY29tYmluYXRpb24gQyhuLCBrKSDigJQgeW91J2xsIG1lZXQgdGhpcyBpbiBwcm9iYWJpbGl0eSAo5YWJ5YmRIG1vZHVsZSBGKS4gUm93IHN1bXMgPSAy4oG/LgoKKipQcmFjdGljZSAyIOe7g+S5oDIqKgoKIC0gRXhwYW5k44CAKHggKyA0KcKyCgogLSBFeHBhbmTjgIAoM2Eg4oiSIDEpwrIKCiAtIEdpdmVuIGEgKyBiID0gNCwgYWIgPSAzLCBmaW5kIGHCsiArIGLCsgoKIC0gRmFjdG9yaXNlIOWboOW8j+WIhuino+OAgHjCsyArIDgKCiAtIEV4cGFuZOOAgCh4IOKIkiAyKcKzCgo+IOetlOahiCBBbnN3ZXI6IDEuIHjCsiArIDh4ICsgMTYKMi4gOWHCsiDiiJIgNmEgKyAxCjMuIDE2IOKIkiA2ID0gMTAKNC4gKHggKyAyKSh4wrIg4oiSIDJ4ICsgNCkKNS4geMKzIOKIkiA2eMKyICsgMTJ4IOKIkiA4CgojIyAwMyBGYWN0b3Jpc2luZyAgwrcgIOWboOW8j+WIhuinowoKXyBLZXkgdGVybXMg5YWz6ZSu6K+NIO+8miBmYWN0b3Jpc2Ug5Zug5byP5YiG6KejIMK3IGNvbW1vbiBmYWN0b3Ig5YWs5Zug5byPIMK3IGNyb3NzIG1ldGhvZCDljYHlrZfnm7jkuZggwrcgZ3JvdXBpbmcg5YiG57uEIF8KCiMjIyMgRXhwbGFuYXRpb24g6K6y6KejCgogVG8gZmFjdG9yaXNlIGlzIHRvIHdyaXRlIGFuIGV4cHJlc3Npb24gYXMgYSBwcm9kdWN0IG9mIGJyYWNrZXRzIOKAlCB0aGUgcmV2ZXJzZSBvZiBleHBhbmRpbmcuIFRyeSB0aGVzZSBmb3VyIG1ldGhvZHMgaW4gb3JkZXI6CiDlm6DlvI/liIbop6Mg5bCx5piv5oqK5byP5a2Q5YaZ5oiQIuWHoOS4quaLrOWPt+ebuOS5mCLvvIzmmK/lsZXlvIDnmoTpgIbov5DnrpfjgILmjInpobrluo/or5Xlm5vnp43mlrnms5XvvJoKCiAtIENvbW1vbiBmYWN0b3Ig5o+Q5YWs5Zug5byPIO+8mjJhwrIg4oiSIDhhID0gMmEoYSDiiJIgNCkKCiAtIEZvcm11bGFzIOWll+WFrOW8jyDvvJp4wrIg4oiSIDkgPSAoeCArIDMpKHgg4oiSIDMpCgogLSBDcm9zcyBtZXRob2Qg5Y2B5a2X55u45LmYIO+8mmZvciB4wrIgKyBieCArIGMsIGZpbmQgdHdvIG51bWJlcnMgd2l0aCBzdW0gYiwgcHJvZHVjdCBjIOaJvuS4pOaVsO+8muWSjOS4uiBi44CB56ev5Li6IGMKCiAtIEdyb3VwaW5nIOWIhue7hCDvvJp4wrMgKyB4wrIg4oiSIDZ4ID0geCh4ICsgMykoeCDiiJIgMikKCioqRXhhbXBsZSAxIOS+izEqKgoKIEZhY3RvcmlzZSDlm6DlvI/liIbop6PjgIB4wrIg4oiSIDV4ICsgNgogVHdvIG51bWJlcnM6IHN1bSDiiJI1LCBwcm9kdWN0IDYg4oaSIOKIkjIsIOKIkjMg44CA5Lik5pWw5ZKMIOKIkjUg56evIDYKCuKGkiAqKih4IOKIkiAyKSh4IOKIkiAzKSoqCgoqKkV4YW1wbGUgMiDkvosyKioKCiBGYWN0b3Jpc2Ug5Zug5byP5YiG6Kej44CANnjCsiDiiJIgeCDiiJIgMgogQ3Jvc3MgbWV0aG9kIOWNgeWtl+ebuOS5mO+8iOWbnuS5mOmqjOeulyBjaGVjayBieSBleHBhbmRpbmfvvIkKCuKGkiAqKigyeCArIDEpKDN4IOKIkiAyKSoqCgoqKlByYWN0aWNlIDMg57uD5LmgMyoqCgogLSBGYWN0b3Jpc2XjgIA1eMKyICsgMTB4CgogLSBGYWN0b3Jpc2XjgIB4wrIg4oiSIDI1CgogLSBGYWN0b3Jpc2XjgIB4wrIgKyA3eCArIDEyCgogLSBGYWN0b3Jpc2XjgIAyeMKyICsgNXggKyAyCgogLSBGYWN0b3Jpc2XjgIB4wrMg4oiSIHjCsiDiiJIgNngKCj4g562U5qGIIEFuc3dlcjogMS4gNXgoeCArIDIpCjIuICh4ICsgNSkoeCDiiJIgNSkKMy4gKHggKyAzKSh4ICsgNCkKNC4gKDJ4ICsgMSkoeCArIDIpCjUuIHgoeCDiiJIgMykoeCArIDIpCgojIyAwNCBTdXJkcyAgwrcgIOagueW8jwoKXyBLZXkgdGVybXMg5YWz6ZSu6K+NIO+8miBzdXJkIC8gc3F1YXJlIHJvb3Qg5qC55byPIC8g5bmz5pa55qC5IMK3IHNpbXBsaWZ5IOWMlueugCDCtyByYXRpb25hbGlzZSB0aGUgZGVub21pbmF0b3Ig5YiG5q+N5pyJ55CG5YyWIMK3IGNvbmp1Z2F0ZSDlhbHova0gXwoKIyMjIyBFeHBsYW5hdGlvbiDorrLop6MKCiBBIHN1cmQgaXMgYSByb290IHRoYXQgaXNuJ3QgYSB3aG9sZSBudW1iZXIsIGxpa2Ug4oiaMi4gRm91ciBydWxlcyDlm5vmnaHop4TliJnvvJoKCiAtIENvbWJpbmUgw5cvw7cg5LmY6Zmk5Y+v5ZCI5bm277ya4oiaYSDDlyDiiJpiID0g4oiaKGFiKQoKIC0gU2ltcGxpZnkg5YyW566A77yadGFrZSBvdXQgc3F1YXJlIGZhY3RvcnMg5oqK5bmz5pa55Zug5a2Q5ou/5Ye65p2lIOKGkiDiiJoxMiA9IDLiiJozCgogLSBBZGQvc3VidHJhY3QgbGlrZSBzdXJkcyBvbmx5IOWQjOexu+agueW8j+aJjeiDveWKoOWHj++8mjLiiJozICsgNeKImjMgPSA34oiaMwoKIC0gUmF0aW9uYWxpc2Ug5YiG5q+N5pyJ55CG5YyW77yabXVsdGlwbHkgYnkgdGhlIGNvbmp1Z2F0ZSDkuZjlhbHova0KCioqRXhhbXBsZSAxIOS+izEqKgoKIFNpbXBsaWZ5IOWMlueugOOAgOKImjUwCiDiiJo1MCA9IOKImigyNSDDlyAyKSA9IDXiiJoyCgrihpIgKio14oiaMioqCgoqKkV4YW1wbGUgMiDkvosyKioKCiBSYXRpb25hbGlzZSDmnInnkIbljJbjgIAzIOKBhCAo4oiaNSDiiJIg4oiaMikKCiBNdWx0aXBseSB0b3AgJiBib3R0b20gYnkgY29uanVnYXRlICjiiJo1ICsg4oiaMikg5YiG5a2Q5YiG5q+N5ZCM5LmY5YWx6L2tCiBEZW5vbWluYXRvciDliIbmr43vvJoo4oiaNSnCsiDiiJIgKOKImjIpwrIgPSAzCgrihpIgKiriiJo1ICsg4oiaMioqCgoqKlByYWN0aWNlIDQg57uD5LmgNCoqCgogLSBTaW1wbGlmeeOAgOKImjcyCgogLSBFdmFsdWF0ZeOAgOKImjIgw5cg4oiaMTgKCiAtIFNpbXBsaWZ544CAM+KImjUgKyAy4oiaNQoKIC0gUmF0aW9uYWxpc2XjgIAxIOKBhCDiiJozCgogLSBFdmFsdWF0ZeOAgCjiiJozICsgMSko4oiaMyDiiJIgMSkKCj4g562U5qGIIEFuc3dlcjogMS4gNuKImjLjgIAyLiDiiJozNiA9IDbjgIAzLiA14oiaNeOAgDQuIOKImjMvM+OAgDUuIDMg4oiSIDEgPSAyCgojIyAwNSBBbGdlYnJhaWMgRnJhY3Rpb25zICDCtyAg5YiG5byPCgpfIEtleSB0ZXJtcyDlhbPplK7or40g77yaIGFsZ2VicmFpYyBmcmFjdGlvbiDliIblvI8gwrcgbnVtZXJhdG9yIOWIhuWtkCDCtyBkZW5vbWluYXRvciDliIbmr40gwrcgY2FuY2VsIOe6puWIhiDCtyBjb21tb24gZGVub21pbmF0b3Ig6YCa5YiGIF8KCiMjIyMgRXhwbGFuYXRpb24g6K6y6KejCgogQW4gYWxnZWJyYWljIGZyYWN0aW9uIGhhcyBsZXR0ZXJzIG9uIHRvcCAoIG51bWVyYXRvciApIGFuZC9vciBib3R0b20gKCBkZW5vbWluYXRvciApLiBTYW1lIHJ1bGVzIGFzIG5vcm1hbCBmcmFjdGlvbnM6CiDliIblvI8g5bCx5piv5YiG5a2Q44CB5YiG5q+N5bim5a2X5q+N55qE5YiG5pWw77yM6KeE5YiZ5ZKM5pmu6YCa5YiG5pWw5LiA5qC377yaCgogLSBDYW5jZWwg57qm5YiGIO+8mmZhY3RvcmlzZSBmaXJzdCwgdGhlbiBjYW5jZWwg5YWI5Zug5byP5YiG6Kej5YaN57qm44CAKHjCsuKIkjQpLyh4KzIpID0geCDiiJIgMgoKIC0gQ29tbW9uIGRlbm9taW5hdG9yIOmAmuWIhiBiZWZvcmUgYWRkaW5nIOWKoOWHj+WJjeWFiOmAmuWIhgoKIC0gRGl2aWRlID0gbXVsdGlwbHkgYnkgdGhlIHJlY2lwcm9jYWwg6Zmk5Lul5LiA5Liq5YiG5byPID0g5LmY5a6D55qE5YCS5pWwCgogV2F0Y2ggb3V0IOaYk+mUme+8miB5b3UgY2FuIG9ubHkgY2FuY2VsIGZhY3RvcnMgKHRoaW5ncyBtdWx0aXBsaWVkKSwgbm90IHRlcm1zICh0aGluZ3MgYWRkZWQpLiAoeCArIDIpL3gg4omgIHggISDlj6rog73nuqYi5LmY6LW35p2l55qE5Zug5byPIuOAggoKKipFeGFtcGxlIDEg5L6LMSoqCgogU2ltcGxpZnkg5YyW566A44CAKHjCsiDiiJIgOSkg4oGEICh4IOKIkiAzKQogPSAoeCArIDMpKHgg4oiSIDMpIC8gKHgg4oiSIDMpIOKGkiBjYW5jZWwg57qm5o6JICh4IOKIkiAzKQoK4oaSICoqeCArIDMqKgoKKipFeGFtcGxlIDIg5L6LMioqCgogU2ltcGxpZnkg5YyW566A44CAMS8oeCDiiJIgMSkg4oiSIDEvKHggKyAxKQogQ29tbW9uIGRlbm9taW5hdG9yICh44oiSMSkoeCsxKe+8m3RvcCDliIblrZDvvJooeCsxKSDiiJIgKHjiiJIxKSA9IDIKCuKGkiAqKjIg4oGEICh4wrIg4oiSIDEpKioKCioqUHJhY3RpY2UgNSDnu4PkuaA1KioKCiAtIFNpbXBsaWZ544CAKHjCsiDiiJIgMSkg4oGEICh4IOKIkiAxKQoKIC0gU2ltcGxpZnnjgIAoMnggKyA0KSDigYQgKHggKyAyKQoKIC0gU2ltcGxpZnnjgIAxL3ggKyAxLygyeCkKCiAtIFNpbXBsaWZ544CAKHgvMykgw7cgKHjCsi82KQoKPiDnrZTmoYggQW5zd2VyOiAxLiB4ICsgMeOAgDIuIDLjgIAzLiAzLygyeCnjgIA0LiAyL3gKCiMjIFN1bW1hcnkgJiBzZWxmLWNoZWNrICDCtyAg5bCP57uT5LiO6Ieq5p+lCgojIyMjIFNlbGYtY2hlY2sg6Ieq5p+l77yIdGFwIHRvIHRpY2sg54K55LiA5LiL5omT5Yu+77yJCgogSW5kZXggcnVsZXMgKyB6ZXJvL25lZ2F0aXZlIGluZGV444CA5bmC55qE5LiJ5p2h6KeE5YiZICsg6Zu2L+i0n+aMh+aVsAogVGhlIDUgbXVsdGlwbGljYXRpb24gZm9ybXVsYXMgYnkgaGVhcnTjgIDkupTkuKrkuZjms5XlhazlvI/og4znhp8KIGHCsiArIGLCsiA9IChhK2IpwrIg4oiSIDJhYgogRmFjdG9yaXNlIGZsdWVudGx5LCBlc3AuIGNyb3NzIG1ldGhvZOOAgOWboOW8j+WIhuino++8jOWwpOWFtuWNgeWtl+ebuOS5mAogU2ltcGxpZnkgc3VyZHMgJiByYXRpb25hbGlzZSAoY29uanVnYXRlKeOAgOWMlueugOagueW8j+OAgeWIhuavjeacieeQhuWMlgogRnJhY3Rpb25zOiBmYWN0b3Jpc2UgdGhlbiBjYW5jZWw7IGNvbW1vbiBkZW5vbWluYXRvcuOAgOWIhuW8j+WFiOWIhuino+WGjee6puOAgemAmuWIhgoKIFBhc3MgbWFyayDov4flhbPmoIflh4bvvJogZ2V0IH44MCUgb2YgdGhlIHByYWN0aWNlIHJpZ2h0LCB0aGVuIG1vdmUgb24gdG8gTm90ZSAwMi4g57uD5Lmg5YGa5a+557qmIDgwJSDlsLHlj6/ov5vorrLkuYkgMDLjgIIKCiBGb3IgcGFyZW50cyDnu5nlrrbplb/nmoTor50KIOi/meS7veaYr+iLseaWh+WNt+Wkh+iAg+eahOecn+ato+i1t+eCueOAguWlueWfuuehgOW8seS4jeimgee0p++8jOWFs+mUruaYr+i/meS6lOagt+WcsOWfuuS4gOWdl+Wdl+ihpeS4iuKAlOKAlOWFieWJkemCo+S6m+mavumimOaLhuWIsOacgOWQjumDveaYr+Wug+S7rOeahOe7hOWQiOOAguiLseaWh+acr+ivre+8iHBvd2VyIC8gZmFjdG9yaXNlIC8gc3VyZCAvIGRlbm9taW5hdG9y4oCm77yJ6K6p5aW56Lef552AIEtleSB0ZXJtcyDkuIDoioLoioLorrDvvIzogIPor5Xor7vpopjlsLHkuI3mhYzjgIIK";
+function downloadMD(){try{const t=decodeURIComponent(escape(atob(_MDB64)));const blob=new Blob([t],{type:'text/markdown;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=(document.title||'note').replace(/[^\w\u4e00-\u9fa5-]+/g,'_')+'.md';document.body.appendChild(a);a.click();setTimeout(()=>{a.remove();URL.revokeObjectURL(a.href);},100);}catch(e){alert("下载失败");}}
+function printAll(){var c=document.getElementById("content");try{if(c&&typeof S!=="undefined"){var cur=c.innerHTML;c.innerHTML=S.map(function(s){return '<section class="psec"><h2>'+((s.num?s.num+" ":"")+s.title)+(s.zh?" · "+s.zh:"")+'</h2>'+s.body+'</section>';}).join("");c.querySelectorAll(".answer").forEach(function(a){a.classList.add("open");});window.print();c.innerHTML=cur;if(typeof render==="function")render();return;}}catch(e){}window.print();}
+</script>
+</body>
+</html>

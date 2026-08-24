@@ -1,0 +1,80 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>光剑考纲 · 子章节 + 能力点</title><style>
+:root{--bg:#F4F6FB;--surface:#fff;--ink:#1B1B2A;--muted:#6A6A82;--line:#E3E6F0;--indigo:#4A43C4;--indigo-deep:#2E2A6B;--indigo-soft:#EEF0FC;--green:#1F8A5B;--green-soft:#E6F5EE;--amber:#C77A15;--amber-soft:#FCF2DF;--rose:#C0453B;--rose-soft:#FBEDEC;--grey-soft:#EEF0F4;--shadow:0 1px 2px rgba(30,30,60,.05),0 6px 20px rgba(30,30,60,.06);--font:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Segoe UI",Roboto,sans-serif;}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.5}
+.hero{background:var(--surface);border-bottom:1px solid var(--line);padding:16px 22px}.hero-in{max-width:1000px;margin:0 auto}
+.back{color:var(--indigo);text-decoration:none;font-size:13px;font-weight:700}
+.hero h1{margin:6px 0 2px;font-size:21px;color:var(--indigo-deep)}.hero .en{font-size:12px;color:var(--muted);font-weight:700}.hero p{margin:6px 0 0;color:var(--muted);font-size:13px}
+.bar{max-width:1000px;margin:12px auto 0;padding:0 22px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.tgl{border:1px solid var(--line);background:var(--surface);border-radius:9px;padding:7px 12px;font-size:12px;font-weight:800;cursor:pointer;font-family:inherit;box-shadow:var(--shadow)}
+.tgl.on{background:var(--indigo);color:#fff}
+.prog{font-size:12.5px;color:var(--muted);font-weight:700;margin-left:auto}
+.wrap{max-width:1000px;margin:12px auto 60px;padding:0 22px}
+.cat{margin:20px 0 6px;font-weight:800;font-size:16px;padding:6px 12px;border-radius:10px;color:#fff}
+.gr{background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);overflow:hidden}
+.ch{padding:12px 14px;border-top:1px solid var(--line)}.ch:first-child{border-top:none}
+.ch.learned{background:linear-gradient(90deg,#F2FBF6,#fff)}
+.chh{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.chk{width:20px;height:20px;border:2px solid var(--line);border-radius:6px;flex:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;color:#fff}
+.ch.learned .chk{background:var(--green);border-color:var(--green)}
+.cname{font-weight:800;font-size:14px;color:var(--indigo-deep)}
+.cid{font-size:10px;color:var(--muted);font-weight:700}
+.fq{font-size:10px;font-weight:800;color:var(--amber);background:var(--amber-soft);border-radius:99px;padding:1px 8px}
+.mk{font-size:10px;font-weight:800;border-radius:99px;padding:1px 8px}
+.mk.dup{color:var(--rose);background:var(--rose-soft)}.mk.gap{color:var(--muted);background:var(--grey-soft)}.mk.tool{color:var(--indigo);background:var(--indigo-soft)}
+.open{margin-left:auto;font-size:11.5px;font-weight:700;color:var(--indigo);text-decoration:none;white-space:nowrap}
+.skills{margin:8px 0 0 29px;display:flex;flex-wrap:wrap;gap:6px}
+.sk{font-size:11.5px;background:var(--grey-soft);border-radius:7px;padding:3px 9px;color:#3a3a52;font-weight:600}
+.ch.learned .sk{background:var(--green-soft);color:#256b47}
+.lead{font-size:11px;color:var(--muted);margin:2px 0 0 29px}
+.note{background:var(--amber-soft);color:#7a5210;border-radius:10px;padding:11px 15px;font-size:12.6px;margin:14px 0}
+.dltools{position:fixed;top:12px;right:14px;z-index:70}.dltools button{border:none;border-radius:9px;padding:8px 12px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;color:#fff;background:var(--indigo);box-shadow:0 4px 12px rgba(30,30,60,.18)}
+.hidden{display:none}
+@media print{.dltools,.back,.bar{display:none}.chk{border-color:#999}}
+</style></head><body>
+<div class="hero"><div class="hero-in"><a class="back" href="../index.html">← 学习中心 Hub</a>
+<h1>光剑考纲 · 子章节 + 学会了什么</h1><div class="en">Syllabus by sub-chapter — with the skills she gains from each</div>
+<p>每个大类 → 子章节 → <b>学会了什么（能力点）</b>。勾选＝已学（与 Hub 同步）。红色 ↺ 是<b>被深讲取代的旧版</b>（交叉看重复用），⏳ 待建，🔧 工具。</p></div></div>
+<div class="bar">
+ <button class="tgl on" id="tAll" onclick="setF('all')">全部</button>
+ <button class="tgl" id="tLearned" onclick="setF('learned')">只看已学</button>
+ <button class="tgl" id="tTodo" onclick="setF('todo')">只看未学</button>
+ <button class="tgl" id="tDup" onclick="setF('dup')">看重复/待建</button>
+ <span class="prog" id="prog">—</span>
+</div>
+<div class="dltools"><button onclick="window.print()">🖨 PDF</button></div>
+<div class="wrap" id="wrap"></div>
+<div class="note"><b>怎么用这张考纲：</b>①左侧勾选她已掌握的章节，进度自动统计、和 Hub 同步；②每章下面列的是"<b>学会这章能做什么</b>"，交叉扫一眼就知道能力覆盖到哪；③红色 ↺ 成对出现＝<b>重复</b>（如 03/F7 不等式、02/F1 画图），提示该合并；④⏳ 待建＝缺口。</div>
+<script>
+var DATA=[{"cat": "🔢 代数 Algebra", "col": "#4A43C4", "items": [{"id": "01", "nm": "代数基本功 Algebra basics", "href": "lectures/01_algebra-basics.html", "skills": ["指数幂运算", "乘法公式展开", "因式分解基础"], "fq": "", "mk": ""}, {"id": "C1", "nm": "因式分解与恒等式 Factorising", "href": "lectures/C1_factoring-identities.html", "skills": ["提公因式/十字相乘", "平方差·完全平方", "对称式因式分解"], "fq": "枢纽", "mk": ""}, {"id": "C2", "nm": "分式 Algebraic fractions", "href": "lectures/C2_fractions.html", "skills": ["约分/通分", "分式方程", "复杂分式化简"], "fq": "", "mk": ""}, {"id": "E", "nm": "二次根式·数列 Surds & sequences", "href": "lectures/E_surds-sequences.html", "skills": ["根式化简/有理化", "嵌套根式", "等差等比数列"], "fq": "×6", "mk": ""}, {"id": "F2", "nm": "一元一次方程 Linear equations", "href": "lectures/F2_linear-equations.html", "skills": ["解一元一次", "去分母/去括号"], "fq": "", "mk": ""}, {"id": "A", "nm": "一元二次·韦达 Quadratics & Vieta", "href": "lectures/A_vieta.html", "skills": ["公式法/因式法解", "判别式", "韦达定理 α+β,αβ"], "fq": "×9", "mk": ""}, {"id": "D", "nm": "换元·对称 Substitution", "href": "lectures/D_substitution.html", "skills": ["整体换元", "对称式求值", "a+1/a 型"], "fq": "加料", "mk": ""}, {"id": "C3", "nm": "绝对值 Absolute value", "href": "lectures/C3_absolute-value.html", "skills": ["|x|几何意义", "绝对值方程分类", "绝对值不等式"], "fq": "加料", "mk": ""}, {"id": "03", "nm": "不等式 Inequalities", "href": "lectures/03_inequalities.html", "skills": ["一元一次不等式(组)", "数轴表示"], "fq": "", "mk": "dup"}, {"id": "F7", "nm": "不等式·阴影 Inequalities (region)", "href": "lectures/F7_inequalities.html", "skills": ["不等式区域", "阴影表示"], "fq": "", "mk": "dup"}]}, {"cat": "📈 函数 Functions", "col": "#8A5BC0", "items": [{"id": "F1", "nm": "坐标与一次函数 Linear graphs", "href": "lectures/F1_coordinates-linear.html", "skills": ["坐标系/描点", "一次函数 k,b", "交点"], "fq": "", "mk": "dup"}, {"id": "02", "nm": "图像基础 Graphs", "href": "lectures/02_graphs.html", "skills": ["描点法画图", "读图"], "fq": "", "mk": "dup"}, {"id": "C4b", "nm": "二次函数·含最值 Quadratic (deep)", "href": "lectures/C4_quadratic-functions.html", "skills": ["配方求顶点", "最大/最小值", "限定区间最值", "最值应用题"], "fq": "×4", "mk": ""}, {"id": "C3r", "nm": "反比例·渐近线 Reciprocal", "href": "lectures/C3_reciprocal-functions.html", "skills": ["双曲线两支", "渐近线", "矩形面积=|k|", "平移"], "fq": "加料", "mk": ""}, {"id": "C4", "nm": "复合·函数方程 Composite", "href": "lectures/C4_composite-functions.html", "skills": ["f(g(x))复合", "求f(x)", "函数方程"], "fq": "加料", "mk": ""}, {"id": "B", "nm": "函数综合 Functions", "href": "lectures/B_functions.html", "skills": ["函数概念", "定义域值域"], "fq": "", "mk": ""}]}, {"cat": "📐 几何 Geometry", "col": "#1F8A5B", "items": [{"id": "B1", "nm": "点·线·角 Points/lines/angles", "href": "lectures/B1_points-lines-angles.html", "skills": ["直线射线线段", "角分类", "余角补角", "对顶角邻补角"], "fq": "", "mk": ""}, {"id": "B2", "nm": "平行线 Parallel lines", "href": "lectures/B2_parallel-lines.html", "skills": ["三线八角", "同位/内错/同旁", "性质与判定", "辅助平行线"], "fq": "", "mk": ""}, {"id": "B3", "nm": "三角形与全等 Triangles", "href": "lectures/B3_triangles.html", "skills": ["内角和/外角", "等腰底角", "全等五判定 SSS/SAS/ASA/AAS/HL", "勾股定理"], "fq": "×5", "mk": ""}, {"id": "B7", "nm": "相似 Similarity", "href": "lectures/B7_similarity.html", "skills": ["相似判定 AA/SAS/SSS", "面积比=相似比²", "面积法", "相似≠全等"], "fq": "×10 枢纽", "mk": ""}, {"id": "B5", "nm": "四边形 Quadrilaterals", "href": "lectures/B5_quadrilaterals.html", "skills": ["平行四边形性质/判定", "矩形菱形正方形", "梯形", "中位线"], "fq": "×8", "mk": ""}, {"id": "B6", "nm": "圆 Circles", "href": "lectures/B6_circles.html", "skills": ["圆心角=2圆周角", "垂径定理", "切线⊥半径", "圆内接四边形"], "fq": "×4", "mk": ""}, {"id": "G4", "nm": "坐标几何 Coordinate geometry", "href": "lectures/G4_coordinate-geometry.html", "skills": ["距离/中点/斜率", "直线方程/交点", "坐标面积", "反比例+相似求k", "最短路径"], "fq": "×9", "mk": ""}, {"id": "G5", "nm": "翻折·旋转 Transformations", "href": "lectures/G5_transformations.html", "skills": ["平移", "轴对称/翻折", "旋转/中心对称", "翻折求长度"], "fq": "", "mk": ""}, {"id": "G6", "nm": "三角比 Trig ratios", "href": "lectures/G6_trigonometry.html", "skills": ["sin/cos/tan", "解直角三角形"], "fq": "低优先", "mk": "gap"}]}, {"cat": "🎲 计数·概率·数论 Counting", "col": "#C77A15", "items": [{"id": "N2", "nm": "排列组合 Permutations", "href": "lectures/N2_permutations.html", "skills": ["加法/乘法原理", "排列 P", "组合 C"], "fq": "加料", "mk": ""}, {"id": "N3", "nm": "概率 Probability", "href": "lectures/N3_probability.html", "skills": ["古典概型", "树状图/列表"], "fq": "", "mk": ""}, {"id": "N1", "nm": "数论 Number theory", "href": "lectures/N1_number-theory.html", "skills": ["整除/质因数", "最大公约/最小公倍", "奇偶"], "fq": "", "mk": ""}, {"id": "N4", "nm": "集合与逻辑 Sets & logic", "href": "lectures/N4_sets-logic.html", "skills": ["∈/⊂/∪/∩ 读符号", "⇒/⇔ 逻辑", "读题工具"], "fq": "工具·新", "mk": "tool"}]}, {"cat": "🧩 应用 Applications", "col": "#C0453B", "items": [{"id": "P", "nm": "应用题·建模 Word problems", "href": "lectures/P_word-problems.html", "skills": ["列方程建模", "最优化", "行程/浓度"], "fq": "", "mk": ""}]}];
+var K='gj_learned';
+function load(){try{return new Set(JSON.parse(localStorage.getItem(K)||'[]'))}catch(e){return new Set()}}
+function save(s){try{localStorage.setItem(K,JSON.stringify([...s]))}catch(e){}}
+var L=load(), F='all';
+function toggle(id){ if(L.has(id))L.delete(id); else L.add(id); save(L); render(); }
+function setF(f){F=f;['All','Learned','Todo','Dup'].forEach(function(x){document.getElementById('t'+x).classList.toggle('on', x.toLowerCase()===f)});render();}
+function render(){
+ var w=document.getElementById('wrap'); w.innerHTML='';
+ var tot=0,done=0;
+ DATA.forEach(function(g){
+  var rows='';
+  g.items.forEach(function(it){
+   var isL=L.has(it.id); tot++; if(isL)done++;
+   var show = F==='all' || (F==='learned'&&isL) || (F==='todo'&&!isL) || (F==='dup'&&(it.mk==='dup'||it.mk==='gap'));
+   if(!show) return;
+   var fqh = it.fq?('<span class="fq">'+it.fq+'</span>'):'';
+   var mkh = it.mk==='dup'?'<span class="mk dup">↺ 旧版·被深讲取代</span>':it.mk==='gap'?'<span class="mk gap">⏳ 待建</span>':it.mk==='tool'?'<span class="mk tool">🔧 工具</span>':'';
+   var sk = it.skills.map(function(s){return '<span class="sk">'+s+'</span>'}).join('');
+   rows += '<div class="ch'+(isL?' learned':'')+'"><div class="chh">'
+     +'<div class="chk" onclick="toggle(\''+it.id+'\')">'+(isL?'✓':'')+'</div>'
+     +'<span class="cname">'+it.nm+'</span><span class="cid">'+it.id+'</span>'+fqh+mkh
+     +'<a class="open" href="../'+it.href+'">打开 →</a></div>'
+     +'<div class="lead">学会什么：</div><div class="skills">'+sk+'</div></div>';
+  });
+  if(rows) w.innerHTML += '<div class="cat" style="background:'+g.col+'">'+g.cat+'</div><div class="gr">'+rows+'</div>';
+ });
+ document.getElementById('prog').textContent = '已学 '+done+' / '+tot+' 章';
+}
+render();
+</script>
+</body></html>
