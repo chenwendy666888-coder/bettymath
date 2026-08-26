@@ -46,11 +46,23 @@ input.ans:focus{outline:none;border-color:var(--indigo)}
 .jud{display:inline-flex;gap:5px;margin-top:5px}.jud button{border:1.5px solid var(--line);background:var(--surface);border-radius:8px;padding:4px 9px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit}
 .jud button.y.on{background:var(--green);color:#fff;border-color:var(--green)}.jud button.n.on{background:var(--rose);color:#fff;border-color:var(--rose)}
 .hide{display:none}.tip{font-size:12px;color:var(--muted);margin-top:10px}
+
+.voicebar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;background:var(--indigo-soft);border:1px solid #D9DCF6;border-radius:12px;padding:9px 12px;margin:0 0 14px}
+.voicebar .lb{font-size:12.5px;font-weight:800;color:var(--indigo-deep)}
+.voicebar select{border:1.5px solid var(--line);border-radius:9px;padding:6px 9px;font-family:inherit;font-size:12.5px;max-width:210px;background:#fff;color:var(--ink)}
+.voicebar .rate{display:inline-flex;gap:3px}
+.voicebar .rate button{border:1.5px solid var(--line);background:#fff;border-radius:8px;padding:5px 10px;font-size:12px;font-weight:800;cursor:pointer;font-family:inherit;color:var(--indigo-deep)}
+.voicebar .rate button.on{background:var(--indigo);color:#fff;border-color:var(--indigo)}
+.voicebar .test{border:none;background:var(--indigo);color:#fff;border-radius:9px;padding:6px 13px;font-size:12.5px;font-weight:800;cursor:pointer;font-family:inherit}
+.voicebar .test:hover{background:var(--indigo-deep)}
+.spk{border:none;background:var(--indigo-soft);color:var(--indigo);border-radius:8px;width:30px;height:30px;font-size:15px;cursor:pointer;vertical-align:middle;line-height:1}
+.spk:hover{background:var(--indigo);color:#fff}
+.ri-spk{width:26px;height:26px;font-size:13px;margin-right:6px}
 </style></head><body>
 <div class="hero"><div class="hero-in"><a class="back" href="../index.html">← 学习中心 Hub</a>
 <div class="en">GLOSSARY QUIZ · SELF-ASSESSMENT</div>
 <h1>数学英语词汇 · 自测考试</h1>
-<p>模式可多选（自动 Mix 随机抽题）。全部答完后统一评判；进度自动本地存档，结果可导出。</p></div></div>
+<p>四种模式（看英→中 / 看中→英 / 听→拼英文 / 听→写中文）可多选自动 Mix；可选嗓音与语速。全部答完统一评判，进度本地存档、结果可导出。</p></div></div>
 <div class="wrap">
 
 <div class="card" id="setup">
@@ -58,7 +70,14 @@ input.ans:focus{outline:none;border-color:var(--indigo)}
   <h3>① 选模式 Modes（可多选 → 混合）</h3>
   <div class="modes" id="modes"></div>
   <div class="mixhint hide" id="mixhint"></div>
-  <h3 style="margin-top:18px">② 选范围 Modules</h3>
+  <h3 style="margin-top:18px" id="voiceHead">② 发音设置 Voice（听力模式用）</h3>
+  <div class="voicebar" id="voicebar">
+    <span class="lb">🔊 嗓音</span>
+    <select id="voiceSel" title="选择朗读嗓音"></select>
+    <span class="rate" id="rate"><button data-r="0.75">慢</button><button data-r="0.9" class="on">正常</button><button data-r="1.05">快</button></span>
+    <button class="test" id="voiceTest">🔊 试听</button>
+  </div>
+  <h3 style="margin-top:18px">③ 选范围 Modules</h3>
   <div class="expander" id="rangeExp">
     <div class="exp-head" id="rangeHead"><span class="arrow">▸</span> 选择模块 <span class="sum" id="rangeSum"></span></div>
     <div class="exp-body"><div class="row2" style="margin-top:0;margin-bottom:8px"><button class="btn ghost sm" id="selAll">全选</button><button class="btn ghost sm" id="selNone">全不选</button></div><div class="chips" id="chips"></div></div>
@@ -104,6 +123,7 @@ const LS='gj_quiz_sess';
 let modesSel=new Set(['listen_en']), selSecs=new Set(SECTIONS.map(s=>s.id)), count=20;
 let sess=null, locked=false;
 const $=id=>document.getElementById(id);
+function esc(s){return (s+'').replace(/[&<>]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;"}[c];});}
 function show(id){['setup','quiz','result'].forEach(x=>$(x).classList.toggle('hide',x!==id));}
 
 // ===== 判定 =====
@@ -132,9 +152,23 @@ $('rangeHead').onclick=()=>$('rangeExp').classList.toggle('open');
 syncChips();
 const countEl=$('count');[10,20,40,'全部'].forEach(v=>{const b=document.createElement('button');b.textContent=v;if(v===20)b.classList.add('on');b.onclick=()=>{count=(v==='全部')?99999:v;[...countEl.children].forEach(c=>c.classList.remove('on'));b.classList.add('on');};countEl.appendChild(b);});
 
-// ===== 发音(女声) =====
-function pickVoice(){try{const vs=speechSynthesis.getVoices();const fem=/(female|Kate|Serena|Stephanie|Hazel|Libby|Sonia|Amy|Emma|Fiona|Moira|Tessa|Karen|Samantha|Victoria|Zira|Susan|Catherine|Google UK English Female)/i;const gb=vs.filter(v=>/en-GB/i.test(v.lang));const en=vs.filter(v=>/^en/i.test(v.lang));return gb.find(v=>fem.test(v.name))||en.find(v=>fem.test(v.name))||gb[0]||en[0]||null;}catch(e){return null;}}
-function speak(txt){try{if(!('speechSynthesis' in window))return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(txt);u.lang='en-GB';u.rate=0.9;u.pitch=1.15;const v=pickVoice();if(v)u.voice=v;speechSynthesis.speak(u);}catch(e){}}
+// ===== 发音 Voice（可选嗓音/语速，记忆到本地）=====
+let VOICES=[];
+let voiceName=''; try{voiceName=localStorage.getItem('gj_quiz_voice')||'';}catch(e){}
+let rate=0.9; try{var _r=parseFloat(localStorage.getItem('gj_quiz_rate'));if(_r)rate=_r;}catch(e){}
+function enVoices(){return VOICES.filter(v=>/^en/i.test(v.lang));}
+function autoVoice(){const vs=enVoices();const fem=/(female|Kate|Serena|Stephanie|Hazel|Libby|Sonia|Amy|Emma|Fiona|Moira|Tessa|Karen|Samantha|Victoria|Zira|Susan|Catherine|Google UK English Female)/i;const gb=vs.filter(v=>/en-GB/i.test(v.lang));return gb.find(v=>fem.test(v.name))||vs.find(v=>fem.test(v.name))||gb[0]||vs[0]||null;}
+function chosenVoice(){const vs=enVoices();if(voiceName){const f=vs.find(v=>v.name===voiceName);if(f)return f;}return autoVoice();}
+function speak(txt){try{if(!('speechSynthesis' in window))return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(txt);const v=chosenVoice();if(v){u.voice=v;u.lang=v.lang;}else u.lang='en-GB';u.rate=rate;u.pitch=1.1;speechSynthesis.speak(u);}catch(e){}}
+function populateVoiceSel(){const sel=$('voiceSel');const bar=$('voicebar');const hd=$('voiceHead');if(!sel)return;const vs=enVoices();if(!vs.length){if(bar)bar.style.display='none';if(hd)hd.style.display='none';return;}if(bar)bar.style.display='';if(hd)hd.style.display='';const cur=chosenVoice();sel.innerHTML=vs.map(v=>'<option value="'+esc(v.name)+'"'+(cur&&v.name===cur.name?' selected':'')+'>'+esc(v.name)+' · '+esc(v.lang)+'</option>').join('');}
+function refreshVoices(){try{VOICES=speechSynthesis.getVoices()||[];}catch(e){VOICES=[];}populateVoiceSel();}
+// 绑定语音栏控件
+(function(){
+  const sel=$('voiceSel');if(sel)sel.onchange=function(){voiceName=this.value;try{localStorage.setItem('gj_quiz_voice',voiceName);}catch(e){}};
+  const rt=$('rate');if(rt){[...rt.children].forEach(b=>{b.classList.toggle('on',parseFloat(b.dataset.r)===rate);b.onclick=()=>{rate=parseFloat(b.dataset.r);[...rt.children].forEach(x=>x.classList.remove('on'));b.classList.add('on');try{localStorage.setItem('gj_quiz_rate',rate);}catch(e){}};});}
+  const vt=$('voiceTest');if(vt)vt.onclick=()=>speak('discriminant, gradient, quadratic');
+})();
+if(typeof speechSynthesis!=='undefined'){refreshVoices();speechSynthesis.onvoiceschanged=refreshVoices;setTimeout(refreshVoices,300);}
 
 // ===== 存档 =====
 function saveSess(){try{localStorage.setItem(LS,JSON.stringify(sess));}catch(e){}}
@@ -158,8 +192,8 @@ function renderQ(){const q=sess.quiz[sess.qi];const m=MODEMAP[q.mode];
   $('qmode').textContent=m.t+'　·　答案：'+(m.ansEN?'英文':'中文');
   const p=$('prompt');
   if(m.listen){p.innerHTML='<button class="playbtn" id="play">🔊</button><div class="sub">听发音，然后'+(m.ansEN?'拼出英文':'写出中文')+'</div><button class="replay" id="replay">🔁 再听</button>';setTimeout(()=>speak(sayText(q.en)),150);$('play').onclick=()=>speak(sayText(q.en));$('replay').onclick=()=>speak(sayText(q.en));}
-  else if(m.id==='en_zh'){p.innerHTML='<div class="big">'+q.en+'</div><div class="sub">写出中文意思</div>';}
-  else{p.innerHTML='<div class="big">'+q.zh+'</div><div class="sub">拼出英文</div>';}
+  else if(m.id==='en_zh'){p.innerHTML='<div class="big">'+esc(q.en)+' <button class="spk" id="pspk" title="朗读">🔊</button></div><div class="sub">写出中文意思（可点 🔊 听发音）</div>';const pb=$('pspk');if(pb)pb.onclick=()=>speak(sayText(q.en));}
+  else{p.innerHTML='<div class="big">'+esc(q.zh)+'</div><div class="sub">拼出英文</div>';}
   const inp=$('ans');inp.value=q.ans||'';inp.placeholder=m.ansEN?'输入英文…':'输入中文…';
   $('nextBtn').textContent=(sess.qi===sess.quiz.length-1)?'完成 ✓':'下一题 →';
   setTimeout(()=>inp.focus(),60);
@@ -178,10 +212,11 @@ function finish(){sess.phase='done';gradeAll();saveSess();show('result');renderR
 function renderResult(){const rv=$('review');rv.innerHTML='';
   sess.quiz.forEach((q,idx)=>{const m=MODEMAP[q.mode];const el=document.createElement('div');el.className='review-item';
     const badge='<span class="badge '+q.status+'">'+(q.status==='right'?'✓ 对':q.status==='wrong'?'✗ 错':'待复核')+'</span>';
-    el.innerHTML='<div class="ri-q"><span class="en">'+q.en+'</span> · '+q.zh+'<br><span class="ya">['+m.t+'] 你的答案：'+(q.ans||'（空）')+'</span></div>'+
+    el.innerHTML='<div class="ri-q"><button class="spk ri-spk" data-i="'+idx+'" title="朗读">🔊</button><span class="en">'+esc(q.en)+'</span> · '+esc(q.zh)+'<br><span class="ya">['+esc(m.t)+'] 你的答案：'+esc(q.ans||'（空）')+'</span></div>'+
       '<div style="text-align:right">'+badge+'<div class="jud"><button class="y'+(q.status==='right'?' on':'')+'" data-i="'+idx+'" data-v="right">✓</button><button class="n'+(q.status==='wrong'?' on':'')+'" data-i="'+idx+'" data-v="wrong">✗</button></div></div>';
     rv.appendChild(el);});
   rv.querySelectorAll('.jud button').forEach(b=>b.onclick=()=>{sess.quiz[+b.dataset.i].status=b.dataset.v;saveSess();renderResult();});
+  rv.querySelectorAll('.ri-spk').forEach(b=>b.onclick=()=>speak(sayText(sess.quiz[+b.dataset.i].en)));
   const right=sess.quiz.filter(q=>q.status==='right').length,pend=sess.quiz.filter(q=>q.status==='pending').length,tot=sess.quiz.length;
   $('score').textContent=right+' / '+tot;
   $('scoresub').textContent='正确率 '+Math.round(right/tot*100)+'%'+(pend?('　·　'+pend+' 项待复核'):'');
@@ -206,7 +241,6 @@ function checkResume(){const s=loadSess();const box=$('resume');
     else box.classList.add('hide');
   } else box.classList.add('hide');
 }
-if(typeof speechSynthesis!=='undefined')speechSynthesis.onvoiceschanged=function(){};
 checkResume();
 </script>
 </body></html>

@@ -63,3 +63,15 @@
   mask.onclick=hide;
   fabLabel();
 })();
+
+/* —— 附带加载「📖 速查」单词小窗（按 confusion.js 自身路径推算 assets 目录，讲义页零改动即可用）—— */
+(function(){
+  if(window.__gjVocabInjected)return; window.__gjVocabInjected=true;
+  try{
+    var me=document.currentScript;
+    if(!me){var ss=document.getElementsByTagName('script');me=ss[ss.length-1];}
+    var base=(me&&me.src)?me.src.replace(/confusion\.js(?:\?.*)?$/,''):'';
+    var s=document.createElement('script'); s.src=base+'vocab-quicklook.js'; s.defer=true;
+    document.head.appendChild(s);
+  }catch(e){}
+})();
