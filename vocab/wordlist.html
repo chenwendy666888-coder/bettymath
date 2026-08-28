@@ -1,0 +1,109 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>单词表 · Word List</title>
+<script src="data.js"></script>
+<style>
+:root{--bg:#F4F6FB;--surface:#fff;--ink:#1B1B2A;--muted:#6A6A82;--line:#E3E6F0;--indigo:#4A43C4;--indigo-deep:#2E2A6B;--indigo-soft:#EEF0FC;--amber:#D98A24;--amber-soft:#FEF6E7;--green:#1F8A5B;--grey-soft:#EEF0F4;--shadow:0 1px 2px rgba(30,30,60,.05),0 8px 24px rgba(30,30,60,.06);--font:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Segoe UI",Roboto,sans-serif;}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.6}
+.hero{background:linear-gradient(135deg,#2E2A6B,#4A43C4);color:#fff;padding:20px}.hero-in{max-width:820px;margin:0 auto}
+.back{color:#fff;opacity:.85;text-decoration:none;font-size:13px;font-weight:700}
+.hero h1{margin:8px 0 4px;font-size:22px}.hero .en{font-size:12px;opacity:.85;font-weight:700}.hero p{margin:6px 0 0;opacity:.92;font-size:13px}
+.switch{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 2px}
+.swlink{font-size:12.5px;font-weight:800;text-decoration:none;color:#fff;background:rgba(255,255,255,.15);border:1.5px solid rgba(255,255,255,.35);border-radius:99px;padding:4px 12px}
+.swlink.on{background:#fff;color:var(--indigo)}
+.wrap{max-width:820px;margin:16px auto 60px;padding:0 18px}
+.bar{background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:14px 16px;margin-bottom:14px;position:sticky;top:8px;z-index:5}
+.search{width:100%;border:2px solid var(--line);border-radius:12px;padding:11px 14px;font-size:16px;font-family:inherit}
+.search:focus{outline:none;border-color:var(--indigo)}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:10px}
+.chip{border:1.5px solid var(--line);border-radius:99px;padding:5px 12px;font-size:12.5px;font-weight:700;cursor:pointer;background:var(--surface);color:var(--indigo-deep)}
+.chip.on{background:var(--indigo);color:#fff;border-color:var(--indigo)}
+.seg{display:inline-flex;gap:4px;margin-left:auto}
+.seg button{border:1.5px solid var(--line);background:var(--surface);border-radius:9px;padding:6px 12px;font-size:12.5px;font-weight:800;cursor:pointer;font-family:inherit;color:var(--indigo-deep)}
+.seg button.on{background:var(--amber);color:#fff;border-color:var(--amber)}
+.btn{border:none;border-radius:11px;padding:9px 16px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;color:#fff;background:var(--indigo);text-decoration:none;display:inline-flex;align-items:center}
+.btn.ghost{background:var(--surface);color:var(--indigo);border:1.5px solid var(--indigo)}
+.count{font-size:12.5px;color:var(--muted);font-weight:700;margin:2px 2px 10px}
+.uhead{font-size:13px;font-weight:800;color:var(--indigo-deep);margin:16px 4px 8px;padding-left:8px;border-left:3px solid var(--amber)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
+.item{display:flex;align-items:center;gap:12px;padding:11px 14px;border-top:1px solid var(--line);cursor:pointer}
+.item:first-child{border-top:none}
+.play{flex:none;border:1.5px solid var(--indigo);background:var(--indigo-soft);color:var(--indigo);border-radius:9px;width:36px;height:36px;font-size:15px;cursor:pointer}
+.en{font-weight:800;color:var(--indigo-deep);font-size:16px}
+.zh{color:var(--ink);font-size:14px;margin-top:1px}
+.zh.mask{background:var(--grey-soft);color:transparent;border-radius:6px;user-select:none}
+.txt{flex:1;min-width:0}.no{flex:none;font-size:11px;color:var(--muted);font-weight:700;width:30px;text-align:right}
+.tip{font-size:12px;color:var(--muted);margin:10px 4px}.empty{text-align:center;color:var(--muted);padding:30px;font-size:14px}
+</style></head><body>
+<div class="hero"><div class="hero-in">
+<a class="back" href="index.html">← 词库中心 Home</a>
+<div class="en" id="setEn">WORD LIST</div>
+<h1 id="setName">单词表</h1>
+<div class="switch" id="switch"></div>
+<p>点 🔊 发音；点整行遮/显中文可自测；上方可搜索、按单元筛。<a id="toquiz" style="color:#fff;font-weight:800">去测验 →</a></p></div></div>
+<div class="wrap">
+  <div class="bar">
+    <input class="search" id="q" placeholder="🔍 搜索英文或中文…">
+    <div class="row" id="chips"></div>
+    <div class="row">
+      <div class="seg" id="mode"><button data-m="show" class="on">显示中文</button><button data-m="mask">遮中文（自测）</button></div>
+    </div>
+    <div class="row" style="margin-top:10px">
+      <button class="btn ghost" id="allBtn">🔊 顺序朗读</button>
+      <button class="btn ghost" id="dl">⬇ 导出 TXT</button>
+      <a class="btn" id="startQuiz">开始测验 →</a>
+    </div>
+  </div>
+  <div class="count" id="count"></div>
+  <div id="list"></div>
+  <div class="tip">发音用浏览器女声（英式优先）；遮中文模式下点某行可单独显示它的中文。</div>
+</div>
+<script>
+const SETS=window.VOCAB_SETS,ORDER=window.VOCAB_ORDER;
+const _p=new URLSearchParams(location.search);let SETID=_p.get('set');if(!SETS[SETID])SETID=ORDER[0];
+const SET=SETS[SETID];const DATA=SET.words,SECTIONS=SET.sections;
+const $=id=>document.getElementById(id);
+$('setName').textContent=SET.emoji+' '+SET.name;$('setEn').textContent=SET.en;document.title=SET.name+' · 单词表';
+$('toquiz').href='quiz.html?set='+SETID;$('startQuiz').href='quiz.html?set='+SETID;
+(function(){var sw=$('switch');ORDER.forEach(function(id){var a=document.createElement('a');a.href='wordlist.html?set='+id;a.textContent=SETS[id].emoji+SETS[id].name;a.className='swlink'+(id===SETID?' on':'');sw.appendChild(a);});})();
+
+let sel=new Set(SECTIONS.map(s=>s.id));let mode='show';let kw='';
+function pickVoice(){try{const vs=speechSynthesis.getVoices();const fem=/(female|Kate|Serena|Stephanie|Hazel|Libby|Sonia|Amy|Emma|Fiona|Moira|Tessa|Karen|Samantha|Victoria|Zira|Susan|Catherine|Google UK English Female)/i;const gb=vs.filter(v=>/en-GB/i.test(v.lang));const en=vs.filter(v=>/^en/i.test(v.lang));return gb.find(v=>fem.test(v.name))||en.find(v=>fem.test(v.name))||gb[0]||en[0]||null;}catch(e){return null;}}
+function sayText(en){return en.replace(/[^A-Za-z(),.\/'’\- ]/g,' ').replace(/\s+/g,' ').trim();}
+function speak(t){try{if(!('speechSynthesis' in window))return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(sayText(t));u.lang='en-GB';u.rate=0.9;u.pitch=1.12;const v=pickVoice();if(v)u.voice=v;speechSynthesis.speak(u);}catch(e){}}
+if(typeof speechSynthesis!=='undefined')speechSynthesis.onvoiceschanged=function(){};
+
+const chipsEl=$('chips');
+const allChip=document.createElement('button');allChip.className='chip on';allChip.textContent='全部';allChip.onclick=()=>{sel=new Set(SECTIONS.map(s=>s.id));render();};chipsEl.appendChild(allChip);
+SECTIONS.forEach(s=>{const b=document.createElement('button');b.className='chip on';b.dataset.id=s.id;b.textContent=s.name.split(' · ')[0].split('（')[0];b.title=s.name;b.onclick=()=>{if(sel.size===SECTIONS.length){sel=new Set([s.id]);}else if(sel.has(s.id)){sel.delete(s.id);if(sel.size===0)sel=new Set(SECTIONS.map(x=>x.id));}else sel.add(s.id);render();};chipsEl.appendChild(b);});
+$('mode').querySelectorAll('button').forEach(b=>b.onclick=()=>{mode=b.dataset.m;$('mode').querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));render();});
+$('q').addEventListener('input',e=>{kw=e.target.value.trim().toLowerCase();render();});
+function filtered(){return DATA.filter(d=>sel.has(d.sec)&&(!kw||d.en.toLowerCase().includes(kw)||d.zh.toLowerCase().includes(kw)));}
+function render(){
+  [...chipsEl.children].forEach((c,i)=>{if(i===0)c.classList.toggle('on',sel.size===SECTIONS.length);else c.classList.toggle('on',sel.has(+c.dataset.id));});
+  const items=filtered();
+  $('count').textContent='共 '+items.length+' 个单词'+(sel.size<SECTIONS.length?'（已筛单元）':'')+(kw?'（搜索 "'+kw+'"）':'');
+  const list=$('list');list.innerHTML='';
+  if(!items.length){list.innerHTML='<div class="empty">没有匹配的单词～换个关键词试试</div>';return;}
+  let curSec=-1,n=0;
+  items.forEach(d=>{
+    if(d.sec!==curSec){curSec=d.sec;const h=document.createElement('div');h.className='uhead';h.textContent=SECTIONS[curSec].name;list.appendChild(h);const card=document.createElement('div');card.className='card';card.dataset.sec=d.sec;list.appendChild(card);}
+    let card=list.lastElementChild;
+    if(!card.classList.contains('card')){card=document.createElement('div');card.className='card';list.appendChild(card);}
+    n++;
+    const row=document.createElement('div');row.className='item';
+    row.innerHTML='<span class="no">'+n+'</span><button class="play" title="发音">🔊</button><div class="txt"><div class="en">'+d.en+'</div><div class="zh'+(mode==='mask'?' mask':'')+'">'+d.zh+'</div></div>';
+    row.querySelector('.play').onclick=(e)=>{e.stopPropagation();speak(d.en);};
+    row.onclick=()=>{const z=row.querySelector('.zh');if(mode==='mask')z.classList.toggle('mask');else speak(d.en);};
+    card.appendChild(row);
+  });
+}
+let reading=false;
+$('allBtn').onclick=()=>{const items=filtered();if(!items.length)return;
+  if(reading){speechSynthesis.cancel();reading=false;$('allBtn').textContent='🔊 顺序朗读';return;}
+  reading=true;$('allBtn').textContent='⏹ 停止';let i=0;
+  const step=()=>{if(!reading||i>=items.length){reading=false;$('allBtn').textContent='🔊 顺序朗读';return;}const u=new SpeechSynthesisUtterance(sayText(items[i].en));u.lang='en-GB';u.rate=0.9;u.pitch=1.12;const v=pickVoice();if(v)u.voice=v;u.onend=()=>{i++;setTimeout(step,250);};speechSynthesis.speak(u);};step();};
+$('dl').onclick=()=>{const items=filtered();let t=SET.name+' 单词表\n共 '+items.length+' 词\n\n';let cs=-1;items.forEach(d=>{if(d.sec!==cs){cs=d.sec;t+='\n【'+SECTIONS[cs].name+'】\n';}t+=d.en+'\t'+d.zh+'\n';});
+  try{const b=new Blob([t],{type:'text/plain'});const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download='wordlist-'+SETID+'.txt';a.click();URL.revokeObjectURL(u);}catch(e){}};
+render();
+</script>
+</body></html>

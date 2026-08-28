@@ -85,6 +85,13 @@ footer{max-width:1040px;margin:0 auto 40px;padding:0 18px;color:var(--muted);fon
 .stagewrap{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:14px 16px;margin-bottom:14px}
 .stagehd{font-weight:800;color:var(--indigo-deep);font-size:14.5px;margin-bottom:10px}.stagehd span{font-weight:600;color:var(--muted);font-size:11.5px;margin-left:6px}
 .stagegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}
+.stpair{cursor:default;background:#FBFBFE}
+.stlinks{display:flex;gap:6px;margin-top:5px;flex-wrap:wrap}
+.stlinks a{font-size:11px;font-weight:800;text-decoration:none;color:var(--indigo);background:var(--indigo-soft);border:1px solid #D9DCF6;border-radius:8px;padding:3px 9px}
+.stlinks a:last-child{color:var(--green);background:var(--green-soft);border-color:#BFE6D2}
+.stmore{grid-column:1/-1;border:1.5px dashed #C9CCE8;background:#F7F8FE;color:var(--indigo);font-weight:800;font-size:13px;border-radius:12px;padding:10px;cursor:pointer;font-family:inherit}
+.stmore:hover{background:#EEF0FC}
+.rlinks{display:flex;gap:14px}.rlinks a.open2:last-child{color:var(--green)}
 .stcard{display:flex;gap:10px;align-items:center;border:1px solid var(--line);border-radius:11px;padding:10px 12px;text-decoration:none;color:inherit;background:#FBFBFE}
 .stcard:hover{border-color:#C9CCF3;box-shadow:0 4px 12px rgba(30,30,60,.07)}
 .stem{font-size:22px;flex:none}.stbody{min-width:0}.sttt{font-weight:800;font-size:13px;color:var(--indigo-deep)}.sten{font-size:10.5px;color:var(--muted)}
@@ -122,6 +129,7 @@ footer{max-width:1040px;margin:0 auto 40px;padding:0 18px;color:var(--muted);fon
     <a class="hb" href="syllabus/glossary.html">📚 背诵清单</a>
     <a class="hb" href="interactives/graphing-lab.html">🧪 交互实验室</a>
     <a class="hb" href="interactives/quiz.html">📝 词汇自测</a>
+    <a class="hb" href="vocab/index.html">🗣️ 雅思单词</a>
     <a class="hb" href="#" id="guideBtn">🧭 新手引导</a>
   </div>
   <div class="meter"><span id="mtxt">已学 0 / 0</span><div class="bar"><div id="mbar"></div></div></div>
@@ -237,7 +245,8 @@ const REFS=[
  {em:'🌳',zh:'根知识表',en:'Root Base',href:'syllabus/root-base.html'},{em:'✅',zh:'考点自查',en:'Self-check',href:'syllabus/checkpoints.html'},
  {em:'📊',zh:'光剑考点全表',en:'Exam Analysis',href:'syllabus/guangjian-exam-analysis.html'},{em:'🔗',zh:'真题↔考点',en:'Q↔Topic',href:'syllabus/exam-map.html'},{em:'🧭',zh:'一阶整合测',en:'Phase-1 Test',href:'practice/phase1-assessment.html'},{em:'📖',zh:'概念术语',en:'Concepts',href:'syllabus/concepts-terms.html'},{em:'🔊',zh:'术语训练',en:'Vocab Trainer',href:'syllabus/vocab-trainer.html'},{em:'🗺',zh:'总逻辑图',en:'Logic Map',href:'syllabus/logic-map.html'},{em:'🚦',zh:'几何Checkpoint',en:'Geo Checkpoint',href:'practice/checkpoint-geometry.html'},{em:'🗂',zh:'当前Checklist',en:'Checklist',href:'syllabus/checklist-current.html'},{em:'🧾',zh:'中期试卷·中高超难',en:'Mid-term Paper',href:'practice/midterm-hard.html'},{em:'📄',zh:'20题作答卷',en:'20-Q Worksheet',href:'practice/worksheet-20-mixed.md'},{em:'📕',zh:'代数难题卷PDF',en:'Algebra Hard (PDF)',href:'practice/algebra-hard-worksheet.pdf'},{em:'🎯',zh:'综合题',en:'Cross-Topic',href:'syllabus/cross-topic.html'},
  {em:'🏃',zh:'阶段演练',en:'Stage Drills',href:'practice/stage-drills.html'},{em:'🧪',zh:'交互实验室',en:'Graphing Lab',href:'interactives/graphing-lab.html'},
- {em:'📚',zh:'背诵清单',en:'Glossary',href:'syllabus/glossary.html'},{em:'📝',zh:'词汇自测',en:'Vocab Quiz',href:'interactives/quiz.html'}
+ {em:'📚',zh:'背诵清单',en:'Glossary',href:'syllabus/glossary.html'},{em:'📝',zh:'词汇自测',en:'Vocab Quiz',href:'interactives/quiz.html'},
+ {em:'🗣️',zh:'雅思单词·词库中心',en:'IELTS / Vocab Hub',href:'vocab/index.html'}
 ];
 function tk(id){return '<button class="tick'+(learned.has(id)?' on':'')+'" data-id="'+id+'" aria-label="已学"></button>';}
 function counts(c){var b=c.ids.filter(function(i){return M[i].built;}).length;return b+' / '+c.ids.length;}
@@ -272,20 +281,14 @@ const STAGETESTS=[
  {em:'🧭',zh:'一阶整合测',en:'Phase-1 Test',href:'practice/phase1-assessment.html',tag:'在线·四级'},
  {em:'🚦',zh:'几何 Checkpoint',en:'Geometry gate',href:'practice/checkpoint-geometry.html',tag:'在线·计时·判分'},
  {em:'🧾',zh:'中期试卷·中/高/超难',en:'Mid-term paper',href:'practice/midterm-hard.html',tag:'在线·计时'},
- {em:'📕',zh:'代数难题卷',en:'Algebra hard',href:'practice/algebra-hard-worksheet.pdf',tag:'PDF·可打印'},
+ {em:'📍',zh:'坐标几何难题卷',en:'Coordinate geometry',href:'practice/coordinate-paper.pdf',ans:'practice/coordinate-paper-answers.pdf',tag:'PDF·题+答案'},
+ {em:'⭕',zh:'圆专项难题卷',en:'Circle',href:'practice/circle-paper.pdf',ans:'practice/circle-paper-answers.pdf',tag:'PDF·题+答案'},
  {em:'📐',zh:'相似难题卷',en:'Similarity hard',href:'practice/similarity-hard-worksheet.pdf',tag:'PDF·可打印'},
- {em:'🔢',zh:'代数强化卷',en:'Algebra paper',href:'practice/algebra-paper.pdf',tag:'PDF·无答案'},
- {em:'🔢',zh:'代数强化卷·答案',en:'Algebra answers',href:'practice/algebra-paper-answers.pdf',tag:'PDF·含答案'},
- {em:'📈',zh:'函数强化卷',en:'Functions paper',href:'practice/functions-paper.pdf',tag:'PDF·无答案'},
- {em:'📈',zh:'函数强化卷·答案',en:'Functions answers',href:'practice/functions-paper-answers.pdf',tag:'PDF·含答案'},
- {em:'⭕',zh:'圆专项难题卷',en:'Circle paper',href:'practice/circle-paper.pdf',tag:'PDF·无答案'},
- {em:'⭕',zh:'圆专项难题卷·答案',en:'Circle answers',href:'practice/circle-paper-answers.pdf',tag:'PDF·含答案'},
- {em:'📍',zh:'坐标几何难题卷',en:'Coordinate paper',href:'practice/coordinate-paper.pdf',tag:'PDF·无答案'},
- {em:'📍',zh:'坐标几何难题卷·答案',en:'Coordinate answers',href:'practice/coordinate-paper-answers.pdf',tag:'PDF·含答案'},
- {em:'📈',zh:'二次函数最值卷',en:'Quadratic max/min',href:'practice/quadratic-maxmin-paper.pdf',tag:'PDF·无答案'},
- {em:'📈',zh:'二次函数最值卷·答案',en:'Quadratic answers',href:'practice/quadratic-maxmin-paper-answers.pdf',tag:'PDF·含答案'},
- {em:'➗',zh:'绝对值·分型练习',en:'Absolute value',href:'practice/absolute-value-practice.pdf',tag:'PDF·循序·无答案'},
- {em:'➗',zh:'绝对值·分型练习·答案',en:'Abs value answers',href:'practice/absolute-value-practice-answers.pdf',tag:'PDF·含答案'},
+ {em:'📈',zh:'二次函数最值卷',en:'Quadratic max/min',href:'practice/quadratic-maxmin-paper.pdf',ans:'practice/quadratic-maxmin-paper-answers.pdf',tag:'PDF·题+答案'},
+ {em:'🔢',zh:'代数强化卷',en:'Algebra paper',href:'practice/algebra-paper.pdf',ans:'practice/algebra-paper-answers.pdf',tag:'PDF·题+答案'},
+ {em:'📈',zh:'函数强化卷',en:'Functions paper',href:'practice/functions-paper.pdf',ans:'practice/functions-paper-answers.pdf',tag:'PDF·题+答案'},
+ {em:'➗',zh:'绝对值·分型练习',en:'Absolute value',href:'practice/absolute-value-practice.pdf',ans:'practice/absolute-value-practice-answers.pdf',tag:'PDF·循序·题+答案'},
+ {em:'📕',zh:'代数难题卷',en:'Algebra hard',href:'practice/algebra-hard-worksheet.pdf',tag:'PDF·可打印'},
  {em:'📄',zh:'20题作答卷',en:'20-Q worksheet',href:'practice/worksheet-20-mixed.md',tag:'可打印'}
 ];
 var SYLDATA=[["🔢 代数 Algebra", "#4A43C4", [["01", "代数基本功 Algebra basics", "lectures/01_algebra-basics.html", ["能进行同底数幂的乘除、幂的乘方、积的乘方运算，并正确处理负指数与零指数", "能熟练展开乘法公式（平方差、完全平方、(a±b)³），并反向识别使用", "能对二次三项式做基础因式分解（提公因式、公式法）", "能化简基本的二次根式", "能对简单分式进行约分与运算"], "", ""], ["C1", "因式分解与恒等式 Factorising", "lectures/C1_factoring.html", ["能用提公因式法与十字相乘法（含 a≠1）分解二次三项式", "能识别并运用平方差、完全平方公式做因式分解", "能用分组分解法处理多项式", "能处理立方公式、整体换元、添项拆项等加料型因式分解"], "枢纽", ""], ["C2", "分式 Algebraic fractions", "lectures/C2_fractions.html", ["能判断分式何时有意义，并进行约分", "能进行分式的四则运算（通分）", "能解分式方程并检验增根", "能用整体代入法求分式的值（加料）"], "", ""], ["E", "数列·规律·归纳 Sequences", "lectures/E_sequences.html", ["能识别等差、等比数列的规律并找通项", "能处理三角形数、图形数等排列规律题", "能用根式裂项、平方差连乘做裂项相消", "能用数学归纳法证明简单命题"], "×6", ""], ["E2", "二次根式 Surds", "lectures/E2_surds.html", ["能把二次根式化到最简（提平方因数、去分母根号）", "能合并同类二次根式、做乘方与乘法运算", "能用共轭对分母有理化", "能化简嵌套根式 √(a+2√b)"], "×6", ""], ["F2", "一元一次方程 Linear equations", "lectures/F2_unknowns-linear.html", ["能分清「几元几次」，理解方程与它的解", "能用等式性质、五步法解一元一次方程（含去分母、去括号）", "能把实际问题列成一元一次方程求解", "能解一元一次不等式（含不等号变号）"], "", ""], ["A", "一元二次·韦达 Quadratics & Vieta", "lectures/A_quadratics-vieta.html", ["能用因式法、公式法、配方法解一元二次方程", "能用判别式 Δ=b²−4ac 判断根的情况（两根/一根/无实根）", "能用韦达定理由系数得出 α+β、αβ，并求 α²+β²、1/α+1/β 等对称式", "能用降次法化简含根的式子", "能处理含参方程的根的个数、两根关系问题"], "×9", ""], ["D", "换元·对称 Substitution", "lectures/D_substitution.html", ["能用整体换元法解高次或复杂方程（如设 u=x²−x）", "能处理 a+1/a 型对称式，求 a²+1/a²、a³+1/a³", "能运用因式定理/余数定理分解与求值", "能用配方逼值、巧妙换元化简复杂求值题"], "加料", ""], ["C3", "绝对值 Absolute value", "lectures/C3_absolute-value.html", ["能理解 |x| 是数轴上到 0 的距离、|a−b| 是两点距离", "能用分类讨论去绝对值、解绝对值方程", "能解绝对值不等式", "能用零点分段法处理多个绝对值之和（几何意义）"], "加料", ""], ["03", "不等式 Inequalities", "lectures/03_inequalities.html", ["能解一元一次不等式与不等式组，并在数轴上表示解集", "能解一元二次不等式（结合抛物线正负）", "能解含绝对值的不等式、分式不等式", "能运用均值不等式 AM–GM 求最值", "能用配方处理恒成立/最值问题"], "", "dup"], ["F7", "不等式·阴影 Inequalities (region)", "lectures/F7_inequalities-shading.html", ["能解一元一次不等式组、写出解集", "能在平面上画出不等式组表示的区域（阴影）", "能计算阴影区域的面积"], "", "dup"]]], ["📈 函数 Functions", "#8A5BC0", [["F1", "坐标与一次函数 Linear graphs", "lectures/F1_coord-linear.html", ["能在平面直角坐标系中描点、读点坐标", "能透彻理解一次函数的斜率 m（增减、陡缓、正负）", "能由 k、b 画一次函数图象并求两直线交点"], "", "dup"], ["02", "数轴·坐标·看图 Graphs", "lectures/02_graphs.html", ["能在数轴上表示不等式的解集", "能在平面直角坐标系中描点、读坐标", "能看懂常见函数图象并从图象读关键信息", "能画直线并对不等式区域作阴影", "能借助图象求参数或自变量的范围"], "", "dup"], ["C4b", "二次函数·含最值 Quadratic (deep)", "lectures/C4_quadratic-functions.html", ["能通过配方把 y=ax²+bx+c 化为顶点式，读出顶点与对称轴", "能判断开口方向并求最大值或最小值", "能求二次函数在给定区间 [m,n] 上的最值（讨论对称轴是否在区间内）", "能建立二次函数模型解最优化应用题（最大面积、最高点、利润）", "能用判别式判断抛物线与 x 轴交点个数、解二次不等式"], "×4", ""], ["C3r", "反比例·渐近线 Reciprocal", "lectures/C3_reciprocal-functions.html", ["能画反比例函数 y=k/x 的双曲线并判断两支所在象限", "能理解渐近线：曲线无限靠近 x=0、y=0 但永不相交", "能运用「点到两轴的矩形面积 = |k|」求 k（连接相似）", "能对 y=k/(x−a)+b 写出平移后的渐近线 x=a、y=b"], "加料", ""], ["C4", "复合·函数方程 Composite", "lectures/C4_composite-functions.html", ["能读懂函数记号并对函数求值", "能计算复合函数 f(g(x)) 的值与表达式", "能用换元/待定系数反求 f(x)", "能解简单的函数方程（加料）"], "加料", ""], ["B", "函数·复合·变换 Functions", "lectures/B_functions.html", ["能读懂函数记号 f(x) 并求值", "能计算复合函数，并处理 fg=gf 型问题", "能求反函数", "能进行图象变换（平移/伸缩/对称、曲线变换与旋转）", "能解函数方程（加料）"], "", ""]]], ["📐 几何 Geometry", "#1F8A5B", [["B1", "点·线·角 Points/lines/angles", "lectures/B1_points-lines-angles.html", ["能分清直线、射线、线段，并知道两点确定一条直线", "能按大小对角分类（锐角、直角、钝角、平角）", "能进行余角（和 90°）、补角（和 180°）的计算", "能运用对顶角相等、邻补角互补求角"], "", ""], ["B2", "平行线 Parallel lines", "lectures/B2_parallel-lines.html", ["能在三线八角中识别同位角（F）、内错角（Z）、同旁内角（C）", "能运用平行线性质：同位角相等、内错角相等、同旁内角互补", "能用角的关系判定两直线平行", "能通过作辅助平行线把角「搬」过去求解"], "", ""], ["B3", "三角形与全等 Triangles", "lectures/B3_triangles.html", ["能运用三角形内角和 180° 与外角性质求角", "能运用等腰三角形「等边对等角」求角", "能用 SSS/SAS/ASA/AAS/HL 五种判定证明三角形全等，并区分全等与相似", "能运用勾股定理及其逆定理求边长、判定直角"], "×5", ""], ["B7", "相似 Similarity", "lectures/B7_similarity.html", ["能用 AA、SAS、SSS 判定三角形相似", "能运用「面积比 = 相似比的平方」求面积", "能用相似（面积法）解决线段比、面积分割问题", "能明确区分相似（成比例）与全等（同大小）"], "×10 枢纽", ""], ["B5", "四边形 Quadrilaterals", "lectures/B5_quadrilaterals.html", ["能陈述并运用平行四边形的性质与判定", "能区分矩形、菱形、正方形的特有性质", "能处理梯形（含等腰梯形）问题", "能运用三角形中位线定理"], "×8", ""], ["B6", "圆 Circles", "lectures/B6_circles.html", ["能运用「同弧圆心角 = 2×圆周角」与「直径所对圆周角 = 90°」", "能用垂径定理配合勾股求弦长、弦心距", "能运用切线⊥半径、圆外一点两切线相等", "能运用圆内接四边形对角互补", "能求弧长与扇形面积"], "×4", ""], ["G4", "坐标几何 Coordinate geometry", "lectures/G4_coordinate-geometry.html", ["能用距离公式、中点公式、斜率公式处理两点问题", "能求直线方程（待定系数）并求两直线交点、判断平行/垂直", "能用坐标求三角形、四边形的面积", "能在坐标题中运用「反比例 + 相似」求 k（光剑高频）", "能用对称化直求最短路径、用中点/距离补全图形缺失顶点"], "×9", ""], ["G5", "翻折·旋转 Transformations", "lectures/G5_transformations.html", ["能写出平移 (x+a, y+b) 后点的坐标", "能写出关于 x 轴、y 轴对称（翻折）后的坐标", "能写出绕原点旋转 180°、90° 后的坐标", "能用「翻折即对称、对应线段相等」配合勾股求折叠后的长度"], "", ""], ["G6", "三角比 Trig ratios", "lectures/G6_solve-right-triangle.html", ["（待建）能用 sin、cos、tan 解直角三角形"], "低优先", "gap"]]], ["🎲 计数·概率·数论 Counting", "#C77A15", [["N2", "排列组合 Permutations", "lectures/N2_counting.html", ["能运用加法原理与乘法原理计数", "能计算排列数 P（顺序有关）与组合数 C（顺序无关）并区分二者", "能用分类与分步（casework）处理较复杂计数"], "加料", ""], ["N3", "概率 Probability", "lectures/N3_probability.html", ["能理解概率的意义、用古典概型求等可能事件概率", "能借助树状图、列表法列举所有情形", "能处理两步事件与倍数概率（加料）"], "", ""], ["N1", "数论 Number theory", "lectures/N1_number-theory.html", ["能判断整除、进行质因数分解", "能求最大公因数 GCD 与最小公倍数 LCM", "能运用奇偶性、余数、尾数周期分析（加料）"], "", ""], ["N4", "集合与逻辑 Sets & logic", "lectures/N4_sets-logic.html", ["能读懂并使用 ∈、∉、⊂、∅ 等集合符号", "能进行并集 ∪（或）、交集 ∩（且）运算", "能读懂逻辑符号 ⇒（推出）、⇔（当且仅当）并判断反向真假"], "工具·新", "tool"]]], ["🧩 应用 Applications", "#C0453B", [["P", "应用题·建模 Word problems", "lectures/P_word-problems.html", ["能解行程问题（相遇、追及）", "能解工程问题", "能解浓度、利润类问题", "能用二元一次方程组解应用题（加料）"], "", ""]]]];
@@ -322,10 +325,18 @@ document.addEventListener('click',function(e){
  try{localStorage.setItem('gj_learned',JSON.stringify([...L]))}catch(e){}
  renderSyl(); if(typeof renderCards==='function')renderCards(); if(typeof meter==='function')meter();
 });
+function stCard(t){
+  if(t.ans){return '<div class="stcard stpair"><div class="stem">'+t.em+'</div><div class="stbody"><div class="sttt">'+t.zh+'</div><div class="sten">'+t.en+'</div><div class="stlinks"><a href="'+t.href+'">📄 题目</a><a href="'+t.ans+'">✅ 答案</a></div></div></div>';}
+  return '<a class="stcard" href="'+t.href+'"><div class="stem">'+t.em+'</div><div class="stbody"><div class="sttt">'+t.zh+'</div><div class="sten">'+t.en+'</div><div class="sttag">'+t.tag+'</div></div></a>';
+}
+var stageAll=false;
 function renderStage(){
- var h=STAGETESTS.map(function(t){return '<a class="stcard" href="'+t.href+'"><div class="stem">'+t.em+'</div><div class="stbody"><div class="sttt">'+t.zh+'</div><div class="sten">'+t.en+'</div><div class="sttag">'+t.tag+'</div></div></a>';}).join('');
- h+='<div class="stadd">➕ 新增 PDF 阶段卷：把文件放进 <code>practice/</code>，再在 index 的 <code>STAGETESTS</code> 里加一行即可。</div>';
+ var PRI=5;
+ var list=stageAll?STAGETESTS:STAGETESTS.slice(0,PRI);
+ var h=list.map(stCard).join('');
+ if(STAGETESTS.length>PRI){h+='<button class="stmore" id="stmoreBtn">'+(stageAll?'收起 ▲':'＋ 展开更多卷（'+(STAGETESTS.length-PRI)+'）▼')+'</button>';}
  document.getElementById('stageTests').innerHTML=h;
+ var b=document.getElementById('stmoreBtn'); if(b)b.onclick=function(){stageAll=!stageAll;renderStage();};
 }
 function renderCards(){
  var h='';
@@ -342,7 +353,8 @@ function renderCards(){
  // —— 练习·测试 区（复用 STAGETESTS）——
  h+='<section class="grp"><h2>🧪 练习 · 测试 <span class="en">Practice & Tests</span><span class="cnt">· '+STAGETESTS.length+' 项</span></h2><p class="desc">限时卷 / Checkpoint / PDF 作答卷，都在这。</p><div class="grid">';
  STAGETESTS.forEach(function(t){
-  h+='<a class="card rcard" href="'+t.href+'"><div class="rem">'+t.em+'</div><div class="cen">'+t.en+'</div><div class="czh">'+t.zh+'</div><span class="badge rtag">'+t.tag+'</span><div class="cfoot"><span class="open2">打开 →</span></div></a>';
+  if(t.ans){h+='<div class="card rcard"><div class="rem">'+t.em+'</div><div class="cen">'+t.en+'</div><div class="czh">'+t.zh+'</div><span class="badge rtag">'+t.tag+'</span><div class="cfoot rlinks"><a class="open2" href="'+t.href+'">📄 题目</a><a class="open2" href="'+t.ans+'">✅ 答案</a></div></div>';}
+  else{h+='<a class="card rcard" href="'+t.href+'"><div class="rem">'+t.em+'</div><div class="cen">'+t.en+'</div><div class="czh">'+t.zh+'</div><span class="badge rtag">'+t.tag+'</span><div class="cfoot"><span class="open2">打开 →</span></div></a>';}
  });
  h+='</div></section>';
  // —— 工具·参考 区（复用 REFS）——

@@ -1,0 +1,216 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Glossary Quiz · 词汇自测考试</title><style>
+:root{--bg:#F4F6FB;--surface:#fff;--ink:#1B1B2A;--muted:#6A6A82;--line:#E3E6F0;--indigo:#4A43C4;--indigo-deep:#2E2A6B;--indigo-soft:#EEF0FC;--amber:#D98A24;--amber-soft:#FEF6E7;--green:#1F8A5B;--green-soft:#E6F5EE;--rose:#C0453B;--rose-soft:#FBEDEC;--grey-soft:#EEF0F4;--shadow:0 1px 2px rgba(30,30,60,.05),0 8px 24px rgba(30,30,60,.06);--font:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Segoe UI",Roboto,sans-serif;}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.6}
+.hero{background:linear-gradient(135deg,#2E2A6B,#4A43C4);color:#fff;padding:20px}.hero-in{max-width:760px;margin:0 auto}
+.back{color:#fff;opacity:.85;text-decoration:none;font-size:13px;font-weight:700}.hero h1{margin:8px 0 4px;font-size:22px}.hero .en{font-size:12px;opacity:.85;font-weight:700}.hero p{margin:6px 0 0;opacity:.92;font-size:13px}
+.wrap{max-width:760px;margin:18px auto;padding:0 22px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:22px 24px;margin-bottom:16px}
+h3{margin:0 0 12px;font-size:15px;color:var(--indigo-deep)}
+.modes{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mode{border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;cursor:pointer;background:var(--surface);text-align:left;font-family:inherit;position:relative}
+.mode.on{border-color:var(--indigo);background:var(--indigo-soft)}
+.mode .t{font-weight:800;font-size:14px;color:var(--indigo-deep)}.mode .d{font-size:12px;color:var(--muted);margin-top:2px}
+.mode .ck{position:absolute;top:10px;right:12px;font-size:14px;color:var(--indigo);opacity:0}.mode.on .ck{opacity:1}
+.mixhint{font-size:12px;color:var(--amber);font-weight:700;margin-top:8px}
+.expander{border:1.5px solid var(--line);border-radius:12px;overflow:hidden}
+.exp-head{display:flex;align-items:center;gap:8px;padding:11px 14px;cursor:pointer;font-weight:800;font-size:14px;color:var(--indigo-deep);user-select:none}
+.exp-head .arrow{transition:transform .2s}.expander.open .exp-head .arrow{transform:rotate(90deg)}
+.exp-head .sum{margin-left:auto;font-size:12px;color:var(--muted);font-weight:700}
+.exp-body{display:none;padding:4px 14px 14px}.expander.open .exp-body{display:block}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1.5px solid var(--line);border-radius:99px;padding:5px 11px;font-size:12px;font-weight:700;cursor:pointer;background:var(--surface);color:var(--indigo-deep)}
+.chip.on{background:var(--indigo);color:#fff;border-color:var(--indigo)}
+.row2{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:14px}
+.seg{display:inline-flex;gap:4px}.seg button{border:1.5px solid var(--line);background:var(--surface);border-radius:9px;padding:6px 12px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;color:var(--indigo-deep)}.seg button.on{background:var(--indigo);color:#fff;border-color:var(--indigo)}
+.btn{border:none;border-radius:11px;padding:11px 20px;font-size:15px;font-weight:800;cursor:pointer;font-family:inherit;color:#fff;background:var(--indigo)}
+.btn.g{background:var(--green)}.btn.ghost{background:var(--surface);color:var(--indigo);border:1.5px solid var(--indigo)}.btn.sm{padding:8px 14px;font-size:13px}
+.resume{background:var(--amber-soft);border:1px solid #F0E1C0;border-radius:12px;padding:12px 15px;margin-bottom:14px;font-size:13.5px;color:#7a5210}
+.prog{height:8px;background:#E3E6F0;border-radius:99px;overflow:hidden;margin-bottom:14px}.prog>div{height:100%;background:linear-gradient(90deg,var(--indigo),#7A73E6);width:0;transition:width .3s}
+.qmeta{font-size:12.5px;color:var(--muted);font-weight:700;margin-bottom:6px;display:flex;justify-content:space-between}
+.prompt{text-align:center;padding:16px 10px}
+.prompt .big{font-size:30px;font-weight:800;color:var(--indigo-deep)}
+.prompt .sub{font-size:13px;color:var(--muted);margin-top:6px}
+.playbtn{border:none;background:var(--indigo);color:#fff;border-radius:50%;width:76px;height:76px;font-size:30px;cursor:pointer;box-shadow:var(--shadow)}
+.replay{border:1.5px solid var(--indigo);background:var(--surface);color:var(--indigo);border-radius:10px;padding:7px 14px;font-weight:800;cursor:pointer;font-family:inherit;font-size:13px;margin-top:10px}
+input.ans{width:100%;border:2px solid var(--line);border-radius:12px;padding:13px 15px;font-size:18px;font-family:inherit;margin-top:14px;text-align:center}
+input.ans:focus{outline:none;border-color:var(--indigo)}
+.result-top{text-align:center;padding:8px}.score{font-size:46px;font-weight:800;color:var(--indigo)}
+.bymod{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:8px}
+.bymod span{font-size:12px;font-weight:700;background:var(--grey-soft);border-radius:99px;padding:3px 10px;color:var(--indigo-deep)}
+.feedback{border-radius:12px;padding:12px 15px;font-size:13.5px;margin:10px 0}.feedback.pend{background:var(--amber-soft);color:#7a5210}
+.review-item{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;padding:10px 0;border-top:1px solid var(--line)}.review-item:first-child{border-top:none}
+.ri-q{font-size:14px}.ri-q .en{font-weight:800;color:var(--indigo-deep)}.ri-q .ya{font-size:12.5px;color:var(--muted)}
+.badge{font-size:11px;font-weight:800;border-radius:99px;padding:2px 9px}
+.badge.right{background:var(--green-soft);color:var(--green)}.badge.wrong{background:var(--rose-soft);color:var(--rose)}.badge.pending{background:var(--amber-soft);color:#7a5210}
+.jud{display:inline-flex;gap:5px;margin-top:5px}.jud button{border:1.5px solid var(--line);background:var(--surface);border-radius:8px;padding:4px 9px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit}
+.jud button.y.on{background:var(--green);color:#fff;border-color:var(--green)}.jud button.n.on{background:var(--rose);color:#fff;border-color:var(--rose)}
+.hide{display:none}.tip{font-size:12px;color:var(--muted);margin-top:10px}
+.switch{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 4px}.swlink{font-size:12.5px;font-weight:800;text-decoration:none;color:#fff;background:rgba(255,255,255,.15);border:1.5px solid rgba(255,255,255,.35);border-radius:99px;padding:4px 12px}.swlink.on{background:#fff;color:var(--indigo)}.listlink{color:var(--indigo);font-weight:800;text-decoration:none}
+</style></head><body>
+<script src="data.js"></script>
+<div class="hero"><div class="hero-in"><a class="back" href="index.html">← 词库中心 Home</a>
+<div class="en" id="setEn">VOCABULARY QUIZ</div>
+<h1 id="setName">词汇测验</h1>
+<div class="switch" id="switch"></div>
+<p>模式可多选（自动 Mix 随机抽题）；全部答完统一评判；进度按词库分别本地存档，可导出。</p></div></div>
+<div class="wrap">
+
+<div class="card" id="setup">
+  <div class="resume hide" id="resume"></div>
+  <h3>① 选模式 Modes（可多选 → 混合）</h3>
+  <div class="modes" id="modes"></div>
+  <div class="mixhint hide" id="mixhint"></div>
+  <h3 style="margin-top:18px">② 选范围 Modules</h3>
+  <div class="expander" id="rangeExp">
+    <div class="exp-head" id="rangeHead"><span class="arrow">▸</span> 选择模块 <span class="sum" id="rangeSum"></span></div>
+    <div class="exp-body"><div class="row2" style="margin-top:0;margin-bottom:8px"><button class="btn ghost sm" id="selAll">全选</button><button class="btn ghost sm" id="selNone">全不选</button></div><div class="chips" id="chips"></div></div>
+  </div>
+  <div class="row2"><span style="font-size:13px;font-weight:700;color:var(--muted)">题量</span><div class="seg" id="count"></div></div>
+  <div class="row2" style="margin-top:16px"><button class="btn" id="start">开始测试 Start →</button></div>
+  <div class="tip">听力模式用女声朗读；含数学符号的词只要打英文单词即可（如 f(g(x)) → composite function）。想先背可去 <a class="listlink" id="tolist">单词表 →</a></div>
+</div>
+
+<div class="card hide" id="quiz">
+  <div class="prog"><div id="progbar"></div></div>
+  <div class="qmeta"><span id="qidx"></span><span id="qmode"></span></div>
+  <div class="prompt" id="prompt"></div>
+  <input class="ans" id="ans" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="输入答案，按 Enter 继续">
+  <div class="row2" style="margin-top:14px;justify-content:space-between">
+    <button class="btn ghost sm" id="skip">跳过</button>
+    <button class="btn g" id="nextBtn">下一题 →</button>
+  </div>
+  <div class="tip">答完直接按 <b>Enter</b> 进入下一题（会自动存下你的答案）。全部做完才统一判分。</div>
+</div>
+
+<div class="card hide" id="result">
+  <div class="result-top"><div class="score" id="score"></div><div id="scoresub" style="color:var(--muted);font-weight:700"></div><div class="bymod" id="bymod"></div></div>
+  <div class="feedback pend hide" id="pendNote"></div>
+  <div class="row2" style="justify-content:center"><button class="btn ghost sm" id="expJSON">⬇ 导出 JSON</button><button class="btn ghost sm" id="expTXT">⬇ 导出 TXT</button></div>
+  <h3 style="margin-top:16px">逐题复查 Review（可手动改判）</h3>
+  <div id="review"></div>
+  <div class="row2" style="margin-top:16px"><button class="btn" id="again">再来一套 ↺</button><button class="btn ghost" id="home">换模式</button></div>
+  <div class="tip">中文默写默认自动初判：对上词表意思即算对，对不上标"待复核"，由你点 ✓/✗ 定案，分数实时更新。英文按拼写（大小写/空格/连字符宽松）。</div>
+</div>
+
+</div>
+<script>
+const SETS=window.VOCAB_SETS,ORDER=window.VOCAB_ORDER;const _p=new URLSearchParams(location.search);let SETID=_p.get('set');if(!SETS[SETID])SETID=ORDER[0];const SET=SETS[SETID];const DATA=SET.words,SECTIONS=SET.sections;document.getElementById('setName').textContent=SET.emoji+' '+SET.name;document.getElementById('setEn').textContent=SET.en;document.title=SET.name+' · 测验 Quiz';(function(){var sw=document.getElementById('switch');ORDER.forEach(function(id){var a=document.createElement('a');a.href='quiz.html?set='+id;a.textContent=SETS[id].emoji+SETS[id].name;a.className='swlink'+(id===SETID?' on':'');sw.appendChild(a);});})();
+const MODES=[
+ {id:'listen_en',t:'🎧 听 → 拼英文',d:'放女声，打英文（查拼写）',ansEN:true,listen:true},
+ {id:'listen_zh',t:'🎧 听 → 写中文',d:'放女声，打中文',ansEN:false,listen:true},
+ {id:'en_zh',t:'🔤 看英文 → 写中文',d:'显示英文，写中文',ansEN:false,listen:false},
+ {id:'zh_en',t:'🀄 看中文 → 写英文',d:'显示中文，拼英文',ansEN:true,listen:false},
+];
+const MODEMAP={}; MODES.forEach(m=>MODEMAP[m.id]=m);
+const LS='bva_sess_'+SETID;
+let modesSel=new Set(['listen_en']), selSecs=new Set(SECTIONS.map(s=>s.id)), count=20;
+let sess=null, locked=false;
+const $=id=>document.getElementById(id);
+function show(id){['setup','quiz','result'].forEach(x=>$(x).classList.toggle('hide',x!==id));}
+
+// ===== 判定 =====
+function canonList(target){const outs=[];(target.match(/\(([^)]+)\)/g)||[]).forEach(p=>{const inner=p.slice(1,-1).replace(/[.\s]/g,'');if(/^[A-Za-z]{2,6}$/.test(inner))outs.push(inner.toLowerCase());});
+  target.replace(/\([^)]*\)/g,' ').split(/[\/,，]/).forEach(alt=>{const toks=alt.trim().split(/\s+/).filter(t=>t.length>1&&/^[A-Za-z][A-Za-z'’\-]*$/.test(t));const c=toks.join('').toLowerCase().replace(/[^a-z]/g,'');if(c)outs.push(c);});return [...new Set(outs)];}
+function studentCanon(s){return (s||'').toLowerCase().replace(/[^a-z]/g,'');}
+function checkEN(ans,target){const a=studentCanon(ans);if(!a)return false;return canonList(target).includes(a);}
+function enOK(target){return canonList(target).length>0;}
+function sayText(en){return en.replace(/[^A-Za-z(),.\/'’\- ]/g,' ').replace(/\s+/g,' ').trim();}
+function speakOK(en){return sayText(en).replace(/[^A-Za-z]/g,'').length>=3;}
+function zhAccept(t){return t.split(/[\/、，,;；]/).map(x=>x.replace(/[（）()\s。，、；]/g,'').trim()).filter(Boolean);}
+function checkZH(ans,t){const a=(ans||'').replace(/[（）()\s。，、；]/g,'');if(!a)return false;return zhAccept(t).some(v=>{v=v.replace(/[（）()\s。，、；]/g,'');return v===a||(v.length>=2&&a.length>=2&&(v.includes(a)||a.includes(v)));});}
+function validFor(item,modeId){const m=MODEMAP[modeId];if(m.ansEN&&!enOK(item.en))return false;if(m.listen&&!speakOK(item.en))return false;return true;}
+
+// ===== setup UI =====
+const modesEl=$('modes');
+MODES.forEach(m=>{const b=document.createElement('button');b.className='mode'+(modesSel.has(m.id)?' on':'');b.innerHTML='<span class="ck">✓</span><div class="t">'+m.t+'</div><div class="d">'+m.d+'</div>';b.onclick=()=>{if(modesSel.has(m.id)){if(modesSel.size>1)modesSel.delete(m.id);}else modesSel.add(m.id);b.classList.toggle('on',modesSel.has(m.id));syncMix();};modesEl.appendChild(b);});
+function syncMix(){const h=$('mixhint');if(modesSel.size>1){h.classList.remove('hide');h.textContent='已选 '+modesSel.size+' 种模式 → 每题随机抽一种（Mix）';}else h.classList.add('hide');}
+syncMix();
+const chipsEl=$('chips');
+SECTIONS.forEach(s=>{const b=document.createElement('button');b.className='chip on';b.dataset.id=s.id;b.textContent=s.name;b.onclick=()=>{if(selSecs.has(s.id))selSecs.delete(s.id);else selSecs.add(s.id);syncChips();};chipsEl.appendChild(b);});
+function syncChips(){[...chipsEl.children].forEach(c=>c.classList.toggle('on',selSecs.has(+c.dataset.id)));$('rangeSum').textContent=selSecs.size===SECTIONS.length?('全部 '+SECTIONS.length+' 个'):('已选 '+selSecs.size+' 个');}
+$('selAll').onclick=()=>{selSecs=new Set(SECTIONS.map(s=>s.id));syncChips();};
+$('selNone').onclick=()=>{selSecs=new Set();syncChips();};
+$('rangeHead').onclick=()=>$('rangeExp').classList.toggle('open');
+syncChips();
+const countEl=$('count');[10,20,40,'全部'].forEach(v=>{const b=document.createElement('button');b.textContent=v;if(v===20)b.classList.add('on');b.onclick=()=>{count=(v==='全部')?99999:v;[...countEl.children].forEach(c=>c.classList.remove('on'));b.classList.add('on');};countEl.appendChild(b);});
+
+// ===== 发音(女声) =====
+function pickVoice(){try{const vs=speechSynthesis.getVoices();const fem=/(female|Kate|Serena|Stephanie|Hazel|Libby|Sonia|Amy|Emma|Fiona|Moira|Tessa|Karen|Samantha|Victoria|Zira|Susan|Catherine|Google UK English Female)/i;const gb=vs.filter(v=>/en-GB/i.test(v.lang));const en=vs.filter(v=>/^en/i.test(v.lang));return gb.find(v=>fem.test(v.name))||en.find(v=>fem.test(v.name))||gb[0]||en[0]||null;}catch(e){return null;}}
+function speak(txt){try{if(!('speechSynthesis' in window))return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(txt);u.lang='en-GB';u.rate=0.9;u.pitch=1.15;const v=pickVoice();if(v)u.voice=v;speechSynthesis.speak(u);}catch(e){}}
+
+// ===== 存档 =====
+function saveSess(){try{localStorage.setItem(LS,JSON.stringify(sess));}catch(e){}}
+function loadSess(){try{return JSON.parse(localStorage.getItem(LS)||'null');}catch(e){return null;}}
+function clearSess(){try{localStorage.removeItem(LS);}catch(e){}}
+
+// ===== 出题 =====
+function build(){
+  const pool=DATA.filter(d=>selSecs.has(d.sec)).slice();
+  for(let i=pool.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[pool[i],pool[j]]=[pool[j],pool[i]];}
+  const chosen=[];const want=Math.min(count,pool.length);
+  for(const d of pool){if(chosen.length>=want)break;const valid=[...modesSel].filter(mid=>validFor(d,mid));if(valid.length===0)continue;const mode=valid[Math.floor(Math.random()*valid.length)];chosen.push({en:d.en,zh:d.zh,sec:d.sec,mode,ans:'',status:''});}
+  sess={modes:[...modesSel],secs:[...selSecs],quiz:chosen,qi:0,phase:'quiz',ts:Date.now()};saveSess();
+}
+
+$('start').onclick=()=>{if(selSecs.size===0){alert('请至少选一个模块');return;}build();if(sess.quiz.length===0){alert('该范围/模式组合没有可出的题');return;}show('quiz');renderQ();};
+
+function renderQ(){const q=sess.quiz[sess.qi];const m=MODEMAP[q.mode];
+  $('progbar').style.width=(sess.qi/sess.quiz.length*100)+'%';
+  $('qidx').textContent='第 '+(sess.qi+1)+' / '+sess.quiz.length+' 题';
+  $('qmode').textContent=m.t+'　·　答案：'+(m.ansEN?'英文':'中文');
+  const p=$('prompt');
+  if(m.listen){p.innerHTML='<button class="playbtn" id="play">🔊</button><div class="sub">听发音，然后'+(m.ansEN?'拼出英文':'写出中文')+'</div><button class="replay" id="replay">🔁 再听</button>';setTimeout(()=>speak(sayText(q.en)),150);$('play').onclick=()=>speak(sayText(q.en));$('replay').onclick=()=>speak(sayText(q.en));}
+  else if(m.id==='en_zh'){p.innerHTML='<div class="big">'+q.en+'</div><div class="sub">写出中文意思</div>';}
+  else{p.innerHTML='<div class="big">'+q.zh+'</div><div class="sub">拼出英文</div>';}
+  const inp=$('ans');inp.value=q.ans||'';inp.placeholder=m.ansEN?'输入英文…':'输入中文…';
+  $('nextBtn').textContent=(sess.qi===sess.quiz.length-1)?'完成 ✓':'下一题 →';
+  setTimeout(()=>inp.focus(),60);
+}
+function advance(){if(locked)return;locked=true;const q=sess.quiz[sess.qi];q.ans=$('ans').value.trim();saveSess();
+  if(sess.qi<sess.quiz.length-1){sess.qi++;renderQ();}else{finish();}
+  setTimeout(()=>{locked=false;},120);
+}
+$('ans').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();advance();}});
+$('nextBtn').onclick=advance;
+$('skip').onclick=()=>{$('ans').value='';advance();};
+
+function gradeAll(){sess.quiz.forEach(q=>{const m=MODEMAP[q.mode];if(m.ansEN){q.status=checkEN(q.ans,q.en)?'right':'wrong';}else{q.status=checkZH(q.ans,q.zh)?'right':'pending';}});}
+function finish(){sess.phase='done';gradeAll();saveSess();show('result');renderResult();}
+
+function renderResult(){const rv=$('review');rv.innerHTML='';
+  sess.quiz.forEach((q,idx)=>{const m=MODEMAP[q.mode];const el=document.createElement('div');el.className='review-item';
+    const badge='<span class="badge '+q.status+'">'+(q.status==='right'?'✓ 对':q.status==='wrong'?'✗ 错':'待复核')+'</span>';
+    el.innerHTML='<div class="ri-q"><span class="en">'+q.en+'</span> · '+q.zh+'<br><span class="ya">['+m.t+'] 你的答案：'+(q.ans||'（空）')+'</span></div>'+
+      '<div style="text-align:right">'+badge+'<div class="jud"><button class="y'+(q.status==='right'?' on':'')+'" data-i="'+idx+'" data-v="right">✓</button><button class="n'+(q.status==='wrong'?' on':'')+'" data-i="'+idx+'" data-v="wrong">✗</button></div></div>';
+    rv.appendChild(el);});
+  rv.querySelectorAll('.jud button').forEach(b=>b.onclick=()=>{sess.quiz[+b.dataset.i].status=b.dataset.v;saveSess();renderResult();});
+  const right=sess.quiz.filter(q=>q.status==='right').length,pend=sess.quiz.filter(q=>q.status==='pending').length,tot=sess.quiz.length;
+  $('score').textContent=right+' / '+tot;
+  $('scoresub').textContent='正确率 '+Math.round(right/tot*100)+'%'+(pend?('　·　'+pend+' 项待复核'):'');
+  // 分模块
+  const bm={};sess.quiz.forEach(q=>{const nm=SECTIONS[q.sec].name;bm[nm]=bm[nm]||{r:0,t:0};bm[nm].t++;if(q.status==='right')bm[nm].r++;});
+  $('bymod').innerHTML=Object.keys(bm).map(k=>'<span>'+k+' '+bm[k].r+'/'+bm[k].t+'</span>').join('');
+  const pn=$('pendNote');if(pend){pn.classList.remove('hide');pn.textContent='有 '+pend+' 项中文默写待复核：请在下方点 ✓ 或 ✗ 定案，分数会实时更新。';}else pn.classList.add('hide');
+}
+function dl(text,name,type){try{const blob=new Blob([text],{type:type});const u=URL.createObjectURL(blob);const a=document.createElement('a');a.href=u;a.download=name;a.click();URL.revokeObjectURL(u);}catch(e){}}
+$('expJSON').onclick=()=>{const right=sess.quiz.filter(q=>q.status==='right').length;const out={date:new Date().toISOString(),modes:sess.modes,total:sess.quiz.length,correct:right,accuracy:Math.round(right/sess.quiz.length*100)+'%',items:sess.quiz.map(q=>({en:q.en,zh:q.zh,mode:q.mode,answer:q.ans,verdict:q.status}))};dl(JSON.stringify(out,null,2),'quiz-result-'+Date.now()+'.json','application/json');};
+$('expTXT').onclick=()=>{const right=sess.quiz.filter(q=>q.status==='right').length;let t='数学英语词汇自测结果\n日期: '+new Date().toLocaleString()+'\n得分: '+right+' / '+sess.quiz.length+' ('+Math.round(right/sess.quiz.length*100)+'%)\n\n';sess.quiz.forEach((q,i)=>{t+=(i+1)+'. ['+({right:'对',wrong:'错',pending:'待复核'}[q.status])+'] '+q.en+' | '+q.zh+'\n   你的答案: '+(q.ans||'（空）')+'\n';});dl(t,'quiz-result-'+Date.now()+'.txt','text/plain');};
+$('again').onclick=()=>{build();show('quiz');renderQ();};
+$('home').onclick=()=>{show('setup');checkResume();};
+
+// ===== 续答/上次结果 =====
+function checkResume(){const s=loadSess();const box=$('resume');
+  if(s&&s.quiz&&s.quiz.length){
+    if(s.phase==='quiz'&&s.qi<s.quiz.length){box.classList.remove('hide');box.innerHTML='上次有未完成的测试（进行到第 '+(s.qi+1)+'/'+s.quiz.length+' 题）。<button class="btn g sm" id="rs" style="margin-left:8px">▶ 继续</button> <button class="btn ghost sm" id="rsx">丢弃</button>';
+      $('rs').onclick=()=>{sess=s;show('quiz');renderQ();};$('rsx').onclick=()=>{clearSess();box.classList.add('hide');};}
+    else if(s.phase==='done'){box.classList.remove('hide');box.innerHTML='上次已完成一套测试。<button class="btn g sm" id="rsv" style="margin-left:8px">查看结果</button> <button class="btn ghost sm" id="rsx">清除</button>';
+      $('rsv').onclick=()=>{sess=s;show('result');renderResult();};$('rsx').onclick=()=>{clearSess();box.classList.add('hide');};}
+    else box.classList.add('hide');
+  } else box.classList.add('hide');
+}
+if(typeof speechSynthesis!=='undefined')speechSynthesis.onvoiceschanged=function(){};
+var _tl=document.getElementById('tolist');if(_tl)_tl.href='wordlist.html?set='+SETID;
+checkResume();
+</script>
+</body></html>

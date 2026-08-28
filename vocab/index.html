@@ -1,0 +1,43 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Betty 词库中心 · Vocabulary Home</title>
+<script src="data.js"></script>
+<style>
+:root{--bg:#F4F6FB;--surface:#fff;--ink:#1B1B2A;--muted:#6A6A82;--line:#E3E6F0;--indigo:#4A43C4;--indigo-deep:#2E2A6B;--indigo-soft:#EEF0FC;--amber:#D98A24;--amber-soft:#FEF6E7;--shadow:0 1px 2px rgba(30,30,60,.05),0 10px 30px rgba(30,30,60,.08);--font:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Segoe UI",Roboto,sans-serif;}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.6}
+.hero{background:linear-gradient(135deg,#2E2A6B,#4A43C4);color:#fff;padding:30px 20px 34px}.hero-in{max-width:760px;margin:0 auto}
+.hero .en{font-size:12px;opacity:.85;font-weight:800;letter-spacing:.06em}
+.hero h1{margin:8px 0 6px;font-size:26px}.hero p{margin:0;opacity:.92;font-size:14px}
+.wrap{max-width:760px;margin:-18px auto 60px;padding:0 20px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:20px 22px;margin-bottom:16px;display:flex;gap:16px;align-items:flex-start}
+.ico{flex:none;width:56px;height:56px;border-radius:14px;background:var(--indigo-soft);display:flex;align-items:center;justify-content:center;font-size:28px}
+.meta{flex:1;min-width:0}
+.meta h2{margin:0 0 2px;font-size:18px;color:var(--indigo-deep)}
+.meta .en{font-size:12px;color:var(--muted);font-weight:800}
+.meta .d{font-size:13px;color:var(--ink);margin:6px 0 4px}
+.meta .stat{font-size:12px;color:var(--muted);font-weight:700}
+.acts{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+.btn{border:none;border-radius:11px;padding:10px 18px;font-size:14px;font-weight:800;cursor:pointer;font-family:inherit;color:#fff;background:var(--indigo);text-decoration:none;display:inline-flex;align-items:center;gap:4px}
+.btn.ghost{background:var(--surface);color:var(--indigo);border:1.5px solid var(--indigo)}
+.foot{text-align:center;color:var(--muted);font-size:12px;margin-top:8px}
+</style></head><body>
+<div class="hero"><div class="hero-in">
+<a class="back" href="../index.html" style="color:#fff;opacity:.85;text-decoration:none;font-size:13px;font-weight:700">← 返回 bettymath 学习中心</a>
+<div class="en" style="margin-top:6px">BETTY · VOCABULARY HOME</div>
+<h1>📚 Betty 词库中心</h1>
+<p>选一个词库开始：先看单词表背，再进测验自测。进度按词库分别本地存档。</p></div></div>
+<div class="wrap" id="cards"></div>
+<script>
+const SETS=window.VOCAB_SETS,ORDER=window.VOCAB_ORDER;
+const wrap=document.getElementById('cards');
+ORDER.forEach(id=>{const s=SETS[id];
+  const c=document.createElement('div');c.className='card';
+  c.innerHTML='<div class="ico">'+s.emoji+'</div><div class="meta">'+
+    '<h2>'+s.name+'</h2><div class="en">'+s.en+'</div>'+
+    '<div class="d">'+s.desc+'</div>'+
+    '<div class="stat">'+s.words.length+' 个单词 · '+s.sections.length+' 个单元</div>'+
+    '<div class="acts"><a class="btn ghost" href="wordlist.html?set='+id+'">📖 单词表</a>'+
+    '<a class="btn" href="quiz.html?set='+id+'">📝 开始测验</a></div></div>';
+  wrap.appendChild(c);});
+const f=document.createElement('div');f.className='foot';f.textContent='把整个 betty-vocab 文件夹部署为独立站点，即可在 bettymath 首页加一个链接指过来。';wrap.appendChild(f);
+</script>
+</body></html>
