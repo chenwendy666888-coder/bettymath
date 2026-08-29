@@ -30,6 +30,18 @@
 .play{flex:none;border:1.5px solid var(--indigo);background:var(--indigo-soft);color:var(--indigo);border-radius:9px;width:36px;height:36px;font-size:15px;cursor:pointer}
 .en{font-weight:800;color:var(--indigo-deep);font-size:16px}
 .zh{color:var(--ink);font-size:14px;margin-top:1px}
+.item{align-items:flex-start}
+.phon{font-weight:600;font-size:12.5px;color:var(--muted);margin-left:6px}
+.pos{font-size:11px;font-weight:800;color:var(--amber);background:var(--amber-soft);border-radius:6px;padding:0 6px;margin-left:6px}
+.detog{margin-top:6px;font-size:12px;font-weight:800;color:var(--indigo);background:var(--indigo-soft);border:1px solid #D9DCF6;border-radius:8px;padding:3px 10px;cursor:pointer;font-family:inherit}
+.detail{margin-top:8px;border-top:1px dashed var(--line);padding-top:8px;display:none}
+.detail.open{display:block}
+.drow{font-size:13px;margin:5px 0;line-height:1.55}
+.dk{display:inline-block;min-width:40px;font-weight:800;color:var(--indigo-deep);margin-right:6px;font-size:12px}
+.exline{background:var(--indigo-soft);border-radius:10px;padding:8px 10px;margin-top:6px}
+.exen{font-size:13px;color:var(--ink)}.exzh{font-size:12.5px;color:var(--muted);margin-top:3px}
+.exsrc{font-size:11px;font-weight:800;color:var(--indigo);margin-left:4px}
+.explay{border:1px solid var(--indigo);background:#fff;color:var(--indigo);border-radius:7px;font-size:12px;font-weight:800;cursor:pointer;padding:1px 8px;margin-left:6px;font-family:inherit}
 .zh.mask{background:var(--grey-soft);color:transparent;border-radius:6px;user-select:none}
 .txt{flex:1;min-width:0}.no{flex:none;font-size:11px;color:var(--muted);font-weight:700;width:30px;text-align:right}
 .tip{font-size:12px;color:var(--muted);margin:10px 4px}.empty{text-align:center;color:var(--muted);padding:30px;font-size:14px}
@@ -91,8 +103,24 @@ function render(){
     if(!card.classList.contains('card')){card=document.createElement('div');card.className='card';list.appendChild(card);}
     n++;
     const row=document.createElement('div');row.className='item';
-    row.innerHTML='<span class="no">'+n+'</span><button class="play" title="发音">🔊</button><div class="txt"><div class="en">'+d.en+'</div><div class="zh'+(mode==='mask'?' mask':'')+'">'+d.zh+'</div></div>';
+    var esc=function(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');};
+    var head='<span class="no">'+n+'</span><button class="play" title="发音">🔊</button><div class="txt"><div class="en">'+d.en+(d.phon?'<span class="phon">'+esc(d.phon)+'</span>':'')+(d.pos?'<span class="pos">'+esc(d.pos)+'</span>':'')+'</div><div class="zh'+(mode==='mask'?' mask':'')+'">'+esc(d.zh)+'</div>';
+    var det='';
+    if(d.defn){
+      det+='<div class="drow"><span class="dk">释义</span>'+esc(d.defn)+'</div>';
+      if(d.root)det+='<div class="drow"><span class="dk">词根</span>'+esc(d.root)+'</div>';
+      if(d.cog)det+='<div class="drow"><span class="dk">同根</span>'+esc(d.cog)+'</div>';
+      if(d.syn)det+='<div class="drow"><span class="dk">同义</span>'+esc(d.syn)+'</div>';
+      if(d.col)det+='<div class="drow"><span class="dk">搭配</span>'+esc(d.col)+'</div>';
+      if(d.ex)det+='<div class="exline"><div class="exen">'+esc(d.ex)+(d.src?'<span class="exsrc">('+esc(d.src)+')</span>':'')+'<button class="explay">🔊 读例句</button></div>'+(d.exzh?'<div class="exzh">'+esc(d.exzh)+'</div>':'')+'</div>';
+    }
+    if(det){head+='<button class="detog">详解 ▾</button><div class="detail">'+det+'</div>';}
+    head+='</div>';
+    row.innerHTML=head;
     row.querySelector('.play').onclick=(e)=>{e.stopPropagation();speak(d.en);};
+    var tog=row.querySelector('.detog');
+    if(tog){var dv=row.querySelector('.detail');tog.onclick=(e)=>{e.stopPropagation();dv.classList.toggle('open');tog.textContent=dv.classList.contains('open')?'详解 ▴':'详解 ▾';};}
+    var exb=row.querySelector('.explay');if(exb)exb.onclick=(e)=>{e.stopPropagation();speak(d.ex);};
     row.onclick=()=>{const z=row.querySelector('.zh');if(mode==='mask')z.classList.toggle('mask');else speak(d.en);};
     card.appendChild(row);
   });
